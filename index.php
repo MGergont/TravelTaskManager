@@ -13,10 +13,11 @@ $router = new Src\Utils\Router();
 $router->get('/access-denied', 'HomeController@accessDenied', 'Controllers');
 
 //logowanie user
-$router->get('/', 'LoginController@loginView', 'Controllers\\user');
+$router->get('/', 'LoginOperatorController@loginView', 'Controllers\\Operator');
 
 //przerobić nemaspace na osobną funkcję
-$router->post('/admin', 'LoginAdminController@login', 'Controllers\\admin');
+$router->get('/admin', 'LoginAdminController@loginView', 'Controllers\\Admin');
 
-
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$router->dispatch($uri);
 
