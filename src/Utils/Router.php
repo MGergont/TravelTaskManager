@@ -51,6 +51,7 @@ class Router {
     protected function callController(string $callback, string $uri): void {
         list($controller, $method) = explode('@', $callback);
         $controller = $this->getNamespace($uri) . "$controller";
+
         if (class_exists($controller) && method_exists($controller, $method)) {
             $controllerInstance = new $controller($this->request);
             $controllerInstance->$method();
