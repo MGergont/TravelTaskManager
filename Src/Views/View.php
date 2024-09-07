@@ -14,13 +14,13 @@ class View
 
 		switch ($path) {
 			case 'admin':
-				require_once("./src/Views/Template/admin/$page.php");
+				require_once("./Src/Views/Template/admin/$page.php");
 				break;
 			case '':
-				require_once("./src/Views/Template/admin/$page.php");
+				require_once("./Src/Views/Template/admin/$page.php");
 				break;	
 			default:
-				require_once("./src/Views/Template/404.php");
+				require_once("./Src/Views/Template/404.php");
 				break;
 		}
 	}
@@ -32,16 +32,16 @@ class View
 
 		switch ($path) {
 			case 'manager':
-				require_once("./src/Views/Template/operator/manager/$page.php");
+				require_once("./Src/Views/Template/operator/manager/$page.php");
 				break;
 			case 'user':
-				require_once("./src/Views/Template/operator/user/$page.php");
+				require_once("./Src/Views/Template/operator/user/$page.php");
 				break;
 			case '':
-				require_once("./src/Views/Template/operator/$page.php");
+				require_once("./Src/Views/Template/operator/$page.php");
 				break;
 			default:
-				require_once("./src/Views/Template/404.php");
+				require_once("./Src/Views/Template/404.php");
 				break;
 		}
 	}

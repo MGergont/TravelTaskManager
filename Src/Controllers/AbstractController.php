@@ -14,7 +14,7 @@ abstract class AbstractController
 
     public function __construct(Request $request)
     {
-        $config = require_once("./src/Config/PdoMySQLConf.php");
+        $config = require_once("./Src/Config/PdoMySQLConf.php");
         $this->configuration = $config['db'];
         $this->request = $request;
         
