@@ -6,14 +6,17 @@
     <title>Register Login</title>
 </head>
 <body>
-    <h2>Register Login
+    <h2>Register Login</h2>
 
-    <form action="" method="POST">
+    <?php flash("addOperator"); ?>
+
+    <form action="/register" method="POST">
         <!-- //TODOdane osobiste -->
         <input type="text" name="login" placeholder="Login" required><br><br>
         <input type="text" name="name" placeholder="Imię" required><br><br>
         <input type="text" name="lastName" placeholder="Nazwisko" required><br><br>
         <input type="text" name="phoneNumber" placeholder="Nume telefonu" required><br><br>
+        <input type="email" name="email" placeholder="Adres email" required><br><br>
         <!-- //TODO dane adresowe -->
         <input type="text" name="houseNumber" placeholder="Numer domu" required><br><br>
         <input type="text" name="street" placeholder="Ulica" required><br><br>
