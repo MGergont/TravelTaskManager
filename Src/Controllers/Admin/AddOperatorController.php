@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Src\Controllers\Admin;
 
-use PhpParser\Node\Stmt\Switch_;
 use Src\Views\View;
-use Src\Models\Admin\LoginAdminModel;
 use Src\Controllers\AbstractController;
 use Src\Models\Admin\AddOperatorModel;
 
@@ -25,7 +23,7 @@ class AddOperatorController extends AbstractController{
 
     public function AddOperator() : Void{
 
-        // $AddOperatorModel = new AddOperatorModel($this->configuration);
+        $AddOperatorModel = new AddOperatorModel($this->configuration);
 
         $data = [
             'login' => trim($this->request->postParam('login')),
@@ -45,9 +43,6 @@ class AddOperatorController extends AbstractController{
             'pwd' => trim($this->request->postParam('pwd')),
             'repeatPwd' => trim($this->request->postParam('repeatPwd'))
         ];
-
-        var_dump($this->ValidPrivileges($data['privileges']));
-        exit();
 
         if($this->IfEmpty($data)){
             flash("addOperator", "Nie uzupełniono odpowiednich formularzy");           
@@ -120,7 +115,7 @@ class AddOperatorController extends AbstractController{
             $data['pwd'] = password_hash($data['pwd'], PASSWORD_DEFAULT);
 
 
-            
+
         }
 
     }
