@@ -10,7 +10,7 @@ use Src\Models\AbstractModel;
  
 class CheckDbConn extends AbstractModel{
 
-    public function DbVersion(){
+    public function DbVersion(): bool|array{
         $this->query('SELECT version();');
         
         $row = $this->singleArray();

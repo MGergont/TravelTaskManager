@@ -49,7 +49,7 @@ class AddOperatorController extends AbstractController{
             $this->redirect("/register");
         };
 
-        if($this->IfMaxLength($data, 20)){
+        if($this->IfMaxLength($data, 30)){
             flash("addOperator", "Nieprawidłowa długość znaków");           
             $this->redirect("/register");
         };
@@ -107,17 +107,71 @@ class AddOperatorController extends AbstractController{
             flash("addOperator", "Nieprawidłowe wartości w uprawnieniach");           
             $this->redirect("/register");
         }
-        
+
         if($this->ValidPwd($data['pwd'], $data['repeatPwd'])){
             flash("addOperator", "Niepoprawne hasło");           
             $this->redirect("/register");
         }else{
             $data['pwd'] = password_hash($data['pwd'], PASSWORD_DEFAULT);
+            switch ($data['privileges']) {
+                case 'admin':
 
+                    if($AddOperatorModel->IfEmailExist($data['email'], "admin")) {
+                        flash("addOperator", "Istnieje już użytkownik z takim adresem email");
+                        $this->redirect("/register");
+                    }
 
+                    if($AddOperatorModel->IfLoginExist($data['login'], "admin")) {
+                        flash("addOperator", "Istnieje już użytkownik o takim loginie");
+                        $this->redirect("/register");
+                    }
+
+                    if($AddOperatorModel->AddAdmin($data)) {
+                        flash("addOperator", "Udało się dodać Admina");
+                        $this->redirect("/register");
+                    }else {
+                        flash("addOperator", "Coś poszło nie tak");
+                        $this->redirect("/register");
+                    }
+                    break;
+                case 'manager' and 'user':
+
+                    if($AddOperatorModel->IfEmailExist($data['email'], "operator")) {
+                        flash("addOperator", "Istnieje już użytkownik z takim adresem email");
+                        $this->redirect("/register");
+                    }
+
+                    if($AddOperatorModel->IfLoginExist($data['login'], "operator")) {
+                        flash("addOperator", "Istnieje już użytkownik o takim loginie");
+                        $this->redirect("/register");
+                    }
+
+                    if($AddOperatorModel->AddOperator($data)) {
+                        if($id = $AddOperatorModel->showIdNewUser()){
+                            if($AddOperatorModel->AddAddress($data, $id['id_operator'])) {
+                                flash("addOperator", "Udało się dodać Operatora");
+                                $this->redirect("/register");
+                            }else{
+                                flash("addOperator", "Coś poszło nie tak");
+                                $this->redirect("/register");
+                            }
+                        }else{
+                            flash("addOperator", "Coś poszło nie tak");
+                            $this->redirect("/register");
+                        }
+                    }else {
+                        flash("addOperator", "Coś poszło nie tak");
+                        $this->redirect("/register");
+                    }
+                    break;
+                default:
+                    flash("addOperator", "Nieprawidłowe wartości w uprawnieniach");           
+                    $this->redirect("/register");
+                    break;
+            }
+            
 
         }
-
     }
     
 
@@ -151,7 +205,7 @@ class AddOperatorController extends AbstractController{
     }
 
     private function IfSpecialAndPolishCharacters(string $data) : Bool {
-        if(!preg_match("/^[a-zA-Z0-9]*$/", $data)){
+        if(!preg_match("/^[a-zA-Z0-9.]*$/", $data)){
             return true;
         }else{
             return false;
