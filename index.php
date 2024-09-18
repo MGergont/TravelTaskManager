@@ -20,6 +20,9 @@ $router->post('/register', 'AddOperatorController@AddOperator', 'Controllers\\Ad
 
 //TODOprzerobić nemaspace na osobną funkcję
 $router->get('/admin', 'LoginAdminController@loginView', 'Controllers\\Admin');
+$router->post('/admin', 'LoginAdminController@login', 'Controllers\\Admin');
+
+// $router->get('/admin-dashboard', 'LoginAdminController@loginView', 'Controllers\\Admin');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

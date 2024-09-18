@@ -10,18 +10,22 @@ class LoginOperatorModel extends AbstractModel{
 
     public function login(string $nameOrEmail,string $password){
        
-        $row = $this->findUserByEmail($nameOrEmail);
+        $row = $this->findUserByLogin($nameOrEmail);
 
         if($row == false) return false;
 
         $hashedPassword = $row->pwd;
     
         if (password_verify($password, $hashedPassword)) {
-            return $row;
+            return $row;    
         } else {
             return false;
         }
     }
+
+    public function findUserByLogin(){
+		
+	}
 
     public function updateLastLogin(int $userId){
         $this->query('UPDATE tenants SET last_login = NOW() WHERE id_tenant = :userId;');

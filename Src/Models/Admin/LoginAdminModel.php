@@ -8,23 +8,21 @@ use Src\Models\AbstractModel;
 
 class LoginAdminModel extends AbstractModel{
 
-    public function login(string $nameOrEmail,string $password){
-       
-        $row = $this->findUserByEmail($nameOrEmail);
+    public function findUserByLogin(string $login): Bool|Object{
+		$this->query('SELECT * FROM public.admin WHERE login = :login');
+        $this->bind(':login', $login);
 
-        if($row == false) return false;
+        $row = $this->single();
 
-        $hashedPassword = $row->pwd;
-    
-        if (password_verify($password, $hashedPassword)) {
+        if($this->rowCount() == 1){
             return $row;
-        } else {
+        }else{
             return false;
         }
-    }
+	}
 
-    public function updateLastLogin(int $userId){
-        $this->query('UPDATE tenants SET last_login = NOW() WHERE id_tenant = :userId;');
+    public function updateLastLogin(int $userId): Bool{
+        $this->query('UPDATE public.admin SET last_login = NOW() WHERE id_admin = :userId;');
         
         $this->bind(':userId', $userId);
 
@@ -35,4 +33,16 @@ class LoginAdminModel extends AbstractModel{
         }
     }
 
+    public function updateLoginError(int $userId, int $error): Bool{
+        $this->query('UPDATE public.admin SET last_login = NOW() WHERE id_admin = :userId;');
+        
+        $this->bind(':userId', $userId);
+        $this->bind(':userId', $error);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

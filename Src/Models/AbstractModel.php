@@ -109,4 +109,4 @@ abstract class AbstractModel
 		exit();
 		}
 	}
-	}
+}

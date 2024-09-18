@@ -10,7 +10,7 @@ class AddOperatorModel extends AbstractModel{
 
     public function AddAdmin(array $data): Bool{
 
-        $this->query('INSERT INTO public.admin (login, name, last_name, phone_number, email, pwd, last_login, user_status, user_grant) VALUES (:login, :name, :lastName, :phoneNumber, :email, :pwd, NOW(), :stats, :privileges);');
+        $this->query('INSERT INTO public.admin (login, name, last_name, phone_number, email, pwd, last_login, user_status, user_grant, login_error) VALUES (:login, :name, :lastName, :phoneNumber, :email, :pwd, NOW(), :stats, :privileges, 0);');
         
         $this->bind(':login', $data['login']);
         $this->bind(':name', $data['name']);

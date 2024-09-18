@@ -6,9 +6,11 @@
     <title>Admin Login</title>
 </head>
 <body>
-    <h2>Admin Login
+    <h2>Admin Login</h2>
 
-    <form action="" method="POST">
+    <?php flash("loginAdmin"); ?>
+
+    <form action="/admin" method="POST">
         <input type="text" name="login" placeholder="Login" autocomplete="login" required><br><br>
         <input type="password" name="pwd" placeholder="Hasło" autocomplete="password" required><br><br>
 

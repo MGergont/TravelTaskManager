@@ -21,31 +21,64 @@ class LoginAdminController extends AbstractController{
 
     public function login():void{
         
-        $loginMod = new LoginAdminModel($this->configuration);
+        $loginAdminModel = new LoginAdminModel($this->configuration);
 
         $data = [
-            'email' => trim($this->request->postParam('email')),
-            'userPwd' => trim($this->request->postParam('pwd'))
+            'login' => trim($this->request->postParam('login')),
+            'adminPwd' => trim($this->request->postParam('pwd'))
         ];
-        
-
-        if(empty($data['email']) || empty($data['userPwd'])){
-            
+                
+        if(empty($data['login']) || empty($data['adminPwd'])){
+            flash("loginAdmin", "Nie uzupełniono odpowiednich formularzy");           
+            $this->redirect("/admin");
         }
 
-        if ($loginMod->findUserByEmail($data['email'])) {
-            $loggedInUser = $loginMod->login($data['email'], $data['userPwd']);
-            if ($loggedInUser) {
-                $loginMod->updateLastLogin($loggedInUser->id_tenant);
-                $this->createUserSession($loggedInUser);
-            } else {
-                
-                $this->redirect("/");
+        if($this->IfMaxLength($data,  30)){
+            flash("loginAdmin", "Nieprawidłowa długość znaków");           
+            $this->redirect("/admin");
+        };
+
+        if($this->IfSpecialAndPolishCharacters($data['login'])){
+            flash("loginAdmin", "Niepoprawne znaki w nazwie");           
+            $this->redirect("/admin");
+        }
+
+
+        //TODO przenieść reguły walidacyjne do Abstracta
+        $result = $loginAdminModel->findUserByLogin($data['login']);
+
+
+
+        //TODO po pobraniu danych sprawdzić status konta i wyświetlić komunikat
+        //TODO sprawdzić ilość błędnych logowań i dodwać błędne logowania
+        
+
+        if ($result != false) {
+
+            $hashedPassword = $result->pwd;
+
+            if($this->IfStatus($result->user_status, "blok")){
+                flash("loginAdmin", "Konto zostało zablokowane");           
+                $this->redirect("/admin");
             }
-            
+
+            if($this->LoginErrorValid($result->login_error, 3)){
+                flash("loginAdmin", "Konto zostało zablokowane");           
+                $this->redirect("/admin");
+            }
+
+            if (password_verify($data['adminPwd'], $hashedPassword)) {
+                // $loginAdminModel->updateLastLogin($result->id_admin);
+                // $this->createUserSession($result);
+                flash("loginAdmin", "Udało się");  
+                $this->redirect("/admin");
+            } else {
+                flash("loginAdmin", "Niepoprawny login lub hasło");  
+                $this->redirect("/admin");
+            }
         } else {
-            
-            $this->redirect("/");
+            flash("loginAdmin", "Niepoprawny login lub hasło");  
+            $this->redirect("/admin");
         }
         
     }
@@ -55,9 +88,6 @@ class LoginAdminController extends AbstractController{
             case 'admin':
                 $this->redirect("/admin");
                 break;
-            case 'user':
-                $this->redirect("/user");
-                break;
             default:
                 $this->redirect("/access-denied");
                 break;
@@ -66,24 +96,60 @@ class LoginAdminController extends AbstractController{
 
     private function createUserSession($user):void{
         $_SESSION['status'] = "login";
-        $_SESSION['usersId'] = $user->id_tenant;
-        $_SESSION['usersName'] = $user->name;
-        $_SESSION['usersLastName'] = $user->last_name;
-        $_SESSION['usersEmail'] = $user->email;
+        $_SESSION['userId'] = $user->id_admin;
+        $_SESSION['userLogin'] = $user->login;
+        $_SESSION['userName'] = $user->name;
+        $_SESSION['userLastName'] = $user->last_name;
         $_SESSION['userGrant'] = $user->user_grant;
         $_SESSION['firstLogin'] = $user->last_login;
+        $_SESSION['userStatus'] = $user->user_status;
         $this->redirectGrant($_SESSION['userGrant']);
     }
 
     public function logout():void{
         unset($_SESSION['status']);
-        unset($_SESSION['usersId']);
-        unset($_SESSION['usersName']);
-        unset($_SESSION['usersLastName']);
-        unset($_SESSION['usersEmail']);
+        unset($_SESSION['userId']);
+        unset($_SESSION['userLogin']);
+        unset($_SESSION['userName']);
+        unset($_SESSION['userLastName']);
         unset( $_SESSION['userGrant']);
+        unset($_SESSION['firstLogin']);
+        unset($_SESSION['userStatus']);
         session_unset();
         session_destroy();
-        $this->redirect("/");
+        $this->redirect("/admin");
+    }
+
+    private function IfMaxLength(array $data, int $length) : Bool {
+        foreach ($data as $leng) {
+            if (strlen($leng) >= $length) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function IfSpecialAndPolishCharacters(string $data) : Bool {
+        if(!preg_match("/^[a-zA-Z0-9.]*$/", $data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private function IfStatus(string $status, string $statusExpected) : Bool {
+        if($status === $statusExpected){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private function LoginErrorValid(int $currentState, int $maxError) : Bool {
+        if($currentState >= $maxError){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

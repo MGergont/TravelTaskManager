@@ -34,7 +34,7 @@ class LoginOperatorController extends AbstractController{
             $this->redirect("/");
         }
 
-        if ($loginMod->findUserByEmail($data['email'])) {
+        if ($loginMod->findUserByLogin($data['email'])) {
             $loggedInUser = $loginMod->login($data['email'], $data['userPwd']);
             if ($loggedInUser) {
                 $loginMod->updateLastLogin($loggedInUser->id_tenant);
