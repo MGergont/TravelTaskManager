@@ -17,9 +17,6 @@ abstract class AbstractController
         $config = require_once("./Src/Config/PdoMySQLConf.php");
         $this->configuration = $config['db'];
         $this->request = $request;
-        
-        $this->paramView['lang'] = 'pl';
-        
     }
     
     public function redirect(string $url): void{
@@ -39,11 +36,9 @@ abstract class AbstractController
         }
     }
 
-    public function titlePay(){
-        $currentDate = new \DateTime();
-        $formattedDate = $currentDate->format('Y/m/d');
-        $invoiceNumber = "FV/{$formattedDate}/" . $_SESSION['usersId'];
-    
-        return $invoiceNumber;
+    public function managerDashboard(): void {
+        if ($_SESSION['userGrant'] != 'manager') {
+            $this->redirect("/access-denied");
+        }
     }
 }

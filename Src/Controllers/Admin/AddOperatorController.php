@@ -8,16 +8,14 @@ use Src\Views\View;
 use Src\Controllers\AbstractController;
 use Src\Models\Admin\AddOperatorModel;
 
-use function PHPUnit\Framework\returnSelf;
-
 class AddOperatorController extends AbstractController{
 
     public function AddOperatorView() : Void{
 
-        if(isset($_SESSION['status']) && $_SESSION['status'] = "login"){
+        if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             //BUG $this->redirectGrant($_SESSION['userGrant']);
         }else{
-            (new View())->renderAdmin("registerAdmin", $this->paramView, "");
+            (new View())->renderAdmin("registerAdmin", $this->paramView, "admin");
         }
     }
 

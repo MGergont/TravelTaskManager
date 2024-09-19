@@ -16,9 +16,6 @@ class View
 			case 'admin':
 				require_once("./Src/Views/Template/admin/$page.php");
 				break;
-			case '':
-				require_once("./Src/Views/Template/admin/$page.php");
-				break;	
 			default:
 				require_once("./Src/Views/Template/404.php");
 				break;

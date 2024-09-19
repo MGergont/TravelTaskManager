@@ -22,7 +22,10 @@ $router->post('/register', 'AddOperatorController@AddOperator', 'Controllers\\Ad
 $router->get('/admin', 'LoginAdminController@loginView', 'Controllers\\Admin');
 $router->post('/admin', 'LoginAdminController@login', 'Controllers\\Admin');
 
-// $router->get('/admin-dashboard', 'LoginAdminController@loginView', 'Controllers\\Admin');
+$router->get('/logout', 'LoginAdminController@logout', 'Controllers\\Admin');
+
+$router->get('/admin-dashboard', 'DashboardAdminController@DashboardAdminView', 'Controllers\\Admin');
+
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

@@ -12,10 +12,10 @@ class LoginAdminController extends AbstractController{
 
     public function loginView() : Void{
 
-        if(isset($_SESSION['status']) && $_SESSION['status'] = "login"){
+        if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             $this->redirectGrant($_SESSION['userGrant']);
         }else{
-            (new View())->renderAdmin("loginAdmin", $this->paramView, "");
+            (new View())->renderAdmin("loginAdmin", $this->paramView, "admin");
         }
     }
 
@@ -46,33 +46,28 @@ class LoginAdminController extends AbstractController{
 
         //TODO przenieść reguły walidacyjne do Abstracta
         $result = $loginAdminModel->findUserByLogin($data['login']);
-
-
-
-        //TODO po pobraniu danych sprawdzić status konta i wyświetlić komunikat
-        //TODO sprawdzić ilość błędnych logowań i dodwać błędne logowania
         
-
         if ($result != false) {
 
             $hashedPassword = $result->pwd;
 
-            if($this->IfStatus($result->user_status, "blok")){
+            if($this->IfStatus($result->user_status, "block")){
                 flash("loginAdmin", "Konto zostało zablokowane");           
                 $this->redirect("/admin");
             }
 
             if($this->LoginErrorValid($result->login_error, 3)){
+                $loginAdminModel->updateStatusAccount($result->id_admin, "block");
                 flash("loginAdmin", "Konto zostało zablokowane");           
                 $this->redirect("/admin");
             }
 
             if (password_verify($data['adminPwd'], $hashedPassword)) {
-                // $loginAdminModel->updateLastLogin($result->id_admin);
-                // $this->createUserSession($result);
-                flash("loginAdmin", "Udało się");  
-                $this->redirect("/admin");
+                $loginAdminModel->updateLastLogin($result->id_admin);
+                $loginAdminModel->updateLoginError($result->id_admin, 0);
+                $this->createUserSession($result);
             } else {
+                $loginAdminModel->updateLoginError($result->id_admin, $result->login_error + 1);
                 flash("loginAdmin", "Niepoprawny login lub hasło");  
                 $this->redirect("/admin");
             }
@@ -86,7 +81,7 @@ class LoginAdminController extends AbstractController{
     private function redirectGrant(string $grant):void{
         switch ($grant) {
             case 'admin':
-                $this->redirect("/admin");
+                $this->redirect("/admin-dashboard");
                 break;
             default:
                 $this->redirect("/access-denied");
