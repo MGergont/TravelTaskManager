@@ -1,0 +1,31 @@
+// light theme
+$primary-color: #1A8D60;
+$secondary-color: #FFFFFF;
+$background: #F4F6FA;
+
+$negative: #EC8E6D;
+$positive: #40A07A;
+
+$active: #D0E7DF;
+$disabled: #f1f1f16a;
+
+$table__1: #FFFFFF;
+$table__2: #A9AFBE;
+
+$text-primary: #2B314A;
+$text-secondary: #2B314A;
+
+
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --background: #{$background};
+  --negative: #{$negative};
+  --positive: #{$positive};
+  --active: #{$active};
+  --disabled: #{$disabled};
+  --table__1: #{$table__1};
+  --table__2: #{$table__2};
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+}
