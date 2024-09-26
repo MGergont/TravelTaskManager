@@ -4,7 +4,9 @@ $secondary-color: #FFFFFF;
 $background: #F4F6FA;
 
 $negative: #EC8E6D;
+$negative-hover: #b3502c;
 $positive: #40A07A;
+$positive-hover: #207a56;
 
 $active: #D0E7DF;
 $disabled: #f1f1f16a;
@@ -21,7 +23,9 @@ $text-secondary: #2B314A;
   --secondary-color: #{$secondary-color};
   --background: #{$background};
   --negative: #{$negative};
+  --negative-hover: #{$negative-hover};
   --positive: #{$positive};
+  --positive-hover: #{$positive-hover};
   --active: #{$active};
   --disabled: #{$disabled};
   --table__1: #{$table__1};

@@ -12,27 +12,23 @@
     <link rel="stylesheet" href="/Public/css/main.min.css">
 </head>
 <body>
-    <h2>Admin Login</h2>
-
     <?php flash("loginAdmin"); ?>
-
 <div class="login-panel">
-    <h2 class="login-panel__title">Login</h2>
-    
-    <form class="login-panel__form">
+
+    <img class="login-panel__img" src="/Public/image/logo_travel.png" />
+
+    <h2 class="login-panel__title">Login Admin</h2>
+    <h3 class="login-panel__sub-title">Dashboard</h3>
+    <form class="login-panel__form" action="/admin" method="POST">
         <div class="login-panel__field">
-            <label for="email" class="login-panel__label">Email</label>
-            <input type="email" id="email" class="login-panel__input" placeholder="Enter your email" required>
+            <label for="login" class="login-panel__label">Email</label>
+            <input type="text" id="login" name="login" class="login-panel__input" placeholder="Enter your email" autocomplete="login" required>
         </div>
-        
         <div class="login-panel__field">
             <label for="password" class="login-panel__label">Password</label>
-            <input type="password" id="password" class="login-panel__input" placeholder="Enter your password" required>
+            <input type="password" name="pwd" id="password" class="login-panel__input" placeholder="Enter your password" autocomplete="password" required>
         </div>
-
-        <div class="login-panel__actions">
-            <button type="submit" class="login-panel__submit">Login</button>
-        </div>
+        <button type="submit" class="button-form button-form--positive">Login</button>
     </form>
 </div>
 
