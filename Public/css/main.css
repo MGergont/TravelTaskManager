@@ -1,3 +1,21 @@
+.alert-login {
+  position: absolute;
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.alert-login--confirm {
+  color: var(--positive-hover);
+  background-color: var(--positive);
+  border: 1px solid var(--positive-hover);
+}
+.alert-login--error {
+  color: var(--negative-hover);
+  background-color: var(--negative);
+  border: 1px solid var(--negative-hover);
+}
+
 .button-form {
   display: flex;
   justify-content: center;
@@ -16,6 +34,13 @@
 }
 .button-form--positive:hover {
   background-color: var(--positive-hover);
+}
+.button-form--negative {
+  color: white;
+  background-color: var(--negative);
+}
+.button-form--negative:hover {
+  background-color: var(--negative-hover);
 }
 
 body {
@@ -82,7 +107,7 @@ body {
 :root {
   --primary-color: #1A8D60;
   --secondary-color: #FFFFFF;
-  --background: #F4F6FA;
+  --background: #424650;
   --negative: #EC8E6D;
   --negative-hover: #b3502c;
   --positive: #40A07A;

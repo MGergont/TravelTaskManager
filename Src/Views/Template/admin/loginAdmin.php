@@ -12,33 +12,24 @@
     <link rel="stylesheet" href="/Public/css/main.min.css">
 </head>
 <body>
-    <?php flash("loginAdmin"); ?>
-<div class="login-panel">
-
-    <img class="login-panel__img" src="/Public/image/logo_travel.png" />
-
-    <h2 class="login-panel__title">Login Admin</h2>
-    <h3 class="login-panel__sub-title">Dashboard</h3>
-    <form class="login-panel__form" action="/admin" method="POST">
-        <div class="login-panel__field">
-            <label for="login" class="login-panel__label">Email</label>
-            <input type="text" id="login" name="login" class="login-panel__input" placeholder="Enter your email" autocomplete="login" required>
-        </div>
-        <div class="login-panel__field">
-            <label for="password" class="login-panel__label">Password</label>
-            <input type="password" name="pwd" id="password" class="login-panel__input" placeholder="Enter your password" autocomplete="password" required>
-        </div>
-        <button type="submit" class="button-form button-form--positive">Login</button>
-    </form>
-</div>
-
-    
-
-    <!-- <form action="/admin" method="POST">
-        <input type="text" name="login" placeholder="Login" autocomplete="login" required><br><br>
-        <input type="password" name="pwd" placeholder="Hasło" autocomplete="password" required><br><br>
-
-        <button type="submit" >Zaloguj</button>
-    </form> -->
+    <?php if(!empty($_SESSION["loginAdmin"])) : ?>
+        <?php flash("loginAdmin"); ?>
+    <?php endif; ?>
+    <div class="login-panel">
+        <img class="login-panel__img" src="/Public/image/logo_travel.png" />
+        <h2 class="login-panel__title">Login Admin</h2>
+        <h3 class="login-panel__sub-title">Dashboard</h3>
+        <form class="login-panel__form" action="/admin" method="POST">
+            <div class="login-panel__field">
+                <label for="login" class="login-panel__label">Email</label>
+                <input type="text" id="login" name="login" class="login-panel__input" placeholder="Enter your email" autocomplete="login" required>
+            </div>
+            <div class="login-panel__field">
+                <label for="password" class="login-panel__label">Password</label>
+                <input type="password" name="pwd" id="password" class="login-panel__input" placeholder="Enter your password" autocomplete="password" required>
+            </div>
+            <button type="submit" class="button-form button-form--positive">Login</button>
+        </form>
+    </div>
 </body>
 </html>
