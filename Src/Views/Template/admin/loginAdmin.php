@@ -13,7 +13,7 @@
 </head>
 <body>
     <?php if(!empty($_SESSION["loginAdmin"])) : ?>
-        <?php flash("loginAdmin"); ?>
+        <?php flash("loginAdmin"); ?><i class="icon-cancel"></i>
     <?php endif; ?>
     <div class="login-panel">
         <img class="login-panel__img" src="/Public/image/logo_travel.png" />
