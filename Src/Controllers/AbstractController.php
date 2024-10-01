@@ -19,26 +19,127 @@ abstract class AbstractController
         $this->request = $request;
     }
     
-    public function redirect(string $url): void{
+    protected function redirect(string $url): void{
         header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
         exit;
     }
 
-    public function adminDashboard(): void {
+    protected function adminDashboard(): void {
         if ($_SESSION['userGrant'] != 'admin') {
             $this->redirect("/access-denied");
         }
     }
 
-    public function userDashboard(): void {
+    protected function userDashboard(): void {
         if ($_SESSION['userGrant'] != 'user') {
             $this->redirect("/access-denied");
         }
     }
 
-    public function managerDashboard(): void {
+    protected function managerDashboard(): void {
         if ($_SESSION['userGrant'] != 'manager') {
             $this->redirect("/access-denied");
+        }
+    }
+
+    protected function IfMaxLength(array $data, int $length) : Bool {
+        foreach ($data as $leng) {
+            if (strlen($leng) >= $length) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected function IfSpecialAndPolishCharacters(string $data) : Bool {
+        if(!preg_match("/^[a-zA-Z0-9.]*$/", $data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    protected function ValidPhoneNumber(string $data) : Bool {
+        if(!strlen($data) == 9){
+            return true;
+        }else if(!preg_match('/^[0-9]{9,9}$/', $data)){
+            return true;
+        }
+        return false;
+    }
+
+    protected function IfSpecialCharacters(string $data) : Bool {
+        if(!preg_match('/^[a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż]+$/u', $data)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    protected function ValidEmail(string $data) : Bool {
+        if(!filter_var($data, FILTER_VALIDATE_EMAIL)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    protected function ValidHouseNumber(string $houseNumber) : Bool {
+        if (!preg_match('/^[0-9]+[a-zA-Z]?$/', $houseNumber)) {
+            return true;  
+        } else {
+            return false;
+        }
+    }
+
+    protected function ValidZipCode(string $zipCode) : Bool {
+        if (!preg_match('/^[0-9]{2}\-[0-9]{3}$/', $zipCode)) {
+            return true;  
+        } else {
+            return false;
+        }
+    }
+
+    protected function ValidPrivileges(string $data) : Bool {
+        switch ($data) {
+            case 'admin':
+                return false;
+                break;
+            case 'manager':
+                return false;
+                break;
+            case 'user':
+                return false;
+                break;
+            default:
+                return true;
+                break;
+        }
+    }
+
+    protected function ValidPwd(string $pwd, string $pwdRepeat) : Bool {
+        if(strlen($pwd) < 6){
+            return true;
+        }else if($pwd !== $pwdRepeat){
+            return true;
+        }
+        return false;
+    }
+
+    protected function IfStatus(string $status, string $statusExpected) : Bool {
+        if($status === $statusExpected){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    protected function LoginErrorValid(int $currentState, int $maxError) : Bool {
+        if($currentState >= $maxError){
+            return true;
+        }else{
+            return false;
         }
     }
 }

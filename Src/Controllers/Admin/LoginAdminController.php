@@ -43,8 +43,6 @@ class LoginAdminController extends AbstractController{
             $this->redirect("/admin");
         }
 
-
-        //TODO przenieść reguły walidacyjne do Abstracta
         $result = $loginAdminModel->findUserByLogin($data['login']);
         
         if ($result != false) {
@@ -113,38 +111,5 @@ class LoginAdminController extends AbstractController{
         session_unset();
         session_destroy();
         $this->redirect("/admin");
-    }
-
-    private function IfMaxLength(array $data, int $length) : Bool {
-        foreach ($data as $leng) {
-            if (strlen($leng) >= $length) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private function IfSpecialAndPolishCharacters(string $data) : Bool {
-        if(!preg_match("/^[a-zA-Z0-9.]*$/", $data)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    private function IfStatus(string $status, string $statusExpected) : Bool {
-        if($status === $statusExpected){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    private function LoginErrorValid(int $currentState, int $maxError) : Bool {
-        if($currentState >= $maxError){
-            return true;
-        }else{
-            return false;
-        }
     }
 }
