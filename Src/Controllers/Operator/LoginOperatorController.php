@@ -24,28 +24,54 @@ class LoginOperatorController extends AbstractController{
         $loginMod = new LoginOperatorModel($this->configuration);
 
         $data = [
-            'email' => trim($this->request->postParam('email')),
+            'login' => trim($this->request->postParam('login')),
             'userPwd' => trim($this->request->postParam('pwd'))
         ];
         
 
-        if(empty($data['email']) || empty($data['userPwd'])){
-            
+        if(empty($data['login']) || empty($data['userPwd'])){
+            flash("loginOperator", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
             $this->redirect("/");
         }
 
-        if ($loginMod->findUserByLogin($data['email'])) {
-            $loggedInUser = $loginMod->login($data['email'], $data['userPwd']);
-            if ($loggedInUser) {
-                $loginMod->updateLastLogin($loggedInUser->id_tenant);
-                $this->createUserSession($loggedInUser);
-            } else {
-                
+        if($this->IfMaxLength($data,  30)){
+            flash("loginOperator", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            $this->redirect("/");
+        };
+
+        if($this->IfSpecialAndPolishCharacters($data['login'])){
+            flash("loginOperator", "Niepoprawne znaki w nazwie", "alert-login alert-login--error");           
+            $this->redirect("/");
+        }
+
+        $result = $loginMod->findUserByLogin($data['login']);
+
+        if ($result != false) {
+
+            $hashedPassword = $result->pwd;
+
+            if($this->IfStatus($result->user_status, "block")){
+                flash("loginOperator", "Konto zostało zablokowane", "alert-login alert-login--error");           
                 $this->redirect("/");
             }
-            
+
+            if($this->LoginErrorValid((int)$result-> login_error, 3)){
+                $loginMod->updateStatusAccount($result->id_operator, "block");
+                flash("loginOperator", "Konto zostało zablokowane", "alert-login alert-login--error");           
+                $this->redirect("/");
+            }
+
+            if (password_verify($data['userPwd'], $hashedPassword)) {
+                $loginMod->updateLastLogin($result->id_operator);
+                $loginMod->updateLoginError($result->id_operator, 0);
+                $this->createUserSession($result);
+            } else {
+                $loginMod->updateLoginError($result->id_operator, $result->login_error + 1);
+                flash("loginOperator", "Niepoprawny login lub hasło", "alert-login alert-login--confirm");  
+                $this->redirect("/");
+            }
         } else {
-            
+            flash("loginOperator", "Niepoprawny login lub hasło tutaj", "alert-login alert-login--confirm");  
             $this->redirect("/");
         }
         
@@ -53,11 +79,11 @@ class LoginOperatorController extends AbstractController{
 
     private function redirectGrant(string $grant):void{
         switch ($grant) {
-            case 'admin':
-                $this->redirect("/admin");
+            case 'manager':
+                $this->redirect("/manager-dashboard");
                 break;
             case 'user':
-                $this->redirect("/user");
+                $this->redirect("/user-dashboard");
                 break;
             default:
                 $this->redirect("/access-denied");
@@ -67,22 +93,25 @@ class LoginOperatorController extends AbstractController{
 
     private function createUserSession($user):void{
         $_SESSION['status'] = "login";
-        $_SESSION['usersId'] = $user->id_tenant;
-        $_SESSION['usersName'] = $user->name;
-        $_SESSION['usersLastName'] = $user->last_name;
-        $_SESSION['usersEmail'] = $user->email;
+        $_SESSION['userId'] = $user->id_operator;
+        $_SESSION['userLogin'] = $user->login;
+        $_SESSION['userName'] = $user->name;
+        $_SESSION['userLastName'] = $user->last_name;
         $_SESSION['userGrant'] = $user->user_grant;
         $_SESSION['firstLogin'] = $user->last_login;
+        $_SESSION['userStatus'] = $user->user_status;
         $this->redirectGrant($_SESSION['userGrant']);
     }
 
     public function logout():void{
         unset($_SESSION['status']);
-        unset($_SESSION['usersId']);
-        unset($_SESSION['usersName']);
-        unset($_SESSION['usersLastName']);
-        unset($_SESSION['usersEmail']);
+        unset($_SESSION['userId']);
+        unset($_SESSION['userLogin']);
+        unset($_SESSION['userName']);
+        unset($_SESSION['userLastName']);
         unset( $_SESSION['userGrant']);
+        unset($_SESSION['firstLogin']);
+        unset($_SESSION['userStatus']);
         session_unset();
         session_destroy();
         $this->redirect("/");

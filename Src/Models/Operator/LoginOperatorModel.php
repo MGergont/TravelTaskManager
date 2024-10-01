@@ -8,29 +8,49 @@ use Src\Models\AbstractModel;
 
 class LoginOperatorModel extends AbstractModel{
 
-    public function login(string $nameOrEmail,string $password){
-       
-        $row = $this->findUserByLogin($nameOrEmail);
+    public function findUserByLogin(string $login): Bool|Object{
+		$this->query('SELECT * FROM public.operator WHERE login = :login');
+        $this->bind(':login', $login);
 
-        if($row == false) return false;
+        $row = $this->single();
 
-        $hashedPassword = $row->pwd;
-    
-        if (password_verify($password, $hashedPassword)) {
-            return $row;    
-        } else {
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+	}
+
+    public function updateLastLogin(int $userId): Bool{
+        $this->query('UPDATE public.operator SET last_login = NOW() WHERE id_operator = :userId;');
+        
+        $this->bind(':userId', $userId);
+
+        if($this->execute()){
+            return true;
+        }else{
             return false;
         }
     }
 
-    public function findUserByLogin(){
-		
-	}
-
-    public function updateLastLogin(int $userId){
-        $this->query('UPDATE tenants SET last_login = NOW() WHERE id_tenant = :userId;');
+    public function updateLoginError(int $userId, int $error): Bool{
+        $this->query('UPDATE public.operator SET login_error = :error WHERE id_operator = :userId;');
         
         $this->bind(':userId', $userId);
+        $this->bind(':error', $error);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateStatusAccount(int $userId, string $status): Bool{
+        $this->query('UPDATE public.operator SET user_status = :status WHERE id_operator = :userId;');
+        
+        $this->bind(':userId', $userId);
+        $this->bind(':status', $status);
 
         if($this->execute()){
             return true;
