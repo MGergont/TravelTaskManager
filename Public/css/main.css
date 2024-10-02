@@ -1,0 +1,197 @@
+@charset "UTF-8";
+.alert-login {
+  position: absolute;
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.alert-login--confirm {
+  color: var(--positive-hover);
+  background-color: var(--positive);
+  border: 1px solid var(--positive-hover);
+}
+.alert-login--error {
+  color: var(--negative-hover);
+  background-color: var(--negative);
+  border: 1px solid var(--negative-hover);
+}
+
+.button-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+.button-form--positive {
+  color: white;
+  background-color: var(--positive);
+}
+.button-form--positive:hover {
+  background-color: var(--positive-hover);
+}
+.button-form--negative {
+  color: white;
+  background-color: var(--negative);
+}
+.button-form--negative:hover {
+  background-color: var(--negative-hover);
+}
+
+body {
+  background-color: var(--background);
+}
+
+.login-panel {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  font-family: "OpenSans_normal";
+}
+.login-panel__img {
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+}
+.login-panel__title {
+  font-size: 2rem;
+  text-align: center;
+  color: #333;
+}
+.login-panel__sub-title {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+.login-panel__form {
+  display: flex;
+  flex-direction: column;
+}
+.login-panel__field {
+  margin-bottom: 1.5rem;
+}
+.login-panel__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+.login-panel__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+.login-panel__input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1A8D60;
+  --secondary-color: #FFFFFF;
+  --background: #424650;
+  --negative: #EC8E6D;
+  --negative-hover: #b3502c;
+  --positive: #40A07A;
+  --positive-hover: #207a56;
+  --active: #D0E7DF;
+  --disabled: rgba(241, 241, 241, 0.4156862745);
+  --table__1: #FFFFFF;
+  --table__2: #A9AFBE;
+  --text-primary: #2B314A;
+  --text-secondary: #2B314A;
+}
+
+@font-face {
+  font-family: "OpenSans_italic";
+  src: url("/Public/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf") format("truetype");
+  font-weight: 300 800;
+  font-stretch: 75% 100%;
+  font-style: italic;
+}
+@font-face {
+  font-family: "OpenSans_normal";
+  src: url("/Public/fonts/OpenSans-VariableFont_wdth,wght.ttf") format("truetype");
+  font-weight: 300 800;
+  font-stretch: 75% 100%;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sora";
+  src: url("/Public/fonts/Sora-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "fontello";
+  src: url("/Public/fonts/icon/fontello/font/fontello.eot");
+  src: url("/Public/fonts/icon/fontello/font/fontello.eot?#iefix") format("embedded-opentype"), url("/Public/fonts/icon/fontello/font/fontello.woff2") format("woff2"), url("/Public/fonts/icon/fontello/font/fontello.woff") format("woff"), url("/Public/fonts/icon/fontello/font/fontello.ttf") format("truetype"), url("/Public/fonts/icon/fontello/font/fontello.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?76163240#fontello') format('svg');
+  }
+}
+*/
+[class^=icon-]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: 0.2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-cancel:before {
+  content: "\e800";
+} /* '' */
+.icon-ok:before {
+  content: "\e801";
+} /* '' */
+.icon-info:before {
+  content: "\f129";
+} /* '' *//*# sourceMappingURL=main.css.map */

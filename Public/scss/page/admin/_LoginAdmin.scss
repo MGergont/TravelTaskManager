@@ -1,0 +1,58 @@
+.login-panel {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+    font-family: 'OpenSans_normal';
+    
+    &__img {
+        display: block;
+        width: 100px;
+        margin: 0 auto;
+    }
+
+    &__title {
+      font-size: 2rem;
+      text-align: center;
+      color: #333;
+    }
+    
+    &__sub-title {
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    &__field {
+      margin-bottom: 1.5rem;
+    }
+  
+    &__label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #555;
+    }
+  
+    &__input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+  
+      &:focus {
+        border-color:  var(--primary-color);
+        outline: none;
+      }
+    }
+  }
