@@ -11,11 +11,13 @@ use Src\Models\Admin\AddOperatorModel;
 class AddOperatorController extends AbstractController{
 
     public function AddOperatorView() : Void{
+        $this->adminDashboard();
 
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
-            //BUG $this->redirectGrant($_SESSION['userGrant']);
-        }else{
+
             (new View())->renderAdmin("registerAdmin", $this->paramView, "admin");
+        }else{
+            $this->redirect("/access-denied");
         }
     }
 
@@ -82,11 +84,11 @@ class AddOperatorController extends AbstractController{
             $this->redirect("/register");
         }
         //TODO Walidacja tylko przeciwko znaków specjalnych
-        if($this->IfSpecialAndPolishCharacters($data['street'])){
+        if($this->IfSpecialCharacters($data['street'])){
             flash("addOperator", "Niepoprawne znaki w nazwie ulicy");           
             $this->redirect("/register");
         }
-        if($this->IfSpecialAndPolishCharacters($data['town'])){
+        if($this->IfSpecialCharacters($data['town'])){
             flash("addOperator", "Niepoprawne znaki w nazwie miasta");           
             $this->redirect("/register");
         }
@@ -96,7 +98,7 @@ class AddOperatorController extends AbstractController{
             $this->redirect("/register");
         }
         //TODO Walidacja nazwy miasta
-        if($this->IfSpecialAndPolishCharacters($data['city'])){
+        if($this->IfSpecialCharacters($data['city'])){
             flash("addOperator", "Niepoprawne znaki w nazwie miasta");           
             $this->redirect("/register");
         }

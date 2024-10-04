@@ -10,17 +10,15 @@ $router = new Src\Utils\Router();
 //TODOobsługa błędów
 $router->get('/access-denied', 'HomeController@accessDenied', 'Controllers');
 
-
 //TODOlogowanie user
 $router->get('/', 'LoginOperatorController@loginView', 'Controllers\\Operator');
 $router->post('/', 'LoginOperatorController@login', 'Controllers\\Operator');
-
 
 //TODO tymczasowa rejestracja
 $router->get('/register', 'AddOperatorController@AddOperatorView', 'Controllers\\Admin');
 $router->post('/register', 'AddOperatorController@AddOperator', 'Controllers\\Admin');
 
-//TODOprzerobić nemaspace na osobną funkcję
+//TODO przerobić nemaspace na osobną funkcję
 $router->get('/admin', 'LoginAdminController@loginView', 'Controllers\\Admin');
 $router->post('/admin', 'LoginAdminController@login', 'Controllers\\Admin');
 

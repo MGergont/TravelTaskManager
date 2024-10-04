@@ -14,6 +14,8 @@
     <body>
         <h2>Admin Dashboard</h2>
 
+        <a href="/register">Dodaj użytkownika</a><br>
+
         <a href="/logout">wyloguj się</a>
                 
     </body>
