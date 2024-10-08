@@ -4,15 +4,14 @@
   text-align: center;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
+  color: white;
   font-size: 1rem;
 }
 .alert-login--confirm {
-  color: var(--positive-hover);
   background-color: var(--positive);
   border: 1px solid var(--positive-hover);
 }
 .alert-login--error {
-  color: var(--negative-hover);
   background-color: var(--negative);
   border: 1px solid var(--negative-hover);
 }
@@ -44,8 +43,175 @@
   background-color: var(--negative-hover);
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form__field {
+  margin-bottom: 1.5rem;
+}
+.form__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+.form__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+.form__input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
 body {
   background-color: var(--background);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  background-color: #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+}
+.topbar__logo {
+  width: 150px;
+  font-size: 1.5rem;
+  color: white;
+}
+.topbar__logo2 {
+  display: none;
+  width: 200px;
+  font-size: 1.5rem;
+  color: white;
+}
+.topbar__user-info {
+  font-size: 1rem;
+  color: white;
+}
+.topbar__hamburger {
+  display: none; /* Ukryty hamburger na desktopie */
+  cursor: pointer;
+}
+.topbar__bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.3s ease;
+}
+
+/* Main content */
+.content {
+  margin-left: 250px; /* Odsunięcie od sidebaru */
+  padding: 2rem;
+}
+
+.sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  transform: translateX(0); /* Menu wysunięte domyślnie */
+  transition: transform 0.3s ease;
+}
+.sidebar__list {
+  list-style: none;
+  padding: 0;
+}
+.sidebar__item {
+  margin: 1rem 0;
+}
+.sidebar__link {
+  display: block;
+  color: white;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+}
+.sidebar__link:hover {
+  background-color: #444;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%); /* Sidebar domyślnie ukryty na telefonach */
+  }
+  .sidebar--hidden {
+    transform: translateX(0%); /* Ukrycie sidebaru dla urządzeń mobilnych */
+  }
+  .topbar {
+    justify-content: space-between;
+  }
+  .topbar__hamburger {
+    display: flex; /* Pokaż hamburger w górnym pasku */
+  }
+  .topbar__logo {
+    display: none;
+  }
+  .topbar__logo2 {
+    display: flex;
+  }
+  .content {
+    margin-left: 0;
+    padding: 2rem 1rem;
+  }
+}
+.menu-user {
+  /* Style dla pozycji dropdown */
+}
+.menu-user__list {
+  list-style: none;
+  display: flex;
+}
+.menu-user__item {
+  position: relative;
+  margin-right: 2rem;
+}
+.menu-user__item:last-child {
+  margin-right: 0; /* Ostatnia pozycja bez marginesu */
+}
+.menu-user__link {
+  color: white;
+  min-width: 150px;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+.menu-user__link:hover {
+  background-color: #444;
+}
+.menu-user__item--dropdown:hover .menu-user__dropdown {
+  display: block; /* Wyświetl dropdown po najechaniu */
+}
+.menu-user__dropdown {
+  display: none; /* Domyślnie dropdown jest ukryty */
+  position: absolute;
+  top: 100%; /* Wyświetla się poniżej pozycji głównej */
+  background-color: #444;
+  padding: 0;
+  list-style: none;
+  min-width: 200px;
+}
+.menu-user__dropdown-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.menu-user__dropdown-link:hover {
+  background-color: #555;
 }
 
 .login-panel {
@@ -72,31 +238,6 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
-}
-.login-panel__form {
-  display: flex;
-  flex-direction: column;
-}
-.login-panel__field {
-  margin-bottom: 1.5rem;
-}
-.login-panel__label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  color: #555;
-}
-.login-panel__input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-.login-panel__input:focus {
-  border-color: var(--primary-color);
-  outline: none;
 }
 
 * {

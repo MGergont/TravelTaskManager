@@ -67,11 +67,11 @@ class LoginOperatorController extends AbstractController{
                 $this->createUserSession($result);
             } else {
                 $loginMod->updateLoginError($result->id_operator, $result->login_error + 1);
-                flash("loginOperator", "Niepoprawny login lub hasło", "alert-login alert-login--confirm");  
+                flash("loginOperator", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
                 $this->redirect("/");
             }
         } else {
-            flash("loginOperator", "Niepoprawny login lub hasło tutaj", "alert-login alert-login--confirm");  
+            flash("loginOperator", "Niepoprawny login lub hasło tutaj", "alert-login alert-login--error");  
             $this->redirect("/");
         }
         

@@ -1,0 +1,168 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  background-color: #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+  
+  &__logo {
+      width: 150px;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+	&__logo2 {
+		display: none;
+		width: 200px;
+		font-size: 1.5rem;
+		color: white;
+	  }
+    
+    &__user-info {
+      font-size: 1rem;
+      color: white;
+    }
+    
+    &__hamburger {
+      display: none; /* Ukryty hamburger na desktopie */
+      cursor: pointer;
+    }
+    
+    &__bar {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.3s ease;
+    }
+  }
+  
+  /* Main content */
+  .content {
+    margin-left: 250px; /* Odsunięcie od sidebaru */
+    padding: 2rem;
+  }
+  .sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    transform: translateX(0); /* Menu wysunięte domyślnie */
+    transition: transform 0.3s ease;
+  
+    &__list {
+      list-style: none;
+      padding: 0;
+    }
+  
+    &__item {
+      margin: 1rem 0;
+    }
+  
+    &__link {
+      display: block;
+      color: white;
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+  
+      &:hover {
+        background-color: #444;
+      }
+    }
+  }
+  
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%); /* Sidebar domyślnie ukryty na telefonach */
+
+      &--hidden {
+        transform: translateX(0%); /* Ukrycie sidebaru dla urządzeń mobilnych */
+      }
+    }
+
+	
+    .topbar {
+		justify-content: space-between;
+		
+		&__hamburger {
+			display: flex; /* Pokaż hamburger w górnym pasku */
+		}
+		&__logo{
+			display: none;
+		}
+	
+		&__logo2{
+			display: flex;
+		}
+    }
+  
+    .content {
+      margin-left: 0;
+      padding: 2rem 1rem;
+    }
+  }
+
+  .menu-user {
+  
+	&__list {
+	  list-style: none;
+	  display: flex;
+
+	}
+  
+	&__item {
+	  position: relative;
+	  margin-right: 2rem;
+	  
+	  &:last-child {
+		margin-right: 0; /* Ostatnia pozycja bez marginesu */
+	  }
+	}
+  
+	&__link {
+	  color: white;
+	  min-width: 150px;
+	  text-decoration: none;
+	  padding: 0.5rem 1rem;
+	  display: block;
+	  transition: background-color 0.3s ease;
+  
+	  &:hover {
+		background-color: #444;
+	  }
+	}
+  
+	/* Style dla pozycji dropdown */
+	&__item--dropdown {
+	  &:hover .menu-user__dropdown {
+		display: block; /* Wyświetl dropdown po najechaniu */
+	  }
+	}
+  
+	&__dropdown {
+	  display: none; /* Domyślnie dropdown jest ukryty */
+	  position: absolute;
+	  top: 100%; /* Wyświetla się poniżej pozycji głównej */
+	  background-color: #444;
+	  padding: 0;
+	  list-style: none;
+	  min-width: 200px;
+	}
+  
+	&__dropdown-link {
+	  display: block;
+	  padding: 0.5rem 1rem;
+	  color: white;
+	  text-decoration: none;
+	  transition: background-color 0.3s ease;
+  
+	  &:hover {
+		background-color: #555;
+	  }
+	}
+  }

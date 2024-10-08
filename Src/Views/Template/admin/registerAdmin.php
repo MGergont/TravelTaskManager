@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="/Public/css/main.min.css">
 </head>
 <body>
-    <h2>Register Login</h2>
+    <?php if(!empty($_SESSION["addOperator"])) : ?>
+        <?php flash("addOperator"); ?><i class="icon-cancel"></i>
+    <?php endif; ?>
 
-    <?php flash("addOperator"); ?>
-
-    <form action="/register" method="POST">
+    
+    <form class="form" action="/register" method="POST">
         <!-- //TODOdane osobiste -->
         <input type="text" name="login" placeholder="Login" required><br><br>
         <input type="text" name="name" placeholder="Imię" required><br><br>
