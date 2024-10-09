@@ -11,15 +11,11 @@
   
   &__logo {
       width: 150px;
-      font-size: 1.5rem;
-      color: white;
     }
 
 	&__logo2 {
 		display: none;
 		width: 200px;
-		font-size: 1.5rem;
-		color: white;
 	  }
     
     &__user-info {
@@ -30,12 +26,11 @@
     &__hamburger {
       display: none; /* Ukryty hamburger na desktopie */
       cursor: pointer;
+      padding: 5px;
+      font-size: 33px;
     }
     
     &__bar {
-      width: 25px;
-      height: 3px;
-      background-color: white;
       margin: 4px 0;
       transition: 0.3s ease;
     }
@@ -89,22 +84,33 @@
     .topbar {
 		justify-content: space-between;
 		
-		&__hamburger {
-			display: flex; /* Pokaż hamburger w górnym pasku */
-		}
-		&__logo{
-			display: none;
-		}
-	
-		&__logo2{
-			display: flex;
-		}
+      &__hamburger {
+        display: flex; /* Pokaż hamburger w górnym pasku */
+      }
+      &__logo{
+        display: none;
+      }
+    
+      &__logo2{
+        display: flex;
+      }
     }
   
     .content {
       margin-left: 0;
       padding: 2rem 1rem;
     }
+
+    .menu-user {
+      &__link1{
+        display: none;
+      }
+
+      &__link2{
+        display: block !important;
+      }
+    }
+
   }
 
   .menu-user {
@@ -117,21 +123,30 @@
   
 	&__item {
 	  position: relative;
-	  margin-right: 2rem;
-	  
-	  &:last-child {
-		margin-right: 0; /* Ostatnia pozycja bez marginesu */
-	  }
 	}
   
-	&__link {
+	&__link1 {
 	  color: white;
-	  min-width: 150px;
+	  max-width: 200px;
+	  min-width: 180px;
+	  text-align: right;
 	  text-decoration: none;
 	  padding: 0.5rem 1rem;
-	  display: block;
 	  transition: background-color 0.3s ease;
   
+	  &:hover {
+		background-color: #444;
+	  }
+	}
+
+  &__link2 {
+	  color: white;
+	  text-align: right;
+	  text-decoration: none;
+	  padding: 0.5rem 1rem;
+	  transition: background-color 0.3s ease;
+    display: none;
+
 	  &:hover {
 		background-color: #444;
 	  }
@@ -147,17 +162,19 @@
 	&__dropdown {
 	  display: none; /* Domyślnie dropdown jest ukryty */
 	  position: absolute;
-	  top: 100%; /* Wyświetla się poniżej pozycji głównej */
+	  top: 100%;
+	  right: 0; /* Wyświetla się poniżej pozycji głównej */
 	  background-color: #444;
-	  padding: 0;
 	  list-style: none;
-	  min-width: 200px;
+	  max-width: 220px;
+    min-width: 180px;
 	}
   
 	&__dropdown-link {
 	  display: block;
 	  padding: 0.5rem 1rem;
 	  color: white;
+	  text-align: right;
 	  text-decoration: none;
 	  transition: background-color 0.3s ease;
   

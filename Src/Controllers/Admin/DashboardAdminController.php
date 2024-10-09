@@ -15,6 +15,7 @@ class DashboardAdminController extends AbstractController{
 
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
 
+        
             (new View())->renderAdmin("dashboardAdmin", $this->paramView, "admin");
         }else{
             $this->redirect("/access-denied");
