@@ -2,12 +2,14 @@
   position: sticky;
   top: 0;
   height: 60px;
-  background-color: #444;
+  background-color: var(--primary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
   z-index: 1000;
+  font-family: OpenSans_normal;
+  font-weight: 300;
   
   &__logo {
       width: 150px;
@@ -24,19 +26,25 @@
     }
     
     &__hamburger {
-      display: none; /* Ukryty hamburger na desktopie */
+      display: none;
       cursor: pointer;
       padding: 5px;
       font-size: 33px;
+      color: var(--secondary-color);
     }
     
     &__bar {
+      border-radius: 3px;
       margin: 4px 0;
       transition: 0.3s ease;
+
+      &:hover{
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+      }
     }
   }
   
-  /* Main content */
   .content {
     margin-left: 250px; /* Odsunięcie od sidebaru */
     padding: 2rem;
@@ -45,9 +53,11 @@
     position: fixed;
     width: 250px;
     height: 100vh;
-    background-color: #333;
+    background-color: var(--secondary-color);
     transform: translateX(0); /* Menu wysunięte domyślnie */
     transition: transform 0.3s ease;
+    font-family: OpenSans_normal;
+    font-weight: 600;
   
     &__list {
       list-style: none;
@@ -60,12 +70,15 @@
   
     &__link {
       display: block;
-      color: white;
+      color: var(--text-primary);
       padding: 1rem 1.5rem;
       text-decoration: none;
+      border-radius: 3px;
   
       &:hover {
-        background-color: #444;
+        background-color: var(--active);
+        color: var(--primary-color);
+        border-left: solid 4px var(--primary-color);
       }
     }
   }
@@ -132,10 +145,12 @@
 	  text-align: right;
 	  text-decoration: none;
 	  padding: 0.5rem 1rem;
+    border-radius: 3px;
 	  transition: background-color 0.3s ease;
   
 	  &:hover {
-		background-color: #444;
+      color: var(--primary-color);
+      background-color: var(--secondary-color);
 	  }
 	}
 
@@ -144,11 +159,13 @@
 	  text-align: right;
 	  text-decoration: none;
 	  padding: 0.5rem 1rem;
+    border-radius: 3px;
 	  transition: background-color 0.3s ease;
     display: none;
 
 	  &:hover {
-		background-color: #444;
+      color: var(--primary-color);
+      background-color: var(--secondary-color);
 	  }
 	}
   
@@ -164,7 +181,7 @@
 	  position: absolute;
 	  top: 100%;
 	  right: 0; /* Wyświetla się poniżej pozycji głównej */
-	  background-color: #444;
+	  background-color: var(--positive);
 	  list-style: none;
 	  max-width: 220px;
     min-width: 180px;
@@ -173,13 +190,14 @@
 	&__dropdown-link {
 	  display: block;
 	  padding: 0.5rem 1rem;
-	  color: white;
+	  color: var(--secondary-color);
 	  text-align: right;
 	  text-decoration: none;
 	  transition: background-color 0.3s ease;
+    font-size: 14px;
   
 	  &:hover {
-		background-color: #555;
+		background-color: var(--positive-hover);
 	  }
 	}
   }

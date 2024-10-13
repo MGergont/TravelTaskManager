@@ -16,7 +16,7 @@
         <?php flash("loginAdmin"); ?><i class="icon-cancel"></i>
     <?php endif; ?>
     <div class="login-panel">
-        <img class="login-panel__img" src="/Public/image/logo_travel.png" />
+        <img class="login-panel__img" src="/Public/image/logo_login2.png" />
         <h2 class="login-panel__title">Login Admin</h2>
         <h3 class="login-panel__sub-title">Dashboard</h3>
         <form class="form" action="/admin" method="POST">
