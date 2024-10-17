@@ -54,6 +54,7 @@
   display: block;
   margin-bottom: 0.5rem;
   font-size: 1rem;
+  font-family: "OpenSans_normal";
   color: #555;
 }
 .form__input {
@@ -67,6 +68,68 @@
 .form__input:focus {
   border-color: var(--primary-color);
   outline: none;
+}
+
+.field {
+  margin-bottom: 1.5rem;
+}
+.field__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-family: "OpenSans_normal";
+  color: #555;
+}
+.field__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+.field__input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  /* Style dla opcji select */
+}
+.select-wrapper__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-family: "OpenSans_normal";
+  color: #555;
+}
+.select-wrapper__select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: white;
+  margin-bottom: 1.5rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; /* Ukrywa domyślną strzałkę */
+  font-size: 1rem;
+  font-family: "OpenSans_normal";
+  color: #555;
+  cursor: pointer;
+  position: relative;
+}
+.select-wrapper__select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+.select-wrapper__select option {
+  padding: 10px;
+  color: #333;
+  background-color: #fff;
 }
 
 body {
@@ -117,6 +180,11 @@ body {
 .content {
   margin-left: 250px; /* Odsunięcie od sidebaru */
   padding: 2rem;
+  font-family: OpenSans_normal;
+  font-weight: 300;
+}
+.content__title {
+  margin: 20px 0;
 }
 
 .sidebar {
@@ -242,6 +310,77 @@ body {
   background-color: var(--positive-hover);
 }
 
+/* Podstawowe style dla panelu */
+.user-panel {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Stylizacja tabeli */
+  /* Ikony akcji (edycja, usuwanie, podgląd) */
+}
+.user-panel__title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+.user-panel__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.user-panel__row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.user-panel__header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+.user-panel__cell {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.user-panel__cell--status {
+  text-align: center;
+}
+.user-panel__cell--options {
+  text-align: center;
+}
+.user-panel__cell--active {
+  color: green;
+  font-weight: bold;
+}
+.user-panel__cell--inactive {
+  color: red;
+  font-weight: bold;
+}
+.user-panel__icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+.user-panel__icon--edit {
+  background: url("edit-icon.svg") no-repeat center;
+  background-size: contain;
+}
+.user-panel__icon--delete {
+  background: url("delete-icon.svg") no-repeat center;
+  background-size: contain;
+}
+.user-panel__icon--view {
+  background: url("view-icon.svg") no-repeat center;
+  background-size: contain;
+}
+.user-panel__icon:hover {
+  opacity: 0.7;
+}
+
 .login-panel {
   max-width: 400px;
   margin: 20px auto;
@@ -267,6 +406,45 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
   color: var(--text-primary);
+}
+
+.form-add {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: -moz-max-content;
+  width: max-content;
+}
+.form-add__login {
+  max-width: 500px;
+}
+.form-add__name {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+}
+.form-add__name-data {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+}
+.form-add__addres {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  flex-wrap: wrap;
+}
+.form-add__priv {
+  justify-content: space-between;
+  max-width: 500px;
+  flex-wrap: wrap;
+}
+.form-add__pwd {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  flex-wrap: wrap;
 }
 
 * {

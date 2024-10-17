@@ -48,6 +48,13 @@
   .content {
     margin-left: 250px; /* Odsunięcie od sidebaru */
     padding: 2rem;
+    font-family: OpenSans_normal;
+    font-weight: 300;
+
+    &__title{
+      margin: 20px 0;
+    }
+
   }
   .sidebar {
     position: fixed;
