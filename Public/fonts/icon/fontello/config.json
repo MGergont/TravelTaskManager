@@ -71,6 +71,24 @@
       "css": "torso",
       "code": 59392,
       "src": "elusive"
+    },
+    {
+      "uid": "cad619ef78a5500c1e5b3d021d2fdd65",
+      "css": "trash",
+      "code": 59453,
+      "src": "maki"
+    },
+    {
+      "uid": "0299bec28699eedda42f46c77239393e",
+      "css": "pencil",
+      "code": 59401,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "8beac4a5fd5bed9f82ca7a96cc8ba218",
+      "css": "key",
+      "code": 59402,
+      "src": "entypo"
     }
   ]
 }

@@ -51,17 +51,63 @@
             </div>
             <main class="content">
                 <h2>Admin Dashboard</h2>
-                <p>This layout adapts based on the screen size.</p>
+                <div class="user-panel">
+                  <table class="user-panel__table">
+                    <thead>
+                      <tr class="user-panel__row">
+                        <th class="user-panel__header">First Name</th>
+                        <th class="user-panel__header">Last Name</th>
+                        <th class="user-panel__header">Login</th>
+                        <th class="user-panel__header">Phone</th>
+                        <th class="user-panel__header">Email</th>
+                        <th class="user-panel__header user-panel__header--status">Status</th>
+                        <th class="user-panel__header">Last Login</th>
+                        <th class="user-panel__header">Permissions</th>
+                        <th class="user-panel__header">Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="user-panel__row">
+                        <td class="user-panel__cell">John</td>
+                        <td class="user-panel__cell">Doe</td>
+                        <td class="user-panel__cell">johndoe</td>
+                        <td class="user-panel__cell">+123456789</td>
+                        <td class="user-panel__cell">john@example.com</td>
+                        <td class="user-panel__cell  user-panel__cell--active">Active</td>
+                        <td class="user-panel__cell">2024-10-02</td>
+                        <td class="user-panel__cell">Admin</td>
+                        <td class="user-panel__cell user-panel__cell--options">
+                          <button class="user-panel__icon"><i class="icon-pencil"></i></button>
+                          <button class="user-panel__icon"><i class="icon-key"></i></button>
+                          <button class="user-panel__icon"><i class="icon-trash"></i></button>
+                        </td>
+                      </tr>
+                      <tr class="user-panel__row">
+                        <td class="user-panel__cell">John</td>
+                        <td class="user-panel__cell">Doe</td>
+                        <td class="user-panel__cell">johndoe</td>
+                        <td class="user-panel__cell">+123456789</td>
+                        <td class="user-panel__cell">john@example.com</td>
+                        <td class="user-panel__cell user-panel__cell--inactive">Active</td>
+                        <td class="user-panel__cell">2024-10-02</td>
+                        <td class="user-panel__cell">Admin</td>
+                        <td class="user-panel__cell user-panel__cell--options">
+                          <button class="user-panel__icon"><i class="icon-pencil"></i></button>
+                          <button class="user-panel__icon"><i class="icon-key"></i></button>
+                          <button class="user-panel__icon"><i class="icon-trash"></i></button>
+                        </td>
+                      </tr>
+                      <!--TODO Kolejni użytkownicy -->
+                    </tbody>
+                  </table>
+                </div>
             </main>
-        </div>
-                
+        </div>     
     </body>
     <script>
-        // Pobranie elementów
         const sidebar = document.querySelector('.sidebar');
         const topbarHamburger = document.querySelector('.topbar__hamburger');
 
-        // Funkcja do otwierania/zamykania menu na telefonach
         function toggleSidebar() {
         sidebar.classList.toggle('sidebar--hidden');
         }

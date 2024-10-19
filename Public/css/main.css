@@ -210,6 +210,7 @@ body {
   padding: 1rem 1.5rem;
   text-decoration: none;
   border-radius: 3px;
+  transition: background-color 0.4s ease;
 }
 .sidebar__link:hover {
   background-color: var(--active);
@@ -312,7 +313,7 @@ body {
 
 /* Podstawowe style dla panelu */
 .user-panel {
-  background-color: white;
+  background-color: var(--secondary-color);
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -322,63 +323,60 @@ body {
 .user-panel__title {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--text-primary);
 }
 .user-panel__table {
   width: 100%;
   border-collapse: collapse;
 }
 .user-panel__row:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: var(--disabled);
 }
 .user-panel__header {
-  background-color: #333;
-  color: white;
+  color: #333;
   padding: 10px;
   text-align: left;
   font-weight: bold;
+  border-bottom: 1px solid var(--table__2);
+}
+.user-panel__header--status {
+  text-align: center;
 }
 .user-panel__cell {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-.user-panel__cell--status {
-  text-align: center;
+  border-bottom: 1px solid var(--table__2);
 }
 .user-panel__cell--options {
-  text-align: center;
+  text-align: justify;
 }
 .user-panel__cell--active {
-  color: green;
+  color: var(--positive-hover);
+  background-color: var(--active);
   font-weight: bold;
+  text-align: center;
 }
 .user-panel__cell--inactive {
-  color: red;
+  color: var(--negative-hover);
+  background-color: var(--inactive);
   font-weight: bold;
+  text-align: center;
 }
 .user-panel__icon {
   background: none;
-  border: none;
+  border-radius: 3px;
+  border: 0px;
   cursor: pointer;
   margin: 0 5px;
   padding: 0;
-  width: 24px;
-  height: 24px;
-}
-.user-panel__icon--edit {
-  background: url("edit-icon.svg") no-repeat center;
-  background-size: contain;
-}
-.user-panel__icon--delete {
-  background: url("delete-icon.svg") no-repeat center;
-  background-size: contain;
-}
-.user-panel__icon--view {
-  background: url("view-icon.svg") no-repeat center;
-  background-size: contain;
+  width: 27px;
+  height: 27px;
+  font-size: 17px;
+  color: var(--positive);
+  transition: 0.4s ease;
 }
 .user-panel__icon:hover {
-  opacity: 0.7;
+  color: var(--positive-hover);
+  background-color: var(--active);
 }
 
 .login-panel {
@@ -462,6 +460,7 @@ body {
   --positive: #40A07A;
   --positive-hover: #207a56;
   --active: #D0E7DF;
+  --inactive: #e7d9d0;
   --disabled: rgba(241, 241, 241, 0.4156862745);
   --table__1: #FFFFFF;
   --table__2: #A9AFBE;
