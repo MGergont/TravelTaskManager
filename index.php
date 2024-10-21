@@ -27,6 +27,9 @@ $router->get('/logout-ope', 'LoginOperatorController@logout', 'Controllers\\Oper
 
 $router->get('/admin-dashboard', 'DashboardAdminController@DashboardAdminView', 'Controllers\\Admin');
 
+$router->post('/admin-pwd-unlock', 'DashboardAdminController@PwdUnlock', 'Controllers\\Admin');
+
+
 $router->get('/manager-dashboard', 'DashboardManagerController@DashboardManagerView', 'Controllers\\Operator\\Manager');
 $router->get('/user-dashboard', 'DashboardUserController@DashboardUserView', 'Controllers\\Operator\\User');
 
