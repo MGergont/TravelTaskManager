@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <?php if (!empty($_SESSION["addOperator"])) : ?>
+        <?php flash("addOperator"); ?>
+    <?php endif; ?>
     <header class="topbar">
         <div class="topbar__hamburger">
             <i class="topbar__bar icon-menu"></i>
@@ -52,11 +55,6 @@
         </div>
         <main class="content">
             <h2 class="content__title">Add User</h2>
-
-            <?php if (!empty($_SESSION["addOperator"])) : ?>
-                <?php flash("addOperator"); ?><i class="icon-cancel"></i>
-            <?php endif; ?>
-
             <form class="form-add" action="/register" method="POST">
                 <!-- //TODOdane osobiste -->
                 <div class="form-add__login">
