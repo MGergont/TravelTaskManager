@@ -13,7 +13,7 @@
 
 </head>
 <body>
-	<div class="modal" id="modal" style="display:none;">
+	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Account Locked</h2>
 			<p class="modal__message">Number of failed login attempts: <strong id="pwd_failed"></strong></p>
@@ -40,6 +40,18 @@
 				<div class="modal__actions">
 					<button class="modal__button modal__button--confirm">Confirm</button>
 					<a class="modal__button modal__button--cancel" id="cancel-button">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal" id="modal2" style="display:none;">
+		<div class="modal__content">
+			<h2 class="modal__title">Account Delate</h2>
+			<form action="/admin-del-profile" method="post">
+				<input type="hidden" id="del_id" name="id">
+				<div class="modal__actions">
+					<button class="modal__button modal__button--confirm">Confirm</button>
+					<a class="modal__button modal__button--cancel" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -119,7 +131,9 @@
 									'<?php echo $operator['id_operator'];?>',
 									'<?php echo $operator['login_error'];?>'
 									)"></i></button>
-								<button class="user-panel__icon"><i class="icon-trash"></i></button>
+								<button class="user-panel__icon"><i class="icon-trash" onclick="delProfile(
+									'<?php echo $operator['id_operator'];?>'
+									)"></i></button>
 							</td>
 						</tr>
 						<?php endforeach; ?>
@@ -164,13 +178,20 @@
 	function pwdChanges(id, failed) {
 		document.getElementById('pwd_id').value = id;
 		document.getElementById('pwd_failed').innerHTML = failed;
-		document.getElementById('modal').style.display = 'block';
+		document.getElementById('modal1').style.display = 'block';
+	}
+
+	function delProfile(id) {
+		document.getElementById('pwd_id').value = id;
+		document.getElementById('modal2').style.display = 'block';
 	}
 
 	const changePasswordCheckbox = document.getElementById('change-password');
 	const passwordSection = document.getElementById('password-section');
 	const cancelButton = document.getElementById('cancel-button');
-	const modal = document.getElementById('modal');
+	const cancelButton2 = document.getElementById('cancel-button2');
+	const modal1 = document.getElementById('modal1');
+	const modal2 = document.getElementById('modal2');
 
 	changePasswordCheckbox.addEventListener('change', function() {
 		if (this.checked) {
@@ -181,8 +202,13 @@
 	});
 
 	cancelButton.addEventListener('click', function() {
-		modal.style.display = 'none';
+		modal1.style.display = 'none';
 	});
+
+	cancelButton2.addEventListener('click', function() {
+		modal2.style.display = 'none';
+	});
+
 </script>
 
 </html>
