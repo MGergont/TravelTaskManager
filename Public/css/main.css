@@ -443,7 +443,10 @@ body {
   font-weight: bold;
   text-align: center;
 }
-.user-panel__cell--inactive {
+.user-panel__cell--new {
+  text-align: center;
+}
+.user-panel__cell--block {
   color: var(--negative-hover);
   background-color: var(--inactive);
   font-weight: bold;

@@ -44,22 +44,25 @@
 		&--options {
 			text-align: justify;
 		}
-	}
 
-	&__cell--active {
-		color: var(--positive-hover);
-		background-color: var(--active);
-		font-weight: bold;
-		text-align: center;
-	}
+		&--active {
+			color: var(--positive-hover);
+			background-color: var(--active);
+			font-weight: bold;
+			text-align: center;
+		}
 
-	&__cell--inactive {
-		color: var(--negative-hover);
-		background-color: var(--inactive);
-		font-weight: bold;
-		text-align: center;
-	}
+		&--new {
+			text-align: center;
+		}
 
+		&--block {
+			color: var(--negative-hover);
+			background-color: var(--inactive);
+			font-weight: bold;
+			text-align: center;
+		}
+	}
 	/* Ikony akcji (edycja, usuwanie, podgląd) */
 	&__icon {
 		background: none;

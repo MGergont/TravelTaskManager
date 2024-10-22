@@ -22,10 +22,10 @@ class DashboardAdminModel extends AbstractModel{
     }
 
     public function accountUnloc(string $status, int $idOperator) : Bool {
-        $this->query('UPDATE operator SET login_error = 0, user_status = :status  WHERE id_operator = :idperator');
+        $this->query('UPDATE operator SET login_error = 0, user_status = :status  WHERE id_operator = :idoperator');
         
         $this->bind(':status', $status);
-        $this->bind(':idperator', $idOperator);
+        $this->bind(':idoperator', $idOperator);
 
         if($this->execute()){
             return true;
@@ -35,10 +35,10 @@ class DashboardAdminModel extends AbstractModel{
     }
 
     public function pwdChange(string $pwd, int $idOperator) : Bool {
-        $this->query('UPDATE operator SET pwd = :pwd WHERE id_operator = :idperator');
+        $this->query('UPDATE operator SET pwd = :pwd WHERE id_operator = :idoperator');
         
         $this->bind(':pwd', $pwd);
-        $this->bind(':idperator', $idOperator);
+        $this->bind(':idoperator', $idOperator);
 
         if($this->execute()){
             return true;
@@ -47,5 +47,16 @@ class DashboardAdminModel extends AbstractModel{
         }
     }
 
+    public function accountDell(int $idOperator) : Bool {
+        $this->query('DELETE FROM operator WHERE id_operator = :idoperator');
+
+        $this->bind(':idoperator', $idOperator);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }

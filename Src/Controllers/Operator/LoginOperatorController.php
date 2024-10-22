@@ -64,6 +64,7 @@ class LoginOperatorController extends AbstractController{
             if (password_verify($data['userPwd'], $hashedPassword)) {
                 $loginMod->updateLastLogin($result->id_operator);
                 $loginMod->updateLoginError($result->id_operator, 0);
+                $loginMod->updateStatusAccount($result->id_operator, "active");
                 $this->createUserSession($result);
             } else {
                 $loginMod->updateLoginError($result->id_operator, $result->login_error + 1);

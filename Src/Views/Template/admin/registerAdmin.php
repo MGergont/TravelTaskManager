@@ -78,7 +78,6 @@
                         <label for="phoneNumber" class="field__label">Nume telefonu</label>
                         <input type="text" id="phoneNumber" name="phoneNumber" class="field__input" placeholder="Nume telefonu" required>
                     </div>
-
                     <div class="field">
                         <label for="email" class="field__label">Adres email</label>
                         <input type="text" id="email" name="email" class="field__input" placeholder="Adres email" required>
@@ -122,11 +121,11 @@
                 <div class="form-add__pwd">
                     <div class="field">
                         <label for="pwd" class="field__label">Hasło</label>
-                        <input type="text" id="pwd" name="pwd" class="field__input" placeholder="Hasło" required>
+                        <input type="password" id="pwd" name="pwd" class="field__input" placeholder="Hasło" required>
                     </div>
                     <div class="field">
                         <label for="repeatPwd" class="field__label">Powtórz hasło</label>
-                        <input type="text" id="repeatPwd" name="repeatPwd" class="field__input" placeholder="Powtórz hasło" required>
+                        <input type="password" id="repeatPwd" name="repeatPwd" class="field__input" placeholder="Powtórz hasło" required>
                     </div>
                 </div>
                 <button type="submit" class="button-form button-form--positive">Dodaj</button>

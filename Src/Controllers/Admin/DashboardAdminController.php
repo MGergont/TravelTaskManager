@@ -82,4 +82,19 @@ class DashboardAdminController extends AbstractController
 
         $this->redirect("/admin-dashboard");
     }
+
+    public function accountDell(): void{
+        $dashboardAdminMod = new DashboardAdminModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id')
+        ];
+    
+        if ($dashboardAdminMod->accountDell((int) $data['id'])) {
+            flash("pwdUnlock", "Konto zostało usunięte", "alert-login alert-login--confirm");
+            $this->redirect("/admin-dashboard");
+        } else {
+            flash("pwdUnlock", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/admin-dashboard");
+        }
+    }
 }

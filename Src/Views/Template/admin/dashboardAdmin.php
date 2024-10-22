@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="/Public/fonts/icon/fontello/css/fontello.css">
 
 </head>
+
 <body>
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
@@ -56,9 +57,68 @@
 			</form>
 		</div>
 	</div>
-	<?php if(!empty($_SESSION["pwdUnlock"])) : ?>
-        <?php flash("pwdUnlock"); ?>
-    <?php endif; ?>
+	<div class="modal" id="modal3" style="display:none;">
+		<div class="modal__content">
+			<h2 class="modal__title">Account Edit</h2>
+			<form class="edit-modal" action="/admin-edit-profile" method="post">
+				<input type="hidden" id="edit_id" name="id">
+				<div class="field">
+					<label for="login" class="field__label">Login</label>
+					<input type="text" id="login" name="login" class="field__input" placeholder="Login" required>
+				</div>
+				<div class="field">
+					<label for="name" class="field__label">Imię</label>
+					<input type="text" id="name" name="name" class="field__input" placeholder="Imię" required>
+				</div>
+				<div class="field">
+					<label for="lastName" class="field__label">Nazwisko</label>
+					<input type="text" id="lastName" name="lastName" class="field__input" placeholder="Nazwisko" required>
+				</div>
+				<div class="field">
+					<label for="phoneNumber" class="field__label">Nume telefonu</label>
+					<input type="text" id="phoneNumber" name="phoneNumber" class="field__input" placeholder="Nume telefonu" required>
+				</div>
+				<div class="field">
+					<label for="email" class="field__label">Adres email</label>
+					<input type="text" id="email" name="email" class="field__input" placeholder="Adres email" required>
+				</div>
+				<div class="field">
+					<label for="houseNumber" class="field__label">Numer domu</label>
+					<input type="text" id="houseNumber" name="houseNumber" class="field__input" placeholder="Numer domu" required>
+				</div>
+				<div class="field">
+					<label for="street" class="field__label">Ulica</label>
+					<input type="text" id="street" name="street" class="field__input" placeholder="Ulica" required>
+				</div>
+				<div class="field">
+					<label for="town" class="field__label">Miejscowość</label>
+					<input type="text" id="town" name="town" class="field__input" placeholder="Miejscowość" required>
+				</div>
+				<div class="field">
+					<label for="zipCode" class="field__label">Kod pocztowy</label>
+					<input type="text" id="zipCode" name="zipCode" class="field__input" placeholder="Kod pocztowy" required>
+				</div>
+				<div class="field">
+					<label for="city" class="field__label">Miasto</label>
+					<input type="text" id="city" name="city" class="field__input" placeholder="Miasto" required>
+				</div>
+				<div class="select-wrapper">
+					<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
+					<select name="privileges" id="privileges" class="select-wrapper__select">
+						<option value="manager">Menedżer</option>
+						<option value="user">Użytkownik</option>
+					</select>
+				</div>
+				<div class="modal__actions">
+					<button class="modal__button modal__button--confirm">Confirm</button>
+					<a class="modal__button modal__button--cancel" id="cancel-button3">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<?php if (!empty($_SESSION["pwdUnlock"])) : ?>
+		<?php flash("pwdUnlock"); ?>
+	<?php endif; ?>
 	<header class="topbar">
 		<div class="topbar__hamburger">
 			<i class="topbar__bar icon-menu"></i>
@@ -114,49 +174,32 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php if(!empty($params['operators'])) : ?>
-						<?php foreach ($params['operators'] as $operator): ?>
-						<tr class="user-panel__row">
-							<td class="user-panel__cell"><?php echo $operator['name']; ?></td>
-							<td class="user-panel__cell"><?php echo $operator['last_name']; ?></td>
-							<td class="user-panel__cell"><?php echo $operator['login']; ?></td>
-							<td class="user-panel__cell"><?php echo $operator['phone_number']; ?></td>
-							<td class="user-panel__cell"><?php echo $operator['email']; ?></td>
-							<td class="user-panel__cell  user-panel__cell--active">Active</td>
-							<td class="user-panel__cell"><?php echo $operator['last_login']; ?></td>
-							<td class="user-panel__cell"><?php echo $operator['user_grant']; ?></td>
-							<td class="user-panel__cell user-panel__cell--options">
-								<button class="user-panel__icon"><i class="icon-pencil"></i></button>
-								<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
-									'<?php echo $operator['id_operator'];?>',
-									'<?php echo $operator['login_error'];?>'
+						<?php if (!empty($params['operators'])) : ?>
+							<?php foreach ($params['operators'] as $operator): ?>
+								<tr class="user-panel__row">
+									<td class="user-panel__cell"><?php echo $operator['name']; ?></td>
+									<td class="user-panel__cell"><?php echo $operator['last_name']; ?></td>
+									<td class="user-panel__cell"><?php echo $operator['login']; ?></td>
+									<td class="user-panel__cell"><?php echo $operator['phone_number']; ?></td>
+									<td class="user-panel__cell"><?php echo $operator['email']; ?></td>
+									<td class="user-panel__cell  user-panel__cell--<?php echo $operator['user_status']; ?>"><?php echo $operator['user_status']; ?></td>
+									<td class="user-panel__cell"><?php echo $operator['last_login']; ?></td>
+									<td class="user-panel__cell"><?php echo $operator['user_grant']; ?></td>
+									<td class="user-panel__cell user-panel__cell--options">
+										<button class="user-panel__icon"><i class="icon-pencil" onclick="editProfile(
+									'<?php echo $operator['id_operator']; ?>'
 									)"></i></button>
-								<button class="user-panel__icon"><i class="icon-trash" onclick="delProfile(
-									'<?php echo $operator['id_operator'];?>'
+										<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
+									'<?php echo $operator['id_operator']; ?>',
+									'<?php echo $operator['login_error']; ?>'
 									)"></i></button>
-							</td>
-						</tr>
-						<?php endforeach; ?>
-        				<?php endif; ?>
-						<tr class="user-panel__row">
-							<td class="user-panel__cell">John</td>
-							<td class="user-panel__cell">Doe</td>
-							<td class="user-panel__cell">johndoe</td>
-							<td class="user-panel__cell">+123456789</td>
-							<td class="user-panel__cell">john@example.com</td>
-							<td class="user-panel__cell user-panel__cell--inactive">Active</td>
-							<td class="user-panel__cell">2024-10-02</td>
-							<td class="user-panel__cell">Admin</td>
-							<td class="user-panel__cell user-panel__cell--options">
-								<button class="user-panel__icon"><i class="icon-pencil"></i></button>
-								<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
-									'1',
-									'5'
-								)"></i></button>
-								<button class="user-panel__icon"><i class="icon-trash"></i></button>
-							</td>
-						</tr>
-						<!--TODO Kolejni użytkownicy -->
+										<button class="user-panel__icon"><i class="icon-trash" onclick="delProfile(
+									'<?php echo $operator['id_operator']; ?>'
+									)"></i></button>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</tbody>
 				</table>
 			</div>
@@ -182,16 +225,23 @@
 	}
 
 	function delProfile(id) {
-		document.getElementById('pwd_id').value = id;
+		document.getElementById('del_id').value = id;
 		document.getElementById('modal2').style.display = 'block';
+	}
+
+	function editProfile(id) {
+		document.getElementById('edit_id').value = id;
+		document.getElementById('modal3').style.display = 'block';
 	}
 
 	const changePasswordCheckbox = document.getElementById('change-password');
 	const passwordSection = document.getElementById('password-section');
 	const cancelButton = document.getElementById('cancel-button');
 	const cancelButton2 = document.getElementById('cancel-button2');
+	const cancelButton3 = document.getElementById('cancel-button3');
 	const modal1 = document.getElementById('modal1');
 	const modal2 = document.getElementById('modal2');
+	const modal3 = document.getElementById('modal3');
 
 	changePasswordCheckbox.addEventListener('change', function() {
 		if (this.checked) {
@@ -209,6 +259,9 @@
 		modal2.style.display = 'none';
 	});
 
+	cancelButton3.addEventListener('click', function() {
+		modal3.style.display = 'none';
+	});
 </script>
 
 </html>
