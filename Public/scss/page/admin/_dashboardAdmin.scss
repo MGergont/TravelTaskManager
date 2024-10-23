@@ -1,3 +1,31 @@
 .edit-modal{
     
+    &__login{
+        max-width: 500px;
+    }
+
+    &__name{
+        display: flex;
+        justify-content: space-between;
+        max-width: 500px;
+    }
+
+    &__name-data{
+        display: flex;
+        justify-content: space-between;
+        max-width: 500px;
+    }
+
+    &__addres{
+        display: flex;
+        justify-content: space-between;
+        max-width: 500px;
+        flex-wrap: wrap;
+    }
+
+    &__priv{
+        justify-content: space-between;
+        max-width: 500px;
+        flex-wrap: wrap;
+    }
 }

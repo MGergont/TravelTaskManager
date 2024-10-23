@@ -31,16 +31,16 @@
 				<div class="modal__password-section" id="password-section" style="display: none;">
 					<div class="modal__form-group">
 						<label for="new-password" class="modal__label">New Password</label>
-						<input type="password" id="new-password" class="modal__input" placeholder="Enter new password" name="pwd">
+						<input type="password" id="new-password" class="modal__input" value="Enter new password" name="pwd">
 					</div>
 					<div class="modal__form-group">
 						<label for="confirm-password" class="modal__label">Confirm Password</label>
-						<input type="password" id="confirm-password" class="modal__input" placeholder="Confirm new password" name="pwd_repeat">
+						<input type="password" id="confirm-password" class="modal__input" value="Confirm new password" name="pwd_repeat">
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="modal__button modal__button--confirm">Confirm</button>
-					<a class="modal__button modal__button--cancel" id="cancel-button">Cancel</a>
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -51,67 +51,78 @@
 			<form action="/admin-del-profile" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="modal__button modal__button--confirm">Confirm</button>
-					<a class="modal__button modal__button--cancel" id="cancel-button2">Cancel</a>
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
-		<div class="modal__content">
+		<div class="modal__content modal__content--edit">
 			<h2 class="modal__title">Account Edit</h2>
 			<form class="edit-modal" action="/admin-edit-profile" method="post">
-				<input type="hidden" id="edit_id" name="id">
-				<div class="field">
-					<label for="login" class="field__label">Login</label>
-					<input type="text" id="login" name="login" class="field__input" placeholder="Login" required>
+				<div class="edit-modal__login">
+					<input type="hidden" id="edit_id" name="id">
+					<div class="field">
+						<label for="login" class="field__label">Login</label>
+						<input type="text" id="edit_login" name="login" class="field__input" required>
+					</div>
 				</div>
-				<div class="field">
-					<label for="name" class="field__label">Imię</label>
-					<input type="text" id="name" name="name" class="field__input" placeholder="Imię" required>
+				<div class="edit-modal__name">
+					<div class="field">
+						<label for="name" class="field__label">Imię</label>
+						<input type="text" id="edit_name" name="name" class="field__input"  required>
+					</div>
+					<div class="field">
+						<label for="lastName" class="field__label">Nazwisko</label>
+						<input type="text" id="edit_lastName" name="lastName" class="field__input"  required>
+					</div>
 				</div>
-				<div class="field">
-					<label for="lastName" class="field__label">Nazwisko</label>
-					<input type="text" id="lastName" name="lastName" class="field__input" placeholder="Nazwisko" required>
+				<div class="edit-modal__name-data">
+					<div class="field">
+						<label for="phoneNumber" class="field__label">Nume telefonu</label>
+						<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="email" class="field__label">Adres email</label>
+						<input type="text" id="edit_email" name="email" class="field__input" required>
+					</div>
 				</div>
-				<div class="field">
-					<label for="phoneNumber" class="field__label">Nume telefonu</label>
-					<input type="text" id="phoneNumber" name="phoneNumber" class="field__input" placeholder="Nume telefonu" required>
+				<div class="edit-modal__addres">
+					<div class="field">
+						<label for="houseNumber" class="field__label">Numer domu</label>
+						<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="street" class="field__label">Ulica</label>
+						<input type="text" id="edit_street" name="street" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="town" class="field__label">Miejscowość</label>
+						<input type="text" id="edit_town" name="town" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="zipCode" class="field__label">Kod pocztowy</label>
+						<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="city" class="field__label">Miasto</label>
+						<input type="text" id="edit_city" name="city" class="field__input" required>
+					</div>
 				</div>
-				<div class="field">
-					<label for="email" class="field__label">Adres email</label>
-					<input type="text" id="email" name="email" class="field__input" placeholder="Adres email" required>
-				</div>
-				<div class="field">
-					<label for="houseNumber" class="field__label">Numer domu</label>
-					<input type="text" id="houseNumber" name="houseNumber" class="field__input" placeholder="Numer domu" required>
-				</div>
-				<div class="field">
-					<label for="street" class="field__label">Ulica</label>
-					<input type="text" id="street" name="street" class="field__input" placeholder="Ulica" required>
-				</div>
-				<div class="field">
-					<label for="town" class="field__label">Miejscowość</label>
-					<input type="text" id="town" name="town" class="field__input" placeholder="Miejscowość" required>
-				</div>
-				<div class="field">
-					<label for="zipCode" class="field__label">Kod pocztowy</label>
-					<input type="text" id="zipCode" name="zipCode" class="field__input" placeholder="Kod pocztowy" required>
-				</div>
-				<div class="field">
-					<label for="city" class="field__label">Miasto</label>
-					<input type="text" id="city" name="city" class="field__input" placeholder="Miasto" required>
-				</div>
-				<div class="select-wrapper">
-					<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
-					<select name="privileges" id="privileges" class="select-wrapper__select">
-						<option value="manager">Menedżer</option>
-						<option value="user">Użytkownik</option>
-					</select>
+				<div class="edit-modal__priv">
+					<div class="select-wrapper">
+						<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
+						<select name="privileges" id="edit_privileges" class="select-wrapper__select">
+							<option value="">---</option>
+							<option value="manager">Menedżer</option>
+							<option value="user">Użytkownik</option>
+						</select>
+					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="modal__button modal__button--confirm">Confirm</button>
-					<a class="modal__button modal__button--cancel" id="cancel-button3">Cancel</a>
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -187,7 +198,17 @@
 									<td class="user-panel__cell"><?php echo $operator['user_grant']; ?></td>
 									<td class="user-panel__cell user-panel__cell--options">
 										<button class="user-panel__icon"><i class="icon-pencil" onclick="editProfile(
-									'<?php echo $operator['id_operator']; ?>'
+									'<?php echo $operator['id_operator']; ?>',
+									'<?php echo $operator['login']; ?>',
+									'<?php echo $operator['name']; ?>',
+									'<?php echo $operator['last_name']; ?>',
+									'<?php echo $operator['phone_number']; ?>',
+									'<?php echo $operator['email']; ?>',
+									'<?php echo $operator['house_number']; ?>',
+									'<?php echo $operator['street']; ?>',
+									'<?php echo $operator['town']; ?>',
+									'<?php echo $operator['zip_code']; ?>',
+									'<?php echo $operator['city']; ?>'
 									)"></i></button>
 										<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
 									'<?php echo $operator['id_operator']; ?>',
@@ -229,8 +250,18 @@
 		document.getElementById('modal2').style.display = 'block';
 	}
 
-	function editProfile(id) {
+	function editProfile(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city) {
 		document.getElementById('edit_id').value = id;
+		document.getElementById('edit_login').value = login;
+		document.getElementById('edit_name').value = name;
+		document.getElementById('edit_lastName').value = lastName;
+		document.getElementById('edit_phoneNumber').value = phoneNumber;
+		document.getElementById('edit_email').value = email;
+		document.getElementById('edit_houseNumber').value = houseNumber;
+		document.getElementById('edit_street').value = street;
+		document.getElementById('edit_town').value = town;
+		document.getElementById('edit_zipCode').value = zipCode;
+		document.getElementById('edit_city').value = city;
 		document.getElementById('modal3').style.display = 'block';
 	}
 
