@@ -118,6 +118,23 @@ abstract class AbstractController
         }
     }
 
+    protected function ValidStatus(string $data) : Bool {
+        switch ($data) {
+            case 'new':
+                return false;
+                break;
+            case 'block':
+                return false;
+                break;
+            case 'active':
+                return false;
+                break;
+            default:
+                return true;
+                break;
+        }
+    }
+
     protected function ValidPwd(string $pwd, string $pwdRepeat) : Bool {
         if(strlen($pwd) < 6){
             return true;

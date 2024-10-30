@@ -112,7 +112,8 @@ class DashboardAdminController extends AbstractController
             'town' => $this->request->postParam('town'),
             'zipCode' => $this->request->postParam('zipCode'),
             'city' => $this->request->postParam('city'),
-            //'privileges' => $this->request->postParam('privileges')
+            'privileges' => $this->request->postParam('privileges'),
+            'status' => $this->request->postParam('status')
         ];
 
         if($this->IfEmpty($data)){
@@ -174,11 +175,15 @@ class DashboardAdminController extends AbstractController
             $this->redirect("/admin-dashboard");
         }
 
-        // if($this->ValidPrivileges($data['privileges'])){
-        //     flash("pwdUnlock", "Nieprawidłowe wartości w uprawnieniach", "alert-login alert-login--error");           
-        //     $this->redirect("/admin-dashboard");
-        // }
+        if($this->ValidPrivileges($data['privileges'])){
+            flash("pwdUnlock", "Nieprawidłowe wartości w uprawnieniach", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
 
+        if($this->ValidStatus($data['status'])){
+            flash("pwdUnlock", "Nieprawidłowe wartości w statusie konta", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
     
         if ($dashboardAdminMod->accountUpdate($data)) {
             flash("pwdUnlock", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");

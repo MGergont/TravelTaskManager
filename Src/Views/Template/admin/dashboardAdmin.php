@@ -114,9 +114,16 @@
 					<div class="select-wrapper">
 						<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
 						<select name="privileges" id="edit_privileges" class="select-wrapper__select">
-							<option value="">---</option>
 							<option value="manager">Menedżer</option>
 							<option value="user">Użytkownik</option>
+						</select>
+					</div>
+					<div class="select-wrapper">
+						<label for="status" class="select-wrapper__label">Status Konta</label>
+						<select name="status" id="edit_status" class="select-wrapper__select">
+							<option value="new">---</option>
+							<option value="block">Blokada</option>
+							<option value="active">Aktywny</option>
 						</select>
 					</div>
 				</div>
@@ -208,7 +215,9 @@
 									'<?php echo $operator['street']; ?>',
 									'<?php echo $operator['town']; ?>',
 									'<?php echo $operator['zip_code']; ?>',
-									'<?php echo $operator['city']; ?>'
+									'<?php echo $operator['city']; ?>',
+									'<?php echo $operator['user_grant']; ?>',
+									'<?php echo $operator['user_status']; ?>'
 									)"></i></button>
 										<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
 									'<?php echo $operator['id_operator']; ?>',
@@ -250,7 +259,7 @@
 		document.getElementById('modal2').style.display = 'block';
 	}
 
-	function editProfile(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city) {
+	function editProfile(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city, privileges, status) {
 		document.getElementById('edit_id').value = id;
 		document.getElementById('edit_login').value = login;
 		document.getElementById('edit_name').value = name;
@@ -262,6 +271,12 @@
 		document.getElementById('edit_town').value = town;
 		document.getElementById('edit_zipCode').value = zipCode;
 		document.getElementById('edit_city').value = city;
+		
+		const roleSelect = document.getElementById('edit_privileges');
+		const statusSelect = document.getElementById('edit_status');
+		roleSelect.value = privileges;
+		statusSelect.value = status;
+
 		document.getElementById('modal3').style.display = 'block';
 	}
 

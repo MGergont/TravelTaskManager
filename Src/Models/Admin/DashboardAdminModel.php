@@ -60,14 +60,15 @@ class DashboardAdminModel extends AbstractModel{
     }
 
     public function accountUpdate(array $data) : Bool {
-        $this->query('UPDATE public.operator SET login = :login, name = :name, last_name = :lastName, phone_number = :phoneNumber, email = :email WHERE id_operator = :idoperator');
+        $this->query('UPDATE public.operator SET login = :login, name = :name, last_name = :lastName, phone_number = :phoneNumber, email = :email, user_status = :status, user_grant = :privileges WHERE id_operator = :idoperator');
 
         $this->bind(':login', $data['login']);
         $this->bind(':name', $data['name']);
         $this->bind(':lastName', $data['lastName']);
         $this->bind(':phoneNumber', $data['phoneNumber']);
         $this->bind(':email', $data['email']);
-        //$this->bind(':privileges', $data['privileges']);
+        $this->bind(':privileges', $data['privileges']);
+        $this->bind(':status', $data['status']);
         $this->bind(':idoperator', $data['id']);
 
         if($this->execute()){
