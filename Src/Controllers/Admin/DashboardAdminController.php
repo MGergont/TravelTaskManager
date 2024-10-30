@@ -97,4 +97,112 @@ class DashboardAdminController extends AbstractController
             $this->redirect("/admin-dashboard");
         }
     }
+
+    public function accountEdit(): void{
+        $dashboardAdminMod = new DashboardAdminModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id'),
+            'login' => $this->request->postParam('login'),
+            'name' => $this->request->postParam('name'),
+            'lastName' => $this->request->postParam('lastName'),
+            'phoneNumber' => $this->request->postParam('phoneNumber'),
+            'email' => $this->request->postParam('email'),
+            'houseNumber' => $this->request->postParam('houseNumber'),
+            'street' => $this->request->postParam('street'),
+            'town' => $this->request->postParam('town'),
+            'zipCode' => $this->request->postParam('zipCode'),
+            'city' => $this->request->postParam('city'),
+            //'privileges' => $this->request->postParam('privileges')
+        ];
+
+        if($this->IfEmpty($data)){
+            flash("pwdUnlock", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        };
+
+        if($this->IfMaxLength($data, 30)){
+            flash("pwdUnlock", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        };
+
+        //TODO bez znaków specjalnych i polskich
+        if($this->IfSpecialAndPolishCharacters($data['login'])){
+            flash("pwdUnlock", "Niepoprawne znaki w nazwie", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        //TODO bez znaków specjalnych
+        if($this->IfSpecialCharacters($data['name'])){
+            flash("pwdUnlock", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        if($this->IfSpecialCharacters($data['lastName'])){
+            flash("pwdUnlock", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        //TODO ralidacja numeru telefonu
+        if($this->ValidPhoneNumber($data['phoneNumber'])){
+            flash("pwdUnlock", "Niepoprawny numer telefonu", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        //TODO walidacj adresu email
+        if($this->ValidEmail($data['email'])){
+            flash("pwdUnlock", "Niepoprawny adres email", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        //TODO Walidacjaj numeru domu
+        if($this->ValidHouseNumber($data['houseNumber'])){
+            flash("pwdUnlock", "Niepoprawny numer mieszkania", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        //TODO Walidacja tylko przeciwko znaków specjalnych
+        if($this->IfSpecialCharacters($data['street'])){
+            flash("pwdUnlock", "Niepoprawne znaki w nazwie ulicy", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        if($this->IfSpecialCharacters($data['town'])){
+            flash("pwdUnlock", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        //TODO Walidacja kodu pocztowego XX-XXX
+        if($this->ValidZipCode($data['zipCode'])){
+            flash("pwdUnlock", "Niepoprawny format kodu pocztowego", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+        //TODO Walidacja nazwy miasta
+        if($this->IfSpecialCharacters($data['city'])){
+            flash("pwdUnlock", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            $this->redirect("/admin-dashboard");
+        }
+
+        // if($this->ValidPrivileges($data['privileges'])){
+        //     flash("pwdUnlock", "Nieprawidłowe wartości w uprawnieniach", "alert-login alert-login--error");           
+        //     $this->redirect("/admin-dashboard");
+        // }
+
+    
+        if ($dashboardAdminMod->accountUpdate($data)) {
+            flash("pwdUnlock", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");
+            $this->redirect("/admin-dashboard");
+        } else {
+            flash("pwdUnlock", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/admin-dashboard");
+        }
+    }
+
+    private function IfEmpty(array $data) :Bool {
+        if (empty($data['login']) ||
+         empty($data['name']) ||
+         empty($data['lastName']) ||
+         empty($data['phoneNumber']) ||
+         empty($data['email']) ||
+         empty($data['houseNumber']) ||
+         empty($data['street']) ||
+         empty($data['town']) ||
+         empty($data['zipCode']) ||
+         empty($data['city'])) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

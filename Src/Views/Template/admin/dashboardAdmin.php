@@ -84,7 +84,7 @@
 						<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
 					</div>
 					<div class="field">
-						<label for="email" class="field__label">Adres email</label>
+					<label for="email" class="field__label">Adres email</label>
 						<input type="text" id="edit_email" name="email" class="field__input" required>
 					</div>
 				</div>

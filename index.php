@@ -29,6 +29,7 @@ $router->get('/admin-dashboard', 'DashboardAdminController@DashboardAdminView', 
 
 $router->post('/admin-pwd-unlock', 'DashboardAdminController@PwdUnlock', 'Controllers\\Admin');
 $router->post('/admin-del-profile', 'DashboardAdminController@accountDell', 'Controllers\\Admin');
+$router->post('/admin-edit-profile', 'DashboardAdminController@accountEdit', 'Controllers\\Admin');
 
 $router->get('/manager-dashboard', 'DashboardManagerController@DashboardManagerView', 'Controllers\\Operator\\Manager');
 $router->get('/user-dashboard', 'DashboardUserController@DashboardUserView', 'Controllers\\Operator\\User');
