@@ -3,16 +3,18 @@
     text-align: center;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
+    color: white;
     font-size: 1rem;
+    z-index: 10;
     
     &--confirm{
-        color: var(--positive-hover);
+        // color: var(--positive-hover);
         background-color: var(--positive);
         border: 1px solid var(--positive-hover);
     }
 
     &--error{
-        color: var(--negative-hover);
+        // color: var(--negative-hover);
         background-color: var(--negative);
         border: 1px solid var(--negative-hover);
     }

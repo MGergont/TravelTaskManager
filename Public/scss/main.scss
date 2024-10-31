@@ -1,13 +1,18 @@
 //blocks
 @import 'blocks/alert';
 @import 'blocks/buttons';
-
+@import 'blocks/form';
+@import 'blocks/field';
+@import 'blocks/select-wrapper';
+@import 'blocks/modal';
 //layout
 @import 'layout/base';
-
+@import 'layout/adminGrid';
+@import 'layout/tableAdmin';
 //page admin
-@import 'page/admin/LoginAdmin';
-
+@import 'page/admin/loginAdmin';
+@import 'page/admin/dashboardAdmin';
+@import 'page/admin/registerAdmin';
 // page operator
 
 //settings

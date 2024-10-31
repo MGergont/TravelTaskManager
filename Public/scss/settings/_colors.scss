@@ -1,8 +1,8 @@
 // light theme
 $primary-color: #1A8D60;
-$secondary-color: #FFFFFF;
-// $background: #F4F6FA;
-$background: #424650;
+$secondary-color: #f9f9f9;
+$background: #eaf2ed;
+// $background: #424650;
 
 $negative: #EC8E6D;
 $negative-hover: #b3502c;
@@ -10,6 +10,7 @@ $positive: #40A07A;
 $positive-hover: #207a56;
 
 $active: #D0E7DF;
+$inactive: #e7d9d0;
 $disabled: #f1f1f16a;
 
 $table__1: #FFFFFF;
@@ -28,6 +29,7 @@ $text-secondary: #2B314A;
   --positive: #{$positive};
   --positive-hover: #{$positive-hover};
   --active: #{$active};
+  --inactive: #{$inactive};
   --disabled: #{$disabled};
   --table__1: #{$table__1};
   --table__2: #{$table__2};

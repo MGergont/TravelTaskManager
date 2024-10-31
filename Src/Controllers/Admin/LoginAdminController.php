@@ -66,11 +66,11 @@ class LoginAdminController extends AbstractController{
                 $this->createUserSession($result);
             } else {
                 $loginAdminModel->updateLoginError($result->id_admin, $result->login_error + 1);
-                flash("loginAdmin", "Niepoprawny login lub hasło", "alert-login alert-login--confirm");  
+                flash("loginAdmin", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
                 $this->redirect("/admin");
             }
         } else {
-            flash("loginAdmin", "Niepoprawny login lub hasło", "alert-login alert-login--confirm");  
+            flash("loginAdmin", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
             $this->redirect("/admin");
         }
         

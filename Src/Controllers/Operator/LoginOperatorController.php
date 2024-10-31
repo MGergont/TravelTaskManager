@@ -64,14 +64,15 @@ class LoginOperatorController extends AbstractController{
             if (password_verify($data['userPwd'], $hashedPassword)) {
                 $loginMod->updateLastLogin($result->id_operator);
                 $loginMod->updateLoginError($result->id_operator, 0);
+                $loginMod->updateStatusAccount($result->id_operator, "active");
                 $this->createUserSession($result);
             } else {
                 $loginMod->updateLoginError($result->id_operator, $result->login_error + 1);
-                flash("loginOperator", "Niepoprawny login lub hasło", "alert-login alert-login--confirm");  
+                flash("loginOperator", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
                 $this->redirect("/");
             }
         } else {
-            flash("loginOperator", "Niepoprawny login lub hasło tutaj", "alert-login alert-login--confirm");  
+            flash("loginOperator", "Niepoprawny login lub hasło tutaj", "alert-login alert-login--error");  
             $this->redirect("/");
         }
         

@@ -104,7 +104,7 @@ class AddOperatorModel extends AbstractModel{
             return true;
         }
     }
-    
+    //TODO dopisać typy danych przekazanych
     public function AddAddress($data, $idOperator): Bool{
         
         $this->query('INSERT INTO public.address (house_number, street, town, zip_code, city, id_operator_fk) VALUES (:houseNumber, :street, :town, :zipCode, :city, :operatorFK)');

@@ -1,0 +1,211 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  height: 60px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1;
+  font-family: OpenSans_normal;
+  font-weight: 300;
+  
+  &__logo {
+      width: 150px;
+    }
+
+	&__logo2 {
+		display: none;
+		width: 200px;
+	  }
+    
+    &__user-info {
+      font-size: 1rem;
+      color: white;
+    }
+    
+    &__hamburger {
+      display: none;
+      cursor: pointer;
+      padding: 5px;
+      font-size: 33px;
+      color: var(--secondary-color);
+    }
+    
+    &__bar {
+      border-radius: 3px;
+      margin: 4px 0;
+      transition: 0.3s ease;
+
+      &:hover{
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+      }
+    }
+  }
+  
+  .content {
+    margin-left: 250px; /* Odsunięcie od sidebaru */
+    padding: 2rem;
+    font-family: OpenSans_normal;
+    font-weight: 300;
+
+    &__title{
+      margin: 20px 0;
+    }
+
+  }
+  .sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--secondary-color);
+    transform: translateX(0); /* Menu wysunięte domyślnie */
+    transition: transform 0.3s ease;
+    font-family: OpenSans_normal;
+    font-weight: 600;
+  
+    &__list {
+      list-style: none;
+      padding: 0;
+    }
+  
+    &__item {
+      margin: 1rem 0;
+    }
+  
+    &__link {
+      display: block;
+      color: var(--text-primary);
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background-color 0.4s ease;
+  
+      &:hover {
+        background-color: var(--active);
+        color: var(--primary-color);
+        border-left: solid 4px var(--primary-color);
+      }
+    }
+  }
+  
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%); /* Sidebar domyślnie ukryty na telefonach */
+
+      &--hidden {
+        transform: translateX(0%); /* Ukrycie sidebaru dla urządzeń mobilnych */
+      }
+    }
+
+	
+    .topbar {
+		justify-content: space-between;
+		
+      &__hamburger {
+        display: flex; /* Pokaż hamburger w górnym pasku */
+      }
+      &__logo{
+        display: none;
+      }
+    
+      &__logo2{
+        display: flex;
+      }
+    }
+  
+    .content {
+      margin-left: 0;
+      padding: 2rem 1rem;
+    }
+
+    .menu-user {
+      &__link1{
+        display: none;
+      }
+
+      &__link2{
+        display: block !important;
+      }
+    }
+
+  }
+
+  .menu-user {
+  
+	&__list {
+	  list-style: none;
+	  display: flex;
+
+	}
+  
+	&__item {
+	  position: relative;
+	}
+  
+	&__link1 {
+	  color: white;
+	  max-width: 200px;
+	  min-width: 180px;
+	  text-align: right;
+	  text-decoration: none;
+	  padding: 0.5rem 1rem;
+    border-radius: 3px;
+	  transition: background-color 0.3s ease;
+  
+	  &:hover {
+      color: var(--primary-color);
+      background-color: var(--secondary-color);
+	  }
+	}
+
+  &__link2 {
+	  color: white;
+	  text-align: right;
+	  text-decoration: none;
+	  padding: 0.5rem 1rem;
+    border-radius: 3px;
+	  transition: background-color 0.3s ease;
+    display: none;
+
+	  &:hover {
+      color: var(--primary-color);
+      background-color: var(--secondary-color);
+	  }
+	}
+  
+	/* Style dla pozycji dropdown */
+	&__item--dropdown {
+	  &:hover .menu-user__dropdown {
+		display: block; /* Wyświetl dropdown po najechaniu */
+	  }
+	}
+  
+	&__dropdown {
+	  display: none; /* Domyślnie dropdown jest ukryty */
+	  position: absolute;
+	  top: 100%;
+	  right: 0; /* Wyświetla się poniżej pozycji głównej */
+	  background-color: var(--positive);
+	  list-style: none;
+	  max-width: 220px;
+    min-width: 180px;
+	}
+  
+	&__dropdown-link {
+	  display: block;
+	  padding: 0.5rem 1rem;
+	  color: var(--secondary-color);
+	  text-align: right;
+	  text-decoration: none;
+	  transition: background-color 0.3s ease;
+    font-size: 14px;
+  
+	  &:hover {
+		background-color: var(--positive-hover);
+	  }
+	}
+  }

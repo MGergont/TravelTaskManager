@@ -1,0 +1,87 @@
+/* Podstawowe style dla panelu */
+.user-panel {
+	background-color: var(--secondary-color);
+	padding: 20px;
+	border-radius: 4px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	overflow-x: auto;
+
+	&__title {
+		font-size: 24px;
+		margin-bottom: 20px;
+		color: var(--text-primary);
+	}
+
+	/* Stylizacja tabeli */
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+		min-width: 1000px;
+	}
+
+	&__row {
+		&:nth-child(even) {
+			background-color: var(--disabled);
+		}
+	}
+
+	&__header {
+		color: #333;
+		padding: 10px;
+		text-align: left;
+		font-weight: bold;
+		border-bottom: 1px solid var(--table__2);
+
+		&--status {
+			text-align: center;
+		}
+	}
+
+	&__cell {
+		padding: 10px;
+		border-bottom: 1px solid var(--table__2);
+
+		&--options {
+			text-align: justify;
+		}
+
+		&--active {
+			color: var(--positive-hover);
+			background-color: var(--active);
+			font-weight: bold;
+			text-align: center;
+		}
+
+		&--new {
+			text-align: center;
+		}
+
+		&--block {
+			color: var(--negative-hover);
+			background-color: var(--inactive);
+			font-weight: bold;
+			text-align: center;
+		}
+	}
+	/* Ikony akcji (edycja, usuwanie, podgląd) */
+	&__icon {
+		background: none;
+		border-radius: 3px;
+		border: 0px;
+		cursor: pointer;
+		margin: 0 5px;
+		padding: 0;
+		width: 27px;
+		height: 27px;
+		font-size: 17px;
+		color: var(--positive);
+		transition: 0.4s ease;
+
+		&:hover {
+			color: var(--positive-hover);
+			background-color: var(--active);
+		}
+
+
+	}
+}
