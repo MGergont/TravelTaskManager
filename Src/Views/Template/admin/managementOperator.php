@@ -18,7 +18,7 @@
 		<div class="modal__content">
 			<h2 class="modal__title">Account Locked</h2>
 			<p class="modal__message">Number of failed login attempts: <strong id="pwd_failed"></strong></p>
-			<form action="/admin-pwd-unlock" method="post">
+			<form action="/operator-pwd-unlock" method="post">
 				<input type="hidden" id="pwd_id" name="id">
 				<div class="modal__form-group">
 					<input type="checkbox" id="unlock-account" class="modal__checkbox" name="pwd_unlock">
@@ -48,7 +48,7 @@
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Account Delate</h2>
-			<form action="/admin-del-profile" method="post">
+			<form action="/operator-del-profile" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
 					<button class="button-form button-form--positive">Confirm</button>
@@ -60,7 +60,7 @@
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--edit">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="/admin-edit-profile" method="post">
+			<form class="edit-modal" action="/operator-edit-profile" method="post">
 				<div class="edit-modal__login">
 					<input type="hidden" id="edit_id" name="id">
 					<div class="field">
@@ -134,8 +134,8 @@
 			</form>
 		</div>
 	</div>
-	<?php if (!empty($_SESSION["pwdUnlock"])) : ?>
-		<?php flash("pwdUnlock"); ?>
+	<?php if (!empty($_SESSION["operatorsManagment"])) : ?>
+		<?php flash("operatorsManagment"); ?>
 	<?php endif; ?>
 	<header class="topbar">
 		<div class="topbar__hamburger">
@@ -177,7 +177,7 @@
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Admin Dashboard</h2>
+			<h2 class="content__title">Operatorzy</h2>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>
