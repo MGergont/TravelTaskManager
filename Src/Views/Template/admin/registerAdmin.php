@@ -47,9 +47,11 @@
             <nav class="sidebar__menu">
                 <ul class="sidebar__list">
                     <li class="sidebar__item"><a href="/admin-dashboard" class="sidebar__link">Strona główna</a></li>
-                    <li class="sidebar__item"><a href="/register" class="sidebar__link">Dodaj użytkownika</a></li>
-                    <li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
-                    <li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
+					<li class="sidebar__item"><a href="/operators" class="sidebar__link">Operatorzy</a></li>
+					<li class="sidebar__item"><a href="/admins" class="sidebar__link">Administracja</a></li>
+					<li class="sidebar__item"><a href="/register" class="sidebar__link">Dodaj użytkownika</a></li>
+					<li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
+					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
                 </ul>
             </nav>
         </div>

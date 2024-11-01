@@ -88,36 +88,7 @@
 						<input type="text" id="edit_email" name="email" class="field__input" required>
 					</div>
 				</div>
-				<div class="edit-modal__addres">
-					<div class="field">
-						<label for="houseNumber" class="field__label">Numer domu</label>
-						<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="street" class="field__label">Ulica</label>
-						<input type="text" id="edit_street" name="street" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="town" class="field__label">Miejscowość</label>
-						<input type="text" id="edit_town" name="town" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="zipCode" class="field__label">Kod pocztowy</label>
-						<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="city" class="field__label">Miasto</label>
-						<input type="text" id="edit_city" name="city" class="field__input" required>
-					</div>
-				</div>
 				<div class="edit-modal__priv">
-					<div class="select-wrapper">
-						<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
-						<select name="privileges" id="edit_privileges" class="select-wrapper__select">
-							<option value="manager">Menedżer</option>
-							<option value="user">Użytkownik</option>
-						</select>
-					</div>
 					<div class="select-wrapper">
 						<label for="status" class="select-wrapper__label">Status Konta</label>
 						<select name="status" id="edit_status" class="select-wrapper__select">
@@ -134,8 +105,8 @@
 			</form>
 		</div>
 	</div>
-	<?php if (!empty($_SESSION["pwdUnlock"])) : ?>
-		<?php flash("pwdUnlock"); ?>
+	<?php if (!empty($_SESSION["adminManagement"])) : ?>
+		<?php flash("adminManagement"); ?>
 	<?php endif; ?>
 	<header class="topbar">
 		<div class="topbar__hamburger">
@@ -177,7 +148,7 @@
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Admin Dashboard</h2>
+			<h2 class="content__title">Administracja</h2>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>
@@ -207,26 +178,20 @@
 									<td class="user-panel__cell"><?php echo $operator['user_grant']; ?></td>
 									<td class="user-panel__cell user-panel__cell--options">
 										<button class="user-panel__icon"><i class="icon-pencil" onclick="editProfile(
-									'<?php echo $operator['id_operator']; ?>',
+									'<?php echo $operator['id_admin']; ?>',
 									'<?php echo $operator['login']; ?>',
 									'<?php echo $operator['name']; ?>',
 									'<?php echo $operator['last_name']; ?>',
 									'<?php echo $operator['phone_number']; ?>',
 									'<?php echo $operator['email']; ?>',
-									'<?php echo $operator['house_number']; ?>',
-									'<?php echo $operator['street']; ?>',
-									'<?php echo $operator['town']; ?>',
-									'<?php echo $operator['zip_code']; ?>',
-									'<?php echo $operator['city']; ?>',
-									'<?php echo $operator['user_grant']; ?>',
 									'<?php echo $operator['user_status']; ?>'
 									)"></i></button>
 										<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
-									'<?php echo $operator['id_operator']; ?>',
+									'<?php echo $operator['id_admin']; ?>',
 									'<?php echo $operator['login_error']; ?>'
 									)"></i></button>
 										<button class="user-panel__icon"><i class="icon-trash" onclick="delProfile(
-									'<?php echo $operator['id_operator']; ?>'
+									'<?php echo $operator['id_admin']; ?>'
 									)"></i></button>
 									</td>
 								</tr>
@@ -261,22 +226,15 @@
 		document.getElementById('modal2').style.display = 'block';
 	}
 
-	function editProfile(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city, privileges, status) {
+	function editProfile(id, login, name, lastName, phoneNumber, email, status) {
 		document.getElementById('edit_id').value = id;
 		document.getElementById('edit_login').value = login;
 		document.getElementById('edit_name').value = name;
 		document.getElementById('edit_lastName').value = lastName;
 		document.getElementById('edit_phoneNumber').value = phoneNumber;
 		document.getElementById('edit_email').value = email;
-		document.getElementById('edit_houseNumber').value = houseNumber;
-		document.getElementById('edit_street').value = street;
-		document.getElementById('edit_town').value = town;
-		document.getElementById('edit_zipCode').value = zipCode;
-		document.getElementById('edit_city').value = city;
 		
-		const roleSelect = document.getElementById('edit_privileges');
 		const statusSelect = document.getElementById('edit_status');
-		roleSelect.value = privileges;
 		statusSelect.value = status;
 
 		document.getElementById('modal3').style.display = 'block';

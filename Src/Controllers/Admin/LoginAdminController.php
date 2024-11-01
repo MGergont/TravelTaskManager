@@ -63,6 +63,7 @@ class LoginAdminController extends AbstractController{
             if (password_verify($data['adminPwd'], $hashedPassword)) {
                 $loginAdminModel->updateLastLogin($result->id_admin);
                 $loginAdminModel->updateLoginError($result->id_admin, 0);
+                $loginAdminModel->updateStatusAccount($result->id_admin, "active");
                 $this->createUserSession($result);
             } else {
                 $loginAdminModel->updateLoginError($result->id_admin, $result->login_error + 1);

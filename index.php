@@ -14,7 +14,6 @@ $router->get('/access-denied', 'HomeController@accessDenied', 'Controllers');
 $router->get('/', 'LoginOperatorController@loginView', 'Controllers\\Operator');
 $router->post('/', 'LoginOperatorController@login', 'Controllers\\Operator');
 
-//TODO tymczasowa rejestracja
 $router->get('/register', 'AddOperatorController@AddOperatorView', 'Controllers\\Admin');
 $router->post('/register', 'AddOperatorController@AddOperator', 'Controllers\\Admin');
 
@@ -27,9 +26,15 @@ $router->get('/logout-ope', 'LoginOperatorController@logout', 'Controllers\\Oper
 
 $router->get('/admin-dashboard', 'DashboardAdminController@DashboardAdminView', 'Controllers\\Admin');
 
-$router->post('/admin-pwd-unlock', 'DashboardAdminController@PwdUnlock', 'Controllers\\Admin');
-$router->post('/admin-del-profile', 'DashboardAdminController@accountDell', 'Controllers\\Admin');
-$router->post('/admin-edit-profile', 'DashboardAdminController@accountEdit', 'Controllers\\Admin');
+$router->get('/operators', 'ManagementOperatorController@ManagementOperatorView', 'Controllers\\Admin');
+$router->post('/operator-pwd-unlock', 'ManagementOperatorController@PwdUnlock', 'Controllers\\Admin');
+$router->post('/operator-del-profile', 'ManagementOperatorController@accountDell', 'Controllers\\Admin');
+$router->post('/operator-edit-profile', 'ManagementOperatorController@accountEdit', 'Controllers\\Admin');
+
+$router->get('/admins', 'ManagementAdminController@ManagementAdminView', 'Controllers\\Admin');
+$router->post('/admin-pwd-unlock', 'ManagementAdminController@PwdUnlock', 'Controllers\\Admin');
+$router->post('/admin-del-profile', 'ManagementAdminController@accountDell', 'Controllers\\Admin');
+$router->post('/admin-edit-profile', 'ManagementAdminController@accountEdit', 'Controllers\\Admin');
 
 $router->get('/manager-dashboard', 'DashboardManagerController@DashboardManagerView', 'Controllers\\Operator\\Manager');
 $router->get('/user-dashboard', 'DashboardUserController@DashboardUserView', 'Controllers\\Operator\\User');
