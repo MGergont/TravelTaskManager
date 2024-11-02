@@ -31,7 +31,7 @@
 							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout-ope" class="menu-user__dropdown-link">wyloguj się</a>
 						</li>
 					</ul>
 				</li>
@@ -43,6 +43,7 @@
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
 					<li class="sidebar__item"><a href="/user-dashboard" class="sidebar__link">Strona główna</a></li>
+                    <li class="sidebar__item"><a href="/user/route" class="sidebar__link">Delegacja</a></li>
 					<li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
 					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
 				</ul>

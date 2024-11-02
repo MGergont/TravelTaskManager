@@ -34,3 +34,16 @@ CREATE TABLE admin (
 	user_status VARCHAR(20) NOT NULL,
 	user_grant VARCHAR(20) NOT NULL
 );
+
+CREATE TABLE route (
+    id_route SERIAL PRIMARY KEY NOT NULL,
+    location_1 VARCHAR(25) NOT NULL,
+    location_2 VARCHAR(25) NOT NULL,
+    id_travel VARCHAR(50) NOT NULL,
+    time_travel_out TIMESTAMP NOT NULL,
+	time_travel_in TIMESTAMP NOT NULL,
+	distance DOUBLE PRECISION NOT NULL,
+    id_operator_FK INT,
+    FOREIGN KEY (id_operator_FK) REFERENCES operator(id_operator) ON DELETE CASCADE
+);
+
