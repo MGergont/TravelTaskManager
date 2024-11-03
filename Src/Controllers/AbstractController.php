@@ -77,6 +77,15 @@ abstract class AbstractController
         }
     }
 
+    protected function ValidFloatingNumbers(string $data) : Bool {
+        if(!preg_match('/^[0-9]{1,13}(\.[0-9]{1,2})?$/', $data)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     protected function ValidEmail(string $data) : Bool {
         if(!filter_var($data, FILTER_VALIDATE_EMAIL)){
             return true;

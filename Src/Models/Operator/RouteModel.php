@@ -53,19 +53,20 @@ class RouteModel extends AbstractModel{
         }
     }
 
-    // public function addCost(array $data, int $id): Bool{
+    public function addCost(array $data, int $id): Bool{
 
-    //     $this->query('INSERT INTO costs VALUES (NULL, NOW(), :amount, :description, "route", NULL, :Idvehicle, :id);');
+        $this->query('INSERT INTO costs (expense_date, amount, description, category, id_travel, id_operator_fk) VALUES (NOW(), :amount, :description, :status, :Idtravel, :id);');
         
-    //     $this->bind(':amount', $data['amount']);
-    //     $this->bind(':description', $data['description']);
-    //     $this->bind(':Idvehicle', $data['id']);
-    //     $this->bind(':id', $id);
+        $this->bind(':amount', $data['amount']);
+        $this->bind(':description', $data['description']);
+        $this->bind(':status', "route");
+        $this->bind(':Idtravel', $data['id']);
+        $this->bind(':id', $id);
         
-    //     if($this->execute()){
-    //         return true;
-    //     }else{
-    //         return false;
-    //     }
-    // }
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

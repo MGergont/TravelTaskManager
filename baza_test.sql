@@ -47,3 +47,49 @@ CREATE TABLE route (
     FOREIGN KEY (id_operator_FK) REFERENCES operator(id_operator) ON DELETE CASCADE
 );
 
+CREATE TABLE costs (
+    id_costs SERIAL PRIMARY KEY NOT NULL,
+	expense_date TIMESTAMP NOT NULL,
+    amount DOUBLE PRECISION NOT NULL,
+	description VARCHAR(250),
+    category VARCHAR(10),
+	id_travel INT,
+    id_operator_FK INT,
+	FOREIGN KEY (id_operator_FK) REFERENCES operator(id_operator) ON DELETE CASCADE
+);
+
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    order_name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) NOT NULL, -- np. 'new', 'in progress', 'completed'
+    assigned_to INTEGER REFERENCES employees(employee_id), -- Id przypisanego pracownika
+    due_date DATE -- data realizacji
+);
+
+CREATE TABLE routes (
+    route_id SERIAL PRIMARY KEY,
+    order_id INTEGER NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
+    origin_location_id INTEGER NOT NULL REFERENCES locations(location_id),
+    destination_location_id INTEGER NOT NULL REFERENCES locations(location_id),
+    departure_time TIMESTAMP, -- opcjonalnie czas wyjazdu
+    arrival_time TIMESTAMP -- opcjonalnie czas przyjazdu
+);
+
+CREATE TABLE locations (
+    location_id SERIAL PRIMARY KEY,
+    address_line1 VARCHAR(255) NOT NULL,
+    address_line2 VARCHAR(255), -- dodatkowa linia adresowa (opcjonalnie)
+    city VARCHAR(100) NOT NULL,
+    postal_code VARCHAR(20),
+    country VARCHAR(100) NOT NULL,
+    latitude DECIMAL(9, 6), -- szerokość geograficzna
+    longitude DECIMAL(9, 6) -- długość geograficzna
+);
+
+-- SELECT o.order_name, o.status, r.route_id, l1.city AS origin_city, l2.city AS destination_city
+-- FROM orders o
+-- JOIN routes r ON o.order_id = r.order_id
+-- JOIN locations l1 ON r.origin_location_id = l1.location_id
+-- JOIN locations l2 ON r.destination_location_id = l2.location_id
+-- WHERE o.order_id = 1;

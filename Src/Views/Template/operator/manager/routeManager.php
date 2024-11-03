@@ -97,7 +97,7 @@
 				<p>Start a route to add costs</p>
 				<?php if ($_SESSION['statusDel'] != 'start'): ?>
 					<p>Add cost</p>
-					<form method="post" action="/route-cost">
+					<form method="post" action="/manager/route/cost">
 						<div class="field">
                     		<input type="number" name="amount" class="field__input" placeholder="Koszt" required>
                     	</div>

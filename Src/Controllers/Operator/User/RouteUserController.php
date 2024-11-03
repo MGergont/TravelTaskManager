@@ -71,35 +71,40 @@ class RouteUserController extends AbstractController{
         $this->redirect("/user/route");
     }
 
-    // public function addCost() : Void{
-    //     $routeMod = new RouteModel($this->configuration);
+    public function addCost() : Void{
+        $routeMod = new RouteModel($this->configuration);
 
-    //     $data = [
-    //         'amount' => trim($this->request->postParam('amount')),
-    //         'description' => trim($this->request->postParam('descript')),
-    //         'id' => $_SESSION['id_del'],
+        $data = [
+            'amount' => trim($this->request->postParam('amount')),
+            'description' => trim($this->request->postParam('descript')),
+            'id' => $_SESSION['id_del'],
 
-    //     ];
+        ];
 
-    //     if (empty($data['amount']) || empty($data['description'])) {
-    //         FeedbackMess("route", "Wymagany fomularz nie jest uzupełniony");
-    //         flash("loginOperator", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
-    //         $this->redirect("/route");
-    //     }
+        if (empty($data['amount']) || empty($data['description'])) {
+            flash("route", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/user/route");
+        }
 
-    //     if(preg_match('/^[0-9]{9,15}$/', $data['amount'])){
-    //         FeedbackMess("route", "Niepoprawny znak");
-    //         $this->redirect("/route");
-    //     }
+        // if($this->IfMaxLength($data, 250)){
+        //     flash("route", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+        //     $this->redirect("/user/route");
+        // };
 
-    //     if($routeMod->addCost($data, $_SESSION['usersId'])){
-    //         FeedbackMess("route", "Udało się ");
-    //         $this->redirect("/route");
-    //     }else{
-    //         FeedbackMess("route", "Nie udało się usunąć");
-    //         $this->redirect("/route");
-    //     }
-    // }
+        if ($this->ValidFloatingNumbers($data['amount'])) {
+            flash("route", "Niepoprawny znak", "alert-login alert-login--error");  
+            $this->redirect("/user/route");
+        }
+        
+
+        if($routeMod->addCost($data, $_SESSION['userId'])){
+            flash("route", "Udało się ", "alert-login alert-login--confirm");
+            $this->redirect("/user/route");
+        }else{
+            flash("route", "Nie udało się dodać", "alert-login alert-login--error");
+            $this->redirect("/user/route");
+        }
+    }
 
     public function endRoute() : Void{
         unset($_SESSION['id_del']);
