@@ -42,9 +42,9 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/user-dashboard" class="sidebar__link">Strona główna</a></li>
+					<li class="sidebar__item"><a href="#" class="sidebar__link">Strona główna</a></li>
                     <li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
+					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
 					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
 				</ul>
 			</nav>

@@ -15,27 +15,49 @@
 
 <body>
 	<div class="modal" id="modal1" style="display:none;">
-		<div class="modal__content">
-			<h2 class="modal__title">Account Locked</h2>
-			<p class="modal__message">Number of failed login attempts: <strong id="pwd_failed"></strong></p>
-			<form action="/admin-pwd-unlock" method="post">
-				<input type="hidden" id="pwd_id" name="id">
-				<div class="modal__form-group">
-					<input type="checkbox" id="unlock-account" class="modal__checkbox" name="pwd_unlock">
-					<label for="unlock-account" class="modal__label">Unlock account</label>
-				</div>
-				<div class="modal__form-group">
-					<input type="checkbox" id="change-password" class="modal__checkbox" name="pwd_change">
-					<label for="change-password" class="modal__label">Change password</label>
-				</div>
-				<div class="modal__password-section" id="password-section" style="display: none;">
-					<div class="modal__form-group">
-						<label for="new-password" class="modal__label">New Password</label>
-						<input type="password" id="new-password" class="modal__input" value="Enter new password" name="pwd">
+		<div class="modal__content modal__content--add">
+			<h2 class="modal__title">Dodawanie lokalizacji</h2>
+			<form class="add-modal" action="/manager/location/add" method="post">
+				<div class="add-modal__name">
+					<div class="field">
+						<label for="add_name" class="field__label">Nazwa</label>
+						<input type="text" id="add_name" name="add_name" class="field__input" placeholder="Nazwa" required>
 					</div>
-					<div class="modal__form-group">
-						<label for="confirm-password" class="modal__label">Confirm Password</label>
-						<input type="password" id="confirm-password" class="modal__input" value="Confirm new password" name="pwd_repeat">
+				</div>
+				<div class="add-modal__line">
+					<div class="field">
+						<label for="add_houseNumber" class="field__label">Numer domu</label>
+						<input type="text" id="add_houseNumber" name="add_houseNumber" class="field__input" placeholder="Numer domu" required>
+					</div>
+					<div class="field">
+						<label for="add_street" class="field__label">Ulica</label>
+						<input type="text" id="add_street" name="add_street" class="field__input" placeholder="Ulica" required>
+					</div>
+				</div>
+				<div class="add-modal__line">
+					<div class="field">
+						<label for="add_town" class="field__label">Miejscowość</label>
+						<input type="text" id="add_town" name="add_town" class="field__input" placeholder="Miejscowość" required>
+					</div>
+					<div class="field">
+						<label for="add_zipCode" class="field__label">Kod pocztowy</label>
+						<input type="text" id="add_zipCode" name="add_zipCode" class="field__input" placeholder="Kod pocztowy" required>
+					</div>
+					<div class="field">
+						<label for="add_city" class="field__label">Miasto</label>
+						<input type="text" id="add_city" name="add_city" class="field__input" placeholder="Miasto" required>
+					</div>
+				</div>
+				<div class="add-modal__coord">
+					<div class="field">
+						<label for="add_latitude" class="field__label">Wysokość geograficzna</label>
+						<input type="number" id="add_latitude" name="add_latitude" class="field__input" placeholder="Wysokość geograficzna" >
+					</div>
+				</div>
+				<div class="add-modal__coord">
+					<div class="field">
+						<label for="add_longitude" class="field__label">Szerokość geograficzna</label>
+						<input type="number" id="add_longitude" name="add_longitude" class="field__input" placeholder="Szerokość geograficzna" >
 					</div>
 				</div>
 				<div class="modal__actions">
@@ -45,10 +67,10 @@
 			</form>
 		</div>
 	</div>
-	<div class="modal" id="modal2" style="display:none;">`
+	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Account Delate</h2>
-			<form action="/admin-del-profile" method="post">
+			<form action="/operator-del-profile" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
 					<button class="button-form button-form--positive">Confirm</button>
@@ -60,7 +82,7 @@
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--edit">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="/admin-edit-profile" method="post">
+			<form class="edit-modal" action="/operator-edit-profile" method="post">
 				<div class="edit-modal__login">
 					<input type="hidden" id="edit_id" name="id">
 					<div class="field">
@@ -79,7 +101,7 @@
 					</div>
 				</div>
 				<div class="edit-modal__name-data">
-					<div class="field">
+					<div class="field ">
 						<label for="phoneNumber" class="field__label">Nume telefonu</label>
 						<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
 					</div>
@@ -88,7 +110,36 @@
 						<input type="text" id="edit_email" name="email" class="field__input" required>
 					</div>
 				</div>
+				<div class="edit-modal__addres">
+					<div class="field">
+						<label for="houseNumber" class="field__label">Numer domu</label>
+						<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="street" class="field__label">Ulica</label>
+						<input type="text" id="edit_street" name="street" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="town" class="field__label">Miejscowość</label>
+						<input type="text" id="edit_town" name="town" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="zipCode" class="field__label">Kod pocztowy</label>
+						<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
+					</div>
+					<div class="field">
+						<label for="city" class="field__label">Miasto</label>
+						<input type="text" id="edit_city" name="city" class="field__input" required>
+					</div>
+				</div>
 				<div class="edit-modal__priv">
+					<div class="select-wrapper">
+						<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
+						<select name="privileges" id="edit_privileges" class="select-wrapper__select">
+							<option value="manager">Menedżer</option>
+							<option value="user">Użytkownik</option>
+						</select>
+					</div>
 					<div class="select-wrapper">
 						<label for="status" class="select-wrapper__label">Status Konta</label>
 						<select name="status" id="edit_status" class="select-wrapper__select">
@@ -105,8 +156,8 @@
 			</form>
 		</div>
 	</div>
-	<?php if (!empty($_SESSION["adminManagement"])) : ?>
-		<?php flash("adminManagement"); ?>
+	<?php if (!empty($_SESSION["locationManagment"])) : ?>
+		<?php flash("locationManagment"); ?>
 	<?php endif; ?>
 	<header class="topbar">
 		<div class="topbar__hamburger">
@@ -138,60 +189,47 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/admin-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/operators" class="sidebar__link">Operatorzy</a></li>
-					<li class="sidebar__item"><a href="/admins" class="sidebar__link">Administracja</a></li>
-					<li class="sidebar__item"><a href="/register" class="sidebar__link">Dodaj użytkownika</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
+					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
+					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
+					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
 					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
 				</ul>
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Administracja</h2>
+			<h2 class="content__title">Lokalizacje</h2>
+			<button class="button-form button-form--positive" onclick="addLocation()">Dodaj</button>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>
 						<tr class="user-panel__row">
-							<th class="user-panel__header">First Name</th>
-							<th class="user-panel__header">Last Name</th>
-							<th class="user-panel__header">Login</th>
-							<th class="user-panel__header">Phone</th>
-							<th class="user-panel__header">Email</th>
-							<th class="user-panel__header user-panel__header--status">Status</th>
-							<th class="user-panel__header">Last Login</th>
-							<th class="user-panel__header">Permissions</th>
+							<th class="user-panel__header">Location Name</th>
+							<th class="user-panel__header">Miejscowość</th>
+							<th class="user-panel__header">Kod pocztowy</th>
+							<th class="user-panel__header">Adres</th>
 							<th class="user-panel__header">Options</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php if (!empty($params['operators'])) : ?>
-							<?php foreach ($params['operators'] as $operator): ?>
+						<?php if (!empty($params['location'])) : ?>
+							<?php foreach ($params['location'] as $location): ?>
 								<tr class="user-panel__row">
-									<td class="user-panel__cell"><?php echo $operator['name']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['last_name']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['login']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['phone_number']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['email']; ?></td>
-									<td class="user-panel__cell  user-panel__cell--<?php echo $operator['user_status']; ?>"><?php echo $operator['user_status']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['last_login']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['user_grant']; ?></td>
+									<td class="user-panel__cell"><?php echo $location['location_name']; ?></td>
+									<td class="user-panel__cell"><?php echo $location['town']; ?></td>
+									<td class="user-panel__cell"><?php echo $location['zip_code'] . " " . $location['city']; ?></td>
+									<td class="user-panel__cell"><?php echo "ul." . $location['street'] . " " . $location['house_number']; ?></td>
 									<td class="user-panel__cell user-panel__cell--options">
-										<button class="user-panel__icon"><i class="icon-pencil" onclick="editProfile(
-									'<?php echo $operator['id_admin']; ?>',
-									'<?php echo $operator['login']; ?>',
-									'<?php echo $operator['name']; ?>',
-									'<?php echo $operator['last_name']; ?>',
-									'<?php echo $operator['phone_number']; ?>',
-									'<?php echo $operator['email']; ?>',
-									'<?php echo $operator['user_status']; ?>'
+										<button class="user-panel__icon"><i class="icon-pencil" onclick="editLocation(
+									'<?php echo $location['id_location']; ?>',
+									'<?php echo $location['location_name']; ?>',
+									'<?php echo $location['town']; ?>',
+									'<?php echo $location['zip_code']; ?>',
+									'<?php echo $location['city']; ?>',
+									'<?php echo $location['street']; ?>',
+									'<?php echo $location['house_number']; ?>'
 									)"></i></button>
-										<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
-									'<?php echo $operator['id_admin']; ?>',
-									'<?php echo $operator['login_error']; ?>'
-									)"></i></button>
-										<button class="user-panel__icon"><i class="icon-trash" onclick="delProfile(
-									'<?php echo $operator['id_admin']; ?>'
+										<button class="user-panel__icon"><i class="icon-trash" onclick="delLocation(
+									'<?php echo $location['id_location']; ?>'
 									)"></i></button>
 									</td>
 								</tr>
@@ -215,47 +253,42 @@
 		topbarHamburger.addEventListener('click', toggleSidebar);
 	}
 
-	function pwdChanges(id, failed) {
-		document.getElementById('pwd_id').value = id;
-		document.getElementById('pwd_failed').innerHTML = failed;
+	function addLocation() {
 		document.getElementById('modal1').style.display = 'block';
 	}
 
-	function delProfile(id) {
+	function delLocation(id) {
 		document.getElementById('del_id').value = id;
 		document.getElementById('modal2').style.display = 'block';
 	}
 
-	function editProfile(id, login, name, lastName, phoneNumber, email, status) {
+	function editLocation(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city, privileges, status) {
 		document.getElementById('edit_id').value = id;
 		document.getElementById('edit_login').value = login;
 		document.getElementById('edit_name').value = name;
 		document.getElementById('edit_lastName').value = lastName;
 		document.getElementById('edit_phoneNumber').value = phoneNumber;
 		document.getElementById('edit_email').value = email;
+		document.getElementById('edit_houseNumber').value = houseNumber;
+		document.getElementById('edit_street').value = street;
+		document.getElementById('edit_town').value = town;
+		document.getElementById('edit_zipCode').value = zipCode;
+		document.getElementById('edit_city').value = city;
 
+		const roleSelect = document.getElementById('edit_privileges');
 		const statusSelect = document.getElementById('edit_status');
+		roleSelect.value = privileges;
 		statusSelect.value = status;
 
 		document.getElementById('modal3').style.display = 'block';
 	}
 
-	const changePasswordCheckbox = document.getElementById('change-password');
-	const passwordSection = document.getElementById('password-section');
 	const cancelButton = document.getElementById('cancel-button');
 	const cancelButton2 = document.getElementById('cancel-button2');
 	const cancelButton3 = document.getElementById('cancel-button3');
 	const modal1 = document.getElementById('modal1');
 	const modal2 = document.getElementById('modal2');
 	const modal3 = document.getElementById('modal3');
-
-	changePasswordCheckbox.addEventListener('change', function() {
-		if (this.checked) {
-			passwordSection.style.display = 'block';
-		} else {
-			passwordSection.style.display = 'none';
-		}
-	});
 
 	cancelButton.addEventListener('click', function() {
 		modal1.style.display = 'none';

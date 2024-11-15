@@ -161,6 +161,12 @@
   top: 5vh;
   left: 40vw;
 }
+.modal__content--add {
+  width: -moz-fit-content;
+  width: fit-content;
+  top: 4vh;
+  left: 40vw;
+}
 .modal__title {
   font-size: 24px;
   margin-bottom: 10px;
@@ -550,6 +556,19 @@ body {
   flex-wrap: wrap;
 }
 .form-add__pwd {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  flex-wrap: wrap;
+}
+
+.add-modal__name {
+  max-width: 500px;
+}
+.add-modal__coord {
+  max-width: 500px;
+}
+.add-modal__line {
   display: flex;
   justify-content: space-between;
   max-width: 500px;

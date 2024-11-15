@@ -58,26 +58,31 @@ CREATE TABLE costs (
 	FOREIGN KEY (id_operator_FK) REFERENCES operator(id_operator) ON DELETE CASCADE
 );
 
+
+--informacje o zleceneniu
 CREATE TABLE orders (
-    order_id SERIAL PRIMARY KEY,
+    id_order SERIAL PRIMARY KEY,
     order_name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(50) NOT NULL, -- np. 'new', 'in progress', 'completed'
-    assigned_to INTEGER REFERENCES employees(employee_id), -- Id przypisanego pracownika
+    status_order VARCHAR(50) NOT NULL, -- np. 'new', 'in progress', 'completed'
+    assigned_to INTEGER REFERENCES operator(id_operator), -- Id przypisanego pracownika
     due_date DATE -- data realizacji
 );
 
+--szczeguły trasy
 CREATE TABLE routes (
-    route_id SERIAL PRIMARY KEY,
-    order_id INTEGER NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
-    origin_location_id INTEGER NOT NULL REFERENCES locations(location_id),
-    destination_location_id INTEGER NOT NULL REFERENCES locations(location_id),
+    id_route SERIAL PRIMARY KEY,
+    id_order_FK INTEGER NOT NULL REFERENCES orders(id_order) ON DELETE CASCADE,
+    id_origin_location INTEGER NOT NULL REFERENCES locations(id_location),
+    id_destination_location INTEGER NOT NULL REFERENCES locations(id_location),
     departure_time TIMESTAMP, -- opcjonalnie czas wyjazdu
     arrival_time TIMESTAMP -- opcjonalnie czas przyjazdu
 );
 
+
+--lokalizacja
 CREATE TABLE locations (
-    location_id SERIAL PRIMARY KEY,
+    id_location SERIAL PRIMARY KEY,
     address_line1 VARCHAR(255) NOT NULL,
     address_line2 VARCHAR(255), -- dodatkowa linia adresowa (opcjonalnie)
     city VARCHAR(100) NOT NULL,

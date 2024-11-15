@@ -54,6 +54,8 @@ $router->get('/manager/route/castom-stop', 'RouteManagerController@stopRoute', '
 $router->get('/manager/route/castom-end', 'RouteManagerController@endRoute', 'Controllers\\Operator\\Manager');
 $router->post('/manager/route/cost', 'RouteManagerController@addCost', 'Controllers\\Operator\\Manager');
 
+$router->get('/manager/location', 'ManagementLocationController@ManagementLocationView', 'Controllers\\Operator\\Manager');
+$router->post('/manager/location/add', 'ManagementLocationController@locationAdd', 'Controllers\\Operator\\Manager');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

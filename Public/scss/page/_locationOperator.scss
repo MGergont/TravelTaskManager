@@ -1,0 +1,17 @@
+.add-modal{
+    
+    &__name{
+        max-width: 500px;
+    }
+
+    &__coord{
+        max-width: 500px;
+    }
+
+    &__line{
+        display: flex;
+        justify-content: space-between;
+        max-width: 500px;
+        flex-wrap: wrap;
+    }
+}
