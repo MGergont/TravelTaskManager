@@ -69,7 +69,7 @@ abstract class AbstractController
     }
 
     protected function IfSpecialCharacters(string $data) : Bool {
-        if(!preg_match('/^[a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż]+$/u', $data)){
+        if(!preg_match('/^[a-zA-Z0-9ĄĆĘŁŃÓŚŹŻąćęłńóśźż ]+$/u', $data)){
             return true;
         }
         else{

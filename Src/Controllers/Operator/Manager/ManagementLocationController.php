@@ -186,9 +186,14 @@ class ManagementLocationController extends AbstractController
             $this->redirect("/manager/location");
         }
         
-        if($this->ValidCoordinates($data['latitude'], $data['longitude'])){
-            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
-            $this->redirect("/manager/location");
+        if(!empty($data['latitude']) && !empty($data['longitude'])){
+            if($this->ValidCoordinates($data['latitude'], $data['longitude'])){
+                flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+                $this->redirect("/manager/location");
+            }
+        }else{
+            $data['latitude'] = 0;
+            $data['longitude'] = 0;
         }
 
 
