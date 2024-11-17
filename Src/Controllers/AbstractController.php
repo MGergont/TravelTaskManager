@@ -69,7 +69,16 @@ abstract class AbstractController
     }
 
     protected function IfSpecialCharacters(string $data) : Bool {
-        if(!preg_match('/^[a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż]+$/u', $data)){
+        if(!preg_match('/^[a-zA-Z0-9ĄĆĘŁŃÓŚŹŻąćęłńóśźż ]+$/u', $data)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    protected function ValidFloatingNumbers(string $data) : Bool {
+        if(!preg_match('/^[0-9]{1,13}(\.[0-9]{1,2})?$/', $data)){
             return true;
         }
         else{
@@ -158,5 +167,20 @@ abstract class AbstractController
         }else{
             return false;
         }
+    }
+
+    protected function ValidCoordinates($latitude, $longitude) : Bool {
+        $latitudePattern = '/^(-?([0-8]?[0-9](\.[0-9]+)?|90(\.0+)?))$/';
+        $longitudePattern = '/^(-?((1[0-7][0-9]|[0-9]?[0-9])(\.[0-9]+)?|180(\.0+)?))$/';
+    
+        if (!preg_match($latitudePattern, $latitude)) {
+            return true;
+        }
+        
+        if (!preg_match($longitudePattern, $longitude)) {
+            return true;
+        }
+
+        return false;
     }
 }

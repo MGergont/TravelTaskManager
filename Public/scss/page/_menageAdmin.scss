@@ -28,4 +28,15 @@
         max-width: 500px;
         flex-wrap: wrap;
     }
+
+    &__coord{
+        max-width: 500px;
+    }
+
+    &__line{
+        display: flex;
+        justify-content: space-between;
+        max-width: 500px;
+        flex-wrap: wrap;
+    }
 }

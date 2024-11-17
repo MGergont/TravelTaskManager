@@ -9,10 +9,12 @@
 @import 'layout/base';
 @import 'layout/adminGrid';
 @import 'layout/tableAdmin';
+
 //page admin
-@import 'page/admin/loginAdmin';
-@import 'page/admin/dashboardAdmin';
-@import 'page/admin/registerAdmin';
+@import 'page/loginAdmin';
+@import 'page/menageAdmin';
+@import 'page/registerAdmin';
+@import 'page/locationOperator';
 // page operator
 
 //settings

@@ -45,7 +45,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="modal" id="modal2" style="display:none;">
+	<div class="modal" id="modal2" style="display:none;">`
 		<div class="modal__content">
 			<h2 class="modal__title">Account Delate</h2>
 			<form action="/admin-del-profile" method="post">
@@ -71,11 +71,11 @@
 				<div class="edit-modal__name">
 					<div class="field">
 						<label for="name" class="field__label">Imię</label>
-						<input type="text" id="edit_name" name="name" class="field__input"  required>
+						<input type="text" id="edit_name" name="name" class="field__input" required>
 					</div>
 					<div class="field">
 						<label for="lastName" class="field__label">Nazwisko</label>
-						<input type="text" id="edit_lastName" name="lastName" class="field__input"  required>
+						<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
 					</div>
 				</div>
 				<div class="edit-modal__name-data">
@@ -84,7 +84,7 @@
 						<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
 					</div>
 					<div class="field">
-					<label for="email" class="field__label">Adres email</label>
+						<label for="email" class="field__label">Adres email</label>
 						<input type="text" id="edit_email" name="email" class="field__input" required>
 					</div>
 				</div>
@@ -233,7 +233,7 @@
 		document.getElementById('edit_lastName').value = lastName;
 		document.getElementById('edit_phoneNumber').value = phoneNumber;
 		document.getElementById('edit_email').value = email;
-		
+
 		const statusSelect = document.getElementById('edit_status');
 		statusSelect.value = status;
 

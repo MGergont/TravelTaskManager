@@ -21,6 +21,7 @@ class Request
   public function isPost(): bool
   {
       return $this->server['REQUEST_METHOD'] === 'POST';
+      
   }
  
   public function isGet(): bool
