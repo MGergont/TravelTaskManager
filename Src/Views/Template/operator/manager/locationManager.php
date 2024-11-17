@@ -70,7 +70,7 @@
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Account Delate</h2>
-			<form action="/operator-del-profile" method="post">
+			<form action="/manager/location/del" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
 					<button class="button-form button-form--positive">Confirm</button>
@@ -82,71 +82,48 @@
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--edit">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="/operator-edit-profile" method="post">
+			<form class="edit-modal" action="/manager/location/edit" method="post">
 				<div class="edit-modal__login">
-					<input type="hidden" id="edit_id" name="id">
 					<div class="field">
-						<label for="login" class="field__label">Login</label>
-						<input type="text" id="edit_login" name="login" class="field__input" required>
+						<input type="hidden" id="edit_id" name="edit_id">
+						<label for="edit_name" class="field__label">Nazwa</label>
+						<input type="text" id="edit_name" name="edit_name" class="field__input" placeholder="Nazwa" required>
 					</div>
 				</div>
-				<div class="edit-modal__name">
+				<div class="edit-modal__line">
 					<div class="field">
-						<label for="name" class="field__label">Imię</label>
-						<input type="text" id="edit_name" name="name" class="field__input" required>
+						<label for="edit_houseNumber" class="field__label">Numer domu</label>
+						<input type="text" id="edit_houseNumber" name="edit_houseNumber" class="field__input" placeholder="Numer domu" required>
 					</div>
 					<div class="field">
-						<label for="lastName" class="field__label">Nazwisko</label>
-						<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
+						<label for="edit_street" class="field__label">Ulica</label>
+						<input type="text" id="edit_street" name="edit_street" class="field__input" placeholder="Ulica" required>
 					</div>
 				</div>
-				<div class="edit-modal__name-data">
-					<div class="field ">
-						<label for="phoneNumber" class="field__label">Nume telefonu</label>
-						<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
+				<div class="edit-modal__line">
+					<div class="field">
+						<label for="edit_town" class="field__label">Miejscowość</label>
+						<input type="text" id="edit_town" name="edit_town" class="field__input" placeholder="Miejscowość" required>
 					</div>
 					<div class="field">
-						<label for="email" class="field__label">Adres email</label>
-						<input type="text" id="edit_email" name="email" class="field__input" required>
+						<label for="edit_zipCode" class="field__label">Kod pocztowy</label>
+						<input type="text" id="edit_zipCode" name="edit_zipCode" class="field__input" placeholder="Kod pocztowy" required>
+					</div>
+					<div class="field">
+						<label for="edit_city" class="field__label">Miasto</label>
+						<input type="text" id="edit_city" name="edit_city" class="field__input" placeholder="Miasto" required>
 					</div>
 				</div>
-				<div class="edit-modal__addres">
+				<div class="edit-modal__coord">
 					<div class="field">
-						<label for="houseNumber" class="field__label">Numer domu</label>
-						<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="street" class="field__label">Ulica</label>
-						<input type="text" id="edit_street" name="street" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="town" class="field__label">Miejscowość</label>
-						<input type="text" id="edit_town" name="town" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="zipCode" class="field__label">Kod pocztowy</label>
-						<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="city" class="field__label">Miasto</label>
-						<input type="text" id="edit_city" name="city" class="field__input" required>
+						<label for="edit_latitude" class="field__label">Wysokość geograficzna</label>
+						<input type="number" id="edit_latitude" name="edit_latitude" class="field__input" placeholder="Wysokość geograficzna" >
 					</div>
 				</div>
-				<div class="edit-modal__priv">
-					<div class="select-wrapper">
-						<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
-						<select name="privileges" id="edit_privileges" class="select-wrapper__select">
-							<option value="manager">Menedżer</option>
-							<option value="user">Użytkownik</option>
-						</select>
-					</div>
-					<div class="select-wrapper">
-						<label for="status" class="select-wrapper__label">Status Konta</label>
-						<select name="status" id="edit_status" class="select-wrapper__select">
-							<option value="new">---</option>
-							<option value="block">Blokada</option>
-							<option value="active">Aktywny</option>
-						</select>
+				<div class="edit-modal__coord">
+					<div class="field">
+						<label for="edit_longitude" class="field__label">Szerokość geograficzna</label>
+						<input type="number" id="edit_longitude" name="edit_longitude" class="field__input" placeholder="Szerokość geograficzna" >
 					</div>
 				</div>
 				<div class="modal__actions">
@@ -226,7 +203,9 @@
 									'<?php echo $location['zip_code']; ?>',
 									'<?php echo $location['city']; ?>',
 									'<?php echo $location['street']; ?>',
-									'<?php echo $location['house_number']; ?>'
+									'<?php echo $location['house_number']; ?>',
+									'<?php echo $location['latitude']; ?>',
+									'<?php echo $location['longitude']; ?>'
 									)"></i></button>
 										<button class="user-panel__icon"><i class="icon-trash" onclick="delLocation(
 									'<?php echo $location['id_location']; ?>'
@@ -262,23 +241,16 @@
 		document.getElementById('modal2').style.display = 'block';
 	}
 
-	function editLocation(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city, privileges, status) {
+	function editLocation(id, name, town, zipCode, city, street, house, latitude, longitude) {
 		document.getElementById('edit_id').value = id;
-		document.getElementById('edit_login').value = login;
 		document.getElementById('edit_name').value = name;
-		document.getElementById('edit_lastName').value = lastName;
-		document.getElementById('edit_phoneNumber').value = phoneNumber;
-		document.getElementById('edit_email').value = email;
-		document.getElementById('edit_houseNumber').value = houseNumber;
-		document.getElementById('edit_street').value = street;
 		document.getElementById('edit_town').value = town;
 		document.getElementById('edit_zipCode').value = zipCode;
 		document.getElementById('edit_city').value = city;
-
-		const roleSelect = document.getElementById('edit_privileges');
-		const statusSelect = document.getElementById('edit_status');
-		roleSelect.value = privileges;
-		statusSelect.value = status;
+		document.getElementById('edit_street').value = street;
+		document.getElementById('edit_houseNumber').value = house;
+		document.getElementById('edit_latitude').value = latitude;
+		document.getElementById('edit_longitude').value = longitude;
 
 		document.getElementById('modal3').style.display = 'block';
 	}

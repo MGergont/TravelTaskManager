@@ -522,6 +522,15 @@ body {
   max-width: 500px;
   flex-wrap: wrap;
 }
+.edit-modal__coord {
+  max-width: 500px;
+}
+.edit-modal__line {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  flex-wrap: wrap;
+}
 
 .form-add {
   background-color: white;

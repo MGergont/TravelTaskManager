@@ -40,10 +40,10 @@ class ManagementLocationModel extends AbstractModel{
         }
     }
 
-    public function accountDell(int $idOperator) : Bool {
-        $this->query('DELETE FROM operator WHERE id_operator = :idoperator');
+    public function locationDell(int $idLocation) : Bool {
+        $this->query('DELETE FROM public.locations WHERE id_location = :idlocation');
 
-        $this->bind(':idoperator', $idOperator);
+        $this->bind(':idlocation', $idLocation);
 
         if($this->execute()){
             return true;
@@ -52,17 +52,20 @@ class ManagementLocationModel extends AbstractModel{
         }
     }
 
-    public function accountUpdate(array $data) : Bool {
-        $this->query('UPDATE public.operator SET login = :login, name = :name, last_name = :lastName, phone_number = :phoneNumber, email = :email, user_status = :status, user_grant = :privileges WHERE id_operator = :idoperator');
+    public function locationUpdate(array $data) : Bool {
+        $this->query('UPDATE public.locations
+	SET house_number=:houseNumber, street=:street, town=:town, zip_code=:zipCode, city=:city, latitude=:latitude, longitude=:longitude, location_name=:name
+	WHERE id_location = :idlocation');
 
-        $this->bind(':login', $data['login']);
         $this->bind(':name', $data['name']);
-        $this->bind(':lastName', $data['lastName']);
-        $this->bind(':phoneNumber', $data['phoneNumber']);
-        $this->bind(':email', $data['email']);
-        $this->bind(':privileges', $data['privileges']);
-        $this->bind(':status', $data['status']);
-        $this->bind(':idoperator', $data['id']);
+        $this->bind(':houseNumber', $data['houseNumber']);
+        $this->bind(':street', $data['street']);
+        $this->bind(':town', $data['town']);
+        $this->bind(':zipCode', $data['zipCode']);
+        $this->bind(':city', $data['city']);
+        $this->bind(':latitude', $data['latitude']);
+        $this->bind(':longitude', $data['longitude']);
+        $this->bind(':idlocation', $data['id']);
 
         if($this->execute()){
             return true;
