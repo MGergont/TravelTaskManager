@@ -98,3 +98,28 @@ CREATE TABLE locations (
 -- JOIN locations l1 ON r.origin_location_id = l1.location_id
 -- JOIN locations l2 ON r.destination_location_id = l2.location_id
 -- WHERE o.order_id = 1;
+
+
+-- 1. Dodaj nowe zlecenie
+INSERT INTO orders (order_name, created_at, status_order, assigned_to, due_date)
+VALUES ('Wyjazd służbowy do Krakowa', '2024-11-15', 'new', 8, '2024-11-15')
+RETURNING id_order;
+
+-- 2. Dodaj lokalizacje
+INSERT INTO locations (house_number, street, town, zip_code, city, location_name)
+VALUES 
+    ('23', 'Jerozolimskie', 'Warszawa', '00-001', 'Warszawa', 'Dom'),
+    ('24', 'Krakowska', 'Kraków', '31-001', 'Kraków', 'Biuro')
+RETURNING id_location;
+
+-- 3. Dodaj trasę
+INSERT INTO routes (id_order_fk, id_origin_location, id_destination_location, departure_time, arrival_time)
+VALUES (1, 7, 8, '2024-11-15 08:00:00', '2024-11-15 12:00:00');
+
+
+SELECT *
+FROM orders
+JOIN routes ON orders.id_order = routes.id_order_fk
+JOIN locations ls1 ON routes.id_origin_location = ls1.id_location
+JOIN locations ls2 ON routes.id_destination_location = ls2.id_location
+WHERE orders.id_order = 1;
