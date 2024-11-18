@@ -175,41 +175,41 @@
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Lokalizacje</h2>
+			<h2 class="content__title">Zlecenia Delegacji</h2>
 			<button class="button-form button-form--positive" onclick="addLocation()">Dodaj</button>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>
 						<tr class="user-panel__row">
-							<th class="user-panel__header">Location Name</th>
-							<th class="user-panel__header">Miejscowość</th>
-							<th class="user-panel__header">Kod pocztowy</th>
-							<th class="user-panel__header">Adres</th>
+							<th class="user-panel__header">Nazwa</th>
+							<th class="user-panel__header">Data wykonania</th>
+							<th class="user-panel__header">Data utworzenia/modyfikacji</th>
+							<th class="user-panel__header">Status</th>
 							<th class="user-panel__header">Options</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php if (!empty($params['location'])) : ?>
-							<?php foreach ($params['location'] as $location): ?>
+						<?php if (!empty($params['orders'])) : ?>
+							<?php foreach ($params['orders'] as $order): ?>
 								<tr class="user-panel__row">
-									<td class="user-panel__cell"><?php echo $location['location_name']; ?></td>
-									<td class="user-panel__cell"><?php echo $location['town']; ?></td>
-									<td class="user-panel__cell"><?php echo $location['zip_code'] . " " . $location['city']; ?></td>
-									<td class="user-panel__cell"><?php echo "ul." . $location['street'] . " " . $location['house_number']; ?></td>
+									<td class="user-panel__cell"><?php echo $order['order_name']; ?></td>
+									<td class="user-panel__cell"><?php echo $order['town']; ?></td>
+									<td class="user-panel__cell"><?php echo $order['zip_code'] . " " . $order['city']; ?></td>
+									<td class="user-panel__cell"><?php echo "ul." . $order['street'] . " " . $order['house_number']; ?></td>
 									<td class="user-panel__cell user-panel__cell--options">
 										<button class="user-panel__icon"><i class="icon-pencil" onclick="editLocation(
-									'<?php echo $location['id_location']; ?>',
-									'<?php echo $location['location_name']; ?>',
-									'<?php echo $location['town']; ?>',
-									'<?php echo $location['zip_code']; ?>',
-									'<?php echo $location['city']; ?>',
-									'<?php echo $location['street']; ?>',
-									'<?php echo $location['house_number']; ?>',
-									'<?php echo $location['latitude']; ?>',
-									'<?php echo $location['longitude']; ?>'
+									'<?php echo $order['id_location']; ?>',
+									'<?php echo $order['location_name']; ?>',
+									'<?php echo $order['town']; ?>',
+									'<?php echo $order['zip_code']; ?>',
+									'<?php echo $order['city']; ?>',
+									'<?php echo $order['street']; ?>',
+									'<?php echo $order['house_number']; ?>',
+									'<?php echo $order['latitude']; ?>',
+									'<?php echo $order['longitude']; ?>'
 									)"></i></button>
 										<button class="user-panel__icon"><i class="icon-trash" onclick="delLocation(
-									'<?php echo $location['id_location']; ?>'
+									'<?php echo $order['id_location']; ?>'
 									)"></i></button>
 									</td>
 								</tr>

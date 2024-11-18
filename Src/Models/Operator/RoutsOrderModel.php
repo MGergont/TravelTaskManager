@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Src\Models;
+namespace Src\Models\Operator;
 
 use Src\Models\AbstractModel;
 
-class ManagementLocationModel extends AbstractModel{
+class RoutsOrderModel extends AbstractModel{
     
-    public function showLocation() : Array|Bool{
-        $this->query('SELECT * FROM public.locations ORDER BY id_location ASC');
+    public function showOrders() : Array|Bool{
+        $this->query('SELECT * FROM orders JOIN routes ON orders.id_order = routes.id_order_fk JOIN locations ls1 ON routes.id_origin_location = ls1.id_location JOIN locations ls2 ON routes.id_destination_location = ls2.id_location ORDER BY orders.id_order ASC');
     
         $row = $this->allArray();
     

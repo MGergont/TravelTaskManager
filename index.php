@@ -59,6 +59,8 @@ $router->post('/manager/location/add', 'ManagementLocationController@locationAdd
 $router->post('/manager/location/del', 'ManagementLocationController@locationDell', 'Controllers\\Operator\\Manager');
 $router->post('/manager/location/edit', 'ManagementLocationController@locationEdit', 'Controllers\\Operator\\Manager');
 
+$router->get('/manager/order', 'RoutsOrderController@RoutsOrderView', 'Controllers\\Operator\\Manager');
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);
 
