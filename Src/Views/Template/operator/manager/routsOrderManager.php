@@ -66,92 +66,50 @@
 						<div class="accordion__text">Status</div>
 						<div class="accordion__text accordion__toggle"></div>
 					</div>
-					<div class="accordion__item">
-						<div class="accordion__header">
-							<div class="accordion__cell">Nazwa</div>
-							<div class="accordion__cell">Data wykonania</div>
-							<div class="accordion__cell">Data utworzenia/modyfikacji</div>
-							<div class="accordion__cell">Status</div>
-							<div class="accordion__cell accordion__toggle">+</div>
-						</div>
-						<div class="accordion__content">
-							<table class="accordion__table">
-								<thead>
-									<tr>
-										<th>Sub Column 1</th>
-										<th>Sub Column 2</th>
-										<th>Sub Column 3</th>
-										<th>Sub Column 4</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Detail 1</td>
-										<td>Detail 2</td>
-										<td>Detail 3</td>
-										<td>Detail 4</td>
-									</tr>
-									<tr>
-										<td>Detail A</td>
-										<td>Detail B</td>
-										<td>Detail C</td>
-										<td>Detail D</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="accordion__options">
-								<div class="accordion__button">
-									<button type="submit" name="submit" class="button-form button-form--positive">Dodaj</button>
+					<?php if (!empty($params['orders'])) : ?>
+						<?php foreach ($params['orders'] as $order): ?>
+							<div class="accordion__item">
+								<div class="accordion__header">
+									<div class="accordion__cell"><?php echo $order['order_name']; ?></div>
+									<div class="accordion__cell"><?php echo $order['due_date']; ?></div>
+									<div class="accordion__cell"><?php echo $order['created_at']; ?></div>
+									<div class="accordion__cell"><?php echo $order['status_order']; ?></div>
+									<div class="accordion__cell accordion__toggle">+</div>
 								</div>
-								<div class="accordion__button">
-									<button type="submit" name="submit" class="button-form button-form--positive">Edytuj</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="accordion__item">
-						<div class="accordion__header">
-							<div class="accordion__cell">Nazwa</div>
-							<div class="accordion__cell">Data wykonania</div>
-							<div class="accordion__cell">Data utworzenia/modyfikacji</div>
-							<div class="accordion__cell">Status</div>
-							<div class="accordion__cell accordion__toggle">+</div>
-						</div>
-						<div class="accordion__content">
-							<table class="accordion__table">
-								<thead>
-									<tr>
-										<th>Sub Column 1</th>
-										<th>Sub Column 2</th>
-										<th>Sub Column 3</th>
-										<th>Sub Column 4</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Detail 1</td>
-										<td>Detail 2</td>
-										<td>Detail 3</td>
-										<td>Detail 4</td>
-									</tr>
-									<tr>
-										<td>Detail A</td>
-										<td>Detail B</td>
-										<td>Detail C</td>
-										<td>Detail D</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="accordion__options">
-								<div class="accordion__button">
-									<button type="submit" name="submit" class="button-form button-form--positive">Dodaj</button>
-								</div>
-								<div class="accordion__button">
-									<button type="submit" name="submit" class="button-form button-form--positive">Edytuj</button>
+								<div class="accordion__content">
+									<table class="accordion__table">
+										<thead>
+											<tr>
+												<th>Lokalizacja A | Nazwa | Adres</th>
+												<th>Lokalizacja B | Nazwa | Adres</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php if (!empty($order['locations'])) : ?>
+												<?php foreach ($order['locations'] as $location): ?>
+													<tr>
+														<td><?php echo $location['origin_name'] ."; ". $location['origin_city']; ?></td>
+														<td><?php echo $location['destination_name'] ."; ". $location['destination_city']; ?></td>
+													</tr>
+												<?php endforeach; ?>
+											<?php endif; ?>
+										</tbody>
+									</table>
+									<div class="accordion__options">
+										<div class="accordion__button">
+											<button type="submit" name="submit" class="button-form button-form--positive">Dodaj punkt</button>
+										</div>
+										<div class="accordion__button">
+											<button type="submit" name="submit" class="button-form button-form--positive">Edytuj punkty</button>
+										</div>
+										<div class="accordion__button">
+											<button type="submit" name="submit" class="button-form button-form--positive">Edytuj zlecenie</button>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+						<?php endforeach; ?>
+					<?php endif; ?>
 				</div>
 			</div>
 		</main>
