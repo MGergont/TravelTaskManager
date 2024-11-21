@@ -42,6 +42,18 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
+    public function showOperator() : Array|Bool{
+        $this->query('SELECT id_operator, login, name, last_name FROM public.operator;');
+    
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
     public function locationAdd(array $data): Bool{
 
         $this->query('INSERT INTO public.locations(house_number, street, town, zip_code, city, latitude, longitude, location_name) VALUES ( :houseNumber, :street, :town, :zipCode, :city, :latitude, :longitude, :name)');

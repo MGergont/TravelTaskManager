@@ -29,6 +29,60 @@ class RoutsOrderController extends AbstractController{
         }
     }
 
+    public function RoutsOrderAddView() : Void{
+        $this->managerDashboard();
+
+        if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
+            $routModel = new RoutsOrderModel($this->configuration);
+
+            if(empty($_SESSION['statusDel'])){
+                $_SESSION['statusDel'] = "start";
+            }
+
+            $this->paramView['users'] = $routModel->showOperator();
+            
+            (new View())->renderOperator("routsOrderAddManager", $this->paramView, "manager");
+        }else{
+            $this->redirect("/access-denied");
+        }
+    }
+
+    public function locationAdd(): void{
+        $routMod  = new RoutsOrderModel($this->configuration);
+        $data = [
+            'name' => $this->request->postParam('add_name'),
+            'houseNumber' => $this->request->postParam('add_houseNumber'),
+            'street' => $this->request->postParam('add_street'),
+            'town' => $this->request->postParam('add_town'),
+            'zipCode' => $this->request->postParam('add_zipCode'),
+            'city' => $this->request->postParam('add_city'),
+            'latitude' => $this->request->postParam('add_latitude'),
+            'longitude' => $this->request->postParam('add_longitude')
+        ];
+
+    
+        // ifempty
+
+        if($this->IfMaxLength($data, 30)){
+            flash("locationManagment", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            $this->redirect("/manager/location");
+        };
+        
+        if($this->IfSpecialCharacters($data['name'])){
+            flash("locationManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/manager/location");
+        }
+
+        // if ($routMod->locationAdd($data)) {
+        //     flash("locationManagment", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");
+        //     $this->redirect("/manager/location");
+        // } else {
+        //     flash("locationManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+        //     $this->redirect("/manager/location");
+        // }
+    }
+
+    
     private function orderParse(Array $results) : Array {
 
         $orders = [];
