@@ -41,45 +41,51 @@ class RoutsOrderController extends AbstractController{
 
             $this->paramView['users'] = $routModel->showOperator();
             
+            if (!isset($_SESSION["orderStatus"])) {
+                $_SESSION["orderStatus"] = 'test1';
+            }
+
             (new View())->renderOperator("routsOrderAddManager", $this->paramView, "manager");
         }else{
             $this->redirect("/access-denied");
         }
     }
 
-    public function locationAdd(): void{
-        $routMod  = new RoutsOrderModel($this->configuration);
+    public function orderAdd(): void{
         $data = [
-            'name' => $this->request->postParam('add_name'),
-            'houseNumber' => $this->request->postParam('add_houseNumber'),
-            'street' => $this->request->postParam('add_street'),
-            'town' => $this->request->postParam('add_town'),
-            'zipCode' => $this->request->postParam('add_zipCode'),
-            'city' => $this->request->postParam('add_city'),
-            'latitude' => $this->request->postParam('add_latitude'),
-            'longitude' => $this->request->postParam('add_longitude')
+            'nameOrder' => $this->request->postParam('name_order'),
+            'user' => $this->request->postParam('user_order'),
+            'date' => $this->request->postParam('date_due')
         ];
 
     
-        // ifempty
-
-        if($this->IfMaxLength($data, 30)){
-            flash("locationManagment", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
-            $this->redirect("/manager/location");
-        };
-        
-        if($this->IfSpecialCharacters($data['name'])){
-            flash("locationManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
-            $this->redirect("/manager/location");
+        if (empty($data['nameOrder']) || empty($data['user']) || empty($data['date'])) {
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order/add");
         }
 
-        // if ($routMod->locationAdd($data)) {
-        //     flash("locationManagment", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");
-        //     $this->redirect("/manager/location");
-        // } else {
-        //     flash("locationManagment", "Coś poszło nie tak", "alert-login alert-login--error");
-        //     $this->redirect("/manager/location");
-        // }
+        if($this->IfMaxLength($data, 30)){
+            flash("addOrder", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        };
+        
+        if($this->IfSpecialCharacters($data['nameOrder'])){
+            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+
+        if($this->ValidNumber($data['user'])){
+            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+
+        
+
+        $_SESSION['date'] = $data['date'];
+        $_SESSION['nameOrder'] = $data['nameOrder'];
+        $_SESSION['user'] = $data['user'];
+        $_SESSION["orderStatus"] = 'location';
+        $this->redirect("/manager/order/add");
     }
 
     
@@ -108,4 +114,12 @@ class RoutsOrderController extends AbstractController{
         return $orders;
     }
     
+
+    public function RoutsOrderClean():void {
+        unset($_SESSION['date']);
+        unset($_SESSION['nameOrder']);
+        unset($_SESSION['user'] );
+        unset($_SESSION['orderStatus']);
+        $this->redirect("/manager/order");
+    }
 }

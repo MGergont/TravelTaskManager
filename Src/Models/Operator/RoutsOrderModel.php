@@ -74,6 +74,22 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
+    public function orderAdd(array $data): Bool{
+
+        $this->query('INSERT INTO public.orders(order_name, created_at, status_order, assigned_to, due_date) VALUES (:name, NOW(), :status, :user, :date)');
+        
+        $this->bind(':name', $data['nameOrder']);
+        $this->bind(':user', $data['user']);
+        $this->bind(':status', "new");
+        $this->bind(':date', $data['date']);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function locationDell(int $idLocation) : Bool {
         $this->query('DELETE FROM public.locations WHERE id_location = :idlocation');
 

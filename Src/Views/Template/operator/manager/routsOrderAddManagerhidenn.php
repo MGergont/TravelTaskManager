@@ -98,44 +98,12 @@
 					<form class="form-add" action="#" method="POST">
 						<!-- //TODOdane osobiste -->
 						<h3 class="">Wprowadź dane lokalizacji</h3>
-						<div class="modal__form-group">
-							<!-- //TODO przełącznik start -->
-							<input type="checkbox" id="home_adres_togle" class="modal__checkbox" name="home_adres_togle">
-							<label for="home_adres_togle" class="modal__label">Adres zamieszkania</label>
-						</div>
-						<div class="form-add" id="home_adres" style="display: block;">
-							<div class="form-add__addres">
-								<div class="field">
-									<label for="houseNumber" class="field__label">Numer domu</label>
-									<input type="text" id="houseNumber" name="houseNumber" class="field__input" placeholder="Numer domu" required>
-								</div>
-								<div class="field">
-									<label for="street" class="field__label">Ulica</label>
-									<input type="text" id="street" name="street" class="field__input" placeholder="Ulica" required>
-								</div>
-								<div class="field">
-									<label for="town" class="field__label">Miejscowość</label>
-									<input type="text" id="town" name="town" class="field__input" placeholder="Miejscowość" required>
-								</div>
-								<div class="field">
-									<label for="zipCode" class="field__label">Kod pocztowy</label>
-									<input type="text" id="zipCode" name="zipCode" class="field__input" placeholder="Kod pocztowy" required>
-								</div>
-								<div class="field">
-									<label for="city" class="field__label">Miasto</label>
-									<input type="text" id="city" name="city" class="field__input" placeholder="Miasto" required>
-								</div>
-							</div>
-						</div>
-						<!-- //TODO przełącznik stop -->
 						<div class="form-add__login">
 							<div class="field">
 								<label for="name_order" class="field__label">Nazwa</label>
 								<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
 							</div>
 						</div>
-
-						<!-- //TODO zmienić na wybur samochpdu urzytkownika -->
 						<div class="form-add__priv">
 							<div class="select-wrapper">
 								<label for="user_order" class="select-wrapper__label">Użytkownik (Login/Name)</label>
@@ -162,6 +130,7 @@
 					<p>Witaj! Twoja rola jest nieznana.</p>
 			<?php break;
 			} ?>
+
 
 
 			<!-- <div class="form-add__name">
@@ -235,8 +204,6 @@
 	</div>
 </body>
 <script>
-	const togleSection = document.getElementById('home_adres');
-	const changePasswordCheckbox = document.getElementById('home_adres_togle');
 	const sidebar = document.querySelector('.sidebar');
 	const topbarHamburger = document.querySelector('.topbar__hamburger');
 
@@ -247,15 +214,6 @@
 	if (topbarHamburger) {
 		topbarHamburger.addEventListener('click', toggleSidebar);
 	}
-
-	changePasswordCheckbox.addEventListener('change', function() {
-		if (this.checked) {
-			togleSection.style.display = 'none';
-		} else {
-			togleSection.style.display = 'block';
-		}
-	});
-
 
 	document.addEventListener('DOMContentLoaded', () => {
 		const headers = document.querySelectorAll('.accordion__header');

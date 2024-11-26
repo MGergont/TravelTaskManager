@@ -1,0 +1,14 @@
+W sekcji zlecenia delegacji usunąć edytuj punktyu i dodać pocję do listy opcje podglądu i edycji oraz usuwania (Standard).
+
+dodać przycisk do uwuwania zlecenia.
+
+Kreator trasy
+-punkt startowy
+    -wybur pomiędzy adresem domowym i z listy przycisk do dodawania adresu który przekierowuje do add location.
+    data wyjazdu(opcjonalnie)
+-punkt końcowy
+    -wybieranay z listy lub przycisk dodaj przekierowujżcy do addLocation;
+    -data przyjazdu(opcjonalnie);
+    -data odjazdu(opcjonalnie);
+
+-przycisk next który wyświetla wprowadzone dane i dodajepust formulaż na dole do wprowadzania kolejnych danych punkt A i punkt b             
