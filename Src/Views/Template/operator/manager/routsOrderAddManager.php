@@ -14,6 +14,59 @@
 </head>
 
 <body>
+	<div class="modal" id="modal1" style="display:none;">
+		<div class="modal__content modal__content--add">
+			<h2 class="modal__title">Dodawanie lokalizacji</h2>
+			<form class="add-modal" action="" method="post">
+				<div class="add-modal__name">
+					<div class="field">
+						<label for="add_name" class="field__label">Nazwa</label>
+						<input type="text" id="add_name" name="add_name" class="field__input" placeholder="Nazwa" required>
+					</div>
+				</div>
+				<div class="add-modal__line">
+					<div class="field">
+						<label for="add_houseNumber" class="field__label">Numer domu</label>
+						<input type="text" id="add_houseNumber" name="add_houseNumber" class="field__input" placeholder="Numer domu" required>
+					</div>
+					<div class="field">
+						<label for="add_street" class="field__label">Ulica</label>
+						<input type="text" id="add_street" name="add_street" class="field__input" placeholder="Ulica" required>
+					</div>
+				</div>
+				<div class="add-modal__line">
+					<div class="field">
+						<label for="add_town" class="field__label">Miejscowość</label>
+						<input type="text" id="add_town" name="add_town" class="field__input" placeholder="Miejscowość" required>
+					</div>
+					<div class="field">
+						<label for="add_zipCode" class="field__label">Kod pocztowy</label>
+						<input type="text" id="add_zipCode" name="add_zipCode" class="field__input" placeholder="Kod pocztowy" required>
+					</div>
+					<div class="field">
+						<label for="add_city" class="field__label">Miasto</label>
+						<input type="text" id="add_city" name="add_city" class="field__input" placeholder="Miasto" required>
+					</div>
+				</div>
+				<div class="add-modal__coord">
+					<div class="field">
+						<label for="add_latitude" class="field__label">Wysokość geograficzna</label>
+						<input type="text" id="add_latitude" name="add_latitude" class="field__input" placeholder="Wysokość geograficzna">
+					</div>
+				</div>
+				<div class="add-modal__coord">
+					<div class="field">
+						<label for="add_longitude" class="field__label">Szerokość geograficzna</label>
+						<input type="text" id="add_longitude" name="add_longitude" class="field__input" placeholder="Szerokość geograficzna">
+					</div>
+				</div>
+				<div class="modal__actions">
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
 	<?php if (!empty($_SESSION["locationManagment"])) : ?>
 		<?php flash("locationManagment"); ?>
 	<?php endif; ?>
@@ -63,13 +116,13 @@
 			<a href="/manager/order"><button name="submit" class="button-form button-form--positive">
 					<< </button></a>
 			<?php switch ($_SESSION['orderStatus']) {
-				case 'test1': ?>
-					<form class="form-add" action="#" method="POST">
+				case 'start': ?>
+					<form class="form-add" action="/manager/order/add" method="POST">
 						<!-- //TODOdane osobiste -->
 						<h3 class="">Wprowadź dane zlecenia</h3>
 						<div class="form-add__login">
 							<div class="field">
-								<label for="name_order" class="field__label">Nazwa</label>
+								<label for="name_order" class="field__label">Nazwa zlecenia</label>
 								<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
 							</div>
 						</div>
@@ -95,54 +148,31 @@
 					</form>
 				<?php break;
 				case 'location': ?>
-					<form class="form-add" action="#" method="POST">
+					<form class="form-add" action="/manager/order/next" method="POST">
 						<!-- //TODOdane osobiste -->
-						<h3 class="">Wprowadź dane lokalizacji</h3>
+						<h3 class="">Wprowadź dane lokalizacji A</h3>
 						<div class="modal__form-group">
 							<!-- //TODO przełącznik start -->
 							<input type="checkbox" id="home_adres_togle" class="modal__checkbox" name="home_adres_togle">
 							<label for="home_adres_togle" class="modal__label">Adres zamieszkania</label>
 						</div>
-						<div class="form-add" id="home_adres" style="display: block;">
-							<div class="form-add__addres">
-								<div class="field">
-									<label for="houseNumber" class="field__label">Numer domu</label>
-									<input type="text" id="houseNumber" name="houseNumber" class="field__input" placeholder="Numer domu" required>
-								</div>
-								<div class="field">
-									<label for="street" class="field__label">Ulica</label>
-									<input type="text" id="street" name="street" class="field__input" placeholder="Ulica" required>
-								</div>
-								<div class="field">
-									<label for="town" class="field__label">Miejscowość</label>
-									<input type="text" id="town" name="town" class="field__input" placeholder="Miejscowość" required>
-								</div>
-								<div class="field">
-									<label for="zipCode" class="field__label">Kod pocztowy</label>
-									<input type="text" id="zipCode" name="zipCode" class="field__input" placeholder="Kod pocztowy" required>
-								</div>
-								<div class="field">
-									<label for="city" class="field__label">Miasto</label>
-									<input type="text" id="city" name="city" class="field__input" placeholder="Miasto" required>
-								</div>
-							</div>
+						<input type="hidden" name="id_home_location" value="<?php echo $params['adresHome']['id_address'] ?>"/>
+						<div class="form-add" id="home_adres_view" style="display: none;">
+							<?php if (isset($params['adresHome'])) : ?>
+								<?php echo $params['adresHome']['town'] ?>
+								<?php echo $params['adresHome']['street'] ?>
+								<?php echo $params['adresHome']['house_number'] . "<br>" ?>
+								<?php echo $params['adresHome']['zip_code'] ?>
+								<?php echo $params['adresHome']['city'] ?>
+							<?php endif; ?>
 						</div>
-						<!-- //TODO przełącznik stop -->
-						<div class="form-add__login">
-							<div class="field">
-								<label for="name_order" class="field__label">Nazwa</label>
-								<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
-							</div>
-						</div>
-
-						<!-- //TODO zmienić na wybur samochpdu urzytkownika -->
-						<div class="form-add__priv">
+						<div class="form-add__priv" id="home_adres" style="display: block;">
 							<div class="select-wrapper">
-								<label for="user_order" class="select-wrapper__label">Użytkownik (Login/Name)</label>
-								<select name="user_order" id="user_order" class="select-wrapper__select">
-									<?php foreach ($params['users'] as $veh): ?>
-										<option value="<?php echo $veh['id_operator']; ?>">
-											<?php echo $veh['login'] . " // " . $veh['name'] . " " . $veh['last_name']; ?>
+								<label for="location_order_A" class="select-wrapper__label">Punkt startowyk</label>
+								<select name="location_order_A" id="location_order_A" class="select-wrapper__select">
+									<?php foreach ($params['location'] as $veh): ?>
+										<option value="<?php echo $veh['id_location']; ?>">
+											<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
 										</option>
 									<?php endforeach; ?>
 								</select>
@@ -150,129 +180,122 @@
 						</div>
 						<div class="form-add__login">
 							<div class="field">
-								<label for="date_due" class="field__label">Data realizacji</label>
-								<input type="date" id="date_due" name="date_due" class="field__input" required>
+								<label for="departure_date_A" class="field__label">Data wyjazdu(opcjonalnie)</label>
+								<input type="datetime-local" id="departure_date_A" name="departure_date_A" class="field__input">
+							</div>
+						</div>
+						<h3 class="">Wprowadź dane lokalizacji B</h3>
+						<div class="form-add__priv" id="home_adres" style="display: block;">
+							<div class="select-wrapper">
+								<label for="location_order_B" class="select-wrapper__label">Punkt końcowy</label>
+								<select name="location_order_B" id="location_order_B" class="select-wrapper__select">
+									<?php foreach ($params['location'] as $veh): ?>
+										<option value="<?php echo $veh['id_location']; ?>">
+											<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+										</option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-add__login">
+							<div class="field">
+								<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+								<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+							</div>
+						</div>
+						<div class="form-add__login">
+							<div class="field">
+								<label for="departure_date_B" class="field__label">Data odjazdu(opcjonalnie)</label>
+								<input type="datetime-local" id="departure_date_B" name="departure_date_B" class="field__input">
 							</div>
 						</div>
 						<button type="submit" class="button-form button-form--positive">Dodaj</button>
 						<a href="/manager/order/clean" class="button-form button-form--positive">Anuluj</a>
+						<button class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</button>
+					</form>
+				<?php break;
+				case 'location2': ?>
+					<form class="form-add" action="/manager/order/end" method="POST">
+						<!-- //TODOdane osobiste -->
+						<h3 class="">Poprzedni punkt końca trasy A</h3>
+						<?php echo $params['locationA']['location_name'] ?>
+						<?php echo $params['locationA']['city'] ?>
+						<?php echo $params['locationA']['zip_code'] ?>
+						<?php echo $params['locationA']['town'] ?>
+						<?php echo $params['locationA']['street'] ?>
+						<?php echo $params['locationA']['house_number'] ?>
+						<p>Adres</p>
+						<h3 class="">Wprowadź dane lokalizacji B</h3>
+						<div class="form-add__priv">
+							<input type="hidden" name="location_order_A" value="<?php echo $params['locationA']['id_location'] ?>">
+							<div class="select-wrapper">
+								<label for="user_order" class="select-wrapper__label">Punkt końcowy</label>
+								<select name="location_order_B" id="location_order_B" class="select-wrapper__select">
+									<?php foreach ($params['location'] as $veh): ?>
+										<option value="<?php echo $veh['id_location']; ?>">
+											<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+										</option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-add__login">
+							<div class="field">
+								<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+								<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+							</div>
+						</div>
+						<button type="submit" class="button-form button-form--positive">Dodaj</button>
+						<a href="/manager/order/clean" class="button-form button-form--positive">Koniec</a>
+						<button class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</button>
 					</form>
 				<?php break;
 				default: ?>
 					<p>Witaj! Twoja rola jest nieznana.</p>
 			<?php break;
 			} ?>
-
-
-			<!-- <div class="form-add__name">
-                    <div class="field">
-                        <label for="name" class="field__label">Imię</label>
-                        <input type="text" id="name" name="name" class="field__input" placeholder="Imię" required>
-                    </div>
-                    <div class="field">
-                        <label for="lastName" class="field__label">Nazwisko</label>
-                        <input type="text" id="lastName" name="lastName" class="field__input" placeholder="Nazwisko" required>
-                    </div>
-                </div>
-                <div class="form-add__name-data">
-                    <div class="field">
-                        <label for="phoneNumber" class="field__label">Nume telefonu</label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" class="field__input" placeholder="Nume telefonu" required>
-                    </div>
-                    <div class="field">
-                        <label for="email" class="field__label">Adres email</label>
-                        <input type="text" id="email" name="email" class="field__input" placeholder="Adres email" required>
-                    </div>
-                </div>
-                <!-- //TODO dane adresowe -->
-			<!-- <div class="form-add__addres">
-                    <div class="field">
-                        <label for="houseNumber" class="field__label">Numer domu</label>
-                        <input type="text" id="houseNumber" name="houseNumber" class="field__input" placeholder="Numer domu" required>
-                    </div>
-                    <div class="field">
-                        <label for="street" class="field__label">Ulica</label>
-                        <input type="text" id="street" name="street" class="field__input" placeholder="Ulica" required>
-                    </div>
-                    <div class="field">
-                        <label for="town" class="field__label">Miejscowość</label>
-                        <input type="text" id="town" name="town" class="field__input" placeholder="Miejscowość" required>
-                    </div>
-                    <div class="field">
-                        <label for="zipCode" class="field__label">Kod pocztowy</label>
-                        <input type="text" id="zipCode" name="zipCode" class="field__input" placeholder="Kod pocztowy" required>
-                    </div>
-                    <div class="field">
-                        <label for="city" class="field__label">Miasto</label>
-                        <input type="text" id="city" name="city" class="field__input" placeholder="Miasto" required>
-                    </div>
-                </div> -->
-			<!-- //TODO uprawnienia -->
-			<!-- <div class="form-add__priv">
-                    <div class="select-wrapper">
-                        <label for="privileges" class="select-wrapper__label">Uprawnienia</label>
-                        <select name="privileges" id="privileges" class="select-wrapper__select">
-                            <option value="admin">Administrator</option>
-                            <option value="manager">Menedżer</option>
-                            <option value="user">Użytkownik</option>
-                        </select>
-                    </div>
-                </div> -->
-			<!-- //TODO hasło -->
-			<!-- <div class="form-add__pwd">
-                    <div class="field">
-                        <label for="pwd" class="field__label">Hasło</label>
-                        <input type="password" id="pwd" name="pwd" class="field__input" placeholder="Hasło" required>
-                    </div>
-                    <div class="field">
-                        <label for="repeatPwd" class="field__label">Powtórz hasło</label>
-                        <input type="password" id="repeatPwd" name="repeatPwd" class="field__input" placeholder="Powtórz hasło" required>
-                    </div>
-                </div> -->
-			<!-- <button type="submit" class="button-form button-form--positive">Dodaj</button>
-            </form> -->
 		</main>
 	</div>
 </body>
 <script>
 	const togleSection = document.getElementById('home_adres');
-	const changePasswordCheckbox = document.getElementById('home_adres_togle');
+	const togleSectionAdres = document.getElementById('home_adres_view');
+	const adresCheckbox = document.getElementById('home_adres_togle');
+	const adresListCheckbox = document.getElementById('list_adres_togle');
 	const sidebar = document.querySelector('.sidebar');
 	const topbarHamburger = document.querySelector('.topbar__hamburger');
 
+	const modal1 = document.getElementById('modal1');
+	const cancelButton = document.getElementById('cancel-button');
+
 	function toggleSidebar() {
 		sidebar.classList.toggle('sidebar--hidden');
-	}
+	};
 
 	if (topbarHamburger) {
 		topbarHamburger.addEventListener('click', toggleSidebar);
-	}
+	};
 
-	changePasswordCheckbox.addEventListener('change', function() {
+	adresCheckbox.addEventListener('change', function() {
 		if (this.checked) {
 			togleSection.style.display = 'none';
 		} else {
 			togleSection.style.display = 'block';
 		}
+
+		if (this.checked) {
+			togleSectionAdres.style.display = 'block';
+		} else {
+			togleSectionAdres.style.display = 'none';
+		}
 	});
 
+	function addLocation() {
+		document.getElementById('modal1').style.display = 'block';
+	};
 
-	document.addEventListener('DOMContentLoaded', () => {
-		const headers = document.querySelectorAll('.accordion__header');
-
-		headers.forEach(header => {
-			header.addEventListener('click', () => {
-				const content = header.nextElementSibling;
-
-				if (content.style.display === 'block') {
-					content.style.display = 'none';
-					header.querySelector('.accordion__toggle').textContent = '+';
-				} else {
-					content.style.display = 'block';
-					header.querySelector('.accordion__toggle').textContent = '-';
-				}
-			});
-		});
+	cancelButton.addEventListener('click', function() {
+		modal1.style.display = 'none';
 	});
 </script>
 

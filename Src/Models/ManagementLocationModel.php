@@ -20,6 +20,18 @@ class ManagementLocationModel extends AbstractModel{
         }
     }
 
+    public function showLocationById(int $id) : Array|Bool{
+        $this->query('SELECT * FROM public.locations WHERE id');
+    
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
     public function locationAdd(array $data): Bool{
 
         $this->query('INSERT INTO public.locations(house_number, street, town, zip_code, city, latitude, longitude, location_name) VALUES ( :houseNumber, :street, :town, :zipCode, :city, :latitude, :longitude, :name)');

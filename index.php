@@ -64,6 +64,8 @@ $router->get('/manager/order', 'RoutsOrderController@RoutsOrderView', 'Controlle
 $router->get('/manager/order/add', 'RoutsOrderController@RoutsOrderAddView', 'Controllers\\Operator\\Manager');
 $router->get('/manager/order/clean', 'RoutsOrderController@RoutsOrderClean', 'Controllers\\Operator\\Manager');
 $router->post('/manager/order/add', 'RoutsOrderController@orderAdd', 'Controllers\\Operator\\Manager');
+$router->post('/manager/order/next', 'RoutsOrderController@orderAddNextPoint', 'Controllers\\Operator\\Manager');
+$router->post('/manager/order/end', 'RoutsOrderController@orderAddEndPoint', 'Controllers\\Operator\\Manager');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

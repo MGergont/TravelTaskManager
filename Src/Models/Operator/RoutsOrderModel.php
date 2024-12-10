@@ -74,17 +74,43 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
-    public function orderAdd(array $data): Bool{
+    public function orderAdd(array $data): Bool|Array{
 
-        $this->query('INSERT INTO public.orders(order_name, created_at, status_order, assigned_to, due_date) VALUES (:name, NOW(), :status, :user, :date)');
+        $this->query('INSERT INTO public.orders(order_name, created_at, status_order, assigned_to, due_date) VALUES (:name, NOW(), :status, :user, :date) RETURNING id_order');
         
         $this->bind(':name', $data['nameOrder']);
         $this->bind(':user', $data['user']);
         $this->bind(':status', "new");
         $this->bind(':date', $data['date']);
 
-        if($this->execute()){
-            return true;
+        $row = $this->singleArray();
+        
+        if($this->rowCount() == 1){
+
+            $row['id_route'] = $this->routesAdd($data, $row['id_order']);
+
+            if($row['id_route']){
+                return $row;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public function routesAdd(array $data, int $id){
+
+        $this->query('INSERT INTO public.routes(id_order_fk, id_origin_location,id_destination_location, departure_time, arrival_time) VALUES (:id_order, :locationA, :locationB, :dateDeparture, :dateArrival) RETURNING id_route');
+        
+        $this->bind(':id_order', $id);
+        $this->bind(':locationA', $data['locationA']);
+        $this->bind(':locationB', $data['locarionB']);
+        $this->bind(':dateDeparture', $data['departureDateA']);
+        $this->bind(':dateArrival', $data['arrivalDate']);
+
+        $row = $this->singleArray();
+
+        if($this->rowCount() == 1){
+            return $row['id_route'];
         }else{
             return false;
         }
@@ -119,6 +145,78 @@ class RoutsOrderModel extends AbstractModel{
 
         if($this->execute()){
             return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function showAdress(int $id) : Array|Bool{
+        $this->query('SELECT * FROM public.address WHERE id_operator_fk = :id;');
+        
+        $this->bind(':id', $id);
+
+        $row = $this->singleArray();
+    
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function locationAddAndReturn(array $data): Array|Bool{
+
+        $this->query('INSERT INTO public.locations(house_number, street, town, zip_code, city, latitude, longitude, location_name) VALUES ( :houseNumber, :street, :town, :zipCode, :city, :latitude, :longitude, :name) RETURNING id_location');
+        
+        $this->bind(':name', $data['name']);
+        $this->bind(':houseNumber', $data['house_number']);
+        $this->bind(':street', $data['street']);
+        $this->bind(':town', $data['town']);
+        $this->bind(':zipCode', $data['zip_code']);
+        $this->bind(':city', $data['city']);
+        $this->bind(':latitude', $data['latitude']);
+        $this->bind(':longitude', $data['longitude']);
+
+        $row = $this->singleArray();
+    
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function showLocation(int $id, array $data) : Array|Bool{
+
+        $name = "home adress " . $id;
+
+        $this->query('SELECT * FROM public.locations WHERE location_name = :name AND city = :city AND zip_code = :zip_code AND town = :town AND street = :street AND house_number = :house_number');
+        
+        $this->bind(':city', $data['city']);
+        $this->bind(':zip_code', $data['zip_code']);
+        $this->bind(':town', $data['town']);
+        $this->bind(':street', $data['street']);
+        $this->bind(':house_number', $data['house_number']);
+        $this->bind(':name', $name);
+        
+        $row = $this->singleArray();
+    
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function showLocationA(int $id) : Array|Bool{
+        $this->query('SELECT id_location, location_name, city, zip_code, town, street, house_number FROM public.routes JOIN locations ON routes.id_destination_location = locations.id_location WHERE id_route = :idOrder');
+        
+        $this->bind(':idOrder', $id);
+        
+        $row = $this->singleArray();
+    
+        if($this->rowCount() == 1){
+            return $row;
         }else{
             return false;
         }
