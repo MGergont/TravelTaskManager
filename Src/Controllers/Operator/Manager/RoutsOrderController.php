@@ -43,7 +43,12 @@ class RoutsOrderController extends AbstractController{
 
             $this->paramView['users'] = $routModel->showOperator();
             $this->paramView['location'] = $locationModel->showLocation();
+
+            if(isset($_SESSION["idOrder"])){
+                $this->paramView['orderList'] = $routModel->showOrderList($_SESSION["idOrder"]);
+            }
             
+
             if (!isset($_SESSION["orderStatus"])) {
                 $_SESSION["orderStatus"] = 'start';
             }
@@ -57,6 +62,8 @@ class RoutsOrderController extends AbstractController{
                 $this->paramView['locationA'] = $routModel->showLocationA($_SESSION["idRoute"]);
             }
 
+
+            
             (new View())->renderOperator("routsOrderAddManager", $this->paramView, "manager");
         }else{
             $this->redirect("/access-denied");
@@ -122,11 +129,6 @@ class RoutsOrderController extends AbstractController{
             $data['departureDateB'] = null;
         }
 
-        // if($this->IfMaxLength($data, 30)){
-        //     flash("addOrder", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
-        //     $this->redirect("/manager/order/add");
-        // };
-
         if ($data['homeAdresTogle'] === NULL) {
             // TODO jest off
             if (empty($data['locationA']) || empty($data['locarionB'])) {
@@ -162,20 +164,6 @@ class RoutsOrderController extends AbstractController{
         }else{
             echo "błąd";
         }
-
-        //sprawdzić czy lokalizacje nie są takie same po id
-        
-        // if($this->IfSpecialCharacters($data['nameOrder'])){
-        //     flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
-        //     $this->redirect("/manager/order/add");
-        // }
-
-        // if($this->ValidNumber($data['user'])){
-        //     flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
-        //     $this->redirect("/manager/order/add");
-        // }
-
-        
 
 
         $data['date'] = $_SESSION['date'];
@@ -218,19 +206,6 @@ class RoutsOrderController extends AbstractController{
                 $this->redirect("/manager/order/add");
             }
 
-
-        //sprawdzić czy lokalizacje nie są takie same po id
-        
-        // if($this->IfSpecialCharacters($data['nameOrder'])){
-        //     flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
-        //     $this->redirect("/manager/order/add");
-        // }
-
-        // if($this->ValidNumber($data['user'])){
-        //     flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
-        //     $this->redirect("/manager/order/add");
-        // }
-
         $data['departureDateA'] = $_SESSION["departureDateB"];
 
         if (empty($data['departureDateA'])) {
@@ -249,8 +224,6 @@ class RoutsOrderController extends AbstractController{
         $_SESSION["orderStatus"] = 'location2';
         $this->redirect("/manager/order/add");
     }
-
-
 
     private function orderParse(Array $results) : Array {
 
@@ -277,12 +250,98 @@ class RoutsOrderController extends AbstractController{
         return $orders;
     }
     
+    public function locationAdd(): void{
+        $managementLocationMod = new ManagementLocationModel($this->configuration);
+        $data = [
+            'name' => $this->request->postParam('add_name'),
+            'houseNumber' => $this->request->postParam('add_houseNumber'),
+            'street' => $this->request->postParam('add_street'),
+            'town' => $this->request->postParam('add_town'),
+            'zipCode' => $this->request->postParam('add_zipCode'),
+            'city' => $this->request->postParam('add_city'),
+            'latitude' => $this->request->postParam('add_latitude'),
+            'longitude' => $this->request->postParam('add_longitude')
+        ];
+
+        if($this->IfEmpty($data)){
+            flash("addOrder", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        };
+        if($this->IfMaxLength($data, 30)){
+            flash("addOrder", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        };
+        //TODO bez znaków specjalnych
+        if($this->IfSpecialCharacters($data['name'])){
+            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+        //TODO Walidacjaj numeru domu
+        if($this->ValidHouseNumber($data['houseNumber'])){
+            flash("addOrder", "Niepoprawny numer mieszkania", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+        if($this->IfSpecialCharacters($data['street'])){
+            flash("addOrder", "Niepoprawne znaki w nazwie ulicy", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+        if($this->IfSpecialCharacters($data['town'])){
+            flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+        //TODO Walidacja kodu pocztowego XX-XXX
+        if($this->ValidZipCode($data['zipCode'])){
+            flash("addOrder", "Niepoprawny format kodu pocztowego", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+        //TODO Walidacja nazwy miasta
+        if($this->IfSpecialCharacters($data['city'])){
+            flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            $this->redirect("/manager/order/add");
+        }
+        
+        if(!empty($data['latitude']) && !empty($data['longitude'])){
+            if($this->ValidCoordinates($data['latitude'], $data['longitude'])){
+                flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+                $this->redirect("/manager/order/add");
+            }
+        }else{
+            $data['latitude'] = 0;
+            $data['longitude'] = 0;
+        }
+
+        if ($managementLocationMod->locationAdd($data)) {
+            flash("addOrder", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order/add");
+        } else {
+            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order/add");
+        }
+    }
+
+    private function IfEmpty(array $data) :Bool {
+        if (empty($data['name']) ||
+         empty($data['houseNumber']) ||
+         empty($data['street']) ||
+         empty($data['town']) ||
+         empty($data['zipCode']) ||
+         empty($data['city'])) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public function RoutsOrderClean():void {
         unset($_SESSION['date']);
         unset($_SESSION['nameOrder']);
         unset($_SESSION['user'] );
         unset($_SESSION['orderStatus']);
+        unset($_SESSION["departureDateB"]);
+        unset($_SESSION["idRoute"]);
+        unset($_SESSION["idOrder"]);
+        unset($_SESSION['statusDel']);
+        unset($_SESSION["idRoute"]);
         $this->redirect("/manager/order");
     }
 }

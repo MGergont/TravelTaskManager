@@ -67,6 +67,18 @@
 			</form>
 		</div>
 	</div>
+	<div class="modal" id="modal2" style="display:none;">
+		<div class="modal__content">
+			<h2 class="modal__title">Account Delate</h2>
+			<form action="" method="post">
+				<input type="hidden" id="del_id" name="id">
+				<div class="modal__actions">
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
 	<?php if (!empty($_SESSION["locationManagment"])) : ?>
 		<?php flash("locationManagment"); ?>
 	<?php endif; ?>
@@ -211,7 +223,7 @@
 						</div>
 						<button type="submit" class="button-form button-form--positive">Dodaj</button>
 						<a href="/manager/order/clean" class="button-form button-form--positive">Anuluj</a>
-						<button class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</button>
+						<a class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</a>
 					</form>
 				<?php break;
 				case 'location2': ?>
@@ -229,7 +241,7 @@
 						<div class="form-add__priv">
 							<input type="hidden" name="location_order_A" value="<?php echo $params['locationA']['id_location'] ?>">
 							<div class="select-wrapper">
-								<label for="user_order" class="select-wrapper__label">Punkt końcowy</label>
+								<label for="location_order_B" class="select-wrapper__label">Punkt końcowy</label>
 								<select name="location_order_B" id="location_order_B" class="select-wrapper__select">
 									<?php foreach ($params['location'] as $veh): ?>
 										<option value="<?php echo $veh['id_location']; ?>">
@@ -247,13 +259,44 @@
 						</div>
 						<button type="submit" class="button-form button-form--positive">Dodaj</button>
 						<a href="/manager/order/clean" class="button-form button-form--positive">Koniec</a>
-						<button class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</button>
+						<a class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</a>
 					</form>
 				<?php break;
 				default: ?>
 					<p>Witaj! Twoja rola jest nieznana.</p>
 			<?php break;
 			} ?>
+
+		<?php if (!empty($params['orderList'])) : ?>
+			<div class="user-panel">
+				<table class="user-panel__table">
+					<thead>
+						<tr class="user-panel__row">
+							<th class="user-panel__header">Lokalizacja A | Nazwa | Adres</th>
+							<th class="user-panel__header">Lokalizacja B | Nazwa | Adres</th>
+							<th class="user-panel__header">Options</th>
+						</tr>
+					</thead>
+					<tbody>
+							<?php foreach ($params['orderList'] as $orderList): ?>
+								<tr class="user-panel__row">
+									<td class="user-panel__cell"><?php echo $orderList['origin_location'] . "; " . $orderList['origin_city']. "ul." . $orderList['origin_street'] . " " . $orderList['origin_house_number']; ?></td>
+									<td class="user-panel__cell"><?php echo $orderList['destination_location'] . "; " . $orderList['destination_city']. "ul." . $orderList['destination_street'] . " " . $orderList['destination_house_number']; ?></td>
+									<td class="user-panel__cell user-panel__cell--options">
+										<button class="user-panel__icon"><i class="icon-pencil" onclick="editLocation(
+									'<?php echo $orderList['id_route']; ?>',
+									'<?php echo $orderList['origin_location']; ?>'
+									)"></i></button>
+										<button class="user-panel__icon"><i class="icon-trash" onclick="delLocation(
+									'<?php echo $orderList['id_route']; ?>'
+									)"></i></button>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			<?php endif; ?>
 		</main>
 	</div>
 </body>
@@ -264,10 +307,13 @@
 	const adresListCheckbox = document.getElementById('list_adres_togle');
 	const sidebar = document.querySelector('.sidebar');
 	const topbarHamburger = document.querySelector('.topbar__hamburger');
-
+	
 	const modal1 = document.getElementById('modal1');
-	const cancelButton = document.getElementById('cancel-button');
+	const modal2 = document.getElementById('modal2');
 
+	const cancelButton = document.getElementById('cancel-button');
+    const cancelButton2 = document.getElementById('cancel-button2');
+                        
 	function toggleSidebar() {
 		sidebar.classList.toggle('sidebar--hidden');
 	};
@@ -275,6 +321,23 @@
 	if (topbarHamburger) {
 		topbarHamburger.addEventListener('click', toggleSidebar);
 	};
+
+	function delLocation(id) {
+		document.getElementById('del_id').value = id;
+		document.getElementById('modal2').style.display = 'block';
+	}
+	
+	function addLocation() {
+		document.getElementById('modal1').style.display = 'block';
+	};
+	
+	cancelButton.addEventListener('click', function() {
+		modal1.style.display = 'none';
+	});
+
+	cancelButton2.addEventListener('click', function() {
+		modal2.style.display = 'none';
+	});
 
 	adresCheckbox.addEventListener('change', function() {
 		if (this.checked) {
@@ -288,14 +351,6 @@
 		} else {
 			togleSectionAdres.style.display = 'none';
 		}
-	});
-
-	function addLocation() {
-		document.getElementById('modal1').style.display = 'block';
-	};
-
-	cancelButton.addEventListener('click', function() {
-		modal1.style.display = 'none';
 	});
 </script>
 
