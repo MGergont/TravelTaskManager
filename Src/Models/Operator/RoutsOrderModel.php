@@ -97,6 +97,18 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
+    public function orderDell(int $idOrder) : Bool {
+        $this->query('DELETE FROM public.routes WHERE id_route = :idorder');
+
+        $this->bind(':idorder', $idOrder);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function routesAdd(array $data, int $id){
 
         $this->query('INSERT INTO public.routes(id_order_fk, id_origin_location,id_destination_location, departure_time, arrival_time) VALUES (:id_order, :locationA, :locationB, :dateDeparture, :dateArrival) RETURNING id_route');
@@ -208,13 +220,19 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
-    public function showLocationA(int $id) : Array|Bool{
-        $this->query('SELECT id_location, location_name, city, zip_code, town, street, house_number FROM public.routes JOIN locations ON routes.id_destination_location = locations.id_location WHERE id_route = :idOrder');
-        
-        $this->bind(':idOrder', $id);
-        
-        $row = $this->singleArray();
-    
+    public function showLocationA(int $idOut) : Array|Bool{
+       $id = $idOut;
+        do {
+            $this->query('SELECT id_location, location_name, city, zip_code, town, street, house_number FROM public.routes JOIN locations ON routes.id_destination_location = locations.id_location WHERE id_route = :idOrder');
+            
+            $this->bind(':idOrder', $id);
+            
+            $row = $this->singleArray();
+
+            $id = $id - 1;
+
+        } while ($this->rowCount() != 1);
+
         if($this->rowCount() == 1){
             return $row;
         }else{

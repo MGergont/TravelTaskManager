@@ -2,6 +2,12 @@ W sekcji zlecenia delegacji usunąć edytuj punktyu i dodać pocję do listy opc
 
 dodać przycisk do uwuwania zlecenia.
 
+dodać przycisk do edyscji mianowicie nazwa data przypisany użytkownik status
+
+
+
+
+
 Kreator trasy
 -punkt startowy
     -wybur pomiędzy adresem domowym i z listy lub przycisk do dodawania adresu który tak jak w add location wywołuje modala z dodawaniem lokacji. 

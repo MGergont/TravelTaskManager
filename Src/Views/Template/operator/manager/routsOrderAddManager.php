@@ -69,8 +69,8 @@
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Account Delate</h2>
-			<form action="" method="post">
+			<h2 class="modal__title">Route Delate</h2>
+			<form action="/manager/order/dell" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
 					<button class="button-form button-form--positive">Confirm</button>

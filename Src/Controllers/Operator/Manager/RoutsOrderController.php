@@ -319,6 +319,21 @@ class RoutsOrderController extends AbstractController{
         }
     }
 
+    public function orderDell(): void{
+        $routModel = new RoutsOrderModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id')
+        ];
+    
+        if ($routModel->orderDell((int) $data['id'])) {
+            flash("addOrder", "Konto zostało usunięte", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order/add");
+        } else {
+            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order/add");
+        }
+    }
+
     private function IfEmpty(array $data) :Bool {
         if (empty($data['name']) ||
          empty($data['houseNumber']) ||
