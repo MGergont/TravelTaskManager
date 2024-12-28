@@ -49,7 +49,7 @@ $router->get('/user/route/castom-end', 'RouteUserController@endRoute', 'Controll
 $router->post('/user/route/cost', 'RouteUserController@addCost', 'Controllers\\Operator\\User');
 
 $router->post('/manager/route/castom-start', 'RouteManagerController@startRoute', 'Controllers\\Operator\\Manager');
-$router->post('/manager/route/castom-next', 'RouteManagerController@startNextRoute', 'Controllers\\Operator\\Manager');
+$router->post('/manager/route/castom-next', 'RouteManager`Controller@startNextRoute', 'Controllers\\Operator\\Manager');
 $router->get('/manager/route/castom-stop', 'RouteManagerController@stopRoute', 'Controllers\\Operator\\Manager');
 $router->get('/manager/route/castom-end', 'RouteManagerController@endRoute', 'Controllers\\Operator\\Manager');
 $router->post('/manager/route/cost', 'RouteManagerController@addCost', 'Controllers\\Operator\\Manager');
