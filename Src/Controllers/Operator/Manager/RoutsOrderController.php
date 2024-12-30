@@ -21,8 +21,9 @@ class RoutsOrderController extends AbstractController{
                 $_SESSION['statusDel'] = "start";
             }
 
-            
-            $this->paramView['orders'] = $this->orderParse($routModel->showOrders());
+            if ($routModel->showOrders()) {
+                $this->paramView['orders'] = $this->orderParse($routModel->showOrders());
+            }
             
             (new View())->renderOperator("routsOrderManager", $this->paramView, "manager");
         }else{
