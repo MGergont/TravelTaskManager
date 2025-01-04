@@ -323,11 +323,50 @@ class RoutsOrderController extends AbstractController{
     public function orderDell(): void{
         $routModel = new RoutsOrderModel($this->configuration);
         $data = [
-            'id' => $this->request->postParam('id')
+            'id' => $this->request->postParam('edit_id'),
         ];
-    
+        
+        if (empty($data['id']) || empty($data['A']) || empty($data['B'])) {
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order/add");
+        }
+
         if ($routModel->orderDell((int) $data['id'])) {
-            flash("addOrder", "Konto zostało usunięte", "alert-login alert-login--confirm");
+            flash("addOrder", "Trasa została usunięta", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order/add");
+        } else {
+            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order/add");
+        }
+    }
+
+    public function orderEdit() : void {
+        $routModel = new RoutsOrderModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('edit_id'),
+            'A' => $this->request->postParam('location_A_edit'),
+            'B' => $this->request->postParam('location_B_edit'),
+            'arrivalDate' => $this->request->postParam('arrival_date'),
+            'departureDate' => $this->request->postParam('departure_date')
+        ];
+
+        
+        if (empty($data['id']) || empty($data['A']) || empty($data['B'])) {
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order/add");
+        }
+        
+        if (empty($data['departureDate'])) {
+            $data['departureDate'] = NULL;
+        }
+
+
+        if (empty($data['arrivalDate'])) {
+            $data['arrivalDate'] = NULL;
+        }
+
+        if ($routModel->orderEdit($data)) {
+            flash("addOrder", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
             $this->redirect("/manager/order/add");
         } else {
             flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");

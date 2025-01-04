@@ -1,9 +1,8 @@
 W sekcji zlecenia delegacji usunąć edytuj punktyu i dodać pocję do listy opcje podglądu i edycji oraz usuwania (Standard).
 
-dodać przycisk do uwuwania zlecenia.
+dodać przycisk do uwuwania zlecenia.(głuwne menu)
 
-dodać przycisk do edyscji mianowicie nazwa data przypisany użytkownik status
-
+dodać przycisk do edyscji mianowicie nazwa data przypisany użytkownik status(głuwne menu)
 
 
 
@@ -29,4 +28,8 @@ sktypt pobiera ostatni punkt
 
 Rozwiązanie problemu z lokalizacją
 podczas wybrania lokalizacji domowej skrypt przepisuje pobrane dane z lokalizacji adresu do tablicy location w nazwie wpisując home adress ID po tym będziemy identyufikować do kogo należy bez releacji
+
+Edycja podczas dodawania trasy
+zmiana całego punktu czy danych punktu (lepiej dwie listy i zmianę punktu) to samo dodać do głuwnego menu 
+
 

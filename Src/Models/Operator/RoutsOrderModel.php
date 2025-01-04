@@ -109,6 +109,22 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
+    public function orderEdit(array $data) : Bool {
+        $this->query('UPDATE public.routes SET id_origin_location = :idA, id_destination_location = :idB, departure_time = :departureDate, arrival_time = :arrivalDate WHERE id_route = :id;');
+
+        $this->bind(':id', $data['id']);
+        $this->bind(':idA', $data['A']);
+        $this->bind(':idB', $data['B']);
+        $this->bind(':arrivalDate', $data['arrivalDate']);
+        $this->bind(':departureDate', $data['departureDate']);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function routesAdd(array $data, int $id){
 
         $this->query('INSERT INTO public.routes(id_order_fk, id_origin_location,id_destination_location, departure_time, arrival_time) VALUES (:id_order, :locationA, :locationB, :dateDeparture, :dateArrival) RETURNING id_route');
@@ -243,19 +259,24 @@ class RoutsOrderModel extends AbstractModel{
     public function showOrderList(int $id) : Array|Bool{
         $this->query('SELECT 
         id_route,
+        routes.id_origin_location,
         ls1.location_name AS origin_location,
         ls1.city AS origin_city,
         ls1.street AS origin_street,
         ls1.house_number AS origin_house_number,
+        routes.id_destination_location,
         ls2.location_name AS destination_location,
         ls2.city AS destination_city,
         ls2.street AS destination_street,
-        ls2.house_number AS destination_house_number
+        ls2.house_number AS destination_house_number,
+        routes.departure_time,
+        routes.arrival_time
         FROM public.routes
         JOIN locations ls1 ON routes.id_origin_location = ls1.id_location
         JOIN locations ls2 ON routes.id_destination_location = ls2.id_location
         WHERE id_order_fk = :idOrder ORDER BY id_route ASC');
         
+
         $this->bind(':idOrder', $id);
         
         $row = $this->allArray();

@@ -17,7 +17,7 @@
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content modal__content--add">
 			<h2 class="modal__title">Dodawanie lokalizacji</h2>
-			<form class="add-modal" action="" method="post">
+			<form class="add-modal" action="/manager/order/addLocation" method="post">
 				<div class="add-modal__name">
 					<div class="field">
 						<label for="add_name" class="field__label">Nazwa</label>
@@ -75,6 +75,50 @@
 				<div class="modal__actions">
 					<button class="button-form button-form--positive">Confirm</button>
 					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal" id="modal3" style="display:none;">
+		<div class="modal__content modal__content--edit">
+			<h2 class="modal__title">Account Edit</h2>
+			<form class="edit-modal" action="/manager/order/edit" method="post">
+				<div class="edit-modal__login">
+					<input type="hidden" id="edit_id" name="edit_id">
+				</div>
+				<div class="select-wrapper">
+					<label for="location_A_edit" class="select-wrapper__label">Lokalizacja A | Nazwa | Adres</label>
+					<select name="location_A_edit" id="location_A_edit" class="select-wrapper__select">
+						<option id="originLocation"  selected></option>
+						<?php foreach ($params['location'] as $veh): ?>
+							<option value="<?php echo $veh['id_location']; ?>">
+								<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+				<div class="field">
+					<label for="departure_date" class="field__label">Data wyjazdu(opcjonalnie)</label>
+					<input type="datetime-local" id="departure_date" name="departure_date" class="field__input">
+				</div>
+				<div class="select-wrapper">
+					<label for="location_B_edit" class="select-wrapper__label">Lokalizacja B | Nazwa | Adres</label>
+					<select name="location_B_edit" id="location_B_edit" class="select-wrapper__select">
+						<option id="destinLocation"  selected></option>
+						<?php foreach ($params['location'] as $veh): ?>
+							<option value="<?php echo $veh['id_location']; ?>">
+								<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+				<div class="field">
+					<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+					<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+				</div>
+				<div class="modal__actions">
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -168,7 +212,7 @@
 							<input type="checkbox" id="home_adres_togle" class="modal__checkbox" name="home_adres_togle">
 							<label for="home_adres_togle" class="modal__label">Adres zamieszkania</label>
 						</div>
-						<input type="hidden" name="id_home_location" value="<?php echo $params['adresHome']['id_address'] ?>"/>
+						<input type="hidden" name="id_home_location" value="<?php echo $params['adresHome']['id_address'] ?>" />
 						<div class="form-add" id="home_adres_view" style="display: none;">
 							<?php if (isset($params['adresHome'])) : ?>
 								<?php echo $params['adresHome']['town'] ?>
@@ -267,25 +311,36 @@
 			<?php break;
 			} ?>
 
-		<?php if (!empty($params['orderList'])) : ?>
-			<div class="user-panel">
-				<table class="user-panel__table">
-					<thead>
-						<tr class="user-panel__row">
-							<th class="user-panel__header">Lokalizacja A | Nazwa | Adres</th>
-							<th class="user-panel__header">Lokalizacja B | Nazwa | Adres</th>
-							<th class="user-panel__header">Options</th>
-						</tr>
-					</thead>
-					<tbody>
+			<?php if (!empty($params['orderList'])) : ?>
+				<div class="user-panel">
+					<table class="user-panel__table">
+						<thead>
+							<tr class="user-panel__row">
+								<th class="user-panel__header">Lokalizacja A | Nazwa | Adres</th>
+								<th class="user-panel__header">Lokalizacja B | Nazwa | Adres</th>
+								<th class="user-panel__header">Options</th>
+							</tr>
+						</thead>
+						<tbody>
 							<?php foreach ($params['orderList'] as $orderList): ?>
 								<tr class="user-panel__row">
-									<td class="user-panel__cell"><?php echo $orderList['origin_location'] . "; " . $orderList['origin_city']. "ul." . $orderList['origin_street'] . " " . $orderList['origin_house_number']; ?></td>
-									<td class="user-panel__cell"><?php echo $orderList['destination_location'] . "; " . $orderList['destination_city']. "ul." . $orderList['destination_street'] . " " . $orderList['destination_house_number']; ?></td>
+									<td class="user-panel__cell"><?php echo $orderList['origin_location'] . "; " . $orderList['origin_city'] . " ul." . $orderList['origin_street'] . " " . $orderList['origin_house_number']; ?></td>
+									<td class="user-panel__cell"><?php echo $orderList['destination_location'] . "; " . $orderList['destination_city'] . " ul." . $orderList['destination_street'] . " " . $orderList['destination_house_number']; ?></td>
 									<td class="user-panel__cell user-panel__cell--options">
 										<button class="user-panel__icon"><i class="icon-pencil" onclick="editLocation(
 									'<?php echo $orderList['id_route']; ?>',
-									'<?php echo $orderList['origin_location']; ?>'
+									'<?php echo $orderList['id_origin_location']; ?>',
+									'<?php echo $orderList['origin_location'] ?>',
+									'<?php echo $orderList['origin_city'] ?>',
+									'<?php echo $orderList['origin_street'] ?>',
+									'<?php echo $orderList['origin_house_number']; ?>',
+									'<?php echo $orderList['id_destination_location']; ?>',
+									'<?php echo $orderList['destination_location'] ?>',
+									'<?php echo $orderList['destination_city'] ?>',
+									'<?php echo $orderList['destination_street'] ?>',
+									'<?php echo $orderList['destination_house_number']; ?>',
+									'<?php echo $orderList['departure_time'] ?>',
+									'<?php echo $orderList['arrival_time']; ?>'
 									)"></i></button>
 										<button class="user-panel__icon"><i class="icon-trash" onclick="delLocation(
 									'<?php echo $orderList['id_route']; ?>'
@@ -307,13 +362,15 @@
 	const adresListCheckbox = document.getElementById('list_adres_togle');
 	const sidebar = document.querySelector('.sidebar');
 	const topbarHamburger = document.querySelector('.topbar__hamburger');
-	
+
 	const modal1 = document.getElementById('modal1');
 	const modal2 = document.getElementById('modal2');
+	const modal3 = document.getElementById('modal3');
 
 	const cancelButton = document.getElementById('cancel-button');
-    const cancelButton2 = document.getElementById('cancel-button2');
-                        
+	const cancelButton2 = document.getElementById('cancel-button2');
+	const cancelButton3 = document.getElementById('cancel-button3');
+
 	function toggleSidebar() {
 		sidebar.classList.toggle('sidebar--hidden');
 	};
@@ -326,11 +383,11 @@
 		document.getElementById('del_id').value = id;
 		document.getElementById('modal2').style.display = 'block';
 	}
-	
+
 	function addLocation() {
 		document.getElementById('modal1').style.display = 'block';
 	};
-	
+
 	cancelButton.addEventListener('click', function() {
 		modal1.style.display = 'none';
 	});
@@ -338,6 +395,26 @@
 	cancelButton2.addEventListener('click', function() {
 		modal2.style.display = 'none';
 	});
+
+	cancelButton3.addEventListener('click', function() {
+		modal3.style.display = 'none';
+	});
+
+	function editLocation(id, idOriginLocation, originLocation, originCity, originStreet, originHouseNum, idDestinLocation, destinLocation, destinCity, destinStreet, destinHouseNum, departureTime, arrivalTime) {
+		document.getElementById('edit_id').value = id;
+
+		document.getElementById('originLocation').textContent = originLocation + "; " + originCity + " ul. " + originStreet + " " + originHouseNum;
+		document.getElementById('originLocation').value = idOriginLocation;
+
+		document.getElementById('destinLocation').textContent = destinLocation + "; " + destinCity + " ul. " + destinStreet + " " + destinHouseNum;
+		document.getElementById('destinLocation').value = idDestinLocation;
+
+
+		document.getElementById('departure_date').value = departureTime;
+		document.getElementById('arrival_date').value = arrivalTime;
+
+		document.getElementById('modal3').style.display = 'block';
+	}
 
 	adresCheckbox.addEventListener('change', function() {
 		if (this.checked) {

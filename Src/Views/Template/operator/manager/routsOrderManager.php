@@ -101,7 +101,7 @@
 											<button type="submit" name="submit" class="button-form button-form--positive">Dodaj punkt</button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive">Edytuj punkty</button>
+											<button type="submit" name="submit" class="button-form button-form--positive">Usuń zlecenie</button>
 										</div>
 										<div class="accordion__button">
 											<button type="submit" name="submit" class="button-form button-form--positive">Edytuj zlecenie</button>
