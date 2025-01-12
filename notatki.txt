@@ -32,4 +32,14 @@ podczas wybrania lokalizacji domowej skrypt przepisuje pobrane dane z lokalizacj
 Edycja podczas dodawania trasy
 zmiana całego punktu czy danych punktu (lepiej dwie listy i zmianę punktu) to samo dodać do głuwnego menu 
 
+Sprawdzić zabaezpieczenmie przed pustym wyświetalniem
 
+Poprawa wydajności 
+Zmieniś sposub walidacji czy zapytanie udało się wykonać
+if (($result = $this->showLocationB($id)) !== false) {
+    // Funkcja zwróciła poprawną wartość
+    echo "ID lokalizacji docelowej: " . $result;
+} else {
+    // Funkcja zwróciła false
+    echo "Nie znaleziono lokalizacji docelowej dla podanego zamówienia.";
+}

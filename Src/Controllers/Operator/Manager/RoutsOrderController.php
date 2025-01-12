@@ -16,6 +16,7 @@ class RoutsOrderController extends AbstractController{
 
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             $routModel = new RoutsOrderModel($this->configuration);
+            $locationModel = new ManagementLocationModel($this->configuration);
 
             if(empty($_SESSION['statusDel'])){
                 $_SESSION['statusDel'] = "start";
@@ -25,10 +26,128 @@ class RoutsOrderController extends AbstractController{
                 $this->paramView['orders'] = $this->orderParse($routModel->showOrders());
             }
             
+
+            $this->paramView['location'] = $locationModel->showLocation();
+
             (new View())->renderOperator("routsOrderManager", $this->paramView, "manager");
         }else{
             $this->redirect("/access-denied");
         }
+    }
+
+
+    public function orderDellMain(): void{
+        $routModel = new RoutsOrderModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('edit_id'),
+        ];
+        
+        if (empty($data['id'])) {
+            flash("locationManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order");
+        }
+
+        if ($routModel->orderDell((int) $data['id'])) {
+            flash("locationManagment", "Trasa została usunięta", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order");
+        } else {
+            flash("locationManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order");
+        }
+    }
+
+    public function orderEditMain() : void {
+        $routModel = new RoutsOrderModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('edit_id'),
+            'A' => $this->request->postParam('location_A_edit'),
+            'B' => $this->request->postParam('location_B_edit'),
+            'arrivalDate' => $this->request->postParam('arrival_date'),
+            'departureDate' => $this->request->postParam('departure_date')
+        ];
+
+        
+        if (empty($data['id']) || empty($data['A']) || empty($data['B'])) {
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order");
+        }
+        
+        if (empty($data['departureDate'])) {
+            $data['departureDate'] = NULL;
+        }
+
+
+        if (empty($data['arrivalDate'])) {
+            $data['arrivalDate'] = NULL;
+        }
+        
+        if ($routModel->orderEdit($data)) {
+            flash("addOrder", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order");
+        } else {
+            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order");
+        }
+
+
+    }
+    
+    public function orderAddMain() : Void {
+        $routModel = new RoutsOrderModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id'),
+            'locarionB' => $this->request->postParam('location_order_B'),
+            'arrivalDate' => $this->request->postParam('arrival_date')
+        ];
+
+        if (empty($data['id']) ||  empty($data['locarionB'])) {
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order");
+        }
+
+        if (empty($data['arrivalDate'])) {
+            $data['arrivalDate'] = null;
+        }
+
+
+        if ($routModel->routesAddMain($data, (int) $data['id'])) {
+            flash("orderManagment", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order");
+        } else {
+            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order");
+        }
+
+        
+    }
+    
+    private function orderParse(Array $results) : Array {
+
+        $orders = [];
+        foreach ($results as $row) {
+            $id_order = $row['id_order'];
+            if (!isset($orders[$id_order])) {
+                $date = new \DateTime($row['created_at']);
+                $row['created_at'] = $date->format('d-m-Y H:i');
+                $orders[$id_order] = [
+                    'id_order' => $row['id_order'],
+                    'order_name' => $row['order_name'],
+                    'status_order' => $row['status_order'],
+                    'created_at' => $row['created_at'],
+                    'due_date' => $row['due_date'],
+                    'locations' => []
+                ];
+            }
+            $orders[$id_order]['locations'][] = [
+                'origin_name' => $row['origin_location'],
+                'destination_name' => $row['destination_location'],
+                'origin_city' => $row['origin_city'],
+                'destination_city' => $row['destination_city'],
+                'id_route' => $row['id_route']
+            ];
+        }
+
+        return $orders;
     }
 
     public function RoutsOrderAddView() : Void{
@@ -53,8 +172,7 @@ class RoutsOrderController extends AbstractController{
             if (!isset($_SESSION["orderStatus"])) {
                 $_SESSION["orderStatus"] = 'start';
             }
-
-            // TODO pobranie adresu jeśli sesja rówan 
+ 
             if($_SESSION["orderStatus"] === 'location'){
                 $this->paramView['adresHome'] = $routModel->showAdress((int)$_SESSION['user']);
             }
@@ -70,6 +188,7 @@ class RoutsOrderController extends AbstractController{
             $this->redirect("/access-denied");
         }
     }
+
 
     public function orderAdd(): void{
         $data = [
@@ -225,31 +344,6 @@ class RoutsOrderController extends AbstractController{
         $_SESSION["orderStatus"] = 'location2';
         $this->redirect("/manager/order/add");
     }
-
-    private function orderParse(Array $results) : Array {
-
-        $orders = [];
-        foreach ($results as $row) {
-            $id_order = $row['id_order'];
-            if (!isset($orders[$id_order])) {
-                $orders[$id_order] = [
-                    'order_name' => $row['order_name'],
-                    'status_order' => $row['status_order'],
-                    'created_at' => $row['created_at'],
-                    'due_date' => $row['due_date'],
-                    'locations' => []
-                ];
-            }
-            $orders[$id_order]['locations'][] = [
-                'origin_name' => $row['origin_location'],
-                'destination_name' => $row['destination_location'],
-                'origin_city' => $row['origin_city'],
-                'destination_city' => $row['destination_city']
-            ];
-        }
-
-        return $orders;
-    }
     
     public function locationAdd(): void{
         $managementLocationMod = new ManagementLocationModel($this->configuration);
@@ -323,11 +417,11 @@ class RoutsOrderController extends AbstractController{
     public function orderDell(): void{
         $routModel = new RoutsOrderModel($this->configuration);
         $data = [
-            'id' => $this->request->postParam('edit_id'),
+            'id' => $this->request->postParam('id'),
         ];
         
-        if (empty($data['id']) || empty($data['A']) || empty($data['B'])) {
-            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+        if (empty($data['id'])) {
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");
             $this->redirect("/manager/order/add");
         }
 

@@ -11,6 +11,7 @@ class RoutsOrderModel extends AbstractModel{
     public function showOrders() : Array|Bool{
         $this->query('SELECT
 			orders.id_order,
+            routes.id_route,
             orders.order_name,
             orders.status_order,
             orders.created_at,
@@ -125,9 +126,11 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
+
+
     public function routesAdd(array $data, int $id){
 
-        $this->query('INSERT INTO public.routes(id_order_fk, id_origin_location,id_destination_location, departure_time, arrival_time) VALUES (:id_order, :locationA, :locationB, :dateDeparture, :dateArrival) RETURNING id_route');
+        $this->query('INSERT INTO public.routes(id_order_fk, id_origin_location, id_destination_location, departure_time, arrival_time) VALUES (:id_order, :locationA, :locationB, :dateDeparture, :dateArrival) RETURNING id_route');
         
         $this->bind(':id_order', $id);
         $this->bind(':locationA', $data['locationA']);
@@ -255,6 +258,53 @@ class RoutsOrderModel extends AbstractModel{
             return false;
         }
     }
+
+    public function routesAddMain(array $data, int $id){
+
+        if (($result = $this->showLocationB($id)) !== false) {
+            
+            if ($result != $data['locarionB']) {
+                $this->query('INSERT INTO public.routes(id_order_fk, id_origin_location, id_destination_location, departure_time, arrival_time) VALUES (:id_order, :locationA, :locationB, :dateDeparture, :dateArrival) RETURNING id_route');
+                
+                $this->bind(':id_order', $id);
+                $this->bind(':locationA', $result);
+                $this->bind(':locationB', $data['locarionB']);
+                $this->bind(':dateDeparture', $data['departureDateA']);
+                $this->bind(':dateArrival', $data['arrivalDate']);
+        
+                if($this->execute()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+            
+        } else {
+            return false;
+        }
+    }
+
+    private function showLocationB(int $id){
+             $this->query('SELECT id_destination_location 
+                FROM public.routes
+                WHERE id_order_fk = :idOrder
+                AND id_route = (
+                    SELECT MAX(id_route) 
+                    FROM public.routes 
+                    WHERE id_order_fk = :idOrder);');
+             
+             $this->bind(':idOrder', $id);
+             
+             $row = $this->singleArray();
+
+         if($this->rowCount() == 1){
+             return $row['id_destination_location'];
+         }else{
+             return false;
+         }
+     }
 
     public function showOrderList(int $id) : Array|Bool{
         $this->query('SELECT 
