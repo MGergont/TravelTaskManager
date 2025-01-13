@@ -43,3 +43,5 @@ if (($result = $this->showLocationB($id)) !== false) {
     // Funkcja zwróciła false
     echo "Nie znaleziono lokalizacji docelowej dla podanego zamówienia.";
 }
+
+usuwanie 2 do jedneko commuita

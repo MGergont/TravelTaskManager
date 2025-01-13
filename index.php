@@ -70,6 +70,8 @@ $router->post('/manager/order/addLocation', 'RoutsOrderController@locationAdd', 
 $router->post('/manager/order/dell', 'RoutsOrderController@orderDell', 'Controllers\\Operator\\Manager');
 $router->post('/manager/order/edit', 'RoutsOrderController@orderEdit', 'Controllers\\Operator\\Manager');
 $router->post('/manager/order/routMain', 'RoutsOrderController@orderAddMain', 'Controllers\\Operator\\Manager');
+$router->post('/manager/order/dellMain', 'RoutsOrderController@orderDellMain', 'Controllers\\Operator\\Manager');
+$router->post('/manager/order/routeDellMain', 'RoutsOrderController@routeDellMain', 'Controllers\\Operator\\Manager');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

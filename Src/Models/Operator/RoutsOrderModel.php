@@ -98,6 +98,30 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
+    public function orderDellMain(int $idOrder) : Bool {
+        $this->query('DELETE FROM public.orders WHERE id_order = :idorder');
+
+        $this->bind(':idorder', $idOrder);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function routeDellMain(int $idRoute) : Bool {
+        $this->query('DELETE FROM public.routes WHERE id_route = :idroute');
+
+        $this->bind(':idroute', $idRoute);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function orderDell(int $idOrder) : Bool {
         $this->query('DELETE FROM public.routes WHERE id_route = :idorder');
 

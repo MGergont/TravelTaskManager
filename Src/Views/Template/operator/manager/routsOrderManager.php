@@ -40,18 +40,30 @@
 					</div>
 				</div>
 				<button type="submit" class="button-form button-form--positive">Dodaj</button>
-				<a href="/manager/order/clean" class="button-form button-form--positive">Anuluj</a>
+				<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Account Delate</h2>
-			<form action="" method="post">
+			<form action="/manager/order/dellMain" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
 					<button class="button-form button-form--positive">Confirm</button>
 					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal" id="modal4" style="display:none;">
+		<div class="modal__content">
+			<h2 class="modal__title">Account Delate</h2>
+			<form action="/manager/order/routeDellMain" method="post">
+				<input type="hidden" id="del_route_id" name="id">
+				<div class="modal__actions">
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button4">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -202,7 +214,7 @@
 											<button type="submit" name="submit" class="button-form button-form--positive" onclick="addRoute('<?php echo $order['id_order']; ?>')">Dodaj punkt</button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive">Usuń zlecenie</button>
+											<button type="submit" name="submit" class="button-form button-form--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')">Usuń zlecenie</button>
 										</div>
 										<div class="accordion__button">
 											<button type="submit" name="submit" class="button-form button-form--positive">Edytuj zlecenie</button>
@@ -252,9 +264,14 @@
 		document.getElementById('modal1').style.display = 'block';
 	}
 
-	function delRoute(id) {
+	function delOrder(id) {
 		document.getElementById('del_id').value = id;
 		document.getElementById('modal2').style.display = 'block';
+	}
+
+	function delRoute(id) {
+		document.getElementById('del_route_id').value = id;
+		document.getElementById('modal4').style.display = 'block';
 	}
 
 	function editRoute(id, name, town, zipCode, city, street, house, latitude, longitude) {
@@ -274,9 +291,11 @@
 	const cancelButton = document.getElementById('cancel-button');
 	const cancelButton2 = document.getElementById('cancel-button2');
 	const cancelButton3 = document.getElementById('cancel-button3');
+	const cancelButton4 = document.getElementById('cancel-button4');
 	const modal1 = document.getElementById('modal1');
 	const modal2 = document.getElementById('modal2');
 	const modal3 = document.getElementById('modal3');
+	const modal4 = document.getElementById('modal4');
 
 	cancelButton.addEventListener('click', function() {
 		modal1.style.display = 'none';
@@ -288,6 +307,10 @@
 
 	cancelButton3.addEventListener('click', function() {
 		modal3.style.display = 'none';
+	});
+
+	cancelButton4.addEventListener('click', function() {
+		modal4.style.display = 'none';
 	});
 </script>
 

@@ -39,19 +39,39 @@ class RoutsOrderController extends AbstractController{
     public function orderDellMain(): void{
         $routModel = new RoutsOrderModel($this->configuration);
         $data = [
-            'id' => $this->request->postParam('edit_id'),
+            'id' => $this->request->postParam('id'),
         ];
         
         if (empty($data['id'])) {
-            flash("locationManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
             $this->redirect("/manager/order");
         }
 
-        if ($routModel->orderDell((int) $data['id'])) {
-            flash("locationManagment", "Trasa została usunięta", "alert-login alert-login--confirm");
+        if ($routModel->orderDellMain((int) $data['id'])) {
+            flash("orderManagment", "Trasa została usunięta", "alert-login alert-login--confirm");
             $this->redirect("/manager/order");
         } else {
-            flash("locationManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order");
+        }
+    }
+
+    public function routeDellMain(): void{
+        $routModel = new RoutsOrderModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id'),
+        ];
+        
+        if (empty($data['id'])) {
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order");
+        }
+
+        if ($routModel->routeDellMain((int) $data['id'])) {
+            flash("orderManagment", "Trasa została usunięta", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order");
+        } else {
+            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
             $this->redirect("/manager/order");
         }
     }
@@ -68,7 +88,7 @@ class RoutsOrderController extends AbstractController{
 
         
         if (empty($data['id']) || empty($data['A']) || empty($data['B'])) {
-            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
             $this->redirect("/manager/order");
         }
         
@@ -82,10 +102,10 @@ class RoutsOrderController extends AbstractController{
         }
         
         if ($routModel->orderEdit($data)) {
-            flash("addOrder", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
+            flash("orderManagment", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
             $this->redirect("/manager/order");
         } else {
-            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
             $this->redirect("/manager/order");
         }
 
