@@ -26,7 +26,7 @@ class RoutsOrderController extends AbstractController{
                 $this->paramView['orders'] = $this->orderParse($routModel->showOrders());
             }
             
-
+            $this->paramView['users'] = $routModel->showOperator();
             $this->paramView['location'] = $locationModel->showLocation();
 
             (new View())->renderOperator("routsOrderManager", $this->paramView, "manager");
@@ -76,10 +76,10 @@ class RoutsOrderController extends AbstractController{
         }
     }
 
-    public function orderEditMain() : void {
+    public function routeEditMain() : void {
         $routModel = new RoutsOrderModel($this->configuration);
         $data = [
-            'id' => $this->request->postParam('edit_id'),
+            'id' => $this->request->postParam('id'),
             'A' => $this->request->postParam('location_A_edit'),
             'B' => $this->request->postParam('location_B_edit'),
             'arrivalDate' => $this->request->postParam('arrival_date'),
@@ -108,8 +108,6 @@ class RoutsOrderController extends AbstractController{
             flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
             $this->redirect("/manager/order");
         }
-
-
     }
     
     public function orderAddMain() : Void {
@@ -141,6 +139,66 @@ class RoutsOrderController extends AbstractController{
         
     }
     
+    public function orderEditMain(): void{
+        $routModel = new RoutsOrderModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id'),
+            'nameOrder' => $this->request->postParam('name_order'),
+            'user' => $this->request->postParam('user_order'),
+            'date' => $this->request->postParam('date_due'),
+            'status' => $this->request->postParam('status_order'),
+        ];
+
+    
+        if (empty($data['id']) || empty($data['nameOrder']) || empty($data['user']) || empty($data['date']) || empty($data['status'])) {
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/manager/order");
+        }
+
+        if($this->IfMaxLength($data, 30)){
+            flash("orderManagment", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            $this->redirect("/manager/order");
+        };
+
+        switch ($data['status']) {
+            case 'new':
+                
+                break;
+            case 'in progress':
+                
+                break;
+            case 'done':
+                
+                break;
+            case 'accepted':
+                
+                break;
+            default:
+                flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");           
+                $this->redirect("/manager/order");
+                break;
+        }
+
+        if($this->IfSpecialCharacters($data['nameOrder'])){
+            flash("orderManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/manager/order");
+        }
+
+        if($this->ValidNumber($data['user'])){
+            flash("orderManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            $this->redirect("/manager/order");
+        }
+
+        if ($routModel->orderEditMain($data)) {
+            flash("orderManagment", "Zlecenie zostało zmodyfikowanie", "alert-login alert-login--confirm");
+            $this->redirect("/manager/order");
+        } else {
+            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            $this->redirect("/manager/order");
+        }
+
+    }
+
     private function orderParse(Array $results) : Array {
 
         $orders = [];
@@ -155,6 +213,7 @@ class RoutsOrderController extends AbstractController{
                     'status_order' => $row['status_order'],
                     'created_at' => $row['created_at'],
                     'due_date' => $row['due_date'],
+                    'assigned_to' => $row['assigned_to'],
                     'locations' => []
                 ];
             }
@@ -163,6 +222,14 @@ class RoutsOrderController extends AbstractController{
                 'destination_name' => $row['destination_location'],
                 'origin_city' => $row['origin_city'],
                 'destination_city' => $row['destination_city'],
+                'origin_zip_code' => $row['origin_zip_code'],
+                'destination_zip_code' => $row['destination_zip_code'],
+                'origin_town' => $row['origin_town'],
+                'destination_town' => $row['destination_town'],
+                'origin_street' => $row['origin_street'],
+                'destination_street' => $row['destination_street'],
+                'origin_house_number' => $row['origin_house_number'],
+                'destination_house_number' => $row['destination_house_number'],
                 'id_route' => $row['id_route']
             ];
         }

@@ -39,4 +39,10 @@
         max-width: 500px;
         flex-wrap: wrap;
     }
+
+    &__column{
+        justify-content: space-between;
+        width: 45%;
+        flex-wrap: wrap;
+    }
 }

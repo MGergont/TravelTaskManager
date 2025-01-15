@@ -72,6 +72,8 @@ $router->post('/manager/order/edit', 'RoutsOrderController@orderEdit', 'Controll
 $router->post('/manager/order/routMain', 'RoutsOrderController@orderAddMain', 'Controllers\\Operator\\Manager');
 $router->post('/manager/order/dellMain', 'RoutsOrderController@orderDellMain', 'Controllers\\Operator\\Manager');
 $router->post('/manager/order/routeDellMain', 'RoutsOrderController@routeDellMain', 'Controllers\\Operator\\Manager');
+$router->post('/manager/order/routeEditMain', 'RoutsOrderController@routeEditMain', 'Controllers\\Operator\\Manager');
+$router->post('/manager/order/orderEditMain', 'RoutsOrderController@orderEditMain', 'Controllers\\Operator\\Manager');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

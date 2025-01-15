@@ -45,3 +45,7 @@ if (($result = $this->showLocationB($id)) !== false) {
 }
 
 usuwanie 2 do jedneko commuita
+
+Przy edycji w lista dodać aby wybierała się wartość ta ktura jest aktaualie wybrana 
+
+poprawić nazwenictwo klas w RoutsOrderController a najlepiej przerobić na dwa osobne kontrolery

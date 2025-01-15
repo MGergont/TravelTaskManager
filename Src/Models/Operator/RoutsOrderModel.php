@@ -16,6 +16,7 @@ class RoutsOrderModel extends AbstractModel{
             orders.status_order,
             orders.created_at,
 			orders.due_date,
+            orders.assigned_to,
             ls1.location_name AS origin_location,
             ls2.location_name AS destination_location,
 			ls1.city AS origin_city,
@@ -150,7 +151,21 @@ class RoutsOrderModel extends AbstractModel{
         }
     }
 
+    public function orderEditMain(array $data) : Bool {
+        $this->query('UPDATE public.orders SET order_name = :nameOrder, status_order = :status, assigned_to = :user, due_date = :date WHERE id_order = :id;');
 
+        $this->bind(':id', $data['id']);
+        $this->bind(':nameOrder', $data['nameOrder']);
+        $this->bind(':user', $data['user']);
+        $this->bind(':date', $data['date']);
+        $this->bind(':status', $data['status']);
+
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public function routesAdd(array $data, int $id){
 

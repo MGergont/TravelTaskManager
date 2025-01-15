@@ -71,53 +71,100 @@
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--edit">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="" method="post">
-				<div class="edit-modal__login">
-					<div class="field">
-						<input type="hidden" id="edit_id" name="edit_id">
-						<label for="edit_name" class="field__label">Nazwa</label>
-						<input type="text" id="edit_name" name="edit_name" class="field__input" placeholder="Nazwa" required>
-					</div>
-				</div>
+			<form class="edit-modal" action="/manager/order/routeEditMain" method="post">
+				<input type="hidden" id="edit_id" name="id">
 				<div class="edit-modal__line">
-					<div class="field">
-						<label for="edit_houseNumber" class="field__label">Numer domu</label>
-						<input type="text" id="edit_houseNumber" name="edit_houseNumber" class="field__input" placeholder="Numer domu" required>
+					<div class="edit-modal__column">
+						<p>Nazwa:<samp id="nameA"></samp></p>
+						<p>Miejscowość:<samp id="cityA"></samp></p>
+						<p>Kod pocztowy:<samp id="zipCodeA"></samp></p>
+						<p>Miasto:<samp id="townA"></samp></p>
+						<p>Ulica:<samp id="streetA"></samp></p>
+						<p>Numer domu:<samp id="numberA"></samp></p>
+						<div class="select-wrapper">
+							<label for="location_A_edit" class="select-wrapper__label">Lokalizacja A | Nazwa | Adres</label>
+							<select name="location_A_edit" id="location_A_edit" class="select-wrapper__select">
+								<option id="originLocation" selected></option>
+								<?php foreach ($params['location'] as $veh): ?>
+									<option value="<?php echo $veh['id_location']; ?>">
+										<?php echo $veh['id_location'] . " // " . $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<div class="field">
+							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+						</div>
 					</div>
-					<div class="field">
-						<label for="edit_street" class="field__label">Ulica</label>
-						<input type="text" id="edit_street" name="edit_street" class="field__input" placeholder="Ulica" required>
-					</div>
-				</div>
-				<div class="edit-modal__line">
-					<div class="field">
-						<label for="edit_town" class="field__label">Miejscowość</label>
-						<input type="text" id="edit_town" name="edit_town" class="field__input" placeholder="Miejscowość" required>
-					</div>
-					<div class="field">
-						<label for="edit_zipCode" class="field__label">Kod pocztowy</label>
-						<input type="text" id="edit_zipCode" name="edit_zipCode" class="field__input" placeholder="Kod pocztowy" required>
-					</div>
-					<div class="field">
-						<label for="edit_city" class="field__label">Miasto</label>
-						<input type="text" id="edit_city" name="edit_city" class="field__input" placeholder="Miasto" required>
-					</div>
-				</div>
-				<div class="edit-modal__coord">
-					<div class="field">
-						<label for="edit_latitude" class="field__label">Wysokość geograficzna</label>
-						<input type="text" id="edit_latitude" name="edit_latitude" class="field__input" placeholder="Wysokość geograficzna">
-					</div>
-				</div>
-				<div class="edit-modal__coord">
-					<div class="field">
-						<label for="edit_longitude" class="field__label">Szerokość geograficzna</label>
-						<input type="text" id="edit_longitude" name="edit_longitude" class="field__input" placeholder="Szerokość geograficzna">
+					<div class="edit-modal__column">
+						<p>Nazwa:<samp id="nameB"></samp></p>
+						<p>Miejscowość:<samp id="cityB"></samp></p>
+						<p>Kod pocztowy:<samp id="zipCodeB"></samp></p>
+						<p>Miasto:<samp id="townB"></samp></p>
+						<p>Ulica:<samp id="streetB"></samp></p>
+						<p>Numer domu:<samp id="numberB"></samp></p>
+						<div class="select-wrapper">
+							<label for="location_B_edit" class="select-wrapper__label">Lokalizacja B | Nazwa | Adres</label>
+							<select name="location_B_edit" id="location_B_edit" class="select-wrapper__select">
+								<option id="destinLocation" selected></option>
+								<?php foreach ($params['location'] as $veh): ?>
+									<option value="<?php echo $veh['id_location']; ?>">
+										<?php echo $veh['id_location'] . " // " .  $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<div class="field">
+							<label for="departure_date" class="field__label">Data wyjazdu(opcjonalnie)</label>
+							<input type="datetime-local" id="departure_date" name="departure_date" class="field__input">
+						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
 					<button class="button-form button-form--positive">Confirm</button>
 					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal" id="modal5" style="display:none;">
+		<div class="modal__content modal__content--add">
+			<h2 class="modal__title">Edycja zlecenia</h2>
+			<form class="add-modal" action="/manager/order/orderEditMain" method="post">
+				<input type="hidden" id="edit_order_id" name="id">
+				<div class="add-modal__name">
+					<div class="field">
+						<label for="name_order" class="field__label">Nazwa zlecenia</label>
+						<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
+					</div>
+					<div class="select-wrapper">
+						<label for="user_order" class="select-wrapper__label">Użytkownik (Login/Name)</label>
+						<select name="user_order" id="user_order" class="select-wrapper__select">
+							<?php foreach ($params['users'] as $veh): ?>
+								<option value="<?php echo $veh['id_operator']; ?>">
+									<?php echo $veh['login'] . " // " . $veh['name'] . " " . $veh['last_name']; ?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+					<div class="field">
+						<label for="date_due" class="field__label">Data realizacji</label>
+						<input type="date" id="date_due" name="date_due" class="field__input" required>
+					</div>
+					<div class="select-wrapper">
+						<label for="status_order" class="select-wrapper__label">Status</label>
+						<select name="status_order" id="status_order" class="select-wrapper__select">
+							<option value="new">new</option>
+							<option value="in progress">in progress</option>
+							<option value="done">done</option>
+							<option value="accepted">accepted</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal__actions">
+					<button class="button-form button-form--positive">Confirm</button>
+					<a class="button-form button-form--negative" id="cancel-button5">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -201,7 +248,21 @@
 														<td><?php echo $location['origin_name'] . "; " . $location['origin_city']; ?></td>
 														<td><?php echo $location['destination_name'] . "; " . $location['destination_city']; ?></td>
 														<td class="user-panel__cell user-panel__cell--options">
-															<button class="user-panel__icon"><i class="icon-pencil" onclick="editRoute('<?php echo $location['id_route']; ?>')"></i></button>
+															<button class="user-panel__icon"><i class="icon-pencil" onclick="editRoute(
+															'<?php echo $location['id_route']; ?>',
+															'<?php echo $location['origin_name']; ?>',
+															'<?php echo $location['origin_city']; ?>',
+															'<?php echo $location['origin_zip_code']; ?>',
+															'<?php echo $location['origin_town']; ?>',
+															'<?php echo $location['origin_street']; ?>',
+															'<?php echo $location['origin_house_number']; ?>',
+															'<?php echo $location['destination_name']; ?>',
+															'<?php echo $location['destination_city']; ?>',
+															'<?php echo $location['destination_zip_code']; ?>',
+															'<?php echo $location['destination_town']; ?>',
+															'<?php echo $location['destination_street']; ?>',
+															'<?php echo $location['destination_house_number']; ?>',
+															)"></i></button>
 															<button class="user-panel__icon"><i class="icon-trash" onclick="delRoute('<?php echo $location['id_route']; ?>')"></i></button>
 														</td>
 													</tr>
@@ -217,7 +278,13 @@
 											<button type="submit" name="submit" class="button-form button-form--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')">Usuń zlecenie</button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive">Edytuj zlecenie</button>
+											<button type="submit" name="submit" class="button-form button-form--positive" onclick="editOrder(
+											'<?php echo $order['id_order']; ?>',
+											'<?php echo $order['order_name']; ?>',
+											'<?php echo $order['assigned_to']; ?>',
+											'<?php echo $order['due_date']; ?>',
+											'<?php echo $order['status_order']; ?>'
+											)">Edytuj zlecenie</button>
 										</div>
 									</div>
 								</div>
@@ -274,28 +341,45 @@
 		document.getElementById('modal4').style.display = 'block';
 	}
 
-	function editRoute(id, name, town, zipCode, city, street, house, latitude, longitude) {
+	function editRoute(id, nameA, cityA, zipCodeA, townA, streetA, numberA, nameB, cityB, zipCodeB, townB, streetB, numberB) {
 		document.getElementById('edit_id').value = id;
-		document.getElementById('edit_name').value = name;
-		document.getElementById('edit_town').value = town;
-		document.getElementById('edit_zipCode').value = zipCode;
-		document.getElementById('edit_city').value = city;
-		document.getElementById('edit_street').value = street;
-		document.getElementById('edit_houseNumber').value = house;
-		document.getElementById('edit_latitude').value = latitude;
-		document.getElementById('edit_longitude').value = longitude;
+		document.getElementById('nameA').innerHTML = nameA;
+		document.getElementById('cityA').innerHTML = cityA;
+		document.getElementById('zipCodeA').innerHTML = zipCodeA;
+		document.getElementById('townA').innerHTML = townA;
+		document.getElementById('streetA').innerHTML = streetA;
+		document.getElementById('numberA').innerHTML = numberA;
+
+		document.getElementById('nameB').innerHTML = nameB;
+		document.getElementById('cityB').innerHTML = cityB;
+		document.getElementById('zipCodeB').innerHTML = zipCodeB;
+		document.getElementById('townB').innerHTML = townB;
+		document.getElementById('streetB').innerHTML = streetB;
+		document.getElementById('numberB').innerHTML = numberB;
 
 		document.getElementById('modal3').style.display = 'block';
+	}
+
+	function editOrder(id, nameOrder, userId, date, status) {
+		document.getElementById('edit_order_id').value = id;
+		
+		document.getElementById('name_order').value = nameOrder;
+		document.getElementById('user_order').value = userId;
+		document.getElementById('date_due').value = date;
+		document.getElementById('status_order').value = status;
+		document.getElementById('modal5').style.display = 'block';
 	}
 
 	const cancelButton = document.getElementById('cancel-button');
 	const cancelButton2 = document.getElementById('cancel-button2');
 	const cancelButton3 = document.getElementById('cancel-button3');
 	const cancelButton4 = document.getElementById('cancel-button4');
+	const cancelButton5 = document.getElementById('cancel-button5');
 	const modal1 = document.getElementById('modal1');
 	const modal2 = document.getElementById('modal2');
 	const modal3 = document.getElementById('modal3');
 	const modal4 = document.getElementById('modal4');
+	const modal5 = document.getElementById('modal5');
 
 	cancelButton.addEventListener('click', function() {
 		modal1.style.display = 'none';
@@ -311,6 +395,10 @@
 
 	cancelButton4.addEventListener('click', function() {
 		modal4.style.display = 'none';
+	});
+
+	cancelButton5.addEventListener('click', function() {
+		modal5.style.display = 'none';
 	});
 </script>
 
