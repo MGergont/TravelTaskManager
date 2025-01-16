@@ -42,6 +42,9 @@ $router->get('/user-dashboard', 'DashboardUserController@DashboardUserView', 'Co
 $router->get('/manager/route', 'RouteManagerController@RouteManagerView', 'Controllers\\Operator\\Manager');
 $router->get('/user/route', 'RouteUserController@RouteUserView', 'Controllers\\Operator\\User');
 
+$router->get('/user/order', 'OrderUserController@OrderUserView', 'Controllers\\Operator\\User');
+$router->post('/user/order', 'OrderUserController@orderAccept', 'Controllers\\Operator\\User');
+
 $router->post('/user/route/castom-start', 'RouteUserController@startRoute', 'Controllers\\Operator\\User');
 $router->post('/user/route/castom-next', 'RouteUserController@startNextRoute', 'Controllers\\Operator\\User');
 $router->get('/user/route/castom-stop', 'RouteUserController@stopRoute', 'Controllers\\Operator\\User');
