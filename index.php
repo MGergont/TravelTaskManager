@@ -37,7 +37,13 @@ $router->post('/admin-del-profile', 'ManagementAdminController@accountDell', 'Co
 $router->post('/admin-edit-profile', 'ManagementAdminController@accountEdit', 'Controllers\\Admin');
 
 $router->get('/manager-dashboard', 'DashboardManagerController@DashboardManagerView', 'Controllers\\Operator\\Manager');
+
+
 $router->get('/user-dashboard', 'DashboardUserController@DashboardUserView', 'Controllers\\Operator\\User');
+$router->post('/user-dashboard/start', 'DashboardUserController@RouteStart', 'Controllers\\Operator\\User');
+$router->post('/user-dashboard/stop', 'DashboardUserController@RouteStop', 'Controllers\\Operator\\User');
+$router->post('/user-dashboard/reject', 'DashboardUserController@RejectOrder', 'Controllers\\Operator\\User');
+
 
 $router->get('/manager/route', 'RouteManagerController@RouteManagerView', 'Controllers\\Operator\\Manager');
 $router->get('/user/route', 'RouteUserController@RouteUserView', 'Controllers\\Operator\\User');

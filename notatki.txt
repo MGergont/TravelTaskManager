@@ -55,3 +55,10 @@ dodać widok od strony urzytkownika tabela
 do głuwnego ekranu dodać info o aktualnie przyjętym zleceniu 
 
 do routes dodać kolejną tebele z danymi wykonania realne godziny przyjazdu i odjazdu lub dodać kolumy do tabeli route z aktualnymi danymi
+
+musza być dwa rużne formularze start i do w trakcie jazdy kierujące do dwuch różnych metod na swichu
+
+musi być przycisk z rezygnacją zmieniający satus na foult
+
+jeśli sesja nie istnieje to wpisz start
+jeśli sesja jest rużna niż stop to wpisz start

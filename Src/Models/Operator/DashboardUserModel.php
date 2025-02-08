@@ -6,21 +6,20 @@ namespace Src\Models\Operator;
 
 use Src\Models\AbstractModel;
 
-class OrderOperatorModel extends AbstractModel{
-    
+class DashboardUserModel extends AbstractModel{
+
     public function showOrdersOperator(int $user) : Array|Bool{
         $this->query('SELECT
 			orders.id_order,
             routes.id_route,
             routes.departure_time,
-			routes.departure_time_active,
 			routes.arrival_time,
+			routes.departure_time_active,
 			routes.arrival_time_active,
             orders.order_name,
             orders.status_order,
-            orders.created_at,
 			orders.due_date,
-            orders.assigned_to,
+            orders.created_at,
             ls1.location_name AS origin_location,
             ls2.location_name AS destination_location,
 			ls1.city AS origin_city,
@@ -37,39 +36,38 @@ class OrderOperatorModel extends AbstractModel{
         JOIN routes ON orders.id_order = routes.id_order_fk
         JOIN locations ls1 ON routes.id_origin_location = ls1.id_location
         JOIN locations ls2 ON routes.id_destination_location = ls2.id_location
-        WHERE assigned_to = :userID ORDER BY orders.id_order;');
-
-        $this->bind(':userID', $user);
-
-        $row = $this->allArray();
-    
-        if($this->rowCount() > 0){
-            return $row;
-        }else{
-            return false;
-        }
-    }
-
-    public function showActiveOrdersOperator(int $user) : Array|Bool{
-        $this->query('SELECT * FROM public.orders WHERE assigned_to = :userID AND status_order = :status;');
+        WHERE assigned_to = :userID AND orders.status_order = :status AND routes.arrival_time_active IS NULL ORDER BY routes.id_route ASC LIMIT 1');
 
         $this->bind(':userID', $user);
         $this->bind(':status', "in progress");
 
-        $row = $this->allArray();
+        $row = $this->singleArray();
     
-        if($this->rowCount() > 0){
+        if($this->rowCount() == 1){
             return $row;
         }else{
             return false;
         }
     }
 
-    public function orderUpdateStatus(array $data): Bool{
-        $this->query('UPDATE public.orders SET status_order=:status WHERE id_order = :id;');
+    public function showActivePart(int $id) : Array|Bool{
+        $this->query('SELECT departure_time_active, arrival_time_active FROM public.routes WHERE routes.id_route = :routeID');
+
+        $this->bind(':routeID', $id);
+
+        $row = $this->singleArray();
+    
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateRouteDepartureTime(array $data): Bool{
+        $this->query('UPDATE public.routes SET departure_time_active = NOW() WHERE id_route = :id;');
         
         $this->bind(':id', $data['id']);
-        $this->bind(':status', $data['status']);
         
         if($this->execute()){
             return true;
@@ -78,5 +76,28 @@ class OrderOperatorModel extends AbstractModel{
         }
     }
 
+    public function updateRouteArrivalTime(array $data): Bool{
+        $this->query('UPDATE public.routes SET arrival_time_active = NOW() WHERE id_route = :id;');
+        
+        $this->bind(':id', $data['id']);
+        
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
+    public function orderUpdateStatus(int $id, string $status): Bool{
+        $this->query('UPDATE public.orders SET status_order=:status WHERE id_order = :id;');
+        
+        $this->bind(':id', $id);
+        $this->bind(':status', $status);
+        
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

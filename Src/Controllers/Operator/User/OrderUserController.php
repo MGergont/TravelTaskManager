@@ -16,8 +16,8 @@ class OrderUserController extends AbstractController{
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             $orderOperatorModel = new OrderOperatorModel($this->configuration);
 
-            if ($orderOperatorModel->showOrdersOperator()) {
-                $this->paramView['orders'] = $this->orderParse($orderOperatorModel->showOrdersOperator());
+            if ($orderOperatorModel->showOrdersOperator($_SESSION['userId'])) {
+                $this->paramView['orders'] = $this->orderParse($orderOperatorModel->showOrdersOperator($_SESSION['userId']));
             }
 
             (new View())->renderOperator("orderUser", $this->paramView, "user");
@@ -34,6 +34,11 @@ class OrderUserController extends AbstractController{
         
         if (empty($data['id'])) {
             flash("orderUser", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            $this->redirect("/user/order");
+        }
+
+        if(!empty($orderOperatorModel->showActiveOrdersOperator($_SESSION['userId']))){
+            flash("orderUser", "Masz już aktywne zlecenie", "alert-login alert-login--error");  
             $this->redirect("/user/order");
         }
 
