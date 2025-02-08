@@ -65,7 +65,7 @@
 						<br>
 						<form action="/user-dashboard/reject" method="post">
 							<input type="hidden" id="id_order" value="<?php echo $params['orders']['id_order']; ?>" name="id_order">
-							<button class="button-form button-form--negative">Anuluj</button>
+							<button class="button button--negative">Anuluj</button>
 						</form>
 						<?php if (!empty($params['orders'])) : ?>
 							<?php switch ($_SESSION['action']) {
@@ -76,7 +76,7 @@
 										<br>---------------<br>
 										<br>
 										<?php echo $params['orders']['origin_location']; ?>
-										<button class="button-form button-form--positive">Confirm</button>
+										<button class="button button--positive">Confirm</button>
 										</form>
 								<?php break;
 								case 'stop': ?>
@@ -85,7 +85,7 @@
 										<input type="hidden" id="id_route" value="<?php echo $params['orders']['id_route']; ?>" name="id_route">
 										<br>---------------<br>
 										<?php echo $params['orders']['destination_location']; ?>
-										<button class="button-form button-form--positive">Confirm</button>
+										<button class="button button--positive">Confirm</button>
 										</form>
 								<?php break;
 								default: ?>

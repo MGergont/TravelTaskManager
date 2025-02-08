@@ -61,8 +61,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -73,8 +73,8 @@
 			<form action="/manager/order/dell" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -117,8 +117,8 @@
 					<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -169,7 +169,7 @@
 				<?php flash("addOrder"); ?>
 			<?php endif; ?>
 			<h2 class="content__title">Dodawanie zlecenia delegacji</h2>
-			<a href="/manager/order"><button name="submit" class="button-form button-form--positive">
+			<a href="/manager/order"><button name="submit" class="button button--positive">
 					<< </button></a>
 			<?php switch ($_SESSION['orderStatus']) {
 				case 'start': ?>
@@ -200,7 +200,7 @@
 								<input type="date" id="date_due" name="date_due" class="field__input" required>
 							</div>
 						</div>
-						<button type="submit" class="button-form button-form--positive">Dodaj</button>
+						<button type="submit" class="button button--positive">Dodaj</button>
 					</form>
 				<?php break;
 				case 'location': ?>
@@ -265,9 +265,9 @@
 								<input type="datetime-local" id="departure_date_B" name="departure_date_B" class="field__input">
 							</div>
 						</div>
-						<button type="submit" class="button-form button-form--positive">Dodaj</button>
-						<a href="/manager/order/clean" class="button-form button-form--positive">Anuluj</a>
-						<a class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</a>
+						<button type="submit" class="button button--positive">Dodaj</button>
+						<a href="/manager/order/clean" class="button button--positive">Anuluj</a>
+						<a class="button button--positive" onclick="addLocation()">Dodaj lokalizacje</a>
 					</form>
 				<?php break;
 				case 'location2': ?>
@@ -301,9 +301,9 @@
 								<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 							</div>
 						</div>
-						<button type="submit" class="button-form button-form--positive">Dodaj</button>
-						<a href="/manager/order/clean" class="button-form button-form--positive">Koniec</a>
-						<a class="button-form button-form--positive" onclick="addLocation()">Dodaj lokalizacje</a>
+						<button type="submit" class="button button--positive">Dodaj</button>
+						<a href="/manager/order/clean" class="button button--positive">Koniec</a>
+						<a class="button button--positive" onclick="addLocation()">Dodaj lokalizacje</a>
 					</form>
 				<?php break;
 				default: ?>

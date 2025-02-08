@@ -61,8 +61,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -73,8 +73,8 @@
 			<form action="/manager/location/del" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -127,8 +127,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -176,7 +176,7 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title">Lokalizacje</h2>
-			<button class="button-form button-form--positive" onclick="addLocation()">Dodaj</button>
+			<button class="button button--positive" onclick="addLocation()">Dodaj</button>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>

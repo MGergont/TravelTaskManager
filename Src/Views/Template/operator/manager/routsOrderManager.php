@@ -39,8 +39,8 @@
 						<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 					</div>
 				</div>
-				<button type="submit" class="button-form button-form--positive">Dodaj</button>
-				<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
+				<button type="submit" class="button button--positive">Dodaj</button>
+				<a class="button button--negative" id="cancel-button">Cancel</a>
 			</form>
 		</div>
 	</div>
@@ -50,8 +50,8 @@
 			<form action="/manager/order/dellMain" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -62,8 +62,8 @@
 			<form action="/manager/order/routeDellMain" method="post">
 				<input type="hidden" id="del_route_id" name="id">
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button4">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button4">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -122,8 +122,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -163,8 +163,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button5">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button5">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -212,7 +212,7 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title">Zlecenia Delegacji</h2>
-			<a href="/manager/order/add"><button name="submit" class="button-form button-form--positive">Dodaj zlecenie delegacji</button></a>
+			<a href="/manager/order/add"><button name="submit" class="button button--positive">Dodaj zlecenie delegacji</button></a>
 			<div class="user-panel">
 				<div class="accordion">
 					<div class="accordion__title">
@@ -272,13 +272,13 @@
 									</table>
 									<div class="accordion__options">
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive" onclick="addRoute('<?php echo $order['id_order']; ?>')">Dodaj punkt</button>
+											<button type="submit" name="submit" class="button button--positive" onclick="addRoute('<?php echo $order['id_order']; ?>')">Dodaj punkt</button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')">Usuń zlecenie</button>
+											<button type="submit" name="submit" class="button button--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')">Usuń zlecenie</button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive" onclick="editOrder(
+											<button type="submit" name="submit" class="button button--positive" onclick="editOrder(
 											'<?php echo $order['id_order']; ?>',
 											'<?php echo $order['order_name']; ?>',
 											'<?php echo $order['assigned_to']; ?>',

@@ -39,8 +39,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -51,8 +51,8 @@
 			<form action="/operator-del-profile" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -128,8 +128,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
 		</div>

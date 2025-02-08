@@ -28,7 +28,7 @@
                 <label for="password" class="form__label">Password</label>
                 <input type="password" name="pwd" id="password" class="form__input" placeholder="Enter your password" autocomplete="password" required>
             </div>
-            <button type="submit" class="button-form button-form--positive">Login</button>
+            <button type="submit" class="button button--positive">Login</button>
         </form>
     </div>
 </body>

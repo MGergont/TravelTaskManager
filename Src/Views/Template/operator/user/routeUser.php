@@ -69,7 +69,7 @@
                         		<label for="StopRoute" class="field__label">Stop Route</label>
                         		<input type="text" id="StopRoute" name="StopRoute" class="field__input" placeholder="StopRoute" required>
                     		</div>
-							<button type="submit" name="submit" class="button-form button-form--positive">Start</button>
+							<button type="submit" name="submit" class="button button--positive">Start</button>
 						</form>
 					<?php break; case 'next':?>
 						<form method="post" action="/user/route/castom-next">
@@ -85,12 +85,12 @@
                         		<label for="StopRoute2" class="field__label">Stop location</label>
                         		<input type="text" id="StopRoute2" name="StopRoute" class="field__input" placeholder="Stop location" required>
                     		</div>
-							<button type="submit" name="submit" class="button-form button-form--positive">Next</button><br>
-							<a href="/user/route/castom-end" class="button-form button-form--negative">Stop</a>
+							<button type="submit" name="submit" class="button button--positive">Next</button><br>
+							<a href="/user/route/castom-end" class="button button--negative">Stop</a>
 						</form>
 					<?php break;case 'runtime':?>
 						<p>Trasa trwa...</p>
-						<a href="/user/route/castom-stop"><button name="submit" class="button-form button-form--negative">Stop</button></a>
+						<a href="/user/route/castom-stop"><button name="submit" class="button button--negative">Stop</button></a>
 					<?php break;default:?>
 						<p>Witaj! Twoja rola jest nieznana.</p>
 				<?php break;}?>
@@ -107,7 +107,7 @@
 						<div class="field">
                     		<input type="text" name="descript" class="field__input" placeholder="Opis" required>
                     	</div>
-						<button type="submit" name="submit" class="button-form button-form--positive">Dodaj</button>
+						<button type="submit" name="submit" class="button button--positive">Dodaj</button>
 					</form>
 				<?php endif; ?>
 			</div>

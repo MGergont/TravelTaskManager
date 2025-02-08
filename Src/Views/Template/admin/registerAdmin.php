@@ -130,7 +130,7 @@
                         <input type="password" id="repeatPwd" name="repeatPwd" class="field__input" placeholder="Powtórz hasło" required>
                     </div>
                 </div>
-                <button type="submit" class="button-form button-form--positive">Dodaj</button>
+                <button type="submit" class="button button--positive">Dodaj</button>
             </form>
         </main>
     </div>

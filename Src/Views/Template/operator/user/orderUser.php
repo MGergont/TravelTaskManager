@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
+					<a class="button button--negative" id="cancel-button">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -54,8 +54,8 @@
 					<h3>Data realizacji: </h3><h3 id="date_due"></h3><br>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -163,7 +163,7 @@
 									</table>
 									<div class="accordion__options">
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive" onclick="editOrder(
+											<button type="submit" name="submit" class="button button--positive" onclick="editOrder(
 											'<?php echo $order['id_order']; ?>',
 											'<?php echo $order['order_name']; ?>',
 											'<?php echo $order['due_date']; ?>',
