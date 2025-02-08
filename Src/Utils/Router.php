@@ -56,7 +56,8 @@ class Router {
             $controllerInstance = new $controller($this->request);
             $controllerInstance->$method();
         } else {
-            echo "Controller or method not found";
+            header('Location: http://' . $_SERVER['HTTP_HOST'] . "/", true,);
+            exit;
         }
     }
 }

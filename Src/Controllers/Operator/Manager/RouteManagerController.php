@@ -86,6 +86,7 @@ class RouteManagerController extends AbstractController{
             $this->redirect("/manager/route");
         }
 
+        //TODO Argument #1 ($string) must be of type string, int given in /var/www/testtravel.local
         // if($this->IfMaxLength($data, 250)){
         //     flash("route", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
         //     $this->redirect("/manager/route");
@@ -99,7 +100,7 @@ class RouteManagerController extends AbstractController{
 
         if($routeMod->addCost($data, $_SESSION['userId'])){
             flash("route", "Udało się ", "alert-login alert-login--confirm");
-            $this->redirect("/user/route");
+            $this->redirect("/manager/route");
         }else{
             flash("route", "Nie udało się dodać", "alert-login alert-login--error");
             $this->redirect("/manager/route");

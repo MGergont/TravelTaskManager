@@ -1,0 +1,64 @@
+W sekcji zlecenia delegacji usunąć edytuj punktyu i dodać pocję do listy opcje podglądu i edycji oraz usuwania (Standard).
+
+dodać przycisk do uwuwania zlecenia.(głuwne menu)
+
+dodać przycisk do edyscji mianowicie nazwa data przypisany użytkownik status(głuwne menu)
+
+
+
+
+Kreator trasy
+-punkt startowy
+    -wybur pomiędzy adresem domowym i z listy lub przycisk do dodawania adresu który tak jak w add location wywołuje modala z dodawaniem lokacji. 
+    data wyjazdu(opcjonalnie)
+-punkt końcowy
+    -wybieranay z listy lub przycisk do dodawania adresu który tak jak w add location wywołuje modala z dodawaniem lokacji.
+    -data przyjazdu(opcjonalnie);
+    -data odjazdu(opcjonalnie);
+
+-przycisk next który wyświetla wprowadzone dane i dodajepust formulaż na dole do wprowadzania kolejnych danych  punkt b     
+
+Po naciśnięciu dodaje się taka trasa do bazy
+z lewej strony wyświetlają się lista z wprowadzonymiu trasami Punkt A - Punkt B i z opcjami edycja usunięcie podgląd tak jak to jest wszędzie
+
+pojawia się trzeci case formularza z dodaniem kolejnej lokacji standardowo albo z listy albo poprzez ręczne wprowadzanie. 
+i znowu albo klikamy koniec dodanie lokalizacjio i konice konfiga albo next zapętlnie
+
+sktypt pobiera ostatni punkt
+
+Rozwiązanie problemu z lokalizacją
+podczas wybrania lokalizacji domowej skrypt przepisuje pobrane dane z lokalizacji adresu do tablicy location w nazwie wpisując home adress ID po tym będziemy identyufikować do kogo należy bez releacji
+
+Edycja podczas dodawania trasy
+zmiana całego punktu czy danych punktu (lepiej dwie listy i zmianę punktu) to samo dodać do głuwnego menu 
+
+Sprawdzić zabaezpieczenmie przed pustym wyświetalniem
+
+Poprawa wydajności 
+Zmieniś sposub walidacji czy zapytanie udało się wykonać
+if (($result = $this->showLocationB($id)) !== false) {
+    // Funkcja zwróciła poprawną wartość
+    echo "ID lokalizacji docelowej: " . $result;
+} else {
+    // Funkcja zwróciła false
+    echo "Nie znaleziono lokalizacji docelowej dla podanego zamówienia.";
+}
+
+usuwanie 2 do jedneko commuita
+
+Przy edycji w lista dodać aby wybierała się wartość ta ktura jest aktaualie wybrana 
+
+poprawić nazwenictwo klas w RoutsOrderController a najlepiej przerobić na dwa osobne kontrolery
+
+dodać widok od strony urzytkownika tabela 
+
+do głuwnego ekranu dodać info o aktualnie przyjętym zleceniu 
+
+do routes dodać kolejną tebele z danymi wykonania realne godziny przyjazdu i odjazdu lub dodać kolumy do tabeli route z aktualnymi danymi
+
+musza być dwa rużne formularze start i do w trakcie jazdy kierujące do dwuch różnych metod na swichu
+
+musi być przycisk z rezygnacją zmieniający satus na foult
+
+jeśli sesja nie istnieje to wpisz start
+jeśli sesja jest rużna niż stop to wpisz start

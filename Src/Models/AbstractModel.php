@@ -10,18 +10,18 @@ use PDOException;
 
 abstract class AbstractModel
 {
-  
+	
 	protected PDO $dbh;
 	private $error;
 	private $stmt;
-
+	
 	public function __construct(array $config)
 	{
 		try {
 		$this->validateConfig($config);
 		$this->createConnection($config);
 		} catch (PDOException $e) {
-		
+			echo "błąd powiązania pliku konfiguracji";
 		}
 	}
 
@@ -43,6 +43,10 @@ abstract class AbstractModel
 		} catch (PDOException $e) {
 			$this->error = $e->getMessage();
 			echo $this->error;
+
+			// TODO baza danych offline
+			// header('Location: http://' . $_SERVER['HTTP_HOST'] . "/access-denied", true, 500);
+        	// exit;
 		}
 	}
 

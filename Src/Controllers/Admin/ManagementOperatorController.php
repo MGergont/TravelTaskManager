@@ -19,7 +19,9 @@ class ManagementOperatorController extends AbstractController
 
             $arrayUsers = $dashboardAdminModel->showOperators();
 
-            $this->paramView['operators'] = $this->foramtDaty($arrayUsers);
+            if (!empty($arrayUsers)) {
+                $this->paramView['operators'] = $this->foramtDaty($arrayUsers);
+            }
 
             (new View())->renderAdmin("managementOperator", $this->paramView, "admin");
         } else {

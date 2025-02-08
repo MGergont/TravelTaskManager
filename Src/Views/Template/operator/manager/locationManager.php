@@ -51,13 +51,13 @@
 				<div class="add-modal__coord">
 					<div class="field">
 						<label for="add_latitude" class="field__label">Wysokość geograficzna</label>
-						<input type="number" id="add_latitude" name="add_latitude" class="field__input" placeholder="Wysokość geograficzna" >
+						<input type="text" id="add_latitude" name="add_latitude" class="field__input" placeholder="Wysokość geograficzna" >
 					</div>
 				</div>
 				<div class="add-modal__coord">
 					<div class="field">
 						<label for="add_longitude" class="field__label">Szerokość geograficzna</label>
-						<input type="number" id="add_longitude" name="add_longitude" class="field__input" placeholder="Szerokość geograficzna" >
+						<input type="text" id="add_longitude" name="add_longitude" class="field__input" placeholder="Szerokość geograficzna" >
 					</div>
 				</div>
 				<div class="modal__actions">
@@ -117,13 +117,13 @@
 				<div class="edit-modal__coord">
 					<div class="field">
 						<label for="edit_latitude" class="field__label">Wysokość geograficzna</label>
-						<input type="number" id="edit_latitude" name="edit_latitude" class="field__input" placeholder="Wysokość geograficzna" >
+						<input type="text" id="edit_latitude" name="edit_latitude" class="field__input" placeholder="Wysokość geograficzna" >
 					</div>
 				</div>
 				<div class="edit-modal__coord">
 					<div class="field">
 						<label for="edit_longitude" class="field__label">Szerokość geograficzna</label>
-						<input type="number" id="edit_longitude" name="edit_longitude" class="field__input" placeholder="Szerokość geograficzna" >
+						<input type="text" id="edit_longitude" name="edit_longitude" class="field__input" placeholder="Szerokość geograficzna" >
 					</div>
 				</div>
 				<div class="modal__actions">
@@ -167,6 +167,7 @@
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
 					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
+					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
 					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
 					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
 					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>

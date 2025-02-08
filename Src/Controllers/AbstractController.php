@@ -183,4 +183,12 @@ abstract class AbstractController
 
         return false;
     }
+
+    protected function ValidNumber($data) : Bool {
+        if (!preg_match('/^[0-9]*$/', $data)) { 
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
