@@ -63,50 +63,48 @@
   display: flex;
   flex-direction: column;
 }
-.form__field {
-  margin-bottom: 1.5rem;
-}
-.form__label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-family: "OpenSans_normal";
-  color: #555;
-}
-.form__input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-.form__input:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}
 
 .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 .field__label {
-  display: block;
-  margin-bottom: 0.5rem;
   font-size: 1rem;
-  font-family: "OpenSans_normal";
-  color: #555;
+  font-weight: 600;
+  font-family: "OpenSans_normal", sans-serif;
+  color: #444;
+  transition: color 0.3s ease;
 }
 .field__input {
   width: 100%;
   padding: 0.75rem;
   border: 2px solid #ddd;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-family: "OpenSans_normal", sans-serif;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .field__input:focus {
   border-color: var(--primary-color);
   outline: none;
+}
+.field__input::-moz-placeholder {
+  color: #999;
+  font-size: 0.95rem;
+}
+.field__input::placeholder {
+  color: #999;
+  font-size: 0.95rem;
+}
+.field--error .field__input {
+  border-color: var(--negative);
+  background-color: rgba(255, 0, 0, 0.05);
+}
+.field--error .field__label {
+  color: var(--negative);
 }
 
 .select-wrapper {
@@ -228,44 +226,14 @@
   font-size: 16px;
   margin-bottom: 20px;
 }
-.modal__form-group {
-  margin-bottom: 15px;
-}
-.modal__label {
-  margin-left: 10px;
-  font-size: 14px;
-}
 .modal__checkbox {
   transform: scale(1.2);
-}
-.modal__input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-top: 5px;
 }
 .modal__actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
-}
-.modal__button {
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  border: none;
-}
-.modal__button--confirm {
-  background-color: #007bff;
-  color: white;
-}
-.modal__button--cancel {
-  background-color: #6c757d;
-  color: white;
 }
 .modal__password-section {
   display: none;

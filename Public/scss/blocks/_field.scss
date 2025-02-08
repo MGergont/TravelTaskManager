@@ -1,25 +1,46 @@
-.field{
-    margin-bottom: 1.5rem;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  
+  &__label {
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: "OpenSans_normal", sans-serif;
+      color: #444;
+      transition: color 0.3s ease;
+  }
 
-    &__label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-        font-family: "OpenSans_normal";
-        color: #555;
-      }
-    
-      &__input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 2px solid #ddd;
-        border-radius: 4px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
-    
-        &:focus {
-          border-color:  var(--primary-color);
+  &__input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-family: "OpenSans_normal", sans-serif;
+      font-size: 1rem;
+      background-color: #fff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+          border-color: var(--primary-color);
           outline: none;
-        }
       }
+
+      &::placeholder {
+          color: #999;
+          font-size: 0.95rem;
+      }
+  }
+  // TODO zbędny bajer
+  &--error {
+      .field__input {
+          border-color: var(--negative);
+          background-color: rgba(255, 0, 0, 0.05);
+      }
+
+      .field__label {
+          color: var(--negative);
+      }
+  }
 }

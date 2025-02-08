@@ -29,13 +29,13 @@
 					<label for="change-password" class="modal__label">Change password</label>
 				</div>
 				<div class="modal__password-section" id="password-section" style="display: none;">
-					<div class="modal__form-group">
-						<label for="new-password" class="modal__label">New Password</label>
-						<input type="password" id="new-password" class="modal__input" value="Enter new password" name="pwd">
+					<div class="field">
+						<label for="new-password" class="field__label">New Password</label>
+						<input type="password" id="new-password" class="field__input" value="Enter new password" name="pwd">
 					</div>
-					<div class="modal__form-group">
-						<label for="confirm-password" class="modal__label">Confirm Password</label>
-						<input type="password" id="confirm-password" class="modal__input" value="Confirm new password" name="pwd_repeat">
+					<div class="field">
+						<label for="confirm-password" class="field__label">Confirm Password</label>
+						<input type="password" id="confirm-password" class="field__input" value="Confirm new password" name="pwd_repeat">
 					</div>
 				</div>
 				<div class="modal__actions">

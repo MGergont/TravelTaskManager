@@ -20,13 +20,13 @@
         <h2 class="login-panel__title">Login Admin</h2>
         <h3 class="login-panel__sub-title">Dashboard</h3>
         <form class="form" action="/admin" method="POST">
-            <div class="form__field">
-                <label for="login" class="form__label">Email</label>
-                <input type="text" id="login" name="login" class="form__input" placeholder="Enter your email" autocomplete="login" required>
+            <div class="field">
+                <label for="login" class="field__label">Email</label>
+                <input type="text" id="login" name="login" class="field__input" placeholder="Enter your email" autocomplete="login" required>
             </div>
-            <div class="form__field">
-                <label for="password" class="form__label">Password</label>
-                <input type="password" name="pwd" id="password" class="form__input" placeholder="Enter your password" autocomplete="password" required>
+            <div class="field">
+                <label for="password" class="field__label">Password</label>
+                <input type="password" name="pwd" id="password" class="field__input" placeholder="Enter your password" autocomplete="password" required>
             </div>
             <button type="submit" class="button button--positive">Login</button>
         </form>
