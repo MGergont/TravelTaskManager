@@ -32,10 +32,10 @@ class ManagementLocationController extends AbstractController
         ];
     
         if ($managementLocationMod->locationDell((int) $data['id'])) {
-            flash("locationManagment", "Konto zostało usunięte", "alert-login alert-login--confirm");
+            flash("locationManagment", "Konto zostało usunięte", "alert alert--confirm");
             $this->redirect("/manager/location");
         } else {
-            flash("locationManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("locationManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/location");
         }
     }
@@ -55,45 +55,45 @@ class ManagementLocationController extends AbstractController
         ];
 
         if($this->IfEmpty($data)){
-            flash("locationManagment", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            flash("locationManagment", "Nie uzupełniono odpowiednich formularzy", "alert alert--error");           
             $this->redirect("/manager/location");
         };
         if($this->IfMaxLength($data, 30)){
-            flash("locationManagment", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("locationManagment", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/manager/location");
         };
         //TODO bez znaków specjalnych
         if($this->IfSpecialCharacters($data['name'])){
-            flash("locationManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         //TODO Walidacjaj numeru domu
         if($this->ValidHouseNumber($data['houseNumber'])){
-            flash("locationManagment", "Niepoprawny numer mieszkania", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawny numer mieszkania", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         if($this->IfSpecialCharacters($data['street'])){
-            flash("locationManagment", "Niepoprawne znaki w nazwie ulicy", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w nazwie ulicy", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         if($this->IfSpecialCharacters($data['town'])){
-            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         //TODO Walidacja kodu pocztowego XX-XXX
         if($this->ValidZipCode($data['zipCode'])){
-            flash("locationManagment", "Niepoprawny format kodu pocztowego", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawny format kodu pocztowego", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         //TODO Walidacja nazwy miasta
         if($this->IfSpecialCharacters($data['city'])){
-            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         
         if(!empty($data['latitude']) && !empty($data['longitude'])){
             if($this->ValidCoordinates($data['latitude'], $data['longitude'])){
-                flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+                flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
                 $this->redirect("/manager/location");
             }
         }else{
@@ -102,10 +102,10 @@ class ManagementLocationController extends AbstractController
         }
 
         if ($managementLocationMod->locationUpdate($data)) {
-            flash("locationManagment", "Lokalizacja została zmodyfikowane", "alert-login alert-login--confirm");
+            flash("locationManagment", "Lokalizacja została zmodyfikowane", "alert alert--confirm");
             $this->redirect("/manager/location");
         } else {
-            flash("locationManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("locationManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/location");
         }
     }
@@ -124,45 +124,45 @@ class ManagementLocationController extends AbstractController
         ];
 
         if($this->IfEmpty($data)){
-            flash("locationManagment", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            flash("locationManagment", "Nie uzupełniono odpowiednich formularzy", "alert alert--error");           
             $this->redirect("/manager/location");
         };
         if($this->IfMaxLength($data, 30)){
-            flash("locationManagment", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("locationManagment", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/manager/location");
         };
         //TODO bez znaków specjalnych
         if($this->IfSpecialCharacters($data['name'])){
-            flash("locationManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         //TODO Walidacjaj numeru domu
         if($this->ValidHouseNumber($data['houseNumber'])){
-            flash("locationManagment", "Niepoprawny numer mieszkania", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawny numer mieszkania", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         if($this->IfSpecialCharacters($data['street'])){
-            flash("locationManagment", "Niepoprawne znaki w nazwie ulicy", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w nazwie ulicy", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         if($this->IfSpecialCharacters($data['town'])){
-            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         //TODO Walidacja kodu pocztowego XX-XXX
         if($this->ValidZipCode($data['zipCode'])){
-            flash("locationManagment", "Niepoprawny format kodu pocztowego", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawny format kodu pocztowego", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         //TODO Walidacja nazwy miasta
         if($this->IfSpecialCharacters($data['city'])){
-            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/manager/location");
         }
         
         if(!empty($data['latitude']) && !empty($data['longitude'])){
             if($this->ValidCoordinates($data['latitude'], $data['longitude'])){
-                flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+                flash("locationManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
                 $this->redirect("/manager/location");
             }
         }else{
@@ -171,10 +171,10 @@ class ManagementLocationController extends AbstractController
         }
 
         if ($managementLocationMod->locationAdd($data)) {
-            flash("locationManagment", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");
+            flash("locationManagment", "Konto zostało zmodyfikowane", "alert alert--confirm");
             $this->redirect("/manager/location");
         } else {
-            flash("locationManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("locationManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/location");
         }
     }

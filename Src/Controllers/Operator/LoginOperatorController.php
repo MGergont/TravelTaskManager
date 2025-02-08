@@ -30,17 +30,17 @@ class LoginOperatorController extends AbstractController{
         
 
         if(empty($data['login']) || empty($data['userPwd'])){
-            flash("loginOperator", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            flash("loginOperator", "Nie uzupełniono odpowiednich formularzy", "alert alert--error");           
             $this->redirect("/");
         }
 
         if($this->IfMaxLength($data,  30)){
-            flash("loginOperator", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("loginOperator", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/");
         };
 
         if($this->IfSpecialAndPolishCharacters($data['login'])){
-            flash("loginOperator", "Niepoprawne znaki w nazwie", "alert-login alert-login--error");           
+            flash("loginOperator", "Niepoprawne znaki w nazwie", "alert alert--error");           
             $this->redirect("/");
         }
 
@@ -51,13 +51,13 @@ class LoginOperatorController extends AbstractController{
             $hashedPassword = $result->pwd;
 
             if($this->IfStatus($result->user_status, "block")){
-                flash("loginOperator", "Konto zostało zablokowane", "alert-login alert-login--error");           
+                flash("loginOperator", "Konto zostało zablokowane", "alert alert--error");           
                 $this->redirect("/");
             }
 
             if($this->LoginErrorValid((int)$result-> login_error, 3)){
                 $loginMod->updateStatusAccount($result->id_operator, "block");
-                flash("loginOperator", "Konto zostało zablokowane", "alert-login alert-login--error");           
+                flash("loginOperator", "Konto zostało zablokowane", "alert alert--error");           
                 $this->redirect("/");
             }
 
@@ -68,11 +68,11 @@ class LoginOperatorController extends AbstractController{
                 $this->createUserSession($result);
             } else {
                 $loginMod->updateLoginError($result->id_operator, $result->login_error + 1);
-                flash("loginOperator", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
+                flash("loginOperator", "Niepoprawny login lub hasło", "alert alert--error");  
                 $this->redirect("/");
             }
         } else {
-            flash("loginOperator", "Niepoprawny login lub hasło tutaj", "alert-login alert-login--error");  
+            flash("loginOperator", "Niepoprawny login lub hasło tutaj", "alert alert--error");  
             $this->redirect("/");
         }
         

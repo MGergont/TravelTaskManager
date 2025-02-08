@@ -13,7 +13,7 @@
 </head>
 <body>
     <?php if(!empty($_SESSION["loginOperator"])) : ?>
-        <?php flash("loginOperator"); ?><i class="icon-cancel"></i>
+        <?php flash("loginOperator"); ?>
     <?php endif; ?>
     <div class="login-panel">
         <img class="login-panel__img" src="/Public/image/logo_login2.png" />

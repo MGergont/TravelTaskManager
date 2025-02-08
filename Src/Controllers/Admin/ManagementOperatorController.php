@@ -53,9 +53,9 @@ class ManagementOperatorController extends AbstractController
 
         if (!empty($data['pwdUnlock']) && $data['pwdUnlock'] === "on") {
             if ($dashboardAdminMod->accountUnloc("active", (int) $data['id'])) {
-                flash("operatorsManagment", "Konto zostało odblokowane", "alert-login alert-login--confirm");
+                flash("operatorsManagment", "Konto zostało odblokowane", "alert alert--confirm");
             } else {
-                flash("operatorsManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+                flash("operatorsManagment", "Coś poszło nie tak", "alert alert--error");
                 $this->redirect("/operators");
             }
         }
@@ -63,22 +63,22 @@ class ManagementOperatorController extends AbstractController
         if (!empty($data['pwdChange']) && $data['pwdChange'] === "on") {
 
             if ($this->ValidPwd($data['pwd'], $data['pwdRepeat'])) {
-                flash("operatorsManagment", "Niepoprawne hasła", "alert-login alert-login--error");
+                flash("operatorsManagment", "Niepoprawne hasła", "alert alert--error");
                 $this->redirect("/operators");
             } else {
                 $data['pwd'] = password_hash($data['pwd'], PASSWORD_DEFAULT);
 
                 if ($dashboardAdminMod->pwdChange($data['pwd'], (int) $data['id'])) {
-                    flash("operatorsManagment", "Hasło zostało zmienione", "alert-login alert-login--confirm");
+                    flash("operatorsManagment", "Hasło zostało zmienione", "alert alert--confirm");
                 } else {
-                    flash("operatorsManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+                    flash("operatorsManagment", "Coś poszło nie tak", "alert alert--error");
                     $this->redirect("/operators");
                 }
             }
         }
 
         if (empty($data['pwdUnlock']) || empty($data['pwdChange']) || empty($data['pwd']) || empty($data['pwdRepeat'])) {
-            flash("operatorsManagment", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");
+            flash("operatorsManagment", "Nie uzupełniono odpowiednich formularzy", "alert alert--error");
             $this->redirect("/operators");
         }
 
@@ -92,10 +92,10 @@ class ManagementOperatorController extends AbstractController
         ];
     
         if ($dashboardAdminMod->accountDell((int) $data['id'])) {
-            flash("operatorsManagment", "Konto zostało usunięte", "alert-login alert-login--confirm");
+            flash("operatorsManagment", "Konto zostało usunięte", "alert alert--confirm");
             $this->redirect("/operators");
         } else {
-            flash("operatorsManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("operatorsManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/operators");
         }
     }
@@ -119,79 +119,79 @@ class ManagementOperatorController extends AbstractController
         ];
 
         if($this->IfEmpty($data)){
-            flash("operatorsManagment", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Nie uzupełniono odpowiednich formularzy", "alert alert--error");           
             $this->redirect("/operators");
         };
 
         if($this->IfMaxLength($data, 30)){
-            flash("operatorsManagment", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/operators");
         };
 
         //TODO bez znaków specjalnych i polskich
         if($this->IfSpecialAndPolishCharacters($data['login'])){
-            flash("operatorsManagment", "Niepoprawne znaki w nazwie", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawne znaki w nazwie", "alert alert--error");           
             $this->redirect("/operators");
         }
         //TODO bez znaków specjalnych
         if($this->IfSpecialCharacters($data['name'])){
-            flash("operatorsManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/operators");
         }
         if($this->IfSpecialCharacters($data['lastName'])){
-            flash("operatorsManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/operators");
         }
         //TODO ralidacja numeru telefonu
         if($this->ValidPhoneNumber($data['phoneNumber'])){
-            flash("operatorsManagment", "Niepoprawny numer telefonu", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawny numer telefonu", "alert alert--error");           
             $this->redirect("/operators");
         }
         //TODO walidacj adresu email
         if($this->ValidEmail($data['email'])){
-            flash("operatorsManagment", "Niepoprawny adres email", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawny adres email", "alert alert--error");           
             $this->redirect("/operators");
         }
         //TODO Walidacjaj numeru domu
         if($this->ValidHouseNumber($data['houseNumber'])){
-            flash("operatorsManagment", "Niepoprawny numer mieszkania", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawny numer mieszkania", "alert alert--error");           
             $this->redirect("/operators");
         }
         //TODO Walidacja tylko przeciwko znaków specjalnych
         if($this->IfSpecialCharacters($data['street'])){
-            flash("operatorsManagment", "Niepoprawne znaki w nazwie ulicy", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawne znaki w nazwie ulicy", "alert alert--error");           
             $this->redirect("/operators");
         }
         if($this->IfSpecialCharacters($data['town'])){
-            flash("operatorsManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/operators");
         }
         //TODO Walidacja kodu pocztowego XX-XXX
         if($this->ValidZipCode($data['zipCode'])){
-            flash("operatorsManagment", "Niepoprawny format kodu pocztowego", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawny format kodu pocztowego", "alert alert--error");           
             $this->redirect("/operators");
         }
         //TODO Walidacja nazwy miasta
         if($this->IfSpecialCharacters($data['city'])){
-            flash("operatorsManagment", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/operators");
         }
 
         if($this->ValidPrivileges($data['privileges'])){
-            flash("operatorsManagment", "Nieprawidłowe wartości w uprawnieniach", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Nieprawidłowe wartości w uprawnieniach", "alert alert--error");           
             $this->redirect("/operators");
         }
 
         if($this->ValidStatus($data['status'])){
-            flash("operatorsManagment", "Nieprawidłowe wartości w statusie konta", "alert-login alert-login--error");           
+            flash("operatorsManagment", "Nieprawidłowe wartości w statusie konta", "alert alert--error");           
             $this->redirect("/operators");
         }
     
         if ($dashboardAdminMod->accountUpdate($data)) {
-            flash("operatorsManagment", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");
+            flash("operatorsManagment", "Konto zostało zmodyfikowane", "alert alert--confirm");
             $this->redirect("/operators");
         } else {
-            flash("operatorsManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("operatorsManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/operators");
         }
     }

@@ -33,22 +33,22 @@ class OrderUserController extends AbstractController{
         ];
         
         if (empty($data['id'])) {
-            flash("orderUser", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderUser", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/user/order");
         }
 
         if(!empty($orderOperatorModel->showActiveOrdersOperator($_SESSION['userId']))){
-            flash("orderUser", "Masz już aktywne zlecenie", "alert-login alert-login--error");  
+            flash("orderUser", "Masz już aktywne zlecenie", "alert alert--error");  
             $this->redirect("/user/order");
         }
 
         $data['status'] = "in progress";
 
         if ($orderOperatorModel->orderUpdateStatus($data)) {
-            flash("orderUser", "Trasa została przyjęta do realizacji", "alert-login alert-login--confirm");
+            flash("orderUser", "Trasa została przyjęta do realizacji", "alert alert--confirm");
             $this->redirect("/user/order");
         } else {
-            flash("orderUser", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderUser", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/user/order");
         }
     }

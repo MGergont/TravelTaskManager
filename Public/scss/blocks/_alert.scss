@@ -1,20 +1,22 @@
-.alert-login{
-    position:absolute;;
+.alert{
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
     color: white;
     font-size: 1rem;
+    font-family: 'OpenSans_normal', sans-serif;
     z-index: 10;
     
     &--confirm{
-        // color: var(--positive-hover);
         background-color: var(--positive);
         border: 1px solid var(--positive-hover);
     }
 
     &--error{
-        // color: var(--negative-hover);
         background-color: var(--negative);
         border: 1px solid var(--negative-hover);
     }
