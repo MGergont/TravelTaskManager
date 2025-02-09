@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="/Public/fonts/icon/fontello/css/fontello.css">
 
 </head>
-
 <body>
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
@@ -21,21 +20,21 @@
 			<form action="/admin-pwd-unlock" method="post">
 				<input type="hidden" id="pwd_id" name="id">
 				<div class="modal__form-group">
-					<input type="checkbox" id="unlock-account" class="modal__checkbox" name="pwd_unlock">
 					<label for="unlock-account" class="modal__label">Unlock account</label>
+					<input type="checkbox" id="unlock-account" name="pwd_unlock" class="modal__checkbox">
 				</div>
 				<div class="modal__form-group">
-					<input type="checkbox" id="change-password" class="modal__checkbox" name="pwd_change">
 					<label for="change-password" class="modal__label">Change password</label>
+					<input type="checkbox" id="change-password" name="pwd_change" class="modal__checkbox">
 				</div>
 				<div class="modal__password-section" id="password-section" style="display: none;">
 					<div class="field">
 						<label for="new-password" class="field__label">New Password</label>
-						<input type="password" id="new-password" class="field__input" value="Enter new password" name="pwd">
+						<input type="password" id="new-password" name="pwd" class="field__input">
 					</div>
 					<div class="field">
 						<label for="confirm-password" class="field__label">Confirm Password</label>
-						<input type="password" id="confirm-password" class="field__input" value="Confirm new password" name="pwd_repeat">
+						<input type="password" id="confirm-password" name="pwd_repeat" class="field__input">
 					</div>
 				</div>
 				<div class="modal__actions">
@@ -48,6 +47,7 @@
 	<div class="modal" id="modal2" style="display:none;">`
 		<div class="modal__content">
 			<h2 class="modal__title">Account Delate</h2>
+			<p class="modal__message modal__message--warning">! Konto zostanie trwale usunięte, czy chcesz potwierdzić !</p>
 			<form action="/admin-del-profile" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
@@ -58,44 +58,54 @@
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
-		<div class="modal__content modal__content--edit">
+		<div class="modal__content modal__content--large">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="/admin-edit-profile" method="post">
-				<div class="edit-modal__login">
-					<input type="hidden" id="edit_id" name="id">
-					<div class="field">
-						<label for="login" class="field__label">Login</label>
-						<input type="text" id="edit_login" name="login" class="field__input" required>
+			<form class="modal-form" action="/admin-edit-profile" method="post">
+				<input type="hidden" id="edit_id" name="id">
+				<div class="modal-form__row">
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="login" class="field__label">Login</label>
+							<input type="text" id="edit_login" name="login" class="field__input" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="name" class="field__label">Imię</label>
+							<input type="text" id="edit_name" name="name" class="field__input" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="lastName" class="field__label">Nazwisko</label>
+							<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
+						</div>
 					</div>
 				</div>
-				<div class="edit-modal__name">
-					<div class="field">
-						<label for="name" class="field__label">Imię</label>
-						<input type="text" id="edit_name" name="name" class="field__input" required>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="phoneNumber" class="field__label">Nume telefonu</label>
+							<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
+						</div>
 					</div>
-					<div class="field">
-						<label for="lastName" class="field__label">Nazwisko</label>
-						<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
-					</div>
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="email" class="field__label">Adres email</label>
+							<input type="text" id="edit_email" name="email" class="field__input" required>
+						</div>
+					</div>	
 				</div>
-				<div class="edit-modal__name-data">
-					<div class="field">
-						<label for="phoneNumber" class="field__label">Nume telefonu</label>
-						<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="email" class="field__label">Adres email</label>
-						<input type="text" id="edit_email" name="email" class="field__input" required>
-					</div>
-				</div>
-				<div class="edit-modal__priv">
-					<div class="select-wrapper">
-						<label for="status" class="select-wrapper__label">Status Konta</label>
-						<select name="status" id="edit_status" class="select-wrapper__select">
-							<option value="new">---</option>
-							<option value="block">Blokada</option>
-							<option value="active">Aktywny</option>
-						</select>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="status" class="field__label">Status Konta</label>
+							<select name="status" id="edit_status" class="field__input">
+								<option value="new">---</option>
+								<option value="block">Blokada</option>
+								<option value="active">Aktywny</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<div class="modal__actions">

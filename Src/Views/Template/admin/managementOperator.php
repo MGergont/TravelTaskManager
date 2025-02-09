@@ -21,21 +21,21 @@
 			<form action="/operator-pwd-unlock" method="post">
 				<input type="hidden" id="pwd_id" name="id">
 				<div class="modal__form-group">
-					<input type="checkbox" id="unlock-account" class="modal__checkbox" name="pwd_unlock">
 					<label for="unlock-account" class="modal__label">Unlock account</label>
+					<input type="checkbox" id="unlock-account" name="pwd_unlock" class="modal__checkbox">
 				</div>
 				<div class="modal__form-group">
-					<input type="checkbox" id="change-password" class="modal__checkbox" name="pwd_change">
 					<label for="change-password" class="modal__label">Change password</label>
+					<input type="checkbox" id="change-password" name="pwd_change" class="modal__checkbox">
 				</div>
 				<div class="modal__password-section" id="password-section" style="display: none;">
 					<div class="field">
 						<label for="new-password" class="field__label">New Password</label>
-						<input type="password" id="new-password" class="field__input" value="Enter new password" name="pwd">
+						<input type="password" id="new-password" name="pwd" class="field__input">
 					</div>
 					<div class="field">
 						<label for="confirm-password" class="field__label">Confirm Password</label>
-						<input type="password" id="confirm-password" class="field__input" value="Confirm new password" name="pwd_repeat">
+						<input type="password" id="confirm-password" name="pwd_repeat" class="field__input">
 					</div>
 				</div>
 				<div class="modal__actions">
@@ -66,19 +66,19 @@
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="login" class="field__label">Login</label>
+							<label for="edit_login" class="field__label">Login</label>
 							<input type="text" id="edit_login" name="login" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="name" class="field__label">Imię</label>
+							<label for="edit_name" class="field__label">Imię</label>
 							<input type="text" id="edit_name" name="name" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="lastName" class="field__label">Nazwisko</label>
+							<label for="edit_lastName" class="field__label">Nazwisko</label>
 							<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
 						</div>
 					</div>
@@ -86,13 +86,13 @@
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="phoneNumber" class="field__label">Nume telefonu</label>
+							<label for="edit_phoneNumber" class="field__label">Nume telefonu</label>
 							<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="email" class="field__label">Adres email</label>
+							<label for="edit_email" class="field__label">Adres email</label>
 							<input type="text" id="edit_email" name="email" class="field__input" required>
 						</div>
 					</div>
@@ -101,19 +101,19 @@
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="houseNumber" class="field__label">Numer domu</label>
+							<label for="edit_houseNumber" class="field__label">Numer domu</label>
 							<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="street" class="field__label">Ulica</label>
+							<label for="edit_street" class="field__label">Ulica</label>
 							<input type="text" id="edit_street" name="street" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="town" class="field__label">Miejscowość</label>
+							<label for="edit_town" class="field__label">Miejscowość</label>
 							<input type="text" id="edit_town" name="town" class="field__input" required>
 						</div>
 					</div>
@@ -121,13 +121,13 @@
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="zipCode" class="field__label">Kod pocztowy</label>
+							<label for="edit_zipCode" class="field__label">Kod pocztowy</label>
 							<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="city" class="field__label">Miasto</label>
+							<label for="edit_city" class="field__label">Miasto</label>
 							<input type="text" id="edit_city" name="city" class="field__input" required>
 						</div>
 					</div>
@@ -135,7 +135,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="privileges" class="field__label">Uprawnienia</label>
+							<label for="edit_privileges" class="field__label">Uprawnienia</label>
 							<select name="privileges" id="edit_privileges" class="field__input">
 								<option value="manager">Menedżer</option>
 								<option value="user">Użytkownik</option>
@@ -144,7 +144,7 @@
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="status" class="field__label">Status Konta</label>
+							<label for="edit_status" class="field__label">Status Konta</label>
 							<select name="status" id="edit_status" class="field__input">
 								<option value="new">---</option>
 								<option value="block">Blokada</option>
@@ -289,20 +289,20 @@
 
 	function editProfile(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city, privileges, status) {
 		document.getElementById('edit_id').value = id;
-		// document.getElementById('edit_login').value = login;
-		// document.getElementById('edit_name').value = name;
-		// document.getElementById('edit_lastName').value = lastName;
-		// document.getElementById('edit_phoneNumber').value = phoneNumber;
-		// document.getElementById('edit_email').value = email;
-		// document.getElementById('edit_houseNumber').value = houseNumber;
-		// document.getElementById('edit_street').value = street;
-		// document.getElementById('edit_town').value = town;
-		// document.getElementById('edit_zipCode').value = zipCode;
-		// document.getElementById('edit_city').value = city;
-		// const roleSelect = document.getElementById('edit_privileges');
-		// const statusSelect = document.getElementById('edit_status');
-		// roleSelect.value = privileges;
-		// statusSelect.value = status;
+		document.getElementById('edit_login').value = login;
+		document.getElementById('edit_name').value = name;
+		document.getElementById('edit_lastName').value = lastName;
+		document.getElementById('edit_phoneNumber').value = phoneNumber;
+		document.getElementById('edit_email').value = email;
+		document.getElementById('edit_houseNumber').value = houseNumber;
+		document.getElementById('edit_street').value = street;
+		document.getElementById('edit_town').value = town;
+		document.getElementById('edit_zipCode').value = zipCode;
+		document.getElementById('edit_city').value = city;
+		const roleSelect = document.getElementById('edit_privileges');
+		const statusSelect = document.getElementById('edit_status');
+		roleSelect.value = privileges;
+		statusSelect.value = status;
 
 		document.getElementById('modal3').style.display = 'block';
 	}
