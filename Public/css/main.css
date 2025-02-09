@@ -193,41 +193,43 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  overflow-y: auto;
+  z-index: 10;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 .modal__content {
-  top: 25vh;
-  left: 40vw;
+  position: relative;
   background-color: white;
   padding: 20px;
-  width: 400px;
+  width: 100%;
+  max-width: 600px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.modal__content--edit {
-  width: -moz-fit-content;
-  width: fit-content;
-  top: 5vh;
-  left: 40vw;
-}
-.modal__content--add {
-  width: -moz-fit-content;
-  width: fit-content;
-  top: 4vh;
-  left: 40vw;
+.modal__content--large {
+  max-width: 800px;
 }
 .modal__title {
+  font-weight: 800;
+  font-family: "Sora";
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #333;
 }
 .modal__message {
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-weight: 400;
+  font-family: "OpenSans_normal";
+  font-size: 17px;
 }
-.modal__checkbox {
-  transform: scale(1.2);
+.modal__message--warning {
+  font-size: 20px;
+  color: var(--negative-hover);
+  -webkit-text-decoration: underline var(--negative) 2px;
+          text-decoration: underline var(--negative) 2px;
 }
 .modal__actions {
   display: flex;
@@ -235,8 +237,25 @@
   gap: 10px;
   margin-top: 20px;
 }
-.modal__password-section {
-  display: none;
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modal-form__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.modal-form__column {
+  flex: 1 1 45%;
+}
+.modal-form__trio {
+  flex: 1 1 30%;
+}
+.modal-form__full {
+  flex: 1 1 100%;
 }
 
 .accordion {

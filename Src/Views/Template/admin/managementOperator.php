@@ -48,6 +48,7 @@
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Account Delate</h2>
+			<p class="modal__message modal__message--warning">! Konto zostanie trwale usunięte, czy chcesz potwierdzić !</p>
 			<form action="/operator-del-profile" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
@@ -58,77 +59,102 @@
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
-		<div class="modal__content modal__content--edit">
+		<div class="modal__content modal__content--large">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="/operator-edit-profile" method="post">
-				<div class="edit-modal__login">
-					<input type="hidden" id="edit_id" name="id">
-					<div class="field">
-						<label for="login" class="field__label">Login</label>
-						<input type="text" id="edit_login" name="login" class="field__input" required>
+			<form class="modal-form" action="/operator-edit-profile" method="post">
+				<input type="hidden" id="edit_id" name="id">
+				<div class="modal-form__row">
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="login" class="field__label">Login</label>
+							<input type="text" id="edit_login" name="login" class="field__input" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="name" class="field__label">Imię</label>
+							<input type="text" id="edit_name" name="name" class="field__input" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="lastName" class="field__label">Nazwisko</label>
+							<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
+						</div>
 					</div>
 				</div>
-				<div class="edit-modal__name">
-					<div class="field">
-						<label for="name" class="field__label">Imię</label>
-						<input type="text" id="edit_name" name="name" class="field__input"  required>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="phoneNumber" class="field__label">Nume telefonu</label>
+							<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
+						</div>
 					</div>
-					<div class="field">
-						<label for="lastName" class="field__label">Nazwisko</label>
-						<input type="text" id="edit_lastName" name="lastName" class="field__input"  required>
-					</div>
-				</div>
-				<div class="edit-modal__name-data">
-					<div class="field">
-						<label for="phoneNumber" class="field__label">Nume telefonu</label>
-						<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
-					</div>
-					<div class="field">
-					<label for="email" class="field__label">Adres email</label>
-						<input type="text" id="edit_email" name="email" class="field__input" required>
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="email" class="field__label">Adres email</label>
+							<input type="text" id="edit_email" name="email" class="field__input" required>
+						</div>
 					</div>
 				</div>
-				<div class="edit-modal__addres">
-					<div class="field">
-						<label for="houseNumber" class="field__label">Numer domu</label>
-						<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
+
+				<div class="modal-form__row">
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="houseNumber" class="field__label">Numer domu</label>
+							<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
+						</div>
 					</div>
-					<div class="field">
-						<label for="street" class="field__label">Ulica</label>
-						<input type="text" id="edit_street" name="street" class="field__input" required>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="street" class="field__label">Ulica</label>
+							<input type="text" id="edit_street" name="street" class="field__input" required>
+						</div>
 					</div>
-					<div class="field">
-						<label for="town" class="field__label">Miejscowość</label>
-						<input type="text" id="edit_town" name="town" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="zipCode" class="field__label">Kod pocztowy</label>
-						<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
-					</div>
-					<div class="field">
-						<label for="city" class="field__label">Miasto</label>
-						<input type="text" id="edit_city" name="city" class="field__input" required>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="town" class="field__label">Miejscowość</label>
+							<input type="text" id="edit_town" name="town" class="field__input" required>
+						</div>
 					</div>
 				</div>
-				<div class="edit-modal__priv">
-					<div class="select-wrapper">
-						<label for="privileges" class="select-wrapper__label">Uprawnienia</label>
-						<select name="privileges" id="edit_privileges" class="select-wrapper__select">
-							<option value="manager">Menedżer</option>
-							<option value="user">Użytkownik</option>
-						</select>
+				<div class="modal-form__row">
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="zipCode" class="field__label">Kod pocztowy</label>
+							<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
+						</div>
 					</div>
-					<div class="select-wrapper">
-						<label for="status" class="select-wrapper__label">Status Konta</label>
-						<select name="status" id="edit_status" class="select-wrapper__select">
-							<option value="new">---</option>
-							<option value="block">Blokada</option>
-							<option value="active">Aktywny</option>
-						</select>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="city" class="field__label">Miasto</label>
+							<input type="text" id="edit_city" name="city" class="field__input" required>
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="privileges" class="field__label">Uprawnienia</label>
+							<select name="privileges" id="edit_privileges" class="field__input">
+								<option value="manager">Menedżer</option>
+								<option value="user">Użytkownik</option>
+							</select>
+						</div>
+					</div>
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="status" class="field__label">Status Konta</label>
+							<select name="status" id="edit_status" class="field__input">
+								<option value="new">---</option>
+								<option value="block">Blokada</option>
+								<option value="active">Aktywny</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
+					<button type="submit" class="button button--positive">Confirm</button>
 					<a class="button button--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
@@ -263,21 +289,20 @@
 
 	function editProfile(id, login, name, lastName, phoneNumber, email, houseNumber, street, town, zipCode, city, privileges, status) {
 		document.getElementById('edit_id').value = id;
-		document.getElementById('edit_login').value = login;
-		document.getElementById('edit_name').value = name;
-		document.getElementById('edit_lastName').value = lastName;
-		document.getElementById('edit_phoneNumber').value = phoneNumber;
-		document.getElementById('edit_email').value = email;
-		document.getElementById('edit_houseNumber').value = houseNumber;
-		document.getElementById('edit_street').value = street;
-		document.getElementById('edit_town').value = town;
-		document.getElementById('edit_zipCode').value = zipCode;
-		document.getElementById('edit_city').value = city;
-		
-		const roleSelect = document.getElementById('edit_privileges');
-		const statusSelect = document.getElementById('edit_status');
-		roleSelect.value = privileges;
-		statusSelect.value = status;
+		// document.getElementById('edit_login').value = login;
+		// document.getElementById('edit_name').value = name;
+		// document.getElementById('edit_lastName').value = lastName;
+		// document.getElementById('edit_phoneNumber').value = phoneNumber;
+		// document.getElementById('edit_email').value = email;
+		// document.getElementById('edit_houseNumber').value = houseNumber;
+		// document.getElementById('edit_street').value = street;
+		// document.getElementById('edit_town').value = town;
+		// document.getElementById('edit_zipCode').value = zipCode;
+		// document.getElementById('edit_city').value = city;
+		// const roleSelect = document.getElementById('edit_privileges');
+		// const statusSelect = document.getElementById('edit_status');
+		// roleSelect.value = privileges;
+		// statusSelect.value = status;
 
 		document.getElementById('modal3').style.display = 'block';
 	}
@@ -299,6 +324,8 @@
 		}
 	});
 
+	// cancelButton3.addEventListener("click", closeModal);
+
 	cancelButton.addEventListener('click', function() {
 		modal1.style.display = 'none';
 	});
@@ -309,6 +336,15 @@
 
 	cancelButton3.addEventListener('click', function() {
 		modal3.style.display = 'none';
+	});
+
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			modal1.style.display = 'none';
+			modal2.style.display = 'none';
+			modal3.style.display = 'none';
+		}
 	});
 </script>
 
