@@ -246,9 +246,9 @@
 							<form class="modal-form" action="/manager/order/next" method="POST">
 								<!-- //TODOdane osobiste -->
 								<h3 class="">Wprowadź dane lokalizacji A</h3>
-								<div class="">
-									<input type="checkbox" id="home_adres_togle" class="modal__checkbox" name="home_adres_togle">
-									<label for="home_adres_togle" class="modal__label">Adres zamieszkania</label>
+								<div class="field-checkbox">
+									<input type="checkbox" id="home_adres_togle" class="field-checkbox__input" name="home_adres_togle">
+									<label for="home_adres_togle"  class="field-checkbox__label">Adres zamieszkania</label>
 								</div>
 								<input type="hidden" name="id_home_location" value="<?php echo $params['adresHome']['id_address'] ?>" />
 								<div class="form-add" id="home_adres_view" style="display: none;">

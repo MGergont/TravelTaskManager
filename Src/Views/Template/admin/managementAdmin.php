@@ -19,13 +19,13 @@
 			<p class="modal__message">Number of failed login attempts: <strong id="pwd_failed"></strong></p>
 			<form action="/admin-pwd-unlock" method="post">
 				<input type="hidden" id="pwd_id" name="id">
-				<div class="modal__form-group">
-					<label for="unlock-account" class="modal__label">Unlock account</label>
-					<input type="checkbox" id="unlock-account" name="pwd_unlock" class="modal__checkbox">
+				<div class="field-checkbox">
+					<label for="unlock-account" class="field-checkbox__label">Unlock account</label>
+					<input type="checkbox" id="unlock-account" name="pwd_unlock" class="field-checkbox__input">
 				</div>
-				<div class="modal__form-group">
-					<label for="change-password" class="modal__label">Change password</label>
-					<input type="checkbox" id="change-password" name="pwd_change" class="modal__checkbox">
+				<div class="field-checkbox">
+					<label for="change-password" class="field-checkbox__label">Change password</label>
+					<input type="checkbox" id="change-password" name="pwd_change" class="field-checkbox__input">
 				</div>
 				<div class="modal__password-section" id="password-section" style="display: none;">
 					<div class="field">
