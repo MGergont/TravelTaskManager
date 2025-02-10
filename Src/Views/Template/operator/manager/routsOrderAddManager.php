@@ -200,8 +200,10 @@
 				<?php flash("addOrder"); ?>
 			<?php endif; ?>
 			<h2 class="content__title">Dodawanie zlecenia delegacji</h2>
-			<a href="/manager/order"><button name="submit" class="button button--positive">
+			<div class="content__controls">
+				<a href="/manager/order"><button name="submit" class="button button--positive">
 					<< </button></a>
+			</div>
 			<div class="routs-order">
 				<div class="routs-order__add--route">
 					<?php switch ($_SESSION['orderStatus']) {

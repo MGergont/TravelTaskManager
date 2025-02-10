@@ -209,7 +209,9 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title">Lokalizacje</h2>
-			<button class="button button--positive" onclick="addLocation()">Dodaj</button>
+			<div class="content__controls">
+				<button class="button button--positive" onclick="addLocation()">Dodaj</button>
+			</div>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>

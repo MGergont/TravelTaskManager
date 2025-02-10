@@ -450,6 +450,9 @@ body {
 .content__title {
   margin: 20px 0;
 }
+.content__controls {
+  margin: 20px 0;
+}
 
 .sidebar {
   position: fixed;

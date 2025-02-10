@@ -245,7 +245,9 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title">Zlecenia Delegacji</h2>
-			<a href="/manager/order/add"><button name="submit" class="button button--positive">Dodaj zlecenie delegacji</button></a>
+			<div class="content__controls">
+				<a href="/manager/order/add"><button name="submit" class="button button--positive">Dodaj zlecenie delegacji</button></a>
+			</div>
 			<div class="user-panel">
 				<div class="accordion">
 					<div class="accordion__title">
