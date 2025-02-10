@@ -280,8 +280,8 @@
 													<tr>
 														<td><?php echo $location['origin_name'] . "; " . $location['origin_city']; ?></td>
 														<td><?php echo $location['destination_name'] . "; " . $location['destination_city']; ?></td>
-														<td class="user-panel__cell user-panel__cell--options">
-															<button class="user-panel__icon"><i class="icon-pencil" onclick="editRoute(
+														<td class=accordion__cell user-panel__cell--options">
+															<button class="accordion__icon"><i class="icon-pencil" onclick="editRoute(
 															'<?php echo $location['id_route']; ?>',
 															'<?php echo $location['origin_name']; ?>',
 															'<?php echo $location['origin_city']; ?>',
@@ -296,7 +296,7 @@
 															'<?php echo $location['destination_street']; ?>',
 															'<?php echo $location['destination_house_number']; ?>',
 															)"></i></button>
-															<button class="user-panel__icon"><i class="icon-trash" onclick="delRoute('<?php echo $location['id_route']; ?>')"></i></button>
+															<button class="accordion__icon"><i class="icon-trash" onclick="delRoute('<?php echo $location['id_route']; ?>')"></i></button>
 														</td>
 													</tr>
 												<?php endforeach; ?>

@@ -183,7 +183,23 @@
 }
 
 .accordion {
-  width: 100%;
+  min-width: 1000px;
+  overflow-x: auto;
+}
+.accordion__title {
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--table__2);
+}
+@media (max-width: 768px) {
+  .accordion__title {
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
 }
 .accordion__header {
   color: var(--text-primary);
@@ -193,40 +209,36 @@
   border-top: 1px solid var(--table__2);
   cursor: pointer;
   background-color: var(--disabled);
+  transition: background 0.3s ease;
 }
 .accordion__header:hover {
   background-color: var(--active);
 }
 .accordion__cell {
   flex: 1;
-}
-.accordion__title {
-  color: var(--text-primary);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  font-weight: bold;
-}
-.accordion__options {
-  display: flex;
-  justify-content: flex-end;
-}
-.accordion__button {
-  margin: 10px 20px;
-}
-.accordion__text {
-  flex: 1;
+  text-align: center;
+  padding: 5px;
 }
 .accordion__toggle {
   flex: 0.1;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.accordion__toggle.is-open {
+  transform: rotate(180deg);
 }
 .accordion__content {
   display: none;
   padding: 10px;
+  border-top: 1px solid var(--table__2);
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+.accordion__content.is-open {
+  display: block;
 }
 .accordion__table {
   width: 100%;
@@ -239,6 +251,31 @@
   border-bottom: 1px solid var(--table__2);
 }
 .accordion__table th {
+  background-color: var(--active);
+}
+.accordion__options {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.accordion__button {
+  margin: 10px 20px;
+}
+.accordion__icon {
+  background: none;
+  border-radius: 3px;
+  border: 0px;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 0;
+  width: 27px;
+  height: 27px;
+  font-size: 17px;
+  color: var(--positive);
+  transition: 0.4s ease;
+}
+.accordion__icon:hover {
+  color: var(--positive-hover);
   background-color: var(--active);
 }
 

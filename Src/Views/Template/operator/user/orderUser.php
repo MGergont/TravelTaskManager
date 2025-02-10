@@ -104,12 +104,14 @@
 			<h2 class="content__title">Zlecenia Delegacji</h2>
 			<div class="user-panel">
 				<div class="accordion">
+					<div class="accordion__table-wrapper">
 					<div class="accordion__title">
+						<div class="accordion__text"></div>
 						<div class="accordion__text">Nazwa</div>
 						<div class="accordion__text">Data wykonania</div>
 						<div class="accordion__text">Data utworzenia/modyfikacji</div>
 						<div class="accordion__text">Status</div>
-						<div class="accordion__text accordion__toggle"></div>
+						<div class="accordion__text"></div>
 					</div>
 					<?php if (!empty($params['orders'])) : ?>
 						<?php foreach ($params['orders'] as $order): ?>
@@ -136,8 +138,8 @@
 													<tr>
 														<td><?php echo $location['origin_name'] . "; " . $location['origin_city']; ?></td>
 														<td><?php echo $location['destination_name'] . "; " . $location['destination_city']; ?></td>
-														<td class="user-panel__cell user-panel__cell--options">
-															<button class="user-panel__icon"><i class="icon-location-outline" onclick="editRoute(
+														<td>
+															<button class="accordion__icon"><i class="icon-location-outline" onclick="editRoute(
 															'<?php echo $location['id_route']; ?>',
 															'<?php echo $location['origin_name']; ?>',
 															'<?php echo $location['origin_city']; ?>',
@@ -173,6 +175,7 @@
 							</div>
 						<?php endforeach; ?>
 					<?php endif; ?>
+				</div>
 				</div>
 			</div>
 		</main>
