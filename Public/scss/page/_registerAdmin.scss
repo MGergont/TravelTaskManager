@@ -1,43 +1,6 @@
-.form-add{
+.register-admin{
     background-color: white;
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: max-content;
-
-    &__login{
-        max-width: 500px;
-    }
-
-    &__name{
-        display: flex;
-        justify-content: space-between;
-        max-width: 500px;
-    }
-
-    &__name-data{
-        display: flex;
-        justify-content: space-between;
-        max-width: 500px;
-    }
-
-    &__addres{
-        display: flex;
-        justify-content: space-between;
-        max-width: 500px;
-        flex-wrap: wrap;
-    }
-
-    &__priv{
-        justify-content: space-between;
-        max-width: 500px;
-        flex-wrap: wrap;
-    }
-
-    &__pwd{
-        display: flex;
-        justify-content: space-between;
-        max-width: 500px;
-        flex-wrap: wrap;
-    }
 }

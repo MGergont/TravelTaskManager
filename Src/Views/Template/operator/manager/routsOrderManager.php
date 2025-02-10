@@ -17,36 +17,42 @@
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content modal__content--add">
 			<h2 class="modal__title">Dodawanie lokalizacji</h2>
-			<form class="form-add" action="/manager/order/routMain" method="POST">
-				<!-- //TODOdane osobiste -->
+			<p class="modal__message ">Wprowadź dane lokalizacji B</p>
+			<form class="modal-form" action="/manager/order/routMain" method="POST">
 				<input type="hidden" id="add_id" name="id">
-				<h3 class="">Wprowadź dane lokalizacji B</h3>
-				<div class="form-add__priv" id="home_adres" style="display: block;">
-					<div class="select-wrapper">
-						<label for="location_order_B" class="select-wrapper__label">Punkt końcowy</label>
-						<select name="location_order_B" id="location_order_B" class="select-wrapper__select">
-							<?php foreach ($params['location'] as $veh): ?>
-								<option value="<?php echo $veh['id_location']; ?>">
-									<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
-								</option>
-							<?php endforeach; ?>
-						</select>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="location_order_B" class="field__label">Punkt końcowy</label>
+							<select name="location_order_B" id="location_order_B" class="field__input">
+								<?php foreach ($params['location'] as $veh): ?>
+									<option value="<?php echo $veh['id_location']; ?>">
+										<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+						</div>
 					</div>
 				</div>
-				<div class="form-add__login">
-					<div class="field">
-						<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
-						<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+						</div>
 					</div>
 				</div>
-				<button type="submit" class="button button--positive">Dodaj</button>
-				<a class="button button--negative" id="cancel-button">Cancel</a>
+				<div class="modal__actions">
+					<button type="submit" class="button button--positive">Dodaj</button>
+					<a class="button button--negative" id="cancel-button">Cancel</a>
+				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Account Delate</h2>
+			<h2 class="modal__title">Usuwanie zlecenia</h2>
+			<p class="modal__message modal__message--warning">! Zlecenie zostanie trwale usunięte, czy chcesz potwierdzić !</p>
 			<form action="/manager/order/dellMain" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
@@ -58,7 +64,8 @@
 	</div>
 	<div class="modal" id="modal4" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Account Delate</h2>
+			<h2 class="modal__title">Usuń punkt</h2>
+			<p class="modal__message modal__message--warning">! Punkt zostanie trwale usunięte, czy chcesz potwierdzić !</p>
 			<form action="/manager/order/routeDellMain" method="post">
 				<input type="hidden" id="del_route_id" name="id">
 				<div class="modal__actions">
@@ -362,7 +369,7 @@
 
 	function editOrder(id, nameOrder, userId, date, status) {
 		document.getElementById('edit_order_id').value = id;
-		
+
 		document.getElementById('name_order').value = nameOrder;
 		document.getElementById('user_order').value = userId;
 		document.getElementById('date_due').value = date;
@@ -399,6 +406,16 @@
 
 	cancelButton5.addEventListener('click', function() {
 		modal5.style.display = 'none';
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			modal1.style.display = 'none';
+			modal2.style.display = 'none';
+			modal3.style.display = 'none';
+			modal4.style.display = 'none';
+			modal5.style.display = 'none';
+		}
 	});
 </script>
 

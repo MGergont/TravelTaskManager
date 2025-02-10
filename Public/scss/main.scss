@@ -3,8 +3,8 @@
 @import 'blocks/buttons';
 @import 'blocks/form';
 @import 'blocks/field';
-@import 'blocks/select-wrapper';
-@import 'blocks/select-wrapper-line';
+// @import 'blocks/select-wrapper';
+// @import 'blocks/select-wrapper-line';
 @import 'blocks/modal';
 @import 'blocks/accordion';
 //layout
@@ -17,6 +17,8 @@
 @import 'page/menageAdmin';
 @import 'page/registerAdmin';
 @import 'page/locationOperator';
+@import 'page/route';
+@import 'page/routsOrderAdd';
 // page operator
 
 //settings

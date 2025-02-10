@@ -40,7 +40,7 @@
 				</div>
 				<div class="modal__actions">
 					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button">Cancel</a>
+					<a id="cancel-button" class="button button--negative">Cancel</a>
 				</div>
 			</form>
 		</div>

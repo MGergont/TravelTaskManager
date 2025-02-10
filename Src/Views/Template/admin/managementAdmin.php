@@ -65,19 +65,19 @@
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="login" class="field__label">Login</label>
+							<label for="edit_login" class="field__label">Login</label>
 							<input type="text" id="edit_login" name="login" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="name" class="field__label">Imię</label>
+							<label for="edit_name" class="field__label">Imię</label>
 							<input type="text" id="edit_name" name="name" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="lastName" class="field__label">Nazwisko</label>
+							<label for="edit_lastName" class="field__label">Nazwisko</label>
 							<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
 						</div>
 					</div>
@@ -85,13 +85,13 @@
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="phoneNumber" class="field__label">Nume telefonu</label>
+							<label for="edit_phoneNumber" class="field__label">Nume telefonu</label>
 							<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="email" class="field__label">Adres email</label>
+							<label for="edit_email" class="field__label">Adres email</label>
 							<input type="text" id="edit_email" name="email" class="field__input" required>
 						</div>
 					</div>	
@@ -99,7 +99,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="status" class="field__label">Status Konta</label>
+							<label for="edit_status" class="field__label">Status Konta</label>
 							<select name="status" id="edit_status" class="field__input">
 								<option value="new">---</option>
 								<option value="block">Blokada</option>
@@ -277,6 +277,14 @@
 
 	cancelButton3.addEventListener('click', function() {
 		modal3.style.display = 'none';
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			modal1.style.display = 'none';
+			modal2.style.display = 'none';
+			modal3.style.display = 'none';
+		}
 	});
 </script>
 
