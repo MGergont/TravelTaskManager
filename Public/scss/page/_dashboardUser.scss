@@ -1,10 +1,10 @@
-.routs-order{
+.routs-execution{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
 
-    &__add--route {
+    &__order {
         background-color: white;
         padding: 20px;
         border-radius: 4px;
@@ -13,14 +13,8 @@
         margin: 10px 15px;
     }
 
-    &__table--route {
+    &__coste {
         margin: 10px 15px;
         height: fit-content;
     }
-
-    &__message {
-		font-weight: 400;
-		font-family: 'OpenSans_normal';
-		font-size: 17px;
-	}
 }

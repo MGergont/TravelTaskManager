@@ -14,28 +14,29 @@
 
 <body>
 <div class="modal" id="modal1" style="display:none;">
-		<div class="modal__content modal__content--edit">
+		<div class="modal__content modal__content--large">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="" method="post">
+			<form class="modal-form" method="post">
 				<input type="hidden" id="edit_id" name="id">
-				<div class="edit-modal__line">
-					<div class="edit-modal__column">
-						<p>Nazwa:<samp id="nameA"></samp></p>
-						<p>Miejscowość:<samp id="cityA"></samp></p>
-						<p>Kod pocztowy:<samp id="zipCodeA"></samp></p>
-						<p>Miasto:<samp id="townA"></samp></p>
-						<p>Ulica:<samp id="streetA"></samp></p>
-						<p>Numer domu:<samp id="numberA"></samp></p>
-						<p>Data wyjazdu:<samp id="dateA"></samp></p>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<p class="modal__message">Data wyjazdu:<samp id="dateA"></samp></p>
+						<p class="modal__message">Nazwa:<samp id="nameA"></samp></p>
+						<p class="modal__message">Miejscowość:<samp id="cityA"></samp></p>
+						<p class="modal__message">Kod pocztowy:<samp id="zipCodeA"></samp></p>
+						<p class="modal__message">Miasto:<samp id="townA"></samp></p>
+						<p class="modal__message">Ulica:<samp id="streetA"></samp></p>
+						<p class="modal__message">Numer domu:<samp id="numberA"></samp></p>
+						<p class="modal__message">Data wyjazdu:<samp id="dateA"></samp></p>
 					</div>
-					<div class="edit-modal__column">
-						<p>Nazwa:<samp id="nameB"></samp></p>
-						<p>Miejscowość:<samp id="cityB"></samp></p>
-						<p>Kod pocztowy:<samp id="zipCodeB"></samp></p>
-						<p>Miasto:<samp id="townB"></samp></p>
-						<p>Ulica:<samp id="streetB"></samp></p>
-						<p>Numer domu:<samp id="numberB"></samp></p>
-						<p>Data Przyjazdu:<samp id="dateB"></samp></p>
+					<div class="modal-form__column">
+						<p class="modal__message">Nazwa:<samp id="nameB"></samp></p>
+						<p class="modal__message">Miejscowość:<samp id="cityB"></samp></p>
+						<p class="modal__message">Kod pocztowy:<samp id="zipCodeB"></samp></p>
+						<p class="modal__message">Miasto:<samp id="townB"></samp></p>
+						<p class="modal__message">Ulica:<samp id="streetB"></samp></p>
+						<p class="modal__message">Numer domu:<samp id="numberB"></samp></p>
+						<p class="modal__message">Data Przyjazdu:<samp id="dateB"></samp></p>
 					</div>
 				</div>
 				<div class="modal__actions">
@@ -45,14 +46,12 @@
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
-		<div class="modal__content modal__content--add">
-			<h2 class="modal__title">Edycja zlecenia</h2>
-			<form class="add-modal" action="/user/order" method="post">
+		<div class="modal__content">
+			<h2 class="modal__title">Przyjmij zlecenie</h2>
+			<form class="modal-form" action="/user/order" method="post">
 				<input type="hidden" id="edit_order_id" name="id">
-				<div class="add-modal__name">
-					<h3>Nazwa zlecenia: </h3><h3 id="name_order"></h3><br>
-					<h3>Data realizacji: </h3><h3 id="date_due"></h3><br>
-				</div>
+				<p class="modal__message">Nazwa zlecenia: </p><p class="modal__message" id="name_order"></p>
+				<p class="modal__message">Data realizacji: </p><p class="modal__message" id="date_due"></p>
 				<div class="modal__actions">
 					<button class="button button--positive">Confirm</button>
 					<a class="button button--negative" id="cancel-button2">Cancel</a>
@@ -251,6 +250,13 @@
 
 	cancelButton2.addEventListener('click', function() {
 		modal2.style.display = 'none';
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			modal1.style.display = 'none';
+			modal2.style.display = 'none';
+		}
 	});
 </script>
 
