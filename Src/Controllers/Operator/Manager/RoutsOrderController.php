@@ -43,15 +43,15 @@ class RoutsOrderController extends AbstractController{
         ];
         
         if (empty($data['id'])) {
-            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/manager/order");
         }
 
         if ($routModel->orderDellMain((int) $data['id'])) {
-            flash("orderManagment", "Trasa została usunięta", "alert-login alert-login--confirm");
+            flash("orderManagment", "Trasa została usunięta", "alert alert--confirm");
             $this->redirect("/manager/order");
         } else {
-            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order");
         }
     }
@@ -63,15 +63,15 @@ class RoutsOrderController extends AbstractController{
         ];
         
         if (empty($data['id'])) {
-            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/manager/order");
         }
 
         if ($routModel->routeDellMain((int) $data['id'])) {
-            flash("orderManagment", "Trasa została usunięta", "alert-login alert-login--confirm");
+            flash("orderManagment", "Trasa została usunięta", "alert alert--confirm");
             $this->redirect("/manager/order");
         } else {
-            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order");
         }
     }
@@ -88,7 +88,7 @@ class RoutsOrderController extends AbstractController{
 
         
         if (empty($data['id']) || empty($data['A']) || empty($data['B'])) {
-            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/manager/order");
         }
         
@@ -102,10 +102,10 @@ class RoutsOrderController extends AbstractController{
         }
         
         if ($routModel->orderEdit($data)) {
-            flash("orderManagment", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
+            flash("orderManagment", "Trasa zostałą zmodyfikowana", "alert alert--confirm");
             $this->redirect("/manager/order");
         } else {
-            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order");
         }
     }
@@ -119,7 +119,7 @@ class RoutsOrderController extends AbstractController{
         ];
 
         if (empty($data['id']) ||  empty($data['locarionB'])) {
-            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/manager/order");
         }
 
@@ -129,10 +129,10 @@ class RoutsOrderController extends AbstractController{
 
 
         if ($routModel->routesAddMain($data, (int) $data['id'])) {
-            flash("orderManagment", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
+            flash("orderManagment", "Trasa zostałą zmodyfikowana", "alert alert--confirm");
             $this->redirect("/manager/order");
         } else {
-            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order");
         }
 
@@ -151,12 +151,12 @@ class RoutsOrderController extends AbstractController{
 
     
         if (empty($data['id']) || empty($data['nameOrder']) || empty($data['user']) || empty($data['date']) || empty($data['status'])) {
-            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/manager/order");
         }
 
         if($this->IfMaxLength($data, 30)){
-            flash("orderManagment", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("orderManagment", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/manager/order");
         };
 
@@ -174,26 +174,26 @@ class RoutsOrderController extends AbstractController{
                 
                 break;
             default:
-                flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");           
+                flash("orderManagment", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");           
                 $this->redirect("/manager/order");
                 break;
         }
 
         if($this->IfSpecialCharacters($data['nameOrder'])){
-            flash("orderManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("orderManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/manager/order");
         }
 
         if($this->ValidNumber($data['user'])){
-            flash("orderManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("orderManagment", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/manager/order");
         }
 
         if ($routModel->orderEditMain($data)) {
-            flash("orderManagment", "Zlecenie zostało zmodyfikowanie", "alert-login alert-login--confirm");
+            flash("orderManagment", "Zlecenie zostało zmodyfikowanie", "alert alert--confirm");
             $this->redirect("/manager/order");
         } else {
-            flash("orderManagment", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("orderManagment", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order");
         }
 
@@ -286,22 +286,22 @@ class RoutsOrderController extends AbstractController{
 
     
         if (empty($data['nameOrder']) || empty($data['user']) || empty($data['date'])) {
-            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/manager/order/add");
         }
 
         if($this->IfMaxLength($data, 30)){
-            flash("addOrder", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("addOrder", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/manager/order/add");
         };
         
         if($this->IfSpecialCharacters($data['nameOrder'])){
-            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
 
         if($this->ValidNumber($data['user'])){
-            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
 
@@ -339,19 +339,19 @@ class RoutsOrderController extends AbstractController{
         if ($data['homeAdresTogle'] === NULL) {
             // TODO jest off
             if (empty($data['locationA']) || empty($data['locarionB'])) {
-                flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+                flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
                 $this->redirect("/manager/order/add");
             }
 
             if ($data['locationA'] === $data['locarionB']) {
-                flash("addOrder", "Podane lokalizacje są nieprawidłowe", "alert-login alert-login--error");  
+                flash("addOrder", "Podane lokalizacje są nieprawidłowe", "alert alert--error");  
                 $this->redirect("/manager/order/add");
             }
 
         }else if ($data['homeAdresTogle'] === "on") {
             // TODO jest on
             if (empty($data['homeAdresTogle']) || empty($data['idhomeNumber']) || empty($data['locarionB'])) {
-                flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+                flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
                 $this->redirect("/manager/order/add");
             }
 
@@ -380,9 +380,9 @@ class RoutsOrderController extends AbstractController{
         $return = $routModel->orderAdd($data);
 
         if ($return !== false) {
-            flash("addOrder", "Trasa została dodana", "alert-login alert-login--confirm");
+            flash("addOrder", "Trasa została dodana", "alert alert--confirm");
         } else {
-            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("addOrder", "Coś poszło nie tak", "alert alert--error");
         }
         $_SESSION["departureDateB"] = $data['departureDateB'];
         $_SESSION["idOrder"] = $return['id_order'];
@@ -404,12 +404,12 @@ class RoutsOrderController extends AbstractController{
         }
         
             if (empty($data['locationA']) || empty($data['locarionB'])) {
-                flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+                flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
                 $this->redirect("/manager/order/add");
             }
 
             if ($data['locationA'] === $data['locarionB']) {
-                flash("addOrder", "Podane lokalizacje są nieprawidłowe", "alert-login alert-login--error");  
+                flash("addOrder", "Podane lokalizacje są nieprawidłowe", "alert alert--error");  
                 $this->redirect("/manager/order/add");
             }
 
@@ -422,9 +422,9 @@ class RoutsOrderController extends AbstractController{
         $return = $routModel->routesAdd($data, $_SESSION["idOrder"]);
 
         if ($return !== false) {
-            flash("addOrder", "Trasa została dodana", "alert-login alert-login--confirm");
+            flash("addOrder", "Trasa została dodana", "alert alert--confirm");
         } else {
-            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("addOrder", "Coś poszło nie tak", "alert alert--error");
         }
         $_SESSION["idRoute"] = $return;
 
@@ -446,45 +446,45 @@ class RoutsOrderController extends AbstractController{
         ];
 
         if($this->IfEmpty($data)){
-            flash("addOrder", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            flash("addOrder", "Nie uzupełniono odpowiednich formularzy", "alert alert--error");           
             $this->redirect("/manager/order/add");
         };
         if($this->IfMaxLength($data, 30)){
-            flash("addOrder", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("addOrder", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/manager/order/add");
         };
         //TODO bez znaków specjalnych
         if($this->IfSpecialCharacters($data['name'])){
-            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
         //TODO Walidacjaj numeru domu
         if($this->ValidHouseNumber($data['houseNumber'])){
-            flash("addOrder", "Niepoprawny numer mieszkania", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawny numer mieszkania", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
         if($this->IfSpecialCharacters($data['street'])){
-            flash("addOrder", "Niepoprawne znaki w nazwie ulicy", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawne znaki w nazwie ulicy", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
         if($this->IfSpecialCharacters($data['town'])){
-            flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
         //TODO Walidacja kodu pocztowego XX-XXX
         if($this->ValidZipCode($data['zipCode'])){
-            flash("addOrder", "Niepoprawny format kodu pocztowego", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawny format kodu pocztowego", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
         //TODO Walidacja nazwy miasta
         if($this->IfSpecialCharacters($data['city'])){
-            flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+            flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
             $this->redirect("/manager/order/add");
         }
         
         if(!empty($data['latitude']) && !empty($data['longitude'])){
             if($this->ValidCoordinates($data['latitude'], $data['longitude'])){
-                flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert-login alert-login--error");           
+                flash("addOrder", "Niepoprawne znaki w nazwie miasta", "alert alert--error");           
                 $this->redirect("/manager/order/add");
             }
         }else{
@@ -493,10 +493,10 @@ class RoutsOrderController extends AbstractController{
         }
 
         if ($managementLocationMod->locationAdd($data)) {
-            flash("addOrder", "Konto zostało zmodyfikowane", "alert-login alert-login--confirm");
+            flash("addOrder", "Konto zostało zmodyfikowane", "alert alert--confirm");
             $this->redirect("/manager/order/add");
         } else {
-            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("addOrder", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order/add");
         }
     }
@@ -508,15 +508,15 @@ class RoutsOrderController extends AbstractController{
         ];
         
         if (empty($data['id'])) {
-            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");
             $this->redirect("/manager/order/add");
         }
 
         if ($routModel->orderDell((int) $data['id'])) {
-            flash("addOrder", "Trasa została usunięta", "alert-login alert-login--confirm");
+            flash("addOrder", "Trasa została usunięta", "alert alert--confirm");
             $this->redirect("/manager/order/add");
         } else {
-            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("addOrder", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order/add");
         }
     }
@@ -533,7 +533,7 @@ class RoutsOrderController extends AbstractController{
 
         
         if (empty($data['id']) || empty($data['A']) || empty($data['B'])) {
-            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert-login alert-login--error");  
+            flash("addOrder", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");  
             $this->redirect("/manager/order/add");
         }
         
@@ -547,10 +547,10 @@ class RoutsOrderController extends AbstractController{
         }
 
         if ($routModel->orderEdit($data)) {
-            flash("addOrder", "Trasa zostałą zmodyfikowana", "alert-login alert-login--confirm");
+            flash("addOrder", "Trasa zostałą zmodyfikowana", "alert alert--confirm");
             $this->redirect("/manager/order/add");
         } else {
-            flash("addOrder", "Coś poszło nie tak", "alert-login alert-login--error");
+            flash("addOrder", "Coś poszło nie tak", "alert alert--error");
             $this->redirect("/manager/order/add");
         }
     }

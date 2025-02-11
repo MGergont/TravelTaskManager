@@ -17,73 +17,92 @@
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content modal__content--add">
 			<h2 class="modal__title">Dodawanie lokalizacji</h2>
-			<form class="form-add" action="/manager/order/routMain" method="POST">
-				<!-- //TODOdane osobiste -->
+			<p class="modal__message ">Wprowadź dane lokalizacji B</p>
+			<form class="modal-form" action="/manager/order/routMain" method="POST">
 				<input type="hidden" id="add_id" name="id">
-				<h3 class="">Wprowadź dane lokalizacji B</h3>
-				<div class="form-add__priv" id="home_adres" style="display: block;">
-					<div class="select-wrapper">
-						<label for="location_order_B" class="select-wrapper__label">Punkt końcowy</label>
-						<select name="location_order_B" id="location_order_B" class="select-wrapper__select">
-							<?php foreach ($params['location'] as $veh): ?>
-								<option value="<?php echo $veh['id_location']; ?>">
-									<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
-								</option>
-							<?php endforeach; ?>
-						</select>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="location_order_B" class="field__label">Punkt końcowy</label>
+							<select name="location_order_B" id="location_order_B" class="field__input">
+								<?php foreach ($params['location'] as $veh): ?>
+									<option value="<?php echo $veh['id_location']; ?>">
+										<?php echo $veh['location_name'] . " // " . $veh['town'] . " " . $veh['house_number']; ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+						</div>
 					</div>
 				</div>
-				<div class="form-add__login">
-					<div class="field">
-						<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
-						<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+						</div>
 					</div>
 				</div>
-				<button type="submit" class="button-form button-form--positive">Dodaj</button>
-				<a class="button-form button-form--negative" id="cancel-button">Cancel</a>
+				<div class="modal__actions">
+					<button type="submit" class="button button--positive">Dodaj</button>
+					<a class="button button--negative" id="cancel-button">Cancel</a>
+				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Account Delate</h2>
+			<h2 class="modal__title">Usuwanie zlecenia</h2>
+			<p class="modal__message modal__message--warning">! Zlecenie zostanie trwale usunięte, czy chcesz potwierdzić !</p>
 			<form action="/manager/order/dellMain" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button2">Cancel</a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal4" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Account Delate</h2>
+			<h2 class="modal__title">Usuń punkt</h2>
+			<p class="modal__message modal__message--warning">! Punkt zostanie trwale usunięte, czy chcesz potwierdzić !</p>
 			<form action="/manager/order/routeDellMain" method="post">
 				<input type="hidden" id="del_route_id" name="id">
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button4">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button4">Cancel</a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
-		<div class="modal__content modal__content--edit">
+		<div class="modal__content modal__content--large">
 			<h2 class="modal__title">Account Edit</h2>
-			<form class="edit-modal" action="/manager/order/routeEditMain" method="post">
+			<form class="modal-form" action="/manager/order/routeEditMain" method="post">
 				<input type="hidden" id="edit_id" name="id">
-				<div class="edit-modal__line">
-					<div class="edit-modal__column">
-						<p>Nazwa:<samp id="nameA"></samp></p>
-						<p>Miejscowość:<samp id="cityA"></samp></p>
-						<p>Kod pocztowy:<samp id="zipCodeA"></samp></p>
-						<p>Miasto:<samp id="townA"></samp></p>
-						<p>Ulica:<samp id="streetA"></samp></p>
-						<p>Numer domu:<samp id="numberA"></samp></p>
-						<div class="select-wrapper">
-							<label for="location_A_edit" class="select-wrapper__label">Lokalizacja A | Nazwa | Adres</label>
-							<select name="location_A_edit" id="location_A_edit" class="select-wrapper__select">
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<p class="modal__message">Nazwa: <samp id="nameA"></samp></p>
+						<p class="modal__message">Miejscowość: <samp id="cityA"></samp></p>
+						<p class="modal__message">Kod pocztowy: <samp id="zipCodeA"></samp></p>
+						<p class="modal__message">Miasto: <samp id="townA"></samp></p>
+						<p class="modal__message">Ulica: <samp id="streetA"></samp></p>
+						<p class="modal__message">Numer domu: <samp id="numberA"></samp></p>
+					</div>
+					<div class="modal-form__column">
+						<p class="modal__message">Nazwa: <samp id="nameB"></samp></p>
+						<p class="modal__message">Miejscowość: <samp id="cityB"></samp></p>
+						<p class="modal__message">Kod pocztowy: <samp id="zipCodeB"></samp></p>
+						<p class="modal__message">Miasto: <samp id="townB"></samp></p>
+						<p class="modal__message">Ulica: <samp id="streetB"></samp></p>
+						<p class="modal__message">Numer domu: <samp id="numberB"></samp></p>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="location_A_edit" class="field__label">Lokalizacja A | Nazwa | Adres</label>
+							<select name="location_A_edit" id="location_A_edit" class="field__input">
 								<option id="originLocation" selected></option>
 								<?php foreach ($params['location'] as $veh): ?>
 									<option value="<?php echo $veh['id_location']; ?>">
@@ -92,21 +111,11 @@
 								<?php endforeach; ?>
 							</select>
 						</div>
-						<div class="field">
-							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
-							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
-						</div>
 					</div>
-					<div class="edit-modal__column">
-						<p>Nazwa:<samp id="nameB"></samp></p>
-						<p>Miejscowość:<samp id="cityB"></samp></p>
-						<p>Kod pocztowy:<samp id="zipCodeB"></samp></p>
-						<p>Miasto:<samp id="townB"></samp></p>
-						<p>Ulica:<samp id="streetB"></samp></p>
-						<p>Numer domu:<samp id="numberB"></samp></p>
-						<div class="select-wrapper">
-							<label for="location_B_edit" class="select-wrapper__label">Lokalizacja B | Nazwa | Adres</label>
-							<select name="location_B_edit" id="location_B_edit" class="select-wrapper__select">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="location_B_edit" class="field__label">Lokalizacja B | Nazwa | Adres</label>
+							<select name="location_B_edit" id="location_B_edit" class="field__input">
 								<option id="destinLocation" selected></option>
 								<?php foreach ($params['location'] as $veh): ?>
 									<option value="<?php echo $veh['id_location']; ?>">
@@ -115,6 +124,16 @@
 								<?php endforeach; ?>
 							</select>
 						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
+						</div>
+					</div>
+					<div class="modal-form__column">
 						<div class="field">
 							<label for="departure_date" class="field__label">Data wyjazdu(opcjonalnie)</label>
 							<input type="datetime-local" id="departure_date" name="departure_date" class="field__input">
@@ -122,8 +141,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button3">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -131,40 +150,54 @@
 	<div class="modal" id="modal5" style="display:none;">
 		<div class="modal__content modal__content--add">
 			<h2 class="modal__title">Edycja zlecenia</h2>
-			<form class="add-modal" action="/manager/order/orderEditMain" method="post">
+			<form class="modal-form" action="/manager/order/orderEditMain" method="post">
 				<input type="hidden" id="edit_order_id" name="id">
-				<div class="add-modal__name">
-					<div class="field">
-						<label for="name_order" class="field__label">Nazwa zlecenia</label>
-						<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="name_order" class="field__label">Nazwa zlecenia</label>
+							<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
+						</div>
 					</div>
-					<div class="select-wrapper">
-						<label for="user_order" class="select-wrapper__label">Użytkownik (Login/Name)</label>
-						<select name="user_order" id="user_order" class="select-wrapper__select">
-							<?php foreach ($params['users'] as $veh): ?>
-								<option value="<?php echo $veh['id_operator']; ?>">
-									<?php echo $veh['login'] . " // " . $veh['name'] . " " . $veh['last_name']; ?>
-								</option>
-							<?php endforeach; ?>
-						</select>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="user_order" class="field__label">Użytkownik (Login/Name)</label>
+							<select name="user_order" id="user_order" class="field__input">
+								<?php foreach ($params['users'] as $veh): ?>
+									<option value="<?php echo $veh['id_operator']; ?>">
+										<?php echo $veh['login'] . " // " . $veh['name'] . " " . $veh['last_name']; ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+						</div>
 					</div>
-					<div class="field">
-						<label for="date_due" class="field__label">Data realizacji</label>
-						<input type="date" id="date_due" name="date_due" class="field__input" required>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="date_due" class="field__label">Data realizacji</label>
+							<input type="date" id="date_due" name="date_due" class="field__input" required>
+						</div>
 					</div>
-					<div class="select-wrapper">
-						<label for="status_order" class="select-wrapper__label">Status</label>
-						<select name="status_order" id="status_order" class="select-wrapper__select">
-							<option value="new">new</option>
-							<option value="in progress">in progress</option>
-							<option value="done">done</option>
-							<option value="accepted">accepted</option>
-						</select>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="status_order" class="field__label">Status</label>
+							<select name="status_order" id="status_order" class="field__input">
+								<option value="new">new</option>
+								<option value="in progress">in progress</option>
+								<option value="done">done</option>
+								<option value="accepted">accepted</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button-form button-form--positive">Confirm</button>
-					<a class="button-form button-form--negative" id="cancel-button5">Cancel</a>
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button5">Cancel</a>
 				</div>
 			</form>
 		</div>
@@ -212,7 +245,9 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title">Zlecenia Delegacji</h2>
-			<a href="/manager/order/add"><button name="submit" class="button-form button-form--positive">Dodaj zlecenie delegacji</button></a>
+			<div class="content__controls">
+				<a href="/manager/order/add"><button name="submit" class="button button--positive">Dodaj zlecenie delegacji</button></a>
+			</div>
 			<div class="user-panel">
 				<div class="accordion">
 					<div class="accordion__title">
@@ -247,8 +282,8 @@
 													<tr>
 														<td><?php echo $location['origin_name'] . "; " . $location['origin_city']; ?></td>
 														<td><?php echo $location['destination_name'] . "; " . $location['destination_city']; ?></td>
-														<td class="user-panel__cell user-panel__cell--options">
-															<button class="user-panel__icon"><i class="icon-pencil" onclick="editRoute(
+														<td class=accordion__cell user-panel__cell--options">
+															<button class="accordion__icon"><i class="icon-pencil" onclick="editRoute(
 															'<?php echo $location['id_route']; ?>',
 															'<?php echo $location['origin_name']; ?>',
 															'<?php echo $location['origin_city']; ?>',
@@ -263,7 +298,7 @@
 															'<?php echo $location['destination_street']; ?>',
 															'<?php echo $location['destination_house_number']; ?>',
 															)"></i></button>
-															<button class="user-panel__icon"><i class="icon-trash" onclick="delRoute('<?php echo $location['id_route']; ?>')"></i></button>
+															<button class="accordion__icon"><i class="icon-trash" onclick="delRoute('<?php echo $location['id_route']; ?>')"></i></button>
 														</td>
 													</tr>
 												<?php endforeach; ?>
@@ -272,13 +307,13 @@
 									</table>
 									<div class="accordion__options">
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive" onclick="addRoute('<?php echo $order['id_order']; ?>')">Dodaj punkt</button>
+											<button type="submit" name="submit" class="button button--positive" onclick="addRoute('<?php echo $order['id_order']; ?>')">Dodaj punkt</button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')">Usuń zlecenie</button>
+											<button type="submit" name="submit" class="button button--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')">Usuń zlecenie</button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button-form button-form--positive" onclick="editOrder(
+											<button type="submit" name="submit" class="button button--positive" onclick="editOrder(
 											'<?php echo $order['id_order']; ?>',
 											'<?php echo $order['order_name']; ?>',
 											'<?php echo $order['assigned_to']; ?>',
@@ -362,7 +397,7 @@
 
 	function editOrder(id, nameOrder, userId, date, status) {
 		document.getElementById('edit_order_id').value = id;
-		
+
 		document.getElementById('name_order').value = nameOrder;
 		document.getElementById('user_order').value = userId;
 		document.getElementById('date_due').value = date;
@@ -399,6 +434,16 @@
 
 	cancelButton5.addEventListener('click', function() {
 		modal5.style.display = 'none';
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			modal1.style.display = 'none';
+			modal2.style.display = 'none';
+			modal3.style.display = 'none';
+			modal4.style.display = 'none';
+			modal5.style.display = 'none';
+		}
 	});
 </script>
 

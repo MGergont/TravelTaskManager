@@ -29,17 +29,17 @@ class LoginAdminController extends AbstractController{
         ];
                 
         if(empty($data['login']) || empty($data['adminPwd'])){
-            flash("loginAdmin", "Nie uzupełniono odpowiednich formularzy", "alert-login alert-login--error");           
+            flash("loginAdmin", "Nie uzupełniono odpowiednich formularzy", "alert alert--error");           
             $this->redirect("/admin");
         }
 
         if($this->IfMaxLength($data,  30)){
-            flash("loginAdmin", "Nieprawidłowa długość znaków", "alert-login alert-login--error");           
+            flash("loginAdmin", "Nieprawidłowa długość znaków", "alert alert--error");           
             $this->redirect("/admin");
         };
 
         if($this->IfSpecialAndPolishCharacters($data['login'])){
-            flash("loginAdmin", "Niepoprawne znaki w nazwie", "alert-login alert-login--error");           
+            flash("loginAdmin", "Niepoprawne znaki w nazwie", "alert alert--error");           
             $this->redirect("/admin");
         }
 
@@ -50,13 +50,13 @@ class LoginAdminController extends AbstractController{
             $hashedPassword = $result->pwd;
 
             if($this->IfStatus($result->user_status, "block")){
-                flash("loginAdmin", "Konto zostało zablokowane", "alert-login alert-login--error");           
+                flash("loginAdmin", "Konto zostało zablokowane", "alert alert--error");           
                 $this->redirect("/admin");
             }
 
             if($this->LoginErrorValid($result->login_error, 3)){
                 $loginAdminModel->updateStatusAccount($result->id_admin, "block");
-                flash("loginAdmin", "Konto zostało zablokowane", "alert-login alert-login--error");           
+                flash("loginAdmin", "Konto zostało zablokowane", "alert alert--error");           
                 $this->redirect("/admin");
             }
 
@@ -67,11 +67,11 @@ class LoginAdminController extends AbstractController{
                 $this->createUserSession($result);
             } else {
                 $loginAdminModel->updateLoginError($result->id_admin, $result->login_error + 1);
-                flash("loginAdmin", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
+                flash("loginAdmin", "Niepoprawny login lub hasło", "alert alert--error");  
                 $this->redirect("/admin");
             }
         } else {
-            flash("loginAdmin", "Niepoprawny login lub hasło", "alert-login alert-login--error");  
+            flash("loginAdmin", "Niepoprawny login lub hasło", "alert alert--error");  
             $this->redirect("/admin");
         }
         

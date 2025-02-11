@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="/Public/css/main.min.css">
 	<link rel="stylesheet" href="/Public/fonts/icon/fontello/css/fontello.css">
 </head>
+
 <body>
 	<header class="topbar">
 		<div class="topbar__hamburger">
@@ -44,7 +45,7 @@
 				<ul class="sidebar__list">
 					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
 					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
-                    <li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
+					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
 					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
 					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
 				</ul>
@@ -52,61 +53,102 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title">Route Dashboard</h2>
-			<div class="user-panel">
-			<?php switch ($_SESSION['statusDel']) { case 'start':?>
-						<form method="post" action="/manager/route/castom-start">
-							<div class="field">
-                        		<label for="StartRoute" class="field__label">Start location</label>
-                        		<input type="text" id="StartRoute" name="StartRoute" class="field__input" placeholder="Start location" required>
-                    		</div>
-							<div class="field">
-                        		<label for="Distance" class="field__label">Distance</label>
-                        		<input type="number" id="Distance" name="Distance" class="field__input" placeholder="Distance" required>
-                    		</div>
-							<div class="field">
-                        		<label for="StopRoute" class="field__label">Stop Route</label>
-                        		<input type="text" id="StopRoute" name="StopRoute" class="field__input" placeholder="StopRoute" required>
-                    		</div>
-							<button type="submit" name="submit" class="button-form button-form--positive">Start</button>
-						</form>
-					<?php break; case 'next':?>
-						<form method="post" action="/manager/route/castom-next">
-							<div class="field">
-                        		<label for="StartRoute2" class="field__label">Next location</label>
-                        		<input type="text" id="StartRoute2" name="StartRoute" class="field__input" placeholder="Next location" required>
-                    		</div>
-							<div class="field">
-                        		<label for="NextDistance" class="field__label">Next Distance</label>
-                        		<input type="number" id="NextDistance" name="NextDistance" class="field__input" placeholder="Next Distance" required>
-                    		</div>
-							<div class="field">
-                        		<label for="StopRoute2" class="field__label">Stop location</label>
-                        		<input type="text" id="StopRoute2" name="StopRoute" class="field__input" placeholder="Stop location" required>
-                    		</div>
-							<button type="submit" name="submit" class="button-form button-form--positive">Next</button><br>
-							<a href="/manager/route/castom-end" class="button-form button-form--negative">Stop</a>
-						</form>
-					<?php break; case 'runtime':?>
-						<p>Trasa trwa...</p>
-						<a href="/manager/route/castom-stop"><button name="submit" class="button-form button-form--negative">Stop</button></a>
-					<?php break; default: ?>
-						<p>Witaj! Twoja rola jest nieznana.</p>
-				<?php break;}?>
-				<?php if(!empty($_SESSION["route"])) : ?>
-        		<?php flash("route"); ?>
-    			<?php endif; ?>
-				<p>Start a route to add costs</p>
+			<div class="route">
+				<div class="route__add--route">
+					<?php switch ($_SESSION['statusDel']) {
+						case 'start': ?>
+							<form class="modal-form" method="post" action="/manager/route/castom-start">
+								<div class="modal-form__row">
+									<div class="modal-form__full">
+										<div class="field">
+											<label for="StartRoute" class="field__label">Start location</label>
+											<input type="text" id="StartRoute" name="StartRoute" class="field__input" placeholder="Start location" required>
+										</div>
+									</div>
+								</div>
+								<div class="modal-form__row">
+									<div class="modal-form__full">
+										<div class="field">
+											<label for="Distance" class="field__label">Distance</label>
+											<input type="number" id="Distance" name="Distance" class="field__input" placeholder="Distance" required>
+										</div>
+									</div>
+								</div>
+								<div class="modal-form__row">
+									<div class="modal-form__full">
+										<div class="field">
+											<label for="StopRoute" class="field__label">Stop location</label>
+											<input type="text" id="StopRoute" name="StopRoute" class="field__input" placeholder="Stop location" required>
+										</div>
+									</div>
+								</div>
+								<button type="submit" name="submit" class="button button--positive">Start</button>
+							</form>
+						<?php break;
+						case 'next': ?>
+							<form class="modal-form" method="post" action="/manager/route/castom-next">
+								<div class="modal-form__row">
+									<div class="modal-form__full">
+										<div class="field">
+											<label for="StartRoute2" class="field__label">Next location</label>
+											<input type="text" id="StartRoute2" name="StartRoute" class="field__input" placeholder="Next location" required>
+										</div>
+									</div>
+								</div>
+								<div class="modal-form__row">
+									<div class="modal-form__full">
+										<div class="field">
+											<label for="NextDistance" class="field__label">Next Distance</label>
+											<input type="number" id="NextDistance" name="NextDistance" class="field__input" placeholder="Next Distance" required>
+										</div>
+									</div>
+								</div>
+								<div class="modal-form__row">
+									<div class="modal-form__full">
+										<div class="field">
+											<label for="StopRoute2" class="field__label">Stop location</label>
+											<input type="text" id="StopRoute2" name="StopRoute" class="field__input" placeholder="Stop location" required>
+										</div>
+									</div>
+								</div>
+								<button type="submit" name="submit" class="button button--positive">Next</button><br>
+								<a href="/manager/route/castom-end" class="button button--negative">Stop</a>
+							</form>
+						<?php break;
+						case 'runtime': ?>
+							<p>Trasa trwa...</p>
+							<a href="/manager/route/castom-stop"><button name="submit" class="button button--negative">Stop</button></a>
+						<?php break;
+						default: ?>
+							<p>Witaj! Twoja rola jest nieznana.</p>
+					<?php break;
+					} ?>
+					<?php if (!empty($_SESSION["route"])) : ?>
+						<?php flash("route"); ?>
+					<?php endif; ?>
+					<p>Start a route to add costs</p>
+				</div>
 				<?php if ($_SESSION['statusDel'] != 'start'): ?>
-					<p>Add cost</p>
-					<form method="post" action="/manager/route/cost">
-						<div class="field">
-                    		<input type="number" name="amount" class="field__input" placeholder="Koszt" required>
-                    	</div>
-						<div class="field">
-                    		<input type="text" name="descript" class="field__input" placeholder="Opis" required>
-                    	</div>
-						<button type="submit" name="submit" class="button-form button-form--positive">Dodaj</button>
-					</form>
+					<div class="route__add--coste">
+						<p>Add cost</p>
+						<form class="modal-form" method="post" action="/manager/route/cost">
+							<div class="modal-form__row">
+								<div class="modal-form__full">
+									<div class="field">
+										<input type="number" name="amount" class="field__input" placeholder="Koszt" required>
+									</div>
+								</div>
+							</div>
+							<div class="modal-form__row">
+								<div class="modal-form__full">
+									<div class="field">
+										<input type="text" name="descript" class="field__input" placeholder="Opis" required>
+									</div>
+								</div>
+							</div>
+							<button type="submit" name="submit" class="button button--positive">Dodaj</button>
+						</form>
+					</div>
 				<?php endif; ?>
 			</div>
 		</main>

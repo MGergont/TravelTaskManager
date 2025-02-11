@@ -13,22 +13,22 @@
 </head>
 <body>
     <?php if(!empty($_SESSION["loginOperator"])) : ?>
-        <?php flash("loginOperator"); ?><i class="icon-cancel"></i>
+        <?php flash("loginOperator"); ?>
     <?php endif; ?>
     <div class="login-panel">
         <img class="login-panel__img" src="/Public/image/logo_login2.png" />
         <h2 class="login-panel__title">Login Operator</h2>
         <h3 class="login-panel__sub-title">Dashboard</h3>
         <form class="form" action="/" method="POST">
-            <div class="form__field">
-                <label for="login" class="form__label">Email</label>
-                <input type="text" id="login" name="login" class="form__input" placeholder="Enter your email" autocomplete="login" required>
+            <div class="field">
+                <label for="login" class="field__label">Email</label>
+                <input type="text" id="login" name="login" class="field__input" placeholder="Enter your email" autocomplete="login" required>
             </div>
-            <div class="form__field">
-                <label for="password" class="form__label">Password</label>
-                <input type="password" name="pwd" id="password" class="form__input" placeholder="Enter your password" autocomplete="password" required>
+            <div class="field">
+                <label for="password" class="field__label">Password</label>
+                <input type="password" name="pwd" id="password" class="field__input" placeholder="Enter your password" autocomplete="password" required>
             </div>
-            <button type="submit" class="button-form button-form--positive">Login</button>
+            <button type="submit" class="button button--positive">Login</button>
         </form>
     </div>
 </body>

@@ -1,22 +1,25 @@
 //blocks
-@import 'blocks/alert';
-@import 'blocks/buttons';
-@import 'blocks/form';
-@import 'blocks/field';
-@import 'blocks/select-wrapper';
-@import 'blocks/select-wrapper-line';
-@import 'blocks/modal';
-@import 'blocks/accordion';
+@import 'component/alert';
+@import 'component/buttons';
+@import 'component/form';
+@import 'component/field';
+@import 'component/accordion';
+@import 'component/table';
+@import 'component/modal';
+@import 'component/modalForm';
+@import 'component/checkbox';
 //layout
 @import 'layout/base';
 @import 'layout/adminGrid';
-@import 'layout/tableAdmin';
 
 //page admin
 @import 'page/loginAdmin';
 @import 'page/menageAdmin';
 @import 'page/registerAdmin';
 @import 'page/locationOperator';
+@import 'page/route';
+@import 'page/routsOrderAdd';
+@import 'page/dashboardUser';
 // page operator
 
 //settings

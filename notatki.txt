@@ -62,3 +62,8 @@ musi być przycisk z rezygnacją zmieniający satus na foult
 
 jeśli sesja nie istnieje to wpisz start
 jeśli sesja jest rużna niż stop to wpisz start
+
+
+zmiana powiązania label for do id a nie do name
+
+Kolejność tagów w labelu i inpucie
