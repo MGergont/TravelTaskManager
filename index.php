@@ -53,6 +53,7 @@ $router->post('/user/order', 'OrderUserController@orderAccept', 'Controllers\\Op
 
 $router->get('/user/fleet', 'FleetUserController@fleetUserView', 'Controllers\\Operator\\User');
 
+
 $router->post('/user/route/castom-start', 'RouteUserController@startRoute', 'Controllers\\Operator\\User');
 $router->post('/user/route/castom-next', 'RouteUserController@startNextRoute', 'Controllers\\Operator\\User');
 $router->get('/user/route/castom-stop', 'RouteUserController@stopRoute', 'Controllers\\Operator\\User');
@@ -87,6 +88,7 @@ $router->post('/manager/order/routeEditMain', 'RoutsOrderController@routeEditMai
 $router->post('/manager/order/orderEditMain', 'RoutsOrderController@orderEditMain', 'Controllers\\Operator\\Manager');
 
 $router->get('/manager/fleet', 'FleetManagerController@fleetManagerView', 'Controllers\\Operator\\Manager');
+$router->post('/manager/fleet/add', 'FleetManagerController@fleetAdd', 'Controllers\\Operator\\Manager');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

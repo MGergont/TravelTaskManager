@@ -12,6 +12,78 @@
 	<link rel="stylesheet" href="/Public/fonts/icon/fontello/css/fontello.css">
 </head>
 <body>
+<div class="modal" id="modal1" style="display:none;">
+		<div class="modal__content">
+			<h2 class="modal__title">Dodawanie pojazdu</h2>
+			<form class="modal-form" action="/manager/fleet/add" method="post">
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="add_license" class="field__label">Tablice rejestracyjne</label>
+							<input type="text" id="add_license" name="add_license" class="field__input" placeholder="Tablice rejestracyjne" required>
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="add_brand" class="field__label">Marka</label>
+							<input type="text" id="add_brand" name="add_brand" class="field__input" placeholder="Marka" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="add_model" class="field__label">Model</label>
+							<input type="text" id="add_model" name="add_model" class="field__input" placeholder="Model" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="add_production_year" class="field__label">Rok produkcji</label>
+							<input type="datetime-local" id="add_production_year" name="add_production_year" class="field__input">
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="add_mileage" class="field__label">Przebieg</label>
+							<input type="number" id="add_mileage" name="add_mileage" class="field__input" placeholder="Przebieg" required>
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="add_service" class="field__label">Ostatni serwis</label>
+							<input type="datetime-local" id="add_service" name="add_service" class="field__input">
+						</div>
+					</div>
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="add_end_of_insurance" class="field__label">Koniec ubezpieczenia</label>
+							<input type="datetime-local" id="add_end_of_insurance" name="add_end_of_insurance" class="field__input">
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="add_inspect" class="field__label">Koniec badania technicznego</label>
+							<input type="datetime-local" id="add_inspect" name="add_inspect" class="field__input">
+						</div>
+					</div>
+				</div>
+				<div class="modal__actions">
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<?php if (!empty($_SESSION["fleetManager"])) : ?>
+		<?php flash("fleetManager"); ?>
+	<?php endif; ?>
 	<header class="topbar">
 		<div class="topbar__hamburger">
 			<i class="topbar__bar icon-menu"></i>
@@ -52,8 +124,63 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title">Fleet Dashboard</h2>
+			<div class="content__controls">
+				<button class="button button--positive" onclick="addFleet()">Dodaj pojazd</button>
+			</div>
 			<div class="user-panel">
-
+				<table class="user-panel__table">
+					<thead>
+						<tr class="user-panel__row">
+							<th class="user-panel__header">Marka/Model</th>
+							<th class="user-panel__header">Tablice rejestracyjne</th>
+							<th class="user-panel__header">Rok produkcji</th>
+							<th class="user-panel__header">Ostatni serwis</th>
+							<th class="user-panel__header">Koniec ubezpieczenia</th>
+							<th class="user-panel__header">Koniec badania technicznego</th>
+							<th class="user-panel__header">Właściciel</th>
+							<th class="user-panel__header">Status</th>
+							<th class="user-panel__header">Options</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php if (!empty($params['fleet'])) : ?>
+							<?php foreach ($params['fleet'] as $fleet): ?>
+								<tr class="user-panel__row">
+									<td class="user-panel__cell"><?php echo $fleet['brand'] . " " . $fleet['model']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['license_plate']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['production_year']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['last_service']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['end_of_insurance']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['end_of_tech_inspect']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['operator_name']. " " .$fleet['operator_last_name']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['status']; ?></td>
+									<td class="user-panel__cell user-panel__cell--options">
+										<button class="user-panel__icon"><i class="icon-left-open" onclick="delLocation(
+									'<?php echo $fleet['id_car']; ?>')"></i></button>
+										<button class="user-panel__icon"><i class="icon-pencil" onclick="editLocation(
+									'<?php echo $fleet['id_car']; ?>',
+									'<?php echo $fleet['license_plate']; ?>',
+									'<?php echo $fleet['brand']; ?>',
+									'<?php echo $fleet['model']; ?>',
+									'<?php echo $fleet['production_year']; ?>',
+									'<?php echo $fleet['mileage']; ?>',
+									'<?php echo $fleet['status']; ?>',
+									'<?php echo $fleet['id_operator']; ?>',
+									'<?php echo $fleet['last_service']; ?>',
+									'<?php echo $fleet['end_of_insurance']; ?>',
+									'<?php echo $fleet['end_of_tech_inspect']; ?>',
+									'<?php echo $fleet['operator_name']; ?>',
+									'<?php echo $fleet['operator_last_name']; ?>',
+									)"></i></button>
+										<button class="user-panel__icon"><i class="icon-trash" onclick="delLocation(
+									'<?php echo $fleet['id_car']; ?>'
+									)"></i></button>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php endif; ?>
+					</tbody>
+				</table>
 			</div>
 		</main>
 	</div>
@@ -69,6 +196,24 @@
 	if (topbarHamburger) {
 		topbarHamburger.addEventListener('click', toggleSidebar);
 	}
+
+	function addFleet() {
+		document.getElementById('modal1').style.display = 'block';
+	}
+
+	const cancelButton = document.getElementById('cancel-button');
+
+	const modal1 = document.getElementById('modal1');
+
+	cancelButton.addEventListener('click', function() {
+		modal1.style.display = 'none';
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			modal1.style.display = 'none';
+		}
+	});
 </script>
 
 </html>

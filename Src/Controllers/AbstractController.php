@@ -110,6 +110,14 @@ abstract class AbstractController
         }
     }
 
+    protected function ValidLicense(string $license) : Bool {
+        if (!preg_match('/^[A-Z]{2,3} [A-Z0-9]{4,5}$/', $license)) {
+            return true;  
+        } else {
+            return false;
+        }
+    }
+
     protected function ValidPrivileges(string $data) : Bool {
         switch ($data) {
             case 'admin':

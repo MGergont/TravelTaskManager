@@ -251,6 +251,7 @@
 			<div class="user-panel">
 				<div class="accordion">
 					<div class="accordion__title">
+						<div class="accordion__text"></div>
 						<div class="accordion__text">Nazwa</div>
 						<div class="accordion__text">Data wykonania</div>
 						<div class="accordion__text">Data utworzenia/modyfikacji</div>
