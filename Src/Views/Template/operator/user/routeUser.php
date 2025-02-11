@@ -46,7 +46,7 @@
 					<li class="sidebar__item"><a href="/user-dashboard" class="sidebar__link">Strona główna</a></li>
 					<li class="sidebar__item"><a href="/user/route" class="sidebar__link">Delegacja</a></li>
 					<li class="sidebar__item"><a href="/user/order" class="sidebar__link">Zlecenia delegacji</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
+					<li class="sidebar__item"><a href="/user/fleet" class="sidebar__link">Flota</a></li>
 					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
 				</ul>
 			</nav>

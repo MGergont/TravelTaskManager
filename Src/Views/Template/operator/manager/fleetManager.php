@@ -51,7 +51,7 @@
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Manager Dashboard</h2>
+			<h2 class="content__title">Fleet Dashboard</h2>
 			<div class="user-panel">
 
 			</div>

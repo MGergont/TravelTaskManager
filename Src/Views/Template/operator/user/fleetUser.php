@@ -54,51 +54,8 @@
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">User Dashboard</h2>
-			<div class="routs-execution">
-				<div class="routs-execution__order">
-					<?php if (isset($params['orders'])): ?>
-						<h3>Aktywan delegacja</h3>
-							<p class="routs-execution__message">1<?php echo $params['orders']['order_name']; ?></p>
-							<p class="routs-execution__message">2<?php echo $params['orders']['due_date']; ?></p>
-							<p class="routs-execution__message">3<?php echo $params['orders']['created_at']; ?></p>
-							<p class="routs-execution__message">4<?php echo $params['orders']['status_order']; ?></p>
-							<br>
-							<form class="modal-form" action="/user-dashboard/reject" method="post">
-								<input type="hidden" id="id_order" value="<?php echo $params['orders']['id_order']; ?>" name="id_order">
-								<button class="button button--negative">Anuluj</button>
-							</form>
-							<?php if (!empty($params['orders'])) : ?>
-								<?php switch ($_SESSION['action']) {
-									case 'start': ?>
-										<h3>Aktualna delegacja</h3>
-											<form class="modal-form" method="post" action="/user-dashboard/start">
-												<input type="hidden" id="id_route" value="<?php echo $params['orders']['id_route']; ?>" name="id_route">
-												<?php echo $params['orders']['origin_location']; ?>
-												<button class="button button--positive">Confirm</button>
-											</form>
-									<?php break;
-									case 'stop': ?>
-										<h3>Koniec trasy</h3>
-											<form class="modal-form" method="post" action="/user-dashboard/stop">
-												<input type="hidden" id="id_route" value="<?php echo $params['orders']['id_route']; ?>" name="id_route">
-												<?php echo $params['orders']['destination_location']; ?>
-												<button class="button button--positive">Confirm</button>
-											</form>
-									<?php break;
-									default: ?>
-										<p>Witaj! Twoja rola jest nieznana.</p>
-								<?php break;
-								} ?>
-							<?php endif; ?>
-					<?php else: ?>
-						Obecnie nie ma delegacji
-					<?php endif ?>
-				</div>
-				<div class="routs-execution__order">
-					<!-- TODO rejestracja kosztów -->
-				</div>
-			</div>
+			<h2 class="content__title">Fleet Dashboard</h2>
+			
 		</main>
 	</div>
 </body>
