@@ -11,8 +11,9 @@
 	<link rel="stylesheet" href="/Public/css/main.min.css">
 	<link rel="stylesheet" href="/Public/fonts/icon/fontello/css/fontello.css">
 </head>
+
 <body>
-<div class="modal" id="modal1" style="display:none;">
+	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Dodawanie pojazdu</h2>
 			<form class="modal-form" action="/manager/fleet/add" method="post">
@@ -81,6 +82,113 @@
 			</form>
 		</div>
 	</div>
+	<div class="modal" id="modal2" style="display:none;">
+		<div class="modal__content">
+			<h2 class="modal__title">Car Delate</h2>
+			<p class="modal__message modal__message--warning">! Pojazd zostanie trwale usunięte, czy chcesz potwierdzić !</p>
+			<form action="/manager/fleet/del" method="post">
+				<input type="hidden" id="del_id" name="id">
+				<div class="modal__actions">
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button2">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal" id="modal3" style="display:none;">
+		<div class="modal__content modal__content--large">
+			<h2 class="modal__title">Car Edit</h2>
+			<form class="modal-form" action="/manager/fleet/edit" method="post">
+				<input type="hidden" id="edit_id" name="edit_id">
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="edit_license" class="field__label">Tablice rejestracyjne</label>
+							<input type="text" id="edit_license" name="edit_license" class="field__input" placeholder="Tablice rejestracyjne" required>
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="edit_brand" class="field__label">Marka</label>
+							<input type="text" id="edit_brand" name="edit_brand" class="field__input" placeholder="Marka" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="edit_model" class="field__label">Model</label>
+							<input type="text" id="edit_model" name="edit_model" class="field__input" placeholder="Model" required>
+						</div>
+					</div>
+					<div class="modal-form__trio">
+						<div class="field">
+							<label for="edit_production_year" class="field__label">Rok produkcji</label>
+							<input type="date" id="edit_production_year" name="edit_production_year" class="field__input">
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="edit_mileage" class="field__label">Przebieg</label>
+							<input type="number" id="edit_mileage" name="edit_mileage" class="field__input" placeholder="Przebieg" required>
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="edit_service" class="field__label">Ostatni serwis</label>
+							<input type="date" id="edit_service" name="edit_service" class="field__input">
+						</div>
+					</div>
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="edit_end_of_insurance" class="field__label">Koniec ubezpieczenia</label>
+							<input type="date" id="edit_end_of_insurance" name="edit_end_of_insurance" class="field__input">
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="edit_inspect" class="field__label">Koniec badania technicznego</label>
+							<input type="date" id="edit_inspect" name="edit_inspect" class="field__input">
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="status" class="field__label">Status</label>
+							<select name="edit_status" id="edit_status" class="field__input">
+									<option value="free">free</option>
+									<option value="in use">in use</option>
+									<option value="in servise">in servise</option>
+							</select>
+						</div>
+					</div>
+					<div class="modal-form__column">
+						<div class="field">
+							<label for="edit_oper" class="field__label">Użytkownik (Login/Name)</label>
+							<select name="edit_oper" id="edit_oper" class="field__input">
+								<?php foreach ($params['users'] as $veh): ?>
+									<option value="<?php echo $veh['id_operator']; ?>">
+										<?php echo $veh['login'] . " // " . $veh['name'] . " " . $veh['last_name']; ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="modal__actions">
+					<button class="button button--positive">Confirm</button>
+					<a class="button button--negative" id="cancel-button3">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
 	<?php if (!empty($_SESSION["fleetManager"])) : ?>
 		<?php flash("fleetManager"); ?>
 	<?php endif; ?>
@@ -116,7 +224,7 @@
 				<ul class="sidebar__list">
 					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
 					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
-                    <li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
+					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
 					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
 					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link">Flota</a></li>
 				</ul>
@@ -152,12 +260,10 @@
 									<td class="user-panel__cell"><?php echo $fleet['last_service']; ?></td>
 									<td class="user-panel__cell"><?php echo $fleet['end_of_insurance']; ?></td>
 									<td class="user-panel__cell"><?php echo $fleet['end_of_tech_inspect']; ?></td>
-									<td class="user-panel__cell"><?php echo $fleet['operator_name']. " " .$fleet['operator_last_name']; ?></td>
+									<td class="user-panel__cell"><?php echo $fleet['operator_name'] . " " . $fleet['operator_last_name']; ?></td>
 									<td class="user-panel__cell"><?php echo $fleet['status']; ?></td>
 									<td class="user-panel__cell user-panel__cell--options">
-										<button class="user-panel__icon"><i class="icon-left-open" onclick="delLocation(
-									'<?php echo $fleet['id_car']; ?>')"></i></button>
-										<button class="user-panel__icon"><i class="icon-pencil" onclick="editLocation(
+										<button class="user-panel__icon"><i class="icon-pencil" onclick="editFleet(
 									'<?php echo $fleet['id_car']; ?>',
 									'<?php echo $fleet['license_plate']; ?>',
 									'<?php echo $fleet['brand']; ?>',
@@ -172,7 +278,7 @@
 									'<?php echo $fleet['operator_name']; ?>',
 									'<?php echo $fleet['operator_last_name']; ?>',
 									)"></i></button>
-										<button class="user-panel__icon"><i class="icon-trash" onclick="delLocation(
+										<button class="user-panel__icon"><i class="icon-trash" onclick="delFleet(
 									'<?php echo $fleet['id_car']; ?>'
 									)"></i></button>
 									</td>
@@ -201,17 +307,52 @@
 		document.getElementById('modal1').style.display = 'block';
 	}
 
+	function delFleet(id) {
+		document.getElementById('del_id').value = id;
+		document.getElementById('modal2').style.display = 'block';
+	}
+
+	function editFleet(id, license, brand, model, production, mileage, status, id_oper, service, insurance, tech_inspect, operator_name, operator_last_name) {
+		document.getElementById('edit_id').value = id;
+		document.getElementById('edit_license').value = license;
+		document.getElementById('edit_brand').value = brand;
+		document.getElementById('edit_model').value = model;
+		document.getElementById('edit_production_year').value = production;
+		document.getElementById('edit_mileage').value = mileage;
+		document.getElementById('edit_status').value = status;
+		document.getElementById('edit_oper').value = id_oper;
+		document.getElementById('edit_service').value = service;
+		document.getElementById('edit_end_of_insurance').value = insurance;
+		document.getElementById('edit_inspect').value = tech_inspect;
+
+		document.getElementById('modal3').style.display = 'block';
+	}
+
 	const cancelButton = document.getElementById('cancel-button');
+	const cancelButton2 = document.getElementById('cancel-button2');
+	const cancelButton3 = document.getElementById('cancel-button3');
 
 	const modal1 = document.getElementById('modal1');
+	const modal2 = document.getElementById('modal2');
+	const modal3 = document.getElementById('modal3');
 
 	cancelButton.addEventListener('click', function() {
 		modal1.style.display = 'none';
 	});
 
+	cancelButton2.addEventListener('click', function() {
+		modal2.style.display = 'none';
+	});
+
+	cancelButton3.addEventListener('click', function() {
+		modal3.style.display = 'none';
+	});
+
 	document.addEventListener("keydown", (event) => {
 		if (event.key === "Escape") {
 			modal1.style.display = 'none';
+			modal2.style.display = 'none';
+			modal3.style.display = 'none';
 		}
 	});
 </script>
