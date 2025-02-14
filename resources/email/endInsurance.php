@@ -27,15 +27,37 @@
             font-size: 16px;
             line-height: 1.5;
         }
+        .policy-details {
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+        .vehicle-list li {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Twoja polisa ubezpieczeniowa wygasa!</h2>
-        <p>Cześć, <strong><?= htmlspecialchars($name) ?></strong>!</p>
-        <p>Informujemy, że Twoja polisa ubezpieczeniowa <strong>nr <?= htmlspecialchars($policyNumber) ?></strong> wygaśnie dnia <strong><?= htmlspecialchars($expiryDate) ?></strong>.</p>
+        <h2>Polisa ubezpieczeniowa wygasa!</h2>
+        <p>Cześć,</p>
+        <p>Informujemy, że polisa ubezpieczeniowa na następujące pojazdy z Twojej floty wygasa dnia <strong><?= htmlspecialchars($end_of_insurance) ?></strong>:</p>
+        
+        <ul class="vehicle-list">
+                <li><strong>Tablica rejestracyjna: <?= htmlspecialchars($license) ?></strong></li>
+                <li><strong>Marka: <?= htmlspecialchars($brand) ?></strong></li>
+                <li><strong>Model: <?= htmlspecialchars($model) ?></strong></li>
+                <li><strong>Rok produkcji: <?= htmlspecialchars($production_year) ?></strong></li>
+        </ul>
+
         <div class="policy-details">
-            <p>Nie zwlekaj! Aby uniknąć przerwy w ochronie, przedłuż swoją polisę już teraz.</p>
+            <p>Nie zwlekaj! Aby uniknąć przerwy w ochronie, przedłuż polisę jak najszybciej.</p>
         </div>
     </div>
 </body>

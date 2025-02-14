@@ -7,11 +7,21 @@ namespace Src\Utils;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Src\Utils\Encryption;
+use Src\Models\EmailSendModel;
+
+require_once __DIR__ . '/../../vendor/autoload.php'; 
 
 class Mailer {
     private $mail;
+    private $emailLogModel;
+
     
     public function __construct() {
+
+        $config = require "./Src/Config/PdoMySQLConf.php";
+
+        $this->emailLogModel = new EmailSendModel($config['db']);
+
         $config = require './Src/Config/Mailer_conf.php';
 
         $this->mail = new PHPMailer(true);
@@ -38,8 +48,13 @@ class Mailer {
             $this->mail->Subject = $subject;
             $this->mail->Body = $body;
 
-            return $this->mail->send();
+            $this->mail->send();
+            $this->emailLogModel->emailLogIn($to, $subject, $template, 'Sent', null);
+            return ;
         } catch (Exception $e) {
+
+            $this->emailLogModel->emailLogIn($to, $subject, $template, 'Failed', $e->getMessage());
+
             return "Email sending failed: " . $this->mail->ErrorInfo;
         }
     }

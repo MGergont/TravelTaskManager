@@ -31,7 +31,7 @@ class ImageTool {
 
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array($imageExtension, $allowedExtensions)) {
-            flash($this->error, "Niedozwolony format pliku.");
+            flash($this->error, "Niedozwolony format pliku.", "alert alert--error");
             return false;
         }
 
@@ -41,7 +41,7 @@ class ImageTool {
         if (move_uploaded_file($imageTmpPath, $uploadPath)) {
             return $newImageName;
         } else {
-            flash($this->error, "Wystąpił błąd podczas przenoszenia pliku.");
+            flash($this->error, "Wystąpił błąd podczas przenoszenia pliku.", "alert alert--error");
             return false;
         }
     }

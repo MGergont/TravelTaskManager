@@ -92,7 +92,11 @@ class FleetModel extends AbstractModel{
         $this->bind(':insurance', $data['insurance']);
         $this->bind(':inspect', $data['inspect']);
         $this->bind(':status', $data['status']);
-        $this->bind(':id_oper', $data['id_oper']);
+        if ($data['id_oper'] === "NULL") {
+            $this->bind(':id_oper', NULL);
+        }else{
+            $this->bind(':id_oper', $data['id_oper']);
+        }
         $this->bind(':path', $path);
         $this->bind(':id', $data['id']);
 
