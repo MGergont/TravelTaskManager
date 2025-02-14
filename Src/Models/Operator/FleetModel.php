@@ -99,4 +99,61 @@ class FleetModel extends AbstractModel{
             return false;
         }
     }
+
+    public function showUserFleet(int $id) : Array|Bool{
+        $this->query('SELECT
+            cc.id_car,
+            cc.license_plate,
+            cc.brand,
+            cc.model,
+            cc.production_year,
+            cc.mileage,
+            cc.status,
+            cc.last_service,
+            cc.end_of_insurance,
+            cc.end_of_tech_inspect,
+            cc.id_operator_fk
+        FROM public.company_cars cc WHERE id_operator_fk = :id');
+
+        $this->bind(':id', $id);
+    
+        $row = $this->singleArray();
+    
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function showUserCarCosts(int $idCar) : Array|Bool{
+        $this->query('SELECT * FROM public.car_expenses WHERE id_car = :idCar');
+
+        $this->bind(':idCar', $idCar);
+    
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function addCost(array $data): Bool{
+        $this->query('INSERT INTO public.car_expenses(id_car, expense_date, category, amount, description) VALUES (:id, :expenseDate, :category, :amount, :description);');
+        
+        $this->bind(':expenseDate', $data['expenseDate']);
+        $this->bind(':category', $data['category']);
+        $this->bind(':amount', $data['amount']);
+        $this->bind(':description', $data['description']);
+        $this->bind(':id', $data['id']);
+
+        
+        if($this->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

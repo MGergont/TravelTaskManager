@@ -179,7 +179,6 @@ class FleetManagerController extends AbstractController
 
     private function formatDaty(array $arrayItems): array
     {
-        // Definiujemy pola do formatowania i ich odpowiedni format
         $dateFields = [
             'production_year' => 'Y',  // Tylko rok
             'last_service' => 'Y-m-d', // Tylko data

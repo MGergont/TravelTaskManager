@@ -135,3 +135,13 @@ CREATE TABLE public.company_cars (
     id_operator_fk INT UNIQUE,  -- Operator przypisany do samochodu (unikalne przypisanie)
     FOREIGN KEY (id_operator_fk) REFERENCES public.operator(id_operator) ON DELETE SET NULL -- Operator może być NULL (samochód nieprzypisany)
 );
+
+CREATE TABLE public.car_expenses (
+    id_expense SERIAL PRIMARY KEY,            -- Unikalny identyfikator wydatku
+    id_car INTEGER NOT NULL,                  -- Samochód, którego dotyczy koszt
+    expense_date DATE NOT NULL DEFAULT CURRENT_DATE, -- Data poniesienia wydatku
+    category VARCHAR(50) NOT NULL,            -- Typ kosztu (np. 'Fuel', 'Maintenance', 'Insurance')
+    amount NUMERIC(10,2), -- Kwota wydatku (nie może być ujemna)
+    description TEXT,                          -- Opis wydatku (opcjonalnie)
+    FOREIGN KEY (id_car) REFERENCES public.company_cars(id_car) ON DELETE CASCADE
+);

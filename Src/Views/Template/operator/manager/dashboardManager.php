@@ -47,6 +47,8 @@
                     <li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
 					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
 					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link">Flota</a></li>
+					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link">Samochód</a></li>
+				</ul>
 				</ul>
 			</nav>
 		</div>

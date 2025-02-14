@@ -77,7 +77,7 @@
   color: #444;
   transition: color 0.3s ease;
 }
-.field__input {
+.field__input, .field__textarea {
   width: 100%;
   padding: 0.75rem;
   border: 2px solid #ddd;
@@ -87,17 +87,21 @@
   background-color: #fff;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.field__input:focus {
+.field__input:focus, .field__textarea:focus {
   border-color: var(--primary-color);
   outline: none;
 }
-.field__input::-moz-placeholder {
+.field__input::-moz-placeholder, .field__textarea::-moz-placeholder {
   color: #999;
   font-size: 0.95rem;
 }
-.field__input::placeholder {
+.field__input::placeholder, .field__textarea::placeholder {
   color: #999;
   font-size: 0.95rem;
+}
+.field__textarea {
+  min-height: 80px;
+  resize: vertical;
 }
 .field--error .field__input {
   border-color: var(--negative);
@@ -221,7 +225,6 @@
 .user-panel__table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 1000px;
 }
 .user-panel__row:nth-child(even) {
   background-color: var(--disabled);
@@ -744,6 +747,96 @@ body {
   margin: 10px 15px;
   height: -moz-fit-content;
   height: fit-content;
+}
+
+.fleet {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+@media (max-width: 1024px) {
+  .fleet {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.fleet__car {
+  width: 40%;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+@media (max-width: 1024px) {
+  .fleet__car {
+    width: 90%;
+  }
+}
+.fleet__info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .fleet__info {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.fleet__image {
+  width: 40%;
+  max-width: 200px;
+  border-radius: 8px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 768px) {
+  .fleet__image {
+    width: 100%;
+  }
+}
+.fleet__details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fleet__title {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+.fleet__text {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+.fleet__service {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: var(--active);
+  border-top: 2px solid var(--table__2);
+}
+.fleet__service-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.fleet__service-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.fleet__table {
+  width: 55%;
+  overflow-x: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 1024px) {
+  .fleet__table {
+    width: 90%;
+  }
 }
 
 * {

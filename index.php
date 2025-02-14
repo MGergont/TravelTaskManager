@@ -92,6 +92,10 @@ $router->post('/manager/fleet/add', 'FleetManagerController@fleetAdd', 'Controll
 $router->post('/manager/fleet/del', 'FleetManagerController@fleetDel', 'Controllers\\Operator\\Manager');
 $router->post('/manager/fleet/edit', 'FleetManagerController@fleetEdit', 'Controllers\\Operator\\Manager');
 
+$router->get('/manager/vehicle', 'FleetUseManagerController@vehicleManagerView', 'Controllers\\Operator\\Manager');
+$router->post('/manager/vehicle/addCosts', 'FleetUseManagerController@costsFleetAdd', 'Controllers\\Operator\\Manager');
+
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);
 
