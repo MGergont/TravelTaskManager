@@ -236,4 +236,38 @@ class FleetManagerController extends AbstractController
 
         return $arrayItems;
     }
+
+    public function sendEmail(): void
+    {
+
+        $dataEmial = [
+            "name" => "Mateusz",
+            "expiryDate" => "2023-02-10",
+            "policyNumber" => "12432123456"
+        ];
+
+        if ($this->sendEndInsurance('mateuszgergont06@gmail.com', $dataEmial)) {
+            flash("fleetManager", "Email został wysłany", "alert alert--confirm");
+            $this->redirect("/manager/fleet");
+        } else {
+            flash("fleetManager", "Coś poszło nie tak", "alert alert--error");
+            $this->redirect("/manager/fleet");
+        }
+
+        if ($this->sendWelcomeEmail('mateuszgergont06@gmail.com', 'John Doe')) {
+            flash("fleetManager", "Email został wysłany", "alert alert--confirm");
+            $this->redirect("/manager/fleet");
+        } else {
+            flash("fleetManager", "Coś poszło nie tak", "alert alert--error");
+            $this->redirect("/manager/fleet");
+        }
+
+        if ($this->sendResetPasswordEmail('mateuszgergont06@gmail.com', 'https://example.com/reset-password?token=123')) {
+            flash("fleetManager", "Email został wysłany", "alert alert--confirm");
+            $this->redirect("/manager/fleet");
+        } else {
+            flash("fleetManager", "Coś poszło nie tak", "alert alert--error");
+            $this->redirect("/manager/fleet");
+        }
+    }
 }

@@ -251,6 +251,7 @@
 			<h2 class="content__title">Fleet Dashboard</h2>
 			<div class="content__controls">
 				<button class="button button--positive" onclick="addFleet()">Dodaj pojazd</button>
+				<a class="button button--positive" href="/manager/vehicle/eamil" >Dodaj pojazd</a>
 			</div>
 			<div class="user-panel">
 				<table class="user-panel__table">
