@@ -79,7 +79,7 @@
 					<div class="modal-form__full">
 						<div class="field">
 							<label for="photo" class="form__item__label">Dodaj zdjęcie</label>
-							<input type="file" name="product_image" id="photo" class="form__item__input" accept="image/*" required>
+							<input type="file" name="product_image" id="photo" class="form__item__input" accept="image/*" >
 						</div>
 					</div>
 				</div>
@@ -170,7 +170,7 @@
 					<div class="modal-form__full">
 						<div class="field">
 							<label for="photo" class="form__item__label">Dodaj zdjęcie</label>
-							<input type="file" name="product_image1" id="photo" class="form__item__input" accept="image/*" required>
+							<input type="file" name="product_image1" id="photo" class="form__item__input" accept="image/*" >
 						</div>
 					</div>
 				</div>
@@ -194,6 +194,7 @@
 										<?php echo $veh['login'] . " // " . $veh['name'] . " " . $veh['last_name']; ?>
 									</option>
 								<?php endforeach; ?>
+									<option value="NULL">BRAK</option>
 							</select>
 						</div>
 					</div>

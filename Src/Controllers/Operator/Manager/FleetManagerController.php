@@ -50,14 +50,17 @@ class FleetManagerController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['product_image'])) {
 
-            $productImage = $_FILES['product_image'];
-        
-            try {
-                $product = new ImageTool("car", $productImage, "fleetManager");
-                $path = $product->save();
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-                $this->redirect("/manager/fleet");
+            if (!empty($_FILES['product_image']['size'])) {
+
+                $productImage = $_FILES['product_image'];
+            
+                try {
+                    $product = new ImageTool("car", $productImage, "fleetManager");
+                    $path = $product->save();
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
+                    $this->redirect("/manager/fleet");
+                }
             }
         } else {
             flash("fleetManager", "Formularz nie został prawidłowo przesłany.");
@@ -127,14 +130,17 @@ class FleetManagerController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['product_image1'])) {
 
-            $productImage = $_FILES['product_image1'];
-        
-            try {
-                $product = new ImageTool("car", $productImage, "fleetManager");
-                $path = $product->save();
-            } catch (\Exception $e) {
-                echo $e->getMessage();
-                $this->redirect("/manager/fleet");
+            if (!empty($_FILES['product_image1']['size'])) {
+
+                $productImage = $_FILES['product_image1'];
+            
+                try {
+                    $product = new ImageTool("car", $productImage, "fleetManager");
+                    $path = $product->save();
+                } catch (\Exception $e) {
+                    echo $e->getMessage();
+                    $this->redirect("/manager/fleet");
+                }
             }
         } else {
             flash("fleetManager", "Obraz nie został prawidłowo przesłany.", "alert alert--error");
@@ -187,7 +193,7 @@ class FleetManagerController extends AbstractController
         }
 
         if ($fleetManagerMod->updateFleet($data, $path)) {
-            flash("fleetManager", "Pojazd został dodany", "alert alert--confirm");
+            flash("fleetManager", "Dane pojazdu zostały zmodyfikowane", "alert alert--confirm");
             $this->redirect("/manager/fleet");
         } else {
             flash("fleetManager", "Coś poszło nie tak", "alert alert--error");
