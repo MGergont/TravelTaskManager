@@ -16,7 +16,7 @@
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title">Dodawanie pojazdu</h2>
-			<form class="modal-form" action="/manager/fleet/add" method="post">
+			<form class="modal-form" action="/manager/fleet/add" method="post" enctype="multipart/form-data">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
@@ -75,6 +75,14 @@
 						</div>
 					</div>
 				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="photo" class="form__item__label">Dodaj zdjęcie</label>
+							<input type="file" name="product_image" id="photo" class="form__item__input" accept="image/*" required>
+						</div>
+					</div>
+				</div>
 				<div class="modal__actions">
 					<button class="button button--positive">Confirm</button>
 					<a class="button button--negative" id="cancel-button">Cancel</a>
@@ -98,7 +106,7 @@
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--large">
 			<h2 class="modal__title">Car Edit</h2>
-			<form class="modal-form" action="/manager/fleet/edit" method="post">
+			<form class="modal-form" action="/manager/fleet/edit" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="edit_id" name="edit_id">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
@@ -155,6 +163,14 @@
 						<div class="field">
 							<label for="edit_inspect" class="field__label">Koniec badania technicznego</label>
 							<input type="date" id="edit_inspect" name="edit_inspect" class="field__input">
+						</div>
+					</div>
+				</div>
+				<div class="modal-form__row">
+					<div class="modal-form__full">
+						<div class="field">
+							<label for="photo" class="form__item__label">Dodaj zdjęcie</label>
+							<input type="file" name="product_image1" id="photo" class="form__item__input" accept="image/*" required>
 						</div>
 					</div>
 				</div>

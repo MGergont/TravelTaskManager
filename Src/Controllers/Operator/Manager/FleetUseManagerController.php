@@ -20,7 +20,10 @@ class FleetUseManagerController extends AbstractController
 
             $this->paramView['fleet'] = $this->formatDaty($fleetManagerMod->showUserFleet($_SESSION['userId']));
 
-            $this->paramView['costs'] = $this->formatDatyCosts($fleetManagerMod->showUserCarCosts($this->paramView['fleet']['id_car']));
+            if($fleetManagerMod->showUserCarCosts($this->paramView['fleet']['id_car'])){
+                
+                $this->paramView['costs'] = $this->formatDatyCosts($fleetManagerMod->showUserCarCosts($this->paramView['fleet']['id_car']));
+            }
 
             (new View())->renderOperator("fleetUseManager", $this->paramView, "manager");
         } else {
@@ -38,7 +41,7 @@ class FleetUseManagerController extends AbstractController
             'description' => $this->request->postParam('add_description')
         ];
 
-        if (empty($data['expenseDate'])  || empty($data['category']) || empty($data['amount']) || empty($data['description'])) {
+        if (empty($data['expenseDate'])  || empty($data['category']) || empty($data['amount']) || empty($data['description']) || empty($data['id'])) {
             flash("fleetUseManager", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");
             $this->redirect("/manager/vehicle");
         }
@@ -77,6 +80,78 @@ class FleetUseManagerController extends AbstractController
 
         if ($fleetManagerMod->addCost($data)) {
             flash("fleetUseManager", "Konto zostało zmodyfikowane", "alert alert--confirm");
+            $this->redirect("/manager/vehicle");
+        } else {
+            flash("fleetUseManager", "Coś poszło nie tak", "alert alert--error");
+            $this->redirect("/manager/vehicle");
+        }
+    }
+
+    public function costsFleetEdit(): void{
+        $fleetManagerMod = new FleetModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id'),
+            'expenseDate' => $this->request->postParam('edit_expense_date'),
+            'category' => $this->request->postParam('edit_category'),
+            'amount' => $this->request->postParam('edit_amount'),
+            'description' => $this->request->postParam('edit_description')
+        ];
+
+        if (empty($data['expenseDate'])  || empty($data['category']) || empty($data['amount']) || empty($data['description']) || empty($data['id'])) {
+            flash("fleetUseManager", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");
+            $this->redirect("/manager/vehicle");
+        }
+
+        if($this->IfMaxLength($data, 30)){
+            flash("fleetUseManager", "Nieprawidłowa długość znaków", "alert alert--error");           
+            $this->redirect("/manager/vehicle");
+        };
+
+        //TODO bez znaków specjalnych
+        if($this->IfSpecialCharacters($data['description'])){
+            flash("fleetUseManager", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");           
+            $this->redirect("/manager/vehicle");
+        }
+
+        switch ($data['category']) {
+            case 'service':
+                $data['category'] = "service";
+                break;
+            case 'fuel':
+                $data['category'] = "fuel";
+                break;
+            case 'exploitation':
+                $data['category'] = "exploitation";
+                break;
+            default:
+                flash("fleetUseManager", "Niepoprawny formularz", "alert alert--error");
+                $this->redirect("/manager/vehicle");
+                break;
+        }
+
+        if($this->ValidFloatingNumbers($data['amount'])){
+            flash("fleetUseManager", "Niepoprawne znaki w nazwie ulicy", "alert alert--error");           
+            $this->redirect("/manager/vehicle");
+        }
+
+        if ($fleetManagerMod->editCost($data)) {
+            flash("fleetUseManager", "Konto zostało zmodyfikowane", "alert alert--confirm");
+            $this->redirect("/manager/vehicle");
+        } else {
+            flash("fleetUseManager", "Coś poszło nie tak", "alert alert--error");
+            $this->redirect("/manager/vehicle");
+        }
+    }
+
+    public function costDel(): void
+    {
+        $fleetManagerMod = new FleetModel($this->configuration);
+        $data = [
+            'id' => $this->request->postParam('id')
+        ];
+
+        if ($fleetManagerMod->dellCost((int) $data['id'])) {
+            flash("fleetUseManager", "Koszt został usunięty", "alert alert--confirm");
             $this->redirect("/manager/vehicle");
         } else {
             flash("fleetUseManager", "Coś poszło nie tak", "alert alert--error");

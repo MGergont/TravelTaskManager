@@ -7,7 +7,7 @@ namespace Src\Controllers\Operator\Manager;
 use Src\Views\View;
 use Src\Controllers\AbstractController;
 use Src\Models\Operator\FleetModel;
-
+use Src\Utils\ImageTool;
 
 class FleetManagerController extends AbstractController
 {
@@ -41,10 +41,27 @@ class FleetManagerController extends AbstractController
             'insurance' => $this->request->postParam('add_end_of_insurance'),
             'inspect' => $this->request->postParam('add_inspect')
         ];
+        $path = "";
 
         if (empty($data['license'])  || empty($data['brand']) || empty($data['model']) || empty($data['production']) || empty($data['mileage']) || empty($data['service']) || empty($data['insurance']) || empty($data['inspect'])) {
             flash("fleetManager", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");
             $this->redirect("/manager/fleet");
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['product_image'])) {
+
+            $productImage = $_FILES['product_image'];
+        
+            try {
+                $product = new ImageTool("car", $productImage, "fleetManager");
+                $path = $product->save();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+                $this->redirect("/manager/fleet");
+            }
+        } else {
+            flash("fleetManager", "Formularz nie został prawidłowo przesłany.");
+            $path = "BRAK";
         }
 
         if ($this->IfMaxLength($data, 30)) {
@@ -76,7 +93,7 @@ class FleetManagerController extends AbstractController
             $this->redirect("/manager/fleet");
         }
 
-        if ($fleetManagerMod->addFleet($data, "free")) {
+        if ($fleetManagerMod->addFleet($data, "free", $path)) {
             flash("fleetManager", "Pojazd został dodany", "alert alert--confirm");
             $this->redirect("/manager/fleet");
         } else {
@@ -101,10 +118,27 @@ class FleetManagerController extends AbstractController
             'status' => $this->request->postParam('edit_status'),
             'id_oper' => $this->request->postParam('edit_oper')
         ];
+        $path = "";
 
         if (empty($data['license'])  || empty($data['brand']) || empty($data['model']) || empty($data['production']) || empty($data['mileage']) || empty($data['service']) || empty($data['insurance']) || empty($data['inspect']) || empty($data['id_oper']) || empty($data['id']) || empty($data['status'])) {
             flash("fleetManager", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");
             $this->redirect("/manager/fleet");
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['product_image1'])) {
+
+            $productImage = $_FILES['product_image1'];
+        
+            try {
+                $product = new ImageTool("car", $productImage, "fleetManager");
+                $path = $product->save();
+            } catch (\Exception $e) {
+                echo $e->getMessage();
+                $this->redirect("/manager/fleet");
+            }
+        } else {
+            flash("fleetManager", "Obraz nie został prawidłowo przesłany.", "alert alert--error");
+            $path = "BRAK";
         }
 
         switch ($data['status']) {
@@ -152,7 +186,7 @@ class FleetManagerController extends AbstractController
             $this->redirect("/manager/fleet");
         }
 
-        if ($fleetManagerMod->updateFleet($data)) {
+        if ($fleetManagerMod->updateFleet($data, $path)) {
             flash("fleetManager", "Pojazd został dodany", "alert alert--confirm");
             $this->redirect("/manager/fleet");
         } else {
