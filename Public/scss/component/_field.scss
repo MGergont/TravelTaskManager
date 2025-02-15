@@ -12,7 +12,8 @@
       transition: color 0.3s ease;
   }
 
-  &__input {
+  &__input,
+  &__textarea {
       width: 100%;
       padding: 0.75rem;
       border: 2px solid #ddd;
@@ -32,6 +33,12 @@
           font-size: 0.95rem;
       }
   }
+  
+  &__textarea {
+    min-height: 80px; // Dwa wiersze tekstu
+    resize: vertical; // Pozwala użytkownikowi dostosować wysokość
+  }
+
   // TODO zbędny bajer
   &--error {
       .field__input {

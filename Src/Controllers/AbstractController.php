@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Src\Controllers;
 
 use Src\Utils\Request;
+use Src\Utils\Mailer;
 
 abstract class AbstractController
 {
@@ -22,6 +23,26 @@ abstract class AbstractController
     protected function redirect(string $url): void{
         header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
         exit;
+    }
+    
+    protected function sendWelcomeEmail($to, $name) {
+        $mailer = new Mailer();
+        return $mailer->send($to, 'Welcome!', 'welcome', ['name' => $name]);
+    }
+
+    protected function sendResetPasswordEmail($to, $reset_link) {
+        $mailer = new Mailer();
+        return $mailer->send($to, 'Reset Password', 'reset_password', ['reset_link' => $reset_link]);
+    }
+
+    protected function sendEndInsurance(string $to, array $data) {
+        $mailer = new Mailer();
+        return $mailer->send($to, 'Koniec polisy ubezpieczeniowej', 'endInsurance', $data);
+    }
+
+    protected function sendTechInspect(string $to, array $data) {
+        $mailer = new Mailer();
+        return $mailer->send($to, 'Termin wykonania przegladu', 'endTechInspect', $data);
     }
 
     protected function adminDashboard(): void {
@@ -104,6 +125,14 @@ abstract class AbstractController
 
     protected function ValidZipCode(string $zipCode) : Bool {
         if (!preg_match('/^[0-9]{2}\-[0-9]{3}$/', $zipCode)) {
+            return true;  
+        } else {
+            return false;
+        }
+    }
+
+    protected function ValidLicense(string $license) : Bool {
+        if (!preg_match('/^[A-Z]{2,3} [A-Z0-9]{4,5}$/', $license)) {
             return true;  
         } else {
             return false;

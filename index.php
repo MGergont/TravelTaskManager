@@ -51,6 +51,9 @@ $router->get('/user/route', 'RouteUserController@RouteUserView', 'Controllers\\O
 $router->get('/user/order', 'OrderUserController@OrderUserView', 'Controllers\\Operator\\User');
 $router->post('/user/order', 'OrderUserController@orderAccept', 'Controllers\\Operator\\User');
 
+$router->get('/user/fleet', 'FleetUserController@fleetUserView', 'Controllers\\Operator\\User');
+
+
 $router->post('/user/route/castom-start', 'RouteUserController@startRoute', 'Controllers\\Operator\\User');
 $router->post('/user/route/castom-next', 'RouteUserController@startNextRoute', 'Controllers\\Operator\\User');
 $router->get('/user/route/castom-stop', 'RouteUserController@stopRoute', 'Controllers\\Operator\\User');
@@ -83,6 +86,18 @@ $router->post('/manager/order/dellMain', 'RoutsOrderController@orderDellMain', '
 $router->post('/manager/order/routeDellMain', 'RoutsOrderController@routeDellMain', 'Controllers\\Operator\\Manager');
 $router->post('/manager/order/routeEditMain', 'RoutsOrderController@routeEditMain', 'Controllers\\Operator\\Manager');
 $router->post('/manager/order/orderEditMain', 'RoutsOrderController@orderEditMain', 'Controllers\\Operator\\Manager');
+
+$router->get('/manager/fleet', 'FleetManagerController@fleetManagerView', 'Controllers\\Operator\\Manager');
+$router->post('/manager/fleet/add', 'FleetManagerController@fleetAdd', 'Controllers\\Operator\\Manager');
+$router->post('/manager/fleet/del', 'FleetManagerController@fleetDel', 'Controllers\\Operator\\Manager');
+$router->post('/manager/fleet/edit', 'FleetManagerController@fleetEdit', 'Controllers\\Operator\\Manager');
+
+$router->get('/manager/vehicle', 'FleetUseManagerController@vehicleManagerView', 'Controllers\\Operator\\Manager');
+$router->post('/manager/vehicle/addCosts', 'FleetUseManagerController@costsFleetAdd', 'Controllers\\Operator\\Manager');
+$router->post('/manager/vehicle/del', 'FleetUseManagerController@costDel', 'Controllers\\Operator\\Manager');
+$router->post('/manager/vehicle/edit', 'FleetUseManagerController@costsFleetEdit', 'Controllers\\Operator\\Manager');
+
+$router->get('/manager/vehicle/eamil', 'FleetManagerController@sendEmail', 'Controllers\\Operator\\Manager');
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $router->dispatch($uri);

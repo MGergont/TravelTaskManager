@@ -58,12 +58,13 @@ do routes dodać kolejną tebele z danymi wykonania realne godziny przyjazdu i o
 
 musza być dwa rużne formularze start i do w trakcie jazdy kierujące do dwuch różnych metod na swichu
 
-musi być przycisk z rezygnacją zmieniający satus na foult
+INSERT INTO public.company_cars(license_plate, brand, model, production_year, mileage, status, id_operator_fk)
+	VALUES ('RPR44559', 'Opel', 'Astra', NOW(), 251000, 'Free', NULL);
+INSERT INTO public.company_cars(license_plate, brand, model, production_year, mileage, status, id_operator_fk)
+	VALUES ('RPR55556', 'Opel', 'Meriva', NOW(), 198000, 'in use', 8);
 
-jeśli sesja nie istnieje to wpisz start
-jeśli sesja jest rużna niż stop to wpisz start
+    dodać do bazy kolumny last_service, end_of_insurance, end_of_tech_inspect
 
-
-zmiana powiązania label for do id a nie do name
-
-Kolejność tagów w labelu i inpucie
+INSERT INTO public.company_cars(
+	id_car, license_plate, brand, model, production_year, mileage, status, id_operator_fk, last_service, end_of_insurance, end_of_tech_inspect)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);

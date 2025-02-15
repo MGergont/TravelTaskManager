@@ -239,7 +239,8 @@
 					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
 					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
 					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
+					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link">Flota</a></li>
+					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link">Samochód</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -251,6 +252,7 @@
 			<div class="user-panel">
 				<div class="accordion">
 					<div class="accordion__title">
+						<div class="accordion__text"></div>
 						<div class="accordion__text">Nazwa</div>
 						<div class="accordion__text">Data wykonania</div>
 						<div class="accordion__text">Data utworzenia/modyfikacji</div>
