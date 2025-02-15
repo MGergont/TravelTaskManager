@@ -18,3 +18,80 @@
         height: fit-content;
     }
 }
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Elastyczny układ
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+    &__section {
+        background-color: var(--secondary-color);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__title {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--text-primary);
+    }
+
+    &__content {
+        flex: 1; // Zapewnia elastyczne wypełnienie
+    }
+
+    &__car-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    &__car-image {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 6px;
+        background-color: var(--disabled);
+    }
+
+    &__data {
+        font-size: 16px;
+        color: var(--text-secondary);
+    }
+
+    &__costs {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--text-primary);
+        background-color: var(--active);
+        padding: 10px;
+        border-radius: 6px;
+    }
+
+    &__routes {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__route {
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--inactive);
+        padding: 8px;
+        border-radius: 6px;
+    }
+}

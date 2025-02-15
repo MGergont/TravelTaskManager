@@ -47,7 +47,7 @@ class FleetManagerController extends AbstractController
             flash("fleetManager", "Wymagany fomularz nie jest uzupełniony", "alert alert--error");
             $this->redirect("/manager/fleet");
         }
-
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['product_image'])) {
 
             if (!empty($_FILES['product_image']['size'])) {
@@ -71,7 +71,7 @@ class FleetManagerController extends AbstractController
             flash("fleetManager", "Nieprawidłowa długość znaków", "alert alert--error");
             $this->redirect("/manager/fleet");
         };
-        //TODO bez znaków specjalnych
+
         if ($this->IfSpecialCharacters($data['license'])) {
             flash("fleetManager", "Niepoprawne znaki w danych wprowadzonych w formularzu", "alert alert--error");
             $this->redirect("/manager/fleet");

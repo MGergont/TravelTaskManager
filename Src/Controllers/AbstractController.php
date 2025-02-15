@@ -40,6 +40,11 @@ abstract class AbstractController
         return $mailer->send($to, 'Koniec polisy ubezpieczeniowej', 'endInsurance', $data);
     }
 
+    protected function sendTechInspect(string $to, array $data) {
+        $mailer = new Mailer();
+        return $mailer->send($to, 'Termin wykonania przegladu', 'endTechInspect', $data);
+    }
+
     protected function adminDashboard(): void {
         if ($_SESSION['userGrant'] != 'admin') {
             $this->redirect("/access-denied");
