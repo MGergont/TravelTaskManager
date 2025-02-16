@@ -787,8 +787,7 @@ body {
   }
 }
 .dashboard__car-image {
-  width: 120px;
-  height: 80px;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 6px;
