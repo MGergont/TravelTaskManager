@@ -908,6 +908,75 @@ body {
   }
 }
 
+.dashboard-manager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.dashboard-manager__section {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dashboard-manager__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+.dashboard-manager__content {
+  flex: 1;
+}
+.dashboard-manager__car-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+@media (max-width: 768px) {
+  .dashboard-manager__car-info {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.dashboard-manager__car-image {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 6px;
+  background-color: var(--disabled);
+}
+.dashboard-manager__data {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+.dashboard-manager__costs {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-primary);
+  background-color: var(--active);
+  padding: 10px;
+  border-radius: 6px;
+}
+.dashboard-manager__routes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dashboard-manager__route {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--inactive);
+  padding: 8px;
+  border-radius: 6px;
+}
+
 * {
   padding: 0;
   margin: 0;
