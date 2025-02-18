@@ -9,9 +9,11 @@ use Src\Models\AbstractModel;
 
 class DashboardAdminModel extends AbstractModel{
     
-    public function showOperators() : Array|Bool{
-        $this->query('SELECT * FROM operator INNER JOIN address ON address.id_operator_fk = operator.id_operator;');
-    
+    public function showStatusOrders() : Array|Bool{
+        $this->query('SELECT user_grant, COUNT(*) AS user_count
+            FROM public.operator
+            GROUP BY user_grant;');
+
         $row = $this->allArray();
     
         if($this->rowCount() > 0){
@@ -21,75 +23,94 @@ class DashboardAdminModel extends AbstractModel{
         }
     }
 
-    public function accountUnloc(string $status, int $idOperator) : Bool {
-        $this->query('UPDATE operator SET login_error = 0, user_status = :status  WHERE id_operator = :idoperator');
-        
-        $this->bind(':status', $status);
-        $this->bind(':idoperator', $idOperator);
+    public function showUserErrorLogin() : Array|Bool{
+        $this->query('SELECT 
+                id_operator, 
+                name, 
+                last_name, 
+                email, 
+                login_error 
+            FROM public.operator
+            WHERE login_error > 0
+            ORDER BY login_error DESC
+            LIMIT 5;');
 
-        if($this->execute()){
-            return true;
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
         }else{
             return false;
         }
     }
 
-    public function pwdChange(string $pwd, int $idOperator) : Bool {
-        $this->query('UPDATE operator SET pwd = :pwd WHERE id_operator = :idoperator');
-        
-        $this->bind(':pwd', $pwd);
-        $this->bind(':idoperator', $idOperator);
+    public function showStatusUser() : Array|Bool{
+        $this->query('SELECT user_status, COUNT(*) AS user_count
+            FROM public.operator
+            GROUP BY user_status;');
 
-        if($this->execute()){
-            return true;
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
         }else{
             return false;
         }
     }
 
-    public function accountDell(int $idOperator) : Bool {
-        $this->query('DELETE FROM operator WHERE id_operator = :idoperator');
+    public function showQuery() : Array|Bool{
+        $interval = 1;
 
-        $this->bind(':idoperator', $idOperator);
+        $this->query('SELECT 
+                date_trunc(:hour, query_start) AS hour,
+                COUNT(*) AS query_count
+                FROM pg_stat_activity
+                WHERE query_start >= NOW() - INTERVAL \'' . $interval . 'day\'
+                GROUP BY hour
+                ORDER BY hour DESC;');
 
-        if($this->execute()){
-            return true;
+        $this->bind(':hour', "hour");
+
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
         }else{
             return false;
         }
     }
 
-    public function accountUpdate(array $data) : Bool {
-        $this->query('UPDATE public.operator SET login = :login, name = :name, last_name = :lastName, phone_number = :phoneNumber, email = :email, user_status = :status, user_grant = :privileges WHERE id_operator = :idoperator');
+    public function showEmail() : Array|Bool{
+        $interval = 7;
 
-        $this->bind(':login', $data['login']);
-        $this->bind(':name', $data['name']);
-        $this->bind(':lastName', $data['lastName']);
-        $this->bind(':phoneNumber', $data['phoneNumber']);
-        $this->bind(':email', $data['email']);
-        $this->bind(':privileges', $data['privileges']);
-        $this->bind(':status', $data['status']);
-        $this->bind(':idoperator', $data['id']);
+        $this->query('SELECT recipient_email, subject, sent_at, status
+                FROM public.sent_emails
+                WHERE sent_at >= CURRENT_DATE - INTERVAL \'' . $interval . 'day\'
+                ORDER BY sent_at DESC Limit 5;');
 
-        if($this->execute()){
-            return $this->accountAdresUpdate($data);;
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
         }else{
             return false;
         }
     }
 
-    private function accountAdresUpdate(array $data) : Bool {
-        $this->query('UPDATE public.address SET house_number = :houseNumber, street = :street, town = :town, zip_code = :zipCode, city = :city WHERE id_operator_fk = :idoperator');
+    public function showInactiveUsers() : Array|Bool{
+        $interval = 30;
 
-        $this->bind(':houseNumber', $data['houseNumber']);
-        $this->bind(':street', $data['street']);
-        $this->bind(':town', $data['town']);
-        $this->bind(':zipCode', $data['zipCode']);
-        $this->bind(':city', $data['city']);
-        $this->bind(':idoperator', $data['id']);
+        $this->query('SELECT id_operator AS user_id, name, last_name, email, last_login, :operator AS role FROM public.operator WHERE last_login < CURRENT_DATE - INTERVAL \'' . $interval . 'day\'
+        UNION ALL
+        SELECT id_admin AS user_id, name, last_name, email, last_login, :admin AS role FROM public.admin WHERE last_login < CURRENT_DATE - INTERVAL \'' . $interval . 'day\' ORDER BY last_login ASC');
 
-        if($this->execute()){
-            return true;
+        $this->bind(':operator', "operator");
+        $this->bind(':admin', "admin");
+
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
         }else{
             return false;
         }
