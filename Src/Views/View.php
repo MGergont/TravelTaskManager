@@ -4,13 +4,22 @@ declare(strict_types=1);
 
 namespace Src\Views;
 
+use Src\Utils\Lang;
 class View
-{
+{	
+	private Lang $lang;
+	private array $langTemplate;
+	private array $langTemplateNav;
+
+	public function __construct()
+    {
+    	$this->lang = new Lang();
+    }
 
 	public function renderAdmin(string $page, array $params, $path): void
 	{
 		$params = $this->escape($params);
-
+		$this->LangParams($params, $page);
 
 		switch ($path) {
 			case 'admin':
@@ -25,7 +34,7 @@ class View
 	public function renderOperator(string $page, array $params, $path): void
 	{
 		$params = $this->escape($params);
-
+		$this->LangParams($params, $page);
 
 		switch ($path) {
 			case 'manager':
@@ -41,6 +50,27 @@ class View
 				require_once("./Src/Views/Template/404.php");
 				break;
 		}
+	}
+
+
+	private function LangContents(string $prefix) : void {
+		echo $this->langTemplate[$prefix];
+	}
+
+	private function LangContentsNav(string $prefix) : void {
+		echo $this->langTemplateNav[$prefix];
+	}
+
+	private function LangParams(array $params, $page) : void {
+		$this->lang->setLanguage($params['lang']);
+		$this->lang->setTamplate($page);
+		$this->langTemplate = $this->lang->get();
+	}
+
+	private function LangParamsNav(array $params, $path) : void {
+		$this->lang->setLanguage($params['lang']);
+		$this->lang->setTamplate($path);
+		$this->langTemplateNav = $this->lang->get();
 	}
 
 	private function escape($params)

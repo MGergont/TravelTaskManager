@@ -17,6 +17,9 @@ class DashboardAdminController extends AbstractController
         if (isset($_SESSION['status']) && $_SESSION['status'] === "login") {
             $dashboardAdminModel = new DashboardAdminModel($this->configuration);
 
+            if($result = $dashboardAdminModel->getSettingsAdmin($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
 
             if($result = $dashboardAdminModel->showStatusOrders()){
                 $this->paramView['StatusOrders'] = $result;

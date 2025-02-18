@@ -53,7 +53,7 @@
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Admin Dashboard</h2>
+			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
 			<div class="dashboard">
 				<?php if (isset($params['StatusOrders'])): ?>
 					<div class="dashboard__section">
