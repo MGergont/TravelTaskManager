@@ -113,4 +113,59 @@ abstract class AbstractModel
 		exit();
 		}
 	}
+
+	public function getSettings(int $userId){
+		$this->query('SELECT lang FROM public.operator WHERE id_operator = :userId;');
+		$this->bind(':userId', $userId);
+	
+		$row = $this->singleArray();
+	
+		if($this->rowCount() == 1){
+			return $row;
+		}else{
+			return false;
+		}
+	  }
+	
+	  public function setSettings(int $userId, string $lang){
+	
+		$this->query('UPDATE public.operator SET lang = :lang WHERE id_operator = :userId;');
+		$this->bind(':userId', $userId);
+		$this->bind(':lang', $lang);
+	
+		if($this->execute()){
+		  return true;
+		}else{
+		  return false;
+		}
+	  }
+
+	  public function getSettingsAdmin(int $userId){
+		$this->query('SELECT lang FROM public.admin WHERE id_admin = :userId;');
+		$this->bind(':userId', $userId);
+	
+		$row = $this->singleArray();
+		
+		if($this->rowCount() == 1){
+			if($row['lang'] == NULL){
+				return false;
+			}
+			return $row;
+		}else{
+			return false;
+		}
+	  }
+	
+	  public function setSettingsAdmin(int $userId, string $theme, string $lang){
+	
+		$this->query('UPDATE public.admin SET lang = :lang WHERE id_admin = :userId;');
+		$this->bind(':userId', $userId);
+		$this->bind(':lang', $lang);
+	
+		if($this->execute()){
+		  return true;
+		}else{
+		  return false;
+		}
+	  }
 }

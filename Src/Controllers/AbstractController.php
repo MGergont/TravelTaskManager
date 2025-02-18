@@ -18,6 +18,8 @@ abstract class AbstractController
         $config = require_once("./Src/Config/PdoMySQLConf.php");
         $this->configuration = $config['db'];
         $this->request = $request;
+
+        $this->paramView['lang'] = 'pl';
     }
     
     protected function redirect(string $url): void{

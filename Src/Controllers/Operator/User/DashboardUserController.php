@@ -46,7 +46,23 @@ class DashboardUserController extends AbstractController{
                 }
             }
             
+            if($result = $dashboardUserModel->showCar($_SESSION['userId'])){
+                $result['end_of_insurance'] = date('Y-m-d', strtotime($result['end_of_insurance']));
+                $this->paramView['car'] = $result;
+            }
+
             
+            if($result = $dashboardUserModel->showCarCostSum($_SESSION['userId'])){
+                $this->paramView['carCost'] = $result;
+            }
+            
+            if($result = $dashboardUserModel->showUserOrders($_SESSION['userId'])){
+                $this->paramView['showOrder'] = $result;
+            }
+
+            if($result = $dashboardUserModel->showUserDistance($_SESSION['userId'])){
+                $this->paramView['showDistance'] = $result;
+            }
 
             (new View())->renderOperator("dashboardUser", $this->paramView, "user");
         }else{

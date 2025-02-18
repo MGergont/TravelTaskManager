@@ -57,14 +57,14 @@
 		<main class="content">
 			<h2 class="content__title">User Dashboard</h2>
 			<div class="dashboard">
-			<div class="dashboard__section">
-			<h2 class="dashboard__title">Delegacje</h2>
-				<?php if (isset($params['orders'])): ?>
-					<h3>Aktywan delegacja</h3>
-						<p class="routs-execution__message">1<?php echo $params['orders']['order_name']; ?></p>
-						<p class="routs-execution__message">2<?php echo $params['orders']['due_date']; ?></p>
-						<p class="routs-execution__message">3<?php echo $params['orders']['created_at']; ?></p>
-						<p class="routs-execution__message">4<?php echo $params['orders']['status_order']; ?></p>
+				<div class="dashboard__section">
+					<h2 class="dashboard__title">Delegacje</h2>
+					<?php if (isset($params['orders'])): ?>
+						<h3>Aktywan delegacja</h3>
+						<p class="routs-execution__message"><strong>Nazwa delegacji: </strong><?php echo $params['orders']['order_name']; ?></p>
+						<p class="routs-execution__message"><strong>Data realizacji: </strong><?php echo $params['orders']['due_date']; ?></p>
+						<p class="routs-execution__message"><strong>Data utworzenia: </strong><?php echo date('Y-m-d', strtotime($params['orders']['created_at'])); ?></p>
+						<p class="routs-execution__message"><strong>Status: </strong><?php echo $params['orders']['status_order']; ?></p>
 						<br>
 						<form class="modal-form" action="/user-dashboard/reject" method="post">
 							<input type="hidden" id="id_order" value="<?php echo $params['orders']['id_order']; ?>" name="id_order">
@@ -73,10 +73,10 @@
 						<?php if (!empty($params['orders'])) : ?>
 							<?php switch ($_SESSION['action']) {
 								case 'start': ?>
-									<h3>Aktualna delegacja</h3>
+									<h3>Aktualna cel</h3>
 									<form class="modal-form" method="post" action="/user-dashboard/start">
 										<input type="hidden" id="id_route" value="<?php echo $params['orders']['id_route']; ?>" name="id_route">
-										<?php echo $params['orders']['origin_location']; ?>
+										<?php echo $params['orders']['origin_city']. "<br> " .$params['orders']['origin_zip_code']. " " .$params['orders']['origin_town']. " ul. " . $params['orders']['origin_street']. " " . $params['orders']['origin_house_number']; ?>
 										<button class="button button--positive">Confirm</button>
 									</form>
 								<?php break;
@@ -84,7 +84,7 @@
 									<h3>Koniec trasy</h3>
 									<form class="modal-form" method="post" action="/user-dashboard/stop">
 										<input type="hidden" id="id_route" value="<?php echo $params['orders']['id_route']; ?>" name="id_route">
-										<?php echo $params['orders']['destination_location']; ?>
+										<?php echo $params['orders']['destination_city']. "<br> " .$params['orders']['destination_zip_code']. " " .$params['orders']['destination_town']. " ul. " . $params['orders']['destination_street']. " " . $params['orders']['destination_house_number']; ?>
 										<button class="button button--positive">Confirm</button>
 									</form>
 								<?php break;
@@ -98,63 +98,75 @@
 					<?php endif ?>
 				</div>
 				<div class="dashboard__section">
-					<!-- TODO rejestracja kosztów -->
+					<h2 class="dashboard__title">Dopisz koszt do delegacji</h2>
+					<form class="modal-form" action="/user/order" method="post">
+						<div class="modal-form__row">
+							<div class="modal-form__full">
+								<div class="field">
+									<label for="StopRoute" class="field__label">Dodaj opis kosztu delegacji</label>
+									<input type="text" id="StopRoute" name="StopRoute" class="field__input" placeholder="opis" required>
+								</div>
+							</div>
+						</div>
+						<div class="modal-form__row">
+							<div class="modal-form__full">
+								<div class="field">
+									<label for="StopRoute" class="field__label">Dodaj kwotę</label>
+									<input type="number" step="0.01" min="0" id="add_amount" name="add_amount" class="field__input" placeholder="kwota" required>
+								</div>
+							</div>
+						</div>
+						<div class="modal__actions">
+							<button class="button button--positive">Confirm</button>
+							<a class="button button--negative" id="cancel-button2">Cancel</a>
+						</div>
+					</form>
 				</div>
 				<!-- Moduł samochodu -->
-				<div class="dashboard__section">
-					<h2 class="dashboard__title">Twój samochód</h2>
-					<div class="dashboard__car-info">
-						<div class="dashboard__data">
-							<p><strong>Numer rejestracyjny:</strong> WX 12345</p>
-							<p><strong>Marka:</strong> Volkswagen</p>
-							<p><strong>Model:</strong> Golf 7</p>
-							<p><strong>Przebieg:</strong> 95 000 km</p>
-							<p><strong>Ubezpieczenie ważne do:</strong> 2024-05-12</p>
+				<?php if (isset($params['car'])): ?>
+					<div class="dashboard__section">
+						<h2 class="dashboard__title">Twój samochód</h2>
+						<div class="dashboard__car-info">
+							<div class="dashboard__data">
+								<p><strong>Numer rejestracyjny:</strong> <?php echo $params['car']['license_plate'] ?></p>
+								<p><strong>Marka:</strong> <?php echo $params['car']['brand'] ?></p>
+								<p><strong>Model:</strong> <?php echo $params['car']['model'] ?></p>
+								<p><strong>Przebieg:</strong> <?php echo $params['car']['mileage'] ?> km</p>
+								<p><strong>Ubezpieczenie ważne do:</strong> <?php echo $params['car']['end_of_insurance'] ?></p>
+							</div>
 						</div>
+						<img src="resources\image\car\img_67af4a168fea49.94863134.jpg" alt="Samochód" class="dashboard__car-image">
 					</div>
-				</div>
+				<?php endif; ?>
 
 				<!-- Moduł kosztów -->
 				<div class="dashboard__section">
 					<h2 class="dashboard__title">Koszty eksploatacji (ostatnie 30 dni)</h2>
-					<p class="dashboard__costs">1 250 PLN</p>
+					<p class="dashboard__costs"><?php echo $params['carCost']['total_costs'] ?> PLN</p>
 				</div>
 
 				<!-- Moduł tras -->
-				<div class="dashboard__section">
-					<h2 class="dashboard__title">Najbliższe trasy</h2>
-					<div class="dashboard__routes">
-						<div class="dashboard__route">
-							<span><strong>Warszawa → Kraków</strong></span>
-							<span>2024-03-10 08:30</span>
-						</div>
-						<div class="dashboard__route">
-							<span><strong>Łódź → Gdańsk</strong></span>
-							<span>2024-03-12 14:00</span>
-						</div>
-					</div>
-				</div>
-
-				<!-- Moduł tras -->
-				<div class="dashboard__section">
-					<h2 class="dashboard__title">Najbliższe trasy</h2>
-					<div class="dashboard__routes">
-						<div class="dashboard__route">
-							<span><strong>Warszawa → Kraków</strong></span>
-							<span>2024-03-10 08:30</span>
-						</div>
-						<div class="dashboard__route">
-							<span><strong>Łódź → Gdańsk</strong></span>
-							<span>2024-03-12 14:00</span>
+				<?php if (isset($params['showOrder'])): ?>
+					<div class="dashboard__section">
+						<h2 class="dashboard__title">Najbliższe trasy</h2>
+						<p><strong>Zlecenie:</strong> <?php echo $params['showOrder'][0]["order_name"] . " " . $params['showOrder'][0]["due_date"] ?></p>
+						<div class="dashboard__routes">
+							<?php foreach ($params['showOrder'] as $order): ?>
+								<div class="dashboard__route">
+									<span><strong><?php echo $order["origin_location"] . " → " . $order["destination_location"] ?></strong></span>
+								</div>
+							<?php endforeach ?>
 						</div>
 					</div>
-				</div>
-				<!-- Moduł dodatkowy -->
-				<div class="dashboard__section">
-					<h2 class="dashboard__title">Nowy moduł</h2>
-					<p class="dashboard__data">Tu można dodać kolejne informacje...</p>
-				</div>
-
+				<?php endif; ?>
+				<!-- Moduł kosztów -->
+				<?php if (isset($params['showDistance'])): ?>
+					<div class="dashboard__section">
+						<h2 class="dashboard__title">Statystyka tras (ostatnie 30 dni)</h2>
+						<p class="dashboard__costs"><strong>Przebyty dystans:</strong> <?php echo $params['showDistance']['total_distance'] ?> KM</p>
+						<p class="dashboard__costs"><strong>Ilość tras:</strong> <?php echo $params['showDistance']['total_routes'] ?> szt</p>
+					</div>
+				<?php endif; ?>
 			</div>
 		</main>
 	</div>

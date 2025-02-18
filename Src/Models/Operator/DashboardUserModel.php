@@ -100,4 +100,88 @@ class DashboardUserModel extends AbstractModel{
             return false;
         }
     }
+
+    public function showCar(int $id) : Array|Bool{
+        $this->query('SELECT 
+            cc.license_plate, 
+            cc.brand, 
+            cc.model, 
+            cc.status, 
+            cc.end_of_insurance, 
+            cc.mileage FROM public.company_cars cc WHERE cc.id_operator_fk = :id;');
+
+        $this->bind(':id', $id);
+
+        $row = $this->singleArray();
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function showCarCostSum(int $id) : Array|Bool{
+        $interval = 30;
+        $this->query('SELECT SUM(ce.amount) AS total_costs
+            FROM public.car_expenses ce
+            JOIN public.company_cars cc ON ce.id_car = cc.id_car
+            WHERE cc.id_operator_fk = :id
+            AND ce.expense_date >= CURRENT_DATE - INTERVAL \'' . $interval . ' days\';');
+
+        $this->bind(':id', $id);
+
+        $row = $this->singleArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function showUserOrders(int $user) : Array|Bool{
+        $this->query('SELECT
+            orders.order_name,
+			orders.due_date,
+            ls1.location_name AS origin_location,
+            ls2.location_name AS destination_location
+        FROM orders
+        JOIN routes ON orders.id_order = routes.id_order_fk
+        JOIN locations ls1 ON routes.id_origin_location = ls1.id_location
+        JOIN locations ls2 ON routes.id_destination_location = ls2.id_location
+        WHERE assigned_to = :userID AND orders.due_date = (SELECT MIN(due_date) FROM public.orders WHERE assigned_to = :userID AND due_date >= CURRENT_DATE) AND status_order = :status
+		ORDER BY orders.due_date;');
+
+        $this->bind(':userID', $user);
+        $this->bind(':status', "new");
+
+        $row = $this->allArray();
+    
+        if($this->rowCount() > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+
+    public function showUserDistance(int $user) : Array|Bool{
+        $interval = 30;
+        $this->query('SELECT 
+            SUM(r.distance) AS total_distance,
+            COUNT(r.id_route) AS total_routes
+        FROM public.route r
+        WHERE r.id_operator_fk = :userID
+        AND r.time_travel_out >= CURRENT_DATE - INTERVAL \'' . $interval . ' days\';');
+
+        $this->bind(':userID', $user);
+
+        $row = $this->singleArray();
+    
+        if($this->rowCount() == 1){
+            return $row;
+        }else{
+            return false;
+        }
+    }
 }
