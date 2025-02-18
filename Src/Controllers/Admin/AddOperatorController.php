@@ -14,6 +14,12 @@ class AddOperatorController extends AbstractController{
         $this->adminDashboard();
 
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
+            $AddOperatorModel = new AddOperatorModel($this->configuration);
+
+            if($result = $AddOperatorModel->getSettingsAdmin($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
 
             (new View())->renderAdmin("registerAdmin", $this->paramView, "admin");
         }else{

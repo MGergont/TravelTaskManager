@@ -17,6 +17,10 @@ class ManagementOperatorController extends AbstractController
         if (isset($_SESSION['status']) && $_SESSION['status'] === "login") {
             $dashboardAdminModel = new ManagementOperatorModel($this->configuration);
 
+            if($result = $dashboardAdminModel->getSettingsAdmin($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
             $arrayUsers = $dashboardAdminModel->showOperators();
 
             if (!empty($arrayUsers)) {

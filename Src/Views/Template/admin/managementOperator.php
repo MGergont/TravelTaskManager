@@ -16,69 +16,69 @@
 <body>
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Account Locked</h2>
-			<p class="modal__message">Number of failed login attempts: <strong id="pwd_failed"></strong></p>
+			<h2 class="modal__title"><?php $this->LangContents('modalLockTitle')?></h2>
+			<p class="modal__message"><?php $this->LangContents('modalLock1')?><strong id="pwd_failed"></strong></p>
 			<form action="/operator-pwd-unlock" method="post">
 				<input type="hidden" id="pwd_id" name="id">
 				<div class="field-checkbox">
-					<label for="unlock-account" class="field-checkbox__label">Unlock account</label>
+					<label for="unlock-account" class="field-checkbox__label"><?php $this->LangContents('modalLock2')?></label>
 					<input type="checkbox" id="unlock-account" name="pwd_unlock" class="field-checkbox__input">
 				</div>
 				<div class="field-checkbox">
-					<label for="change-password" class="field-checkbox__label">Change password</label>
+					<label for="change-password" class="field-checkbox__label"><?php $this->LangContents('modalLock3')?></label>
 					<input type="checkbox" id="change-password" name="pwd_change" class="field-checkbox__input">
 				</div>
 				<div class="modal__password-section" id="password-section" style="display: none;">
 					<div class="field">
-						<label for="new-password" class="field__label">New Password</label>
+						<label for="new-password" class="field__label"><?php $this->LangContents('modalLock4')?></label>
 						<input type="password" id="new-password" name="pwd" class="field__input">
 					</div>
 					<div class="field">
-						<label for="confirm-password" class="field__label">Confirm Password</label>
+						<label for="confirm-password" class="field__label"><?php $this->LangContents('modalLock5')?></label>
 						<input type="password" id="confirm-password" name="pwd_repeat" class="field__input">
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a id="cancel-button" class="button button--negative">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a id="cancel-button" class="button button--negative"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Account Delate</h2>
-			<p class="modal__message modal__message--warning">! Konto zostanie trwale usunięte, czy chcesz potwierdzić !</p>
+			<h2 class="modal__title"><?php $this->LangContents('modalDelTitle')?></h2>
+			<p class="modal__message modal__message--warning"><?php $this->LangContents('modalInfo')?></p>
 			<form action="/operator-del-profile" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button2"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--large">
-			<h2 class="modal__title">Account Edit</h2>
+			<h2 class="modal__title"><?php $this->LangContents('modalEditTitle')?></h2>
 			<form class="modal-form" action="/operator-edit-profile" method="post">
 				<input type="hidden" id="edit_id" name="id">
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_login" class="field__label">Login</label>
+							<label for="edit_login" class="field__label"><?php $this->LangContents('modalEdit1')?></label>
 							<input type="text" id="edit_login" name="login" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_name" class="field__label">Imię</label>
+							<label for="edit_name" class="field__label"><?php $this->LangContents('modalEdit2')?></label>
 							<input type="text" id="edit_name" name="name" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_lastName" class="field__label">Nazwisko</label>
+							<label for="edit_lastName" class="field__label"><?php $this->LangContents('modalEdit3')?></label>
 							<input type="text" id="edit_lastName" name="lastName" class="field__input" required>
 						</div>
 					</div>
@@ -86,13 +86,13 @@
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="edit_phoneNumber" class="field__label">Nume telefonu</label>
+							<label for="edit_phoneNumber" class="field__label"><?php $this->LangContents('modalEdit4')?></label>
 							<input type="text" id="edit_phoneNumber" name="phoneNumber" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="edit_email" class="field__label">Adres email</label>
+							<label for="edit_email" class="field__label"><?php $this->LangContents('modalEdit5')?></label>
 							<input type="text" id="edit_email" name="email" class="field__input" required>
 						</div>
 					</div>
@@ -101,19 +101,19 @@
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_houseNumber" class="field__label">Numer domu</label>
+							<label for="edit_houseNumber" class="field__label"><?php $this->LangContents('modalEdit6')?></label>
 							<input type="text" id="edit_houseNumber" name="houseNumber" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_street" class="field__label">Ulica</label>
+							<label for="edit_street" class="field__label"><?php $this->LangContents('modalEdit7')?></label>
 							<input type="text" id="edit_street" name="street" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_town" class="field__label">Miejscowość</label>
+							<label for="edit_town" class="field__label"><?php $this->LangContents('modalEdit8')?></label>
 							<input type="text" id="edit_town" name="town" class="field__input" required>
 						</div>
 					</div>
@@ -121,13 +121,13 @@
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_zipCode" class="field__label">Kod pocztowy</label>
+							<label for="edit_zipCode" class="field__label"><?php $this->LangContents('modalEdit9')?></label>
 							<input type="text" id="edit_zipCode" name="zipCode" class="field__input" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_city" class="field__label">Miasto</label>
+							<label for="edit_city" class="field__label"><?php $this->LangContents('modalEdit10')?></label>
 							<input type="text" id="edit_city" name="city" class="field__input" required>
 						</div>
 					</div>
@@ -135,27 +135,27 @@
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="edit_privileges" class="field__label">Uprawnienia</label>
+							<label for="edit_privileges" class="field__label"><?php $this->LangContents('modalEdit11')?></label>
 							<select name="privileges" id="edit_privileges" class="field__input">
-								<option value="manager">Menedżer</option>
-								<option value="user">Użytkownik</option>
+								<option value="manager"><?php $this->LangContents('modalEdit12')?></option>
+								<option value="user"><?php $this->LangContents('modalEdit13')?></option>
 							</select>
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="edit_status" class="field__label">Status Konta</label>
+							<label for="edit_status" class="field__label"><?php $this->LangContents('modalEdit14')?></label>
 							<select name="status" id="edit_status" class="field__input">
 								<option value="new">---</option>
-								<option value="block">Blokada</option>
-								<option value="active">Aktywny</option>
+								<option value="block"><?php $this->LangContents('modalEdit15')?></option>
+								<option value="active"><?php $this->LangContents('modalEdit16')?></option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button type="submit" class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button3">Cancel</a>
+					<button type="submit" class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button3"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
@@ -176,13 +176,13 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Profil</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout" class="menu-user__dropdown-link"><?php $this->LangContentsNav('logOut')?></a>
 						</li>
 					</ul>
 				</li>
@@ -193,30 +193,28 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/admin-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/operators" class="sidebar__link">Operatorzy</a></li>
-					<li class="sidebar__item"><a href="/admins" class="sidebar__link">Administracja</a></li>
-					<li class="sidebar__item"><a href="/register" class="sidebar__link">Dodaj użytkownika</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
+					<li class="sidebar__item"><a href="/admin-dashboard" class="sidebar__link"><?php $this->LangContentsNav('homePage')?></a></li>
+					<li class="sidebar__item"><a href="/operators" class="sidebar__link"><?php $this->LangContentsNav('user')?></a></li>
+					<li class="sidebar__item"><a href="/admins" class="sidebar__link"><?php $this->LangContentsNav('admin')?></a></li>
+					<li class="sidebar__item"><a href="/register" class="sidebar__link"><?php $this->LangContentsNav('addUser')?></a></li>
 				</ul>
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Operatorzy</h2>
+			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>
 						<tr class="user-panel__row">
-							<th class="user-panel__header">First Name</th>
-							<th class="user-panel__header">Last Name</th>
-							<th class="user-panel__header">Login</th>
-							<th class="user-panel__header">Phone</th>
-							<th class="user-panel__header">Email</th>
-							<th class="user-panel__header user-panel__header--status">Status</th>
-							<th class="user-panel__header">Last Login</th>
-							<th class="user-panel__header">Permissions</th>
-							<th class="user-panel__header">Options</th>
+							<th class="user-panel__header"><?php $this->LangContents('table1')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table2')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table3')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table4')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table5')?></th>
+							<th class="user-panel__header user-panel__header--status"><?php $this->LangContents('table6')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table7')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table8')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table9')?></th>
 						</tr>
 					</thead>
 					<tbody>
