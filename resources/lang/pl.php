@@ -22,6 +22,10 @@ return [
         
     ],
 
+    'loginOperator' => [
+        
+    ],
+
     'managementAdmin' => [
         'title' => 'Administratorzy',
 
@@ -140,35 +144,240 @@ return [
     //manager
 
     'dashboardManager' => [
-        'title' => 'dodawanie i przypisywanie mieszkania',
+        'title' => 'Panel menedżera',
 
+        'status1' => 'Status realizacji zamówień',
+        'status2' => 'Samochody z największymi kosztami eksploatacji (ostatnie 6 miesięcy)',
+        'status3' => 'Liczba aktywnych samochodów',
+        'status4' => 'Status realizacji zamówień',
     ],
 
     'fleetManager' => [
+        'title' => 'Zarządzanie flotą',
 
+        'table1' => 'Marka/Model',
+        'table2' => 'Tablice rejestracyjne',
+        'table3' => 'Rok produkcji',
+        'table4' => 'Ostatni serwis',
+        'table5' => 'Koniec ubezpieczenia',
+        'table6' => 'Koniec badania technicznego',
+        'table7' => 'Właściciel',
+        'table8' => 'Status',
+        'table9' => 'Options',
+
+        'modalTitle' => 'Edycja danych pojazdu',
+        'modal1' => 'Tablice rejestracyjne',
+        'modal2' => 'Marka',
+        'modal3' => 'Model',
+        'modal4' => 'Rok produkcji',
+        'modal5' => 'Przebieg',
+        'modal6' => 'Ostatni serwis',
+        'modal7' => 'Koniec ubezpieczenia',
+        'modal8' => 'Koniec badania technicznego',
+        'modal9' => 'Dodaj zdjęcie',
+        'modal10' => 'Status',
+        'modal11' => 'Użytkownik (Login/Name)',
+        'modal12' => 'Wolny',
+        'modal13' => 'Zajęty',
+        'modal14' => 'W serwisie',
+
+        'editTitle' => 'Dodawanie pojazdu',
+        'edit1' => 'Tablice rejestracyjne',
+        'edit2' => 'Marka',
+        'edit21' => 'Model',
+        'edit3' => 'Rok produkcji',
+        'edit4' => 'Przebieg',
+        'edit5' => 'Ostatni serwis',
+        'edit6' => 'Koniec ubezpieczenia',
+        'edit7' => 'Koniec badania technicznego',
+        'edit8' => 'Dodaj zdjęcie',
+
+        'modalDelTitle' => 'Usuń pojazd',
+        'modalInfo' => '! Pojazd zostanie trwale usunięty, czy chcesz potwierdzić !',
+
+        'btnAdd' => 'Status',
+
+        'btmAdd' => 'Dodaj pojazd',
+
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
     ],
 
     'fleetUseManager' => [
+        'title' => 'Samochód',
 
+        'info1' => 'Rok produkcji:',
+        'info2' => 'Przebieg:',
+        'info3' => 'Status:',
+        'info4' => 'Informacje',
+        'info5' => 'Data ostatniego serwisu:',
+        'info6' => 'Data końca ważności ubezpieczenia:',
+        'info7' => 'Data końca ważności przeglądu:',
+
+        'title2' => 'Kategoria',
+        'title3' => 'Data zgłoszenia',
+        'title4' => 'Kwota',
+        'title5' => 'Options',
+
+        'modalTitle' => 'Edycja kosztów',
+        'modal1' => 'Data kosztów',
+        'modal2' => 'Kategoria kosztów',
+        'modal3' => 'Koszt',
+        'modal4' => 'Opis pojazdu',
+
+        'addTitle' => 'Dodawanie kosztów',
+        'add1' => 'Data kosztów',
+        'add2' => 'Kategoria kosztów',
+
+        'add3' => 'Serwis',
+        'add4' => 'Paliwo',
+        'add5' => 'Eksploatacja',
+
+        'add6' => 'Koszt',
+        'add7' => 'Opis',
+
+        'modalDelTitle' => 'Usuń koszt',
+        'modalInfo' => '! Zarejestrowany koszt zostanie trwale usunięte, czy chcesz potwierdzić !',
+
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
+        'btmAddError' => 'Dodaj zgłoszenie awarii',
+        'btmCost' => 'Dodaj koszt',
     ],
 
     'locationManager' => [
-        'title' => 'zarządzanie mieszkaniami',
+        'title' => 'Zarządzanie lokalizacjami',
 
+        'table1' => 'Nazwa',
+        'table2' => 'Miejscowość',
+        'table3' => 'Kod pocztowy',
+        'table4' => 'Ulica',
+        'table5' => 'Options',
+
+        'modalTitle' => 'Edycja lokalizacji',
+        'modal1' => 'Nazwa',
+        'modal2' => 'Numer domu',
+        'modal3' => 'Ulica',
+        'modal4' => 'Miejscowość',
+        'modal5' => 'Kod pocztowy',
+        'modal6' => 'Miasto',
+        'modal7' => 'Wysokość geograficzna',
+        'modal8' => 'Szerokość geograficzna',
+
+        'modalDelTitle' => 'Usuń lokalizacje',
+        'modalInfo' => '! Lokalizacja zostanie trwale usunięte, czy chcesz potwierdzić !',
+
+        'AddLocationTitle' => 'Dodawanie lokalizacji',
+        'AddLocation1' => 'Nazwa',
+        'AddLocation2' => 'Numer domu',
+        'AddLocation3' => 'Ulica',
+        'AddLocation4' => 'Miejscowość',
+        'AddLocation5' => 'Kod pocztowy',
+
+        'AddLocation6' => 'Miasto',
+        'AddLocation7' => 'Wysokość geograficzna',
+        'AddLocation8' => 'Szerokość geograficzna',
+
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
+        'btmAdd' => 'Dodaj',
     ],
 
     'routeManager' => [
-        'title' => 'zarządzanie najemcami',
-        
+        'title' => 'Dodaj własną delegację',
+
+        'AddRouteTitle1' => 'Lokalizacja startowa',
+        'AddRouteTitle2' => 'Dystans',
+        'AddRouteTitle3' => 'Lokalizacja końcowa',
+        'AddRouteTitle10' => 'Kolejna lokalizacja startowa',
+        'AddRouteTitle20' => 'Kolejny dystans',
+        'AddRouteTitle4' => 'Rozpocznij trasę, aby dodać koszty',
+        'AddRouteTitle5' => 'Trasa trwa...',
+        'AddRouteTitle6' => 'Dodaj koszty',
+        'AddRouteTitle7' => 'Koszt',
+        'AddRouteTitle8' => 'Opis',
+
+        'btmStart' => 'Start',
+        'btmStop' => 'Stop',
+        'btmAdd' => 'Dodaj',
+        'btmNext' => 'Następny punkt',
     ],
 
     'routsOrderAddManager' => [
-        'title' => 'powiadomienia dla najemców',
+        'title' => 'Dodawanie zlecenia delegacji',
 
+        'AddRoute1' => 'Wprowadź dane zlecenia',
+        'AddRoute2' => 'Nazwa zlecenia',
+        'AddRoute3' => 'Użytkownik (Login/Name)',
+        'AddRoute4' => 'Data realizacji',
+
+        'AddRoute5' => 'Wprowadź dane lokalizacji A',
+        'AddRoute6' => 'Adres zamieszkania',
+        'AddRoute7' => 'Punkt startowyk',
+        'AddRoute8' => 'Data wyjazdu(opcjonalnie)',
+
+        'AddRoute5' => 'Wprowadź dane lokalizacji B',
+        'AddRoute6' => 'Punkt końcowy',
+        'AddRoute7' => 'Data przyjazdu(opcjonalnie)',
+        'AddRoute8' => 'Data odjazdu(opcjonalnie)',
+
+        'table1' => 'Lokalizacja A | Nazwa | Adres	',
+        'title2' => 'Lokalizacja B | Nazwa | Adres',
+        'title3' => 'Options',
+
+        'modalTitle' => 'Edycja trasy',
+        'modal1' => 'Lokalizacja A | Nazwa | Adres',
+        'modal2' => 'Data wyjazdu(opcjonalnie)',
+        'modal3' => 'Lokalizacja B | Nazwa | Adres',
+        'modal4' => 'Data przyjazdu(opcjonalnie)',
+
+        'modalDelTitle' => 'Usuń trase',
+        'modalInfo' => '! Trasa zostanie trwale usunięte, czy chcesz potwierdzić !',
+
+        'btmAdd' => 'Dodaj',
+        'btmError' => 'Anuluj',
+        'btmEnd' => 'Koniec',
+        'btmAddLocation' => 'Dodaj lokalizacje',
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
     ],
 
     'routsOrderManager' => [
-        'title' => 'generuj raport',
+        'title' => 'Zarządzanie zleceniami delegacji',
+        
+        'table1' => 'Nazwa',
+        'title2' => 'Data wykonania',
+        'title3' => 'Data utworzenia/modyfikacji',
+        'title4' => 'Status',
+        'title5' => 'Lokalizacja A | Nazwa | Adres',
+        'title6' => 'Lokalizacja B | Nazwa | Adres',
+        'title7' => 'Options',
+
+        'modalAdd' => 'Dodawanie lokalizacji',
+        'modalAdd1' => 'Wprowadź dane lokalizacji B',
+        'modalAdd2' => 'Punkt końcowy',
+        'modalAdd3' => 'Data przyjazdu(opcjonalnie)',
+
+        'modalDelTitle' => 'Usuń zlecenie',
+        'modalInfo' => '! Zlecenie zostanie trwale usunięte, czy chcesz potwierdzić !',
+
+        'modalEdit' => 'Edycja zlecenie',
+        'modalEdit1' => 'Nazwa zlecenia',
+        'modalEdit2' => 'Użytkownik (Login/Name)',
+        'modalEdit3' => 'Data realizacji',
+
+        'modalEdit4' => 'Status',
+        'modalEdit5' => 'Nowy',
+        'modalEdit6' => 'W realizacji',
+        'modalEdit7' => 'Ukończony',
+        'modalEdit8' => 'Zakceptowany',
+
+        'btmAdd' => 'Dodaj zlecenie delegacji',
+        'btmAddPoint' => 'Dodaj punkt',
+        'btmDel' => 'Usuń zlecenie',
+        'btmEdit' => 'Edytuj zlecenie',
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
     ],
 
     //operator
@@ -205,9 +414,11 @@ return [
 
     'navUser' => [
         'homePage' => 'Strona główna',
-        'user' => 'Operatorzy',
-        'admin' => 'Administracja',
-        'addUser' => 'Dodaj użytkownika',
+        'order' => 'Zlecenia Delegacji',
+        'route' => 'Delegacja',
+        'location' => 'Lokalizacje',
+        'cars' => 'Flota',
+        'car' => 'Samochód',
 
         'userProfil' => 'Profil',
         'settings' => 'Ustawienia',

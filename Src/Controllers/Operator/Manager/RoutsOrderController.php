@@ -18,6 +18,10 @@ class RoutsOrderController extends AbstractController{
             $routModel = new RoutsOrderModel($this->configuration);
             $locationModel = new ManagementLocationModel($this->configuration);
 
+            if($result = $routModel->getSettings($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
             if(empty($_SESSION['statusDel'])){
                 $_SESSION['statusDel'] = "start";
             }
@@ -243,6 +247,10 @@ class RoutsOrderController extends AbstractController{
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             $routModel = new RoutsOrderModel($this->configuration);
             $locationModel = new ManagementLocationModel($this->configuration);
+
+            if($result = $routModel->getSettings($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
 
             if(empty($_SESSION['statusDel'])){
                 $_SESSION['statusDel'] = "start";

@@ -16,6 +16,10 @@ class DashboardManagerController extends AbstractController{
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             $dashboardManagerModel = new DashboardManagerModel($this->configuration);
 
+            if($result = $dashboardManagerModel->getSettings($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
             if($result = $dashboardManagerModel->showActiveCar()){
                 $this->paramView['ActiveCar'] = $result;
             }

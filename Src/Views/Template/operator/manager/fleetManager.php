@@ -15,32 +15,32 @@
 <body>
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Dodawanie pojazdu</h2>
+			<h2 class="modal__title"><?php $this->LangContents('editTitle')?></h2>
 			<form class="modal-form" action="/manager/fleet/add" method="post" enctype="multipart/form-data">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="add_license" class="field__label">Tablice rejestracyjne</label>
-							<input type="text" id="add_license" name="add_license" class="field__input" placeholder="Tablice rejestracyjne" required>
+							<label for="add_license" class="field__label"><?php $this->LangContents('edit1')?></label>
+							<input type="text" id="add_license" name="add_license" class="field__input" placeholder="<?php $this->LangContents('edit1')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="add_brand" class="field__label">Marka</label>
-							<input type="text" id="add_brand" name="add_brand" class="field__input" placeholder="Marka" required>
+							<label for="add_brand" class="field__label"><?php $this->LangContents('edit2')?></label>
+							<input type="text" id="add_brand" name="add_brand" class="field__input" placeholder="<?php $this->LangContents('edit2')?>" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="add_model" class="field__label">Model</label>
-							<input type="text" id="add_model" name="add_model" class="field__input" placeholder="Model" required>
+							<label for="add_model" class="field__label"><?php $this->LangContents('edit21')?></label>
+							<input type="text" id="add_model" name="add_model" class="field__input" placeholder="<?php $this->LangContents('edit21')?>" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="add_production_year" class="field__label">Rok produkcji</label>
+							<label for="add_production_year" class="field__label"><?php $this->LangContents('edit3')?></label>
 							<input type="datetime-local" id="add_production_year" name="add_production_year" class="field__input">
 						</div>
 					</div>
@@ -48,21 +48,21 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="add_mileage" class="field__label">Przebieg</label>
-							<input type="number" id="add_mileage" name="add_mileage" class="field__input" placeholder="Przebieg" required>
+							<label for="add_mileage" class="field__label"><?php $this->LangContents('edit4')?></label>
+							<input type="number" id="add_mileage" name="add_mileage" class="field__input" placeholder="<?php $this->LangContents('edit4')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="add_service" class="field__label">Ostatni serwis</label>
+							<label for="add_service" class="field__label"><?php $this->LangContents('edit5')?></label>
 							<input type="datetime-local" id="add_service" name="add_service" class="field__input">
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="add_end_of_insurance" class="field__label">Koniec ubezpieczenia</label>
+							<label for="add_end_of_insurance" class="field__label"><?php $this->LangContents('edit6')?></label>
 							<input type="datetime-local" id="add_end_of_insurance" name="add_end_of_insurance" class="field__input">
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="add_inspect" class="field__label">Koniec badania technicznego</label>
+							<label for="add_inspect" class="field__label"><?php $this->LangContents('edit7')?></label>
 							<input type="datetime-local" id="add_inspect" name="add_inspect" class="field__input">
 						</div>
 					</div>
@@ -78,60 +78,60 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="photo" class="form__item__label">Dodaj zdjęcie</label>
+							<label for="photo" class="form__item__label"><?php $this->LangContents('edit8')?></label>
 							<input type="file" name="product_image" id="photo" class="form__item__input" accept="image/*" >
 						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Car Delate</h2>
-			<p class="modal__message modal__message--warning">! Pojazd zostanie trwale usunięte, czy chcesz potwierdzić !</p>
+			<h2 class="modal__title"><?php $this->LangContents('modalDelTitle')?></h2>
+			<p class="modal__message modal__message--warning"><?php $this->LangContents('modalInfo')?></p>
 			<form action="/manager/fleet/del" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button2"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--large">
-			<h2 class="modal__title">Car Edit</h2>
+			<h2 class="modal__title"><?php $this->LangContents('modalTitle')?></h2>
 			<form class="modal-form" action="/manager/fleet/edit" method="post" enctype="multipart/form-data">
 				<input type="hidden" id="edit_id" name="edit_id">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="edit_license" class="field__label">Tablice rejestracyjne</label>
-							<input type="text" id="edit_license" name="edit_license" class="field__input" placeholder="Tablice rejestracyjne" required>
+							<label for="edit_license" class="field__label"><?php $this->LangContents('modal1')?></label>
+							<input type="text" id="edit_license" name="edit_license" class="field__input" placeholder="<?php $this->LangContents('modal1')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_brand" class="field__label">Marka</label>
-							<input type="text" id="edit_brand" name="edit_brand" class="field__input" placeholder="Marka" required>
+							<label for="edit_brand" class="field__label"><?php $this->LangContents('modal2')?></label>
+							<input type="text" id="edit_brand" name="edit_brand" class="field__input" placeholder="<?php $this->LangContents('modal2')?>" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_model" class="field__label">Model</label>
-							<input type="text" id="edit_model" name="edit_model" class="field__input" placeholder="Model" required>
+							<label for="edit_model" class="field__label"><?php $this->LangContents('modal3')?></label>
+							<input type="text" id="edit_model" name="edit_model" class="field__input" placeholder="<?php $this->LangContents('modal3')?>" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="edit_production_year" class="field__label">Rok produkcji</label>
+							<label for="edit_production_year" class="field__label"><?php $this->LangContents('modal4')?></label>
 							<input type="date" id="edit_production_year" name="edit_production_year" class="field__input">
 						</div>
 					</div>
@@ -139,21 +139,21 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="edit_mileage" class="field__label">Przebieg</label>
-							<input type="number" id="edit_mileage" name="edit_mileage" class="field__input" placeholder="Przebieg" required>
+							<label for="edit_mileage" class="field__label"><?php $this->LangContents('modal5')?></label>
+							<input type="number" id="edit_mileage" name="edit_mileage" class="field__input" placeholder="<?php $this->LangContents('modal5')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="edit_service" class="field__label">Ostatni serwis</label>
+							<label for="edit_service" class="field__label"><?php $this->LangContents('modal6')?></label>
 							<input type="date" id="edit_service" name="edit_service" class="field__input">
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="edit_end_of_insurance" class="field__label">Koniec ubezpieczenia</label>
+							<label for="edit_end_of_insurance" class="field__label"><?php $this->LangContents('modal7')?></label>
 							<input type="date" id="edit_end_of_insurance" name="edit_end_of_insurance" class="field__input">
 						</div>
 					</div>
@@ -161,7 +161,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="edit_inspect" class="field__label">Koniec badania technicznego</label>
+							<label for="edit_inspect" class="field__label"><?php $this->LangContents('modal8')?></label>
 							<input type="date" id="edit_inspect" name="edit_inspect" class="field__input">
 						</div>
 					</div>
@@ -169,7 +169,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="photo" class="form__item__label">Dodaj zdjęcie</label>
+							<label for="photo" class="form__item__label"><?php $this->LangContents('modal9')?></label>
 							<input type="file" name="product_image1" id="photo" class="form__item__input" accept="image/*" >
 						</div>
 					</div>
@@ -177,17 +177,17 @@
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="status" class="field__label">Status</label>
+							<label for="status" class="field__label"><?php $this->LangContents('modal10')?></label>
 							<select name="edit_status" id="edit_status" class="field__input">
-									<option value="free">free</option>
-									<option value="in use">in use</option>
-									<option value="in servise">in servise</option>
+									<option value="free"><?php $this->LangContents('modal12')?></option>
+									<option value="in use"><?php $this->LangContents('modal13')?></option>
+									<option value="in servise"><?php $this->LangContents('modal14')?></option>
 							</select>
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="edit_oper" class="field__label">Użytkownik (Login/Name)</label>
+							<label for="edit_oper" class="field__label"><?php $this->LangContents('modal11')?></label>
 							<select name="edit_oper" id="edit_oper" class="field__input">
 								<?php foreach ($params['users'] as $veh): ?>
 									<option value="<?php echo $veh['id_operator']; ?>">
@@ -200,8 +200,8 @@
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button3"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
@@ -222,13 +222,13 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Profil</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout-ope" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout-ope" class="menu-user__dropdown-link"><?php $this->LangContentsNav('logOut')?></a>
 						</li>
 					</ul>
 				</li>
@@ -239,34 +239,34 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
-					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
-					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
-					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link">Flota</a></li>
-					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link">Samochód</a></li>
+					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link"><?php $this->LangContentsNav('homePage')?></a></li>
+					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link"><?php $this->LangContentsNav('order')?></a></li>
+					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link"><?php $this->LangContentsNav('route')?></a></li>
+					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link"><?php $this->LangContentsNav('location')?></a></li>
+					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link"><?php $this->LangContentsNav('cars')?></a></li>
+					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link"><?php $this->LangContentsNav('car')?></a></li>
+					</ul></a></li>
 				</ul>
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Fleet Dashboard</h2>
+			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
 			<div class="content__controls">
-				<button class="button button--positive" onclick="addFleet()">Dodaj pojazd</button>
-				<a class="button button--positive" href="/manager/vehicle/eamil" >Dodaj pojazd</a>
+				<button class="button button--positive" onclick="addFleet()"><?php $this->LangContents('btmAdd')?></button>
 			</div>
 			<div class="user-panel">
 				<table class="user-panel__table">
 					<thead>
 						<tr class="user-panel__row">
-							<th class="user-panel__header">Marka/Model</th>
-							<th class="user-panel__header">Tablice rejestracyjne</th>
-							<th class="user-panel__header">Rok produkcji</th>
-							<th class="user-panel__header">Ostatni serwis</th>
-							<th class="user-panel__header">Koniec ubezpieczenia</th>
-							<th class="user-panel__header">Koniec badania technicznego</th>
-							<th class="user-panel__header">Właściciel</th>
-							<th class="user-panel__header">Status</th>
-							<th class="user-panel__header">Options</th>
+							<th class="user-panel__header"><?php $this->LangContents('table1')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table2')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table3')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table4')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table5')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table6')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table7')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table8')?></th>
+							<th class="user-panel__header"><?php $this->LangContents('table9')?></th>
 						</tr>
 					</thead>
 					<tbody>
