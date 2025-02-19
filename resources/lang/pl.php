@@ -313,17 +313,33 @@ return [
 
         'AddRoute5' => 'Wprowadź dane lokalizacji A',
         'AddRoute6' => 'Adres zamieszkania',
-        'AddRoute7' => 'Punkt startowyk',
+        'AddRoute7' => 'Punkt startowy',
         'AddRoute8' => 'Data wyjazdu(opcjonalnie)',
 
-        'AddRoute5' => 'Wprowadź dane lokalizacji B',
-        'AddRoute6' => 'Punkt końcowy',
-        'AddRoute7' => 'Data przyjazdu(opcjonalnie)',
-        'AddRoute8' => 'Data odjazdu(opcjonalnie)',
+        'AddRoute9' => 'Wprowadź dane lokalizacji B',
+        'AddRoute10' => 'Punkt końcowy',
+        'AddRoute11' => 'Data przyjazdu(opcjonalnie)',
+        'AddRoute12' => 'Data odjazdu(opcjonalnie)',
+
+        'AddRoute13' => 'Poprzedni punkt końca trasy A',
+        'AddRoute14' => 'Wprowadź dane lokalizacji B',
+
+        'AddRoute15' => 'Adres',
 
         'table1' => 'Lokalizacja A | Nazwa | Adres	',
-        'title2' => 'Lokalizacja B | Nazwa | Adres',
-        'title3' => 'Options',
+        'table2' => 'Lokalizacja B | Nazwa | Adres',
+        'table3' => 'Options',
+
+        'AddLocationTitle' => 'Dodawanie lokalizacji',
+        'AddLocation1' => 'Nazwa',
+        'AddLocation2' => 'Numer domu',
+        'AddLocation3' => 'Ulica',
+        'AddLocation4' => 'Miejscowość',
+        'AddLocation5' => 'Kod pocztowy',
+
+        'AddLocation6' => 'Miasto',
+        'AddLocation7' => 'Wysokość geograficzna',
+        'AddLocation8' => 'Szerokość geograficzna',
 
         'modalTitle' => 'Edycja trasy',
         'modal1' => 'Lokalizacja A | Nazwa | Adres',
@@ -335,7 +351,6 @@ return [
         'modalInfo' => '! Trasa zostanie trwale usunięte, czy chcesz potwierdzić !',
 
         'btmAdd' => 'Dodaj',
-        'btmError' => 'Anuluj',
         'btmEnd' => 'Koniec',
         'btmAddLocation' => 'Dodaj lokalizacje',
         'btmConf' => 'Potwierdź',
@@ -346,20 +361,32 @@ return [
         'title' => 'Zarządzanie zleceniami delegacji',
         
         'table1' => 'Nazwa',
-        'title2' => 'Data wykonania',
-        'title3' => 'Data utworzenia/modyfikacji',
-        'title4' => 'Status',
-        'title5' => 'Lokalizacja A | Nazwa | Adres',
-        'title6' => 'Lokalizacja B | Nazwa | Adres',
-        'title7' => 'Options',
+        'table2' => 'Data wykonania',
+        'table3' => 'Data utworzenia/modyfikacji',
+        'table4' => 'Status',
+        'table5' => 'Lokalizacja A | Nazwa | Adres',
+        'table6' => 'Lokalizacja B | Nazwa | Adres',
+        'table7' => 'Options',
 
         'modalAdd' => 'Dodawanie lokalizacji',
         'modalAdd1' => 'Wprowadź dane lokalizacji B',
         'modalAdd2' => 'Punkt końcowy',
         'modalAdd3' => 'Data przyjazdu(opcjonalnie)',
+        'modalAdd4' => 'Data wyjazdu(opcjonalnie)',
 
         'modalDelTitle' => 'Usuń zlecenie',
         'modalInfo' => '! Zlecenie zostanie trwale usunięte, czy chcesz potwierdzić !',
+
+        'DelTitle' => 'Usuń punkt',
+        'DelInfo' => '! Punkt zostanie trwale usunięte, czy chcesz potwierdzić !',
+
+        'modalEditPoint' => 'Edycja trasy',
+        'modal1' => 'Nazwa',
+        'modal2' => 'Miejscowość',
+        'modal3' => 'Kod pocztowy',
+        'modal4' => 'Miasto',
+        'modal5' => 'Ulica',
+        'modal6' => 'Numer domu',
 
         'modalEdit' => 'Edycja zlecenie',
         'modalEdit1' => 'Nazwa zlecenia',

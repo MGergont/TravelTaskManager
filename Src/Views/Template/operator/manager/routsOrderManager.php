@@ -16,14 +16,14 @@
 <body>
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content modal__content--add">
-			<h2 class="modal__title">Dodawanie lokalizacji</h2>
-			<p class="modal__message ">Wprowadź dane lokalizacji B</p>
+			<h2 class="modal__title"><?php $this->LangContents('modalAdd')?></h2>
+			<p class="modal__message "><?php $this->LangContents('modalAdd1')?></p>
 			<form class="modal-form" action="/manager/order/routMain" method="POST">
 				<input type="hidden" id="add_id" name="id">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="location_order_B" class="field__label">Punkt końcowy</label>
+							<label for="location_order_B" class="field__label"><?php $this->LangContents('modalAdd2')?></label>
 							<select name="location_order_B" id="location_order_B" class="field__input">
 								<?php foreach ($params['location'] as $veh): ?>
 									<option value="<?php echo $veh['id_location']; ?>">
@@ -37,71 +37,71 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+							<label for="arrival_date" class="field__label"><?php $this->LangContents('modalAdd3')?></label>
 							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button type="submit" class="button button--positive">Dodaj</button>
-					<a class="button button--negative" id="cancel-button">Cancel</a>
+					<button type="submit" class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Usuwanie zlecenia</h2>
-			<p class="modal__message modal__message--warning">! Zlecenie zostanie trwale usunięte, czy chcesz potwierdzić !</p>
+			<h2 class="modal__title"><?php $this->LangContents('modalDelTitle')?></h2>
+			<p class="modal__message modal__message--warning"><?php $this->LangContents('modalInfo')?></p>
 			<form action="/manager/order/dellMain" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button2"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal4" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Usuń punkt</h2>
-			<p class="modal__message modal__message--warning">! Punkt zostanie trwale usunięte, czy chcesz potwierdzić !</p>
+			<h2 class="modal__title"><?php $this->LangContents('DelTitle')?></h2>
+			<p class="modal__message modal__message--warning"><?php $this->LangContents('DelInfo')?></p>
 			<form action="/manager/order/routeDellMain" method="post">
 				<input type="hidden" id="del_route_id" name="id">
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button4">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button4"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--large">
-			<h2 class="modal__title">Account Edit</h2>
+			<h2 class="modal__title"><?php $this->LangContents('modalEditPoint')?></h2>
 			<form class="modal-form" action="/manager/order/routeEditMain" method="post">
 				<input type="hidden" id="edit_id" name="id">
 				<div class="modal-form__row">
 					<div class="modal-form__column">
-						<p class="modal__message">Nazwa: <samp id="nameA"></samp></p>
-						<p class="modal__message">Miejscowość: <samp id="cityA"></samp></p>
-						<p class="modal__message">Kod pocztowy: <samp id="zipCodeA"></samp></p>
-						<p class="modal__message">Miasto: <samp id="townA"></samp></p>
-						<p class="modal__message">Ulica: <samp id="streetA"></samp></p>
-						<p class="modal__message">Numer domu: <samp id="numberA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal1')?> <samp id="nameA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal2')?> <samp id="cityA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal3')?> <samp id="zipCodeA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal4')?> <samp id="townA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal5')?> <samp id="streetA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal6')?> <samp id="numberA"></samp></p>
 					</div>
 					<div class="modal-form__column">
-						<p class="modal__message">Nazwa: <samp id="nameB"></samp></p>
-						<p class="modal__message">Miejscowość: <samp id="cityB"></samp></p>
-						<p class="modal__message">Kod pocztowy: <samp id="zipCodeB"></samp></p>
-						<p class="modal__message">Miasto: <samp id="townB"></samp></p>
-						<p class="modal__message">Ulica: <samp id="streetB"></samp></p>
-						<p class="modal__message">Numer domu: <samp id="numberB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal1')?> <samp id="nameB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal2')?> <samp id="cityB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal3')?> <samp id="zipCodeB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal4')?> <samp id="townB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal5')?> <samp id="streetB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal6')?> <samp id="numberB"></samp></p>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="location_A_edit" class="field__label">Lokalizacja A | Nazwa | Adres</label>
+							<label for="location_A_edit" class="field__label"><?php $this->LangContents('table5')?></label>
 							<select name="location_A_edit" id="location_A_edit" class="field__input">
 								<option id="originLocation" selected></option>
 								<?php foreach ($params['location'] as $veh): ?>
@@ -114,7 +114,7 @@
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="location_B_edit" class="field__label">Lokalizacja B | Nazwa | Adres</label>
+							<label for="location_B_edit" class="field__label"><?php $this->LangContents('table6')?></label>
 							<select name="location_B_edit" id="location_B_edit" class="field__input">
 								<option id="destinLocation" selected></option>
 								<?php foreach ($params['location'] as $veh): ?>
@@ -129,41 +129,41 @@
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+							<label for="arrival_date" class="field__label"><?php $this->LangContents('modalAdd3')?></label>
 							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="departure_date" class="field__label">Data wyjazdu(opcjonalnie)</label>
+							<label for="departure_date" class="field__label"><?php $this->LangContents('modalAdd4')?></label>
 							<input type="datetime-local" id="departure_date" name="departure_date" class="field__input">
 						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button3"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal5" style="display:none;">
 		<div class="modal__content modal__content--add">
-			<h2 class="modal__title">Edycja zlecenia</h2>
+			<h2 class="modal__title"><?php $this->LangContents('modalEdit')?></h2>
 			<form class="modal-form" action="/manager/order/orderEditMain" method="post">
 				<input type="hidden" id="edit_order_id" name="id">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="name_order" class="field__label">Nazwa zlecenia</label>
-							<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
+							<label for="name_order" class="field__label"><?php $this->LangContents('modalEdit1')?></label>
+							<input type="text" id="name_order" name="name_order" class="field__input" placeholder="<?php $this->LangContents('modalEdit1')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="user_order" class="field__label">Użytkownik (Login/Name)</label>
+							<label for="user_order" class="field__label"><?php $this->LangContents('modalEdit2')?></label>
 							<select name="user_order" id="user_order" class="field__input">
 								<?php foreach ($params['users'] as $veh): ?>
 									<option value="<?php echo $veh['id_operator']; ?>">
@@ -177,7 +177,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="date_due" class="field__label">Data realizacji</label>
+							<label for="date_due" class="field__label"><?php $this->LangContents('modalEdit3')?></label>
 							<input type="date" id="date_due" name="date_due" class="field__input" required>
 						</div>
 					</div>
@@ -185,19 +185,19 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="status_order" class="field__label">Status</label>
+							<label for="status_order" class="field__label"><?php $this->LangContents('modalEdit4')?></label>
 							<select name="status_order" id="status_order" class="field__input">
-								<option value="new">new</option>
-								<option value="in progress">in progress</option>
-								<option value="done">done</option>
-								<option value="accepted">accepted</option>
+								<option value="new"><?php $this->LangContents('modalEdit5')?></option>
+								<option value="in progress"><?php $this->LangContents('modalEdit6')?></option>
+								<option value="done"><?php $this->LangContents('modalEdit7')?></option>
+								<option value="accepted"><?php $this->LangContents('modalEdit8')?></option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button5">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button5"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
@@ -218,13 +218,13 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Profil</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout" class="menu-user__dropdown-link"><?php $this->LangContentsNav('logOut')?></a>
 						</li>
 					</ul>
 				</li>
@@ -235,28 +235,28 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
-					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
-					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
-					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link">Flota</a></li>
-					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link">Samochód</a></li>
+					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link"><?php $this->LangContentsNav('homePage')?></a></li>
+					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link"><?php $this->LangContentsNav('order')?></a></li>
+					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link"><?php $this->LangContentsNav('route')?></a></li>
+					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link"><?php $this->LangContentsNav('location')?></a></li>
+					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link"><?php $this->LangContentsNav('cars')?></a></li>
+					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link"><?php $this->LangContentsNav('car')?></a></li>
 				</ul>
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Zlecenia Delegacji</h2>
+			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
 			<div class="content__controls">
-				<a href="/manager/order/add"><button name="submit" class="button button--positive">Dodaj zlecenie delegacji</button></a>
+				<a href="/manager/order/add"><button name="submit" class="button button--positive"><?php $this->LangContents('btmAdd')?></button></a>
 			</div>
 			<div class="user-panel">
 				<div class="accordion">
 					<div class="accordion__title">
 						<div class="accordion__text"></div>
-						<div class="accordion__text">Nazwa</div>
-						<div class="accordion__text">Data wykonania</div>
-						<div class="accordion__text">Data utworzenia/modyfikacji</div>
-						<div class="accordion__text">Status</div>
+						<div class="accordion__text"><?php $this->LangContents('table1')?></div>
+						<div class="accordion__text"><?php $this->LangContents('table2')?></div>
+						<div class="accordion__text"><?php $this->LangContents('table3')?></div>
+						<div class="accordion__text"><?php $this->LangContents('table4')?></div>
 						<div class="accordion__text accordion__toggle"></div>
 					</div>
 					<?php if (!empty($params['orders'])) : ?>
@@ -273,9 +273,9 @@
 									<table class="accordion__table">
 										<thead>
 											<tr>
-												<th>Lokalizacja A | Nazwa | Adres</th>
-												<th>Lokalizacja B | Nazwa | Adres</th>
-												<th>Options</th>
+												<th><?php $this->LangContents('table5')?></th>
+												<th><?php $this->LangContents('table6')?></th>
+												<th><?php $this->LangContents('table7')?></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -309,10 +309,10 @@
 									</table>
 									<div class="accordion__options">
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button button--positive" onclick="addRoute('<?php echo $order['id_order']; ?>')">Dodaj punkt</button>
+											<button type="submit" name="submit" class="button button--positive" onclick="addRoute('<?php echo $order['id_order']; ?>')"><?php $this->LangContents('btmAddPoint')?></button>
 										</div>
 										<div class="accordion__button">
-											<button type="submit" name="submit" class="button button--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')">Usuń zlecenie</button>
+											<button type="submit" name="submit" class="button button--positive" onclick="delOrder('<?php echo $order['id_order']; ?>')"><?php $this->LangContents('btmDel')?></button>
 										</div>
 										<div class="accordion__button">
 											<button type="submit" name="submit" class="button button--positive" onclick="editOrder(
@@ -321,7 +321,7 @@
 											'<?php echo $order['assigned_to']; ?>',
 											'<?php echo $order['due_date']; ?>',
 											'<?php echo $order['status_order']; ?>'
-											)">Edytuj zlecenie</button>
+											)"><?php $this->LangContents('btmEdit')?></button>
 										</div>
 									</div>
 								</div>
