@@ -14,6 +14,10 @@ class DashboardUserController extends AbstractController{
 
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             $dashboardUserModel = new DashboardUserModel($this->configuration);
+
+            if($result = $dashboardUserModel->getSettings($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
             
             if (!isset($_SESSION['action'])) {
                 $_SESSION['action'] = "start";

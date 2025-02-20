@@ -410,22 +410,130 @@ return [
     //operator
 
     'dashboardUser' => [
-        'title' => 'ustawienia',
+        'title' => 'Panel operatora',
 
+        'status1' => 'Delegacje',
+        'del1' => 'Aktywan delegacja',
+        'del2' => 'Nazwa delegacji:',
+        'del3' => 'Data realizacji:',
+        'del4' => 'Data utworzenia:',
+        'del5' => 'Aktualna cel',
+        'del6' => 'Koniec trasy',
+        'del7' => 'Status',
+
+        'status2' => 'Obecnie nie ma delegacji',
+        'status3' => 'Dopisz koszt do delegacji',
+        'status4' => 'Dodaj opis kosztu delegacji',
+        'status5' => 'Dodaj kwotę',
+        'status6' => 'Twój samochód',
+        'status7' => 'Numer rejestracyjny:',
+        'status8' => 'Marka:',
+        'status9' => 'Model:',
+        'status10' => 'Przebieg:',
+        'status11' => 'Ubezpieczenie ważne do:',
+        'status12' => 'Koszty eksploatacji (ostatnie 30 dni)',
+        'status13' => 'Najbliższe trasy',
+        'status14' => 'Zlecenie:',
+        'status15' => 'Statystyka tras (ostatnie 30 dni)',
+        'status16' => 'Przebyty dystans:',
+        'status17' => 'Ilość tras:',
+
+
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
     ],
 
     'fleetUser' => [
-        'title' => 'Ustawienia',
+        'title' => 'Samochód',
+
+        'info1' => 'Rok produkcji:',
+        'info2' => 'Przebieg:',
+        'info3' => 'Status:',
+        'info4' => 'Informacje',
+        'info5' => 'Data ostatniego serwisu:',
+        'info6' => 'Data końca ważności ubezpieczenia:',
+        'info7' => 'Data końca ważności przeglądu:',
+
+        'title2' => 'Kategoria',
+        'title3' => 'Data zgłoszenia',
+        'title4' => 'Kwota',
+        'title5' => 'Options',
+
+        'modalTitle' => 'Edycja kosztów',
+        'modal1' => 'Data kosztów',
+        'modal2' => 'Kategoria kosztów',
+        'modal3' => 'Koszt',
+        'modal4' => 'Opis pojazdu',
+
+        'addTitle' => 'Dodawanie kosztów',
+        'add1' => 'Data kosztów',
+        'add2' => 'Kategoria kosztów',
+
+        'add3' => 'Serwis',
+        'add4' => 'Paliwo',
+        'add5' => 'Eksploatacja',
+
+        'add6' => 'Koszt',
+        'add7' => 'Opis',
+
+        'modalDelTitle' => 'Usuń koszt',
+        'modalInfo' => '! Zarejestrowany koszt zostanie trwale usunięte, czy chcesz potwierdzić !',
+
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
+        'btmAddError' => 'Dodaj zgłoszenie awarii',
+        'btmCost' => 'Dodaj koszt',
     ],
 
     'orderUser' => [
-        'title' => 'Zgłoszenie usterki',
+        'title' => 'Zlecenia Delegacji',
 
+        'table1' => 'Nazwa',
+        'table2' => 'Data wykonania',
+        'table3' => 'Data utworzenia/modyfikacji',
+        'table4' => 'Status',
+        'table5' => 'Lokalizacja A | Nazwa | Adres',
+        'table6' => 'Lokalizacja B | Nazwa | Adres',
+        'table7' => 'Options',
+
+        'modalTitle' => 'Szczeguły delegacji',
+        'modal1' => 'Nazwa:',
+        'modal2' => 'Miejscowość:',
+        'modal3' => 'Kod pocztowy:',
+        'modal4' => 'Miasto:',
+        'modal5' => 'Ulica:',
+        'modal6' => 'Numer domu:',
+        'modal7' => 'Data wyjazdu:',
+
+        'modal8' => 'Data Przyjazdu:',
+
+        'modalAccept' => 'Przyjmij zlecenie',
+        'modalAccept1' => 'Nazwa zlecenia:',
+        'modalAccept2' => 'Data realizacji:',
+
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
+        'btmAddError' => 'Przyjmij zlecenie',
     ],
 
     'routeUser' => [
-        'title' => 'Opłać czynsz',
+        'title' => 'Dodaj własną delegację',
 
+        'AddRouteTitle1' => 'Lokalizacja startowa',
+        'AddRouteTitle2' => 'Dystans',
+        'AddRouteTitle3' => 'Lokalizacja końcowa',
+        'AddRouteTitle10' => 'Kolejna lokalizacja startowa',
+        'AddRouteTitle20' => 'Kolejny dystans',
+        'AddRouteTitle4' => 'Rozpocznij trasę, aby dodać koszty',
+        'AddRouteTitle5' => 'Trasa trwa...',
+        'AddRouteTitle6' => 'Dodaj koszty',
+        'AddRouteTitle7' => 'Koszt',
+        'AddRouteTitle8' => 'Opis',
+
+        'btmStart' => 'Start',
+        'btmStop' => 'Stop',
+        'btmAdd' => 'Dodaj',
+        'btmNext' => 'Następny punkt',
     ],
 
     'navAdmin' => [

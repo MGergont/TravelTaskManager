@@ -16,6 +16,10 @@ class OrderUserController extends AbstractController{
         if(isset($_SESSION['status']) && $_SESSION['status'] === "login"){
             $orderOperatorModel = new OrderOperatorModel($this->configuration);
 
+            if($result = $orderOperatorModel->getSettings($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
             if ($orderOperatorModel->showOrdersOperator($_SESSION['userId'])) {
                 $this->paramView['orders'] = $this->orderParse($orderOperatorModel->showOrdersOperator($_SESSION['userId']));
             }
