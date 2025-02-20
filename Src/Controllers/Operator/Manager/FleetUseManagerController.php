@@ -18,6 +18,10 @@ class FleetUseManagerController extends AbstractController
         if (isset($_SESSION['status']) && $_SESSION['status'] === "login") {
             $fleetManagerMod = new FleetModel($this->configuration);
 
+            if($result = $fleetManagerMod->getSettings($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
             $this->paramView['fleet'] = $this->formatDaty($fleetManagerMod->showUserFleet($_SESSION['userId']));
 
             if($fleetManagerMod->showUserCarCosts($this->paramView['fleet']['id_car'])){

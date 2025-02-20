@@ -17,6 +17,10 @@ class ManagementLocationController extends AbstractController
         if (isset($_SESSION['status']) && $_SESSION['status'] === "login") {
             $managementLocationModel = new ManagementLocationModel($this->configuration);
 
+            if($result = $managementLocationModel->getSettings($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
             $this->paramView['location'] = $managementLocationModel->showLocation();
             
             (new View())->renderOperator("locationManager", $this->paramView, "manager");

@@ -121,6 +121,9 @@ abstract class AbstractModel
 		$row = $this->singleArray();
 	
 		if($this->rowCount() == 1){
+			if($row['lang'] == NULL){
+				return false;
+			}
 			return $row;
 		}else{
 			return false;

@@ -15,46 +15,45 @@
 <body>
 <div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content modal__content--large">
-			<h2 class="modal__title">Account Edit</h2>
+			<h2 class="modal__title"><?php $this->LangContents('modalTitle')?></h2>
 			<form class="modal-form" method="post">
 				<input type="hidden" id="edit_id" name="id">
 				<div class="modal-form__row">
 					<div class="modal-form__column">
-						<p class="modal__message">Data wyjazdu:<samp id="dateA"></samp></p>
-						<p class="modal__message">Nazwa:<samp id="nameA"></samp></p>
-						<p class="modal__message">Miejscowość:<samp id="cityA"></samp></p>
-						<p class="modal__message">Kod pocztowy:<samp id="zipCodeA"></samp></p>
-						<p class="modal__message">Miasto:<samp id="townA"></samp></p>
-						<p class="modal__message">Ulica:<samp id="streetA"></samp></p>
-						<p class="modal__message">Numer domu:<samp id="numberA"></samp></p>
-						<p class="modal__message">Data wyjazdu:<samp id="dateA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal1')?><samp id="nameA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal2')?><samp id="cityA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal3')?><samp id="zipCodeA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal4')?><samp id="townA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal5')?><samp id="streetA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal6')?><samp id="numberA"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal7')?><samp id="dateA"></samp></p>
 					</div>
 					<div class="modal-form__column">
-						<p class="modal__message">Nazwa:<samp id="nameB"></samp></p>
-						<p class="modal__message">Miejscowość:<samp id="cityB"></samp></p>
-						<p class="modal__message">Kod pocztowy:<samp id="zipCodeB"></samp></p>
-						<p class="modal__message">Miasto:<samp id="townB"></samp></p>
-						<p class="modal__message">Ulica:<samp id="streetB"></samp></p>
-						<p class="modal__message">Numer domu:<samp id="numberB"></samp></p>
-						<p class="modal__message">Data Przyjazdu:<samp id="dateB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal1')?><samp id="nameB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal2')?><samp id="cityB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal3')?><samp id="zipCodeB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal4')?><samp id="townB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal5')?><samp id="streetB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal6')?><samp id="numberB"></samp></p>
+						<p class="modal__message"><?php $this->LangContents('modal8')?><samp id="dateB"></samp></p>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<a class="button button--negative" id="cancel-button">Cancel</a>
+					<a class="button button--negative" id="cancel-button"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Przyjmij zlecenie</h2>
+			<h2 class="modal__title"><?php $this->LangContents('modalAccept')?></h2>
 			<form class="modal-form" action="/user/order" method="post">
 				<input type="hidden" id="edit_order_id" name="id">
-				<p class="modal__message">Nazwa zlecenia: </p><p class="modal__message" id="name_order"></p>
-				<p class="modal__message">Data realizacji: </p><p class="modal__message" id="date_due"></p>
+				<p class="modal__message"><?php $this->LangContents('modalAccept1')?> </p><p class="modal__message" id="name_order"></p>
+				<p class="modal__message"><?php $this->LangContents('modalAccept2')?> </p><p class="modal__message" id="date_due"></p>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button2"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
@@ -75,13 +74,13 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Profil</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout-ope" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout-ope" class="menu-user__dropdown-link"><?php $this->LangContentsNav('logOut')?></a>
 						</li>
 					</ul>
 				</li>
@@ -92,25 +91,24 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/user-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/user/route" class="sidebar__link">Delegacja</a></li>
-					<li class="sidebar__item"><a href="/user/order" class="sidebar__link">Zlecenia delegacji</a></li>
-					<li class="sidebar__item"><a href="/user/fleet" class="sidebar__link">Flota</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
+					<li class="sidebar__item"><a href="/user-dashboard" class="sidebar__link"><?php $this->LangContentsNav('homePage')?></a></li>
+					<li class="sidebar__item"><a href="/user/route" class="sidebar__link"><?php $this->LangContentsNav('route')?></a></li>
+					<li class="sidebar__item"><a href="/user/order" class="sidebar__link"><?php $this->LangContentsNav('order')?></a></li>
+					<li class="sidebar__item"><a href="/user/fleet" class="sidebar__link"><?php $this->LangContentsNav('car')?></a></li>
 				</ul>
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Zlecenia Delegacji</h2>
+			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
 			<div class="user-panel">
 				<div class="accordion">
 					<div class="accordion__table-wrapper">
 					<div class="accordion__title">
 						<div class="accordion__text"></div>
-						<div class="accordion__text">Nazwa</div>
-						<div class="accordion__text">Data wykonania</div>
-						<div class="accordion__text">Data utworzenia/modyfikacji</div>
-						<div class="accordion__text">Status</div>
+						<div class="accordion__text"><?php $this->LangContents('table1')?></div>
+						<div class="accordion__text"><?php $this->LangContents('table2')?></div>
+						<div class="accordion__text"><?php $this->LangContents('table3')?></div>
+						<div class="accordion__text"><?php $this->LangContents('table4')?></div>
 						<div class="accordion__text"></div>
 					</div>
 					<?php if (!empty($params['orders'])) : ?>
@@ -127,9 +125,9 @@
 									<table class="accordion__table">
 										<thead>
 											<tr>
-												<th>Lokalizacja A | Nazwa | Adres</th>
-												<th>Lokalizacja B | Nazwa | Adres</th>
-												<th>Options</th>
+												<th><?php $this->LangContents('table5')?></th>
+												<th><?php $this->LangContents('table6')?></th>
+												<th><?php $this->LangContents('table7')?></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -168,7 +166,7 @@
 											'<?php echo $order['id_order']; ?>',
 											'<?php echo $order['order_name']; ?>',
 											'<?php echo $order['due_date']; ?>',
-											)">Przyjmij Zlecenie</button>
+											)"><?php $this->LangContents('btmAddError')?></button>
 										</div>
 									</div>
 								</div>

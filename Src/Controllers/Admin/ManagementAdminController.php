@@ -17,6 +17,10 @@ class ManagementAdminController extends AbstractController
         if (isset($_SESSION['status']) && $_SESSION['status'] === "login") {
             $dashboardAdminModel = new ManagementAdminModel($this->configuration);
 
+            if($result = $dashboardAdminModel->getSettingsAdmin($_SESSION['userId'])){
+                $this->paramView = $result;
+            }
+
             $arrayUsers = $dashboardAdminModel->showOperators();
 
             $this->paramView['operators'] = $this->foramtDaty($arrayUsers);

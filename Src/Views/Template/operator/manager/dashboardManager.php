@@ -26,13 +26,13 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Profil</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout-ope" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout-ope" class="menu-user__dropdown-link"><?php $this->LangContentsNav('logOut')?></a>
 						</li>
 					</ul>
 				</li>
@@ -43,22 +43,22 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
-					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
-					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
-					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link">Flota</a></li>
-					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link">Samochód</a></li>
+					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link"><?php $this->LangContentsNav('homePage')?></a></li>
+					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link"><?php $this->LangContentsNav('order')?></a></li>
+					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link"><?php $this->LangContentsNav('route')?></a></li>
+					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link"><?php $this->LangContentsNav('location')?></a></li>
+					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link"><?php $this->LangContentsNav('cars')?></a></li>
+					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link"><?php $this->LangContentsNav('car')?></a></li>
 				</ul>
 				</ul>
 			</nav>
 		</div>
 		<main class="content">
-			<h2 class="content__title">Manager Dashboard</h2>
+			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
 			<div class="dashboard-manager">
 				<?php if (isset($params['StatusOrders'])): ?>
 					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title">Status realizacji zamówień</h2>
+						<h2 class="dashboard-manager__title"><?php $this->LangContents('status1')?></h2>
 						<div class="dashboard-manager__routes">
 							<?php foreach ($params['StatusOrders'] as $orders): ?>
 								<div class="dashboard-manager__route">
@@ -70,7 +70,7 @@
 				<?php endif; ?>
 				<?php if (isset($params['ActiveCar'])): ?>
 					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title">Samochody z największymi kosztami eksploatacji (ostatnie 6 miesięcy)</h2>
+						<h2 class="dashboard-manager__title"><?php $this->LangContents('status2')?></h2>
 						<?php foreach ($params['carCost'] as $cost): ?>
 							<p class="dashboard-manager__costs"><?php echo $cost['license_plate'] . "<br> " . $cost['brand'] . " " . $cost['model'] . " koszt: " . $cost['total_expenses']; ?> PLN</p>
 						<?php endforeach; ?>
@@ -78,13 +78,13 @@
 				<?php endif; ?>
 				<?php if (isset($params['ActiveCar'])): ?>
 					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title">Liczba aktywnych samochodów</h2>
+						<h2 class="dashboard-manager__title"><?php $this->LangContents('status3')?></h2>
 						<p class="dashboard-manager__costs"><?php echo $params['ActiveCar']['active_cars']; ?> szt</p>
 					</div>
 				<?php endif; ?>
 				<?php if (isset($params['EndInsurance'])): ?>
 					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title">Status realizacji zamówień</h2>
+						<h2 class="dashboard-manager__title"><?php $this->LangContents('status4')?></h2>
 						<div class="dashboard-manager__routes">
 							<?php foreach ($params['EndInsurance'] as $car): ?>
 								<div class="dashboard-manager__route">

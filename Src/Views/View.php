@@ -23,6 +23,7 @@ class View
 
 		switch ($path) {
 			case 'admin':
+				$this->LangParamsNav($params, "navAdmin");
 				require_once("./Src/Views/Template/admin/$page.php");
 				break;
 			default:
@@ -38,9 +39,11 @@ class View
 
 		switch ($path) {
 			case 'manager':
+				$this->LangParamsNav($params, "navUser");
 				require_once("./Src/Views/Template/operator/manager/$page.php");
 				break;
 			case 'user':
+				$this->LangParamsNav($params, "navUser");
 				require_once("./Src/Views/Template/operator/user/$page.php");
 				break;
 			case '':

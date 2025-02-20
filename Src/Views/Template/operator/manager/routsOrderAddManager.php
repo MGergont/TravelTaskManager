@@ -16,95 +16,95 @@
 <body>
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content modal__content--large">
-			<h2 class="modal__title">Dodawanie lokalizacji</h2>
+			<h2 class="modal__title"><?php $this->LangContents('AddLocationTitle')?></h2>
 			<form class="modal-form" action="/manager/order/addLocation" method="post">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="add_name" class="field__label">Nazwa</label>
-							<input type="text" id="add_name" name="add_name" class="field__input" placeholder="Nazwa" required>
+							<label for="add_name" class="field__label"><?php $this->LangContents('AddLocation1')?></label>
+							<input type="text" id="add_name" name="add_name" class="field__input" placeholder="<?php $this->LangContents('AddLocation1')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="add_houseNumber" class="field__label">Numer domu</label>
-							<input type="text" id="add_houseNumber" name="add_houseNumber" class="field__input" placeholder="Numer domu" required>
+							<label for="add_houseNumber" class="field__label"><?php $this->LangContents('AddLocation2')?></label>
+							<input type="text" id="add_houseNumber" name="add_houseNumber" class="field__input" placeholder="<?php $this->LangContents('AddLocation2')?>" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="add_street" class="field__label">Ulica</label>
-							<input type="text" id="add_street" name="add_street" class="field__input" placeholder="Ulica" required>
+							<label for="add_street" class="field__label"><?php $this->LangContents('AddLocation3')?></label>
+							<input type="text" id="add_street" name="add_street" class="field__input" placeholder="<?php $this->LangContents('AddLocation3')?>" required>
 						</div>
 					</div>
 					<div class="modal-form__trio">
 						<div class="field">
-							<label for="add_town" class="field__label">Miejscowość</label>
-							<input type="text" id="add_town" name="add_town" class="field__input" placeholder="Miejscowość" required>
+							<label for="add_town" class="field__label"><?php $this->LangContents('AddLocation4')?></label>
+							<input type="text" id="add_town" name="add_town" class="field__input" placeholder="<?php $this->LangContents('AddLocation4')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="add_zipCode" class="field__label">Kod pocztowy</label>
-							<input type="text" id="add_zipCode" name="add_zipCode" class="field__input" placeholder="Kod pocztowy" required>
+							<label for="add_zipCode" class="field__label"><?php $this->LangContents('AddLocation5')?></label>
+							<input type="text" id="add_zipCode" name="add_zipCode" class="field__input" placeholder="<?php $this->LangContents('AddLocation5')?>" required>
 						</div>
 					</div>
 					<div class="modal-form__column">
 						<div class="field">
-							<label for="add_city" class="field__label">Miasto</label>
-							<input type="text" id="add_city" name="add_city" class="field__input" placeholder="Miasto" required>
+							<label for="add_city" class="field__label"><?php $this->LangContents('AddLocation6')?></label>
+							<input type="text" id="add_city" name="add_city" class="field__input" placeholder="<?php $this->LangContents('AddLocation6')?>" required>
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="add_latitude" class="field__label">Wysokość geograficzna</label>
-							<input type="text" id="add_latitude" name="add_latitude" class="field__input" placeholder="Wysokość geograficzna">
+							<label for="add_latitude" class="field__label"><?php $this->LangContents('AddLocation7')?></label>
+							<input type="text" id="add_latitude" name="add_latitude" class="field__input" placeholder="<?php $this->LangContents('AddLocation7')?>">
 						</div>
 					</div>
 				</div>
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="add_longitude" class="field__label">Szerokość geograficzna</label>
-							<input type="text" id="add_longitude" name="add_longitude" class="field__input" placeholder="Szerokość geograficzna">
+							<label for="add_longitude" class="field__label"><?php $this->LangContents('AddLocation8')?></label>
+							<input type="text" id="add_longitude" name="add_longitude" class="field__input" placeholder="<?php $this->LangContents('AddLocation8')?>">
 						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal2" style="display:none;">
 		<div class="modal__content">
-			<h2 class="modal__title">Route Delate</h2>
-			<p class="modal__message modal__message--warning">! Trasa zostanie trwale usunięte, czy chcesz potwierdzić !</p>
+			<h2 class="modal__title"><?php $this->LangContents('modalDelTitle')?></h2>
+			<p class="modal__message modal__message--warning"><?php $this->LangContents('modalInfo')?></p>
 			<form action="/manager/order/dell" method="post">
 				<input type="hidden" id="del_id" name="id">
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button2">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button2"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<div class="modal" id="modal3" style="display:none;">
 		<div class="modal__content modal__content--edit">
-			<h2 class="modal__title">Account Route</h2>
+			<h2 class="modal__title"><?php $this->LangContents('modalTitle')?></h2>
 			<form class="modal-form" action="/manager/order/edit" method="post">
 				<input type="hidden" id="edit_id" name="edit_id">
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="location_A_edit" class="field__label">Lokalizacja A | Nazwa | Adres</label>
+							<label for="location_A_edit" class="field__label"><?php $this->LangContents('modal1')?></label>
 							<select name="location_A_edit" id="location_A_edit" class="field__input">
 								<option id="originLocation" selected></option>
 								<?php foreach ($params['location'] as $veh): ?>
@@ -119,7 +119,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="departure_date" class="field__label">Data wyjazdu(opcjonalnie)</label>
+							<label for="departure_date" class="field__label"><?php $this->LangContents('modal2')?></label>
 							<input type="datetime-local" id="departure_date" name="departure_date" class="field__input">
 						</div>
 					</div>
@@ -127,7 +127,7 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="location_B_edit" class="field__label">Lokalizacja B | Nazwa | Adres</label>
+							<label for="location_B_edit" class="field__label"><?php $this->LangContents('modal3')?></label>
 							<select name="location_B_edit" id="location_B_edit" class="field__input">
 								<option id="destinLocation" selected></option>
 								<?php foreach ($params['location'] as $veh): ?>
@@ -142,14 +142,14 @@
 				<div class="modal-form__row">
 					<div class="modal-form__full">
 						<div class="field">
-							<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+							<label for="arrival_date" class="field__label"><?php $this->LangContents('modal4')?></label>
 							<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 						</div>
 					</div>
 				</div>
 				<div class="modal__actions">
-					<button class="button button--positive">Confirm</button>
-					<a class="button button--negative" id="cancel-button3">Cancel</a>
+					<button class="button button--positive"><?php $this->LangContents('btmConf')?></button>
+					<a class="button button--negative" id="cancel-button3"><?php $this->LangContents('btmCancel')?></a>
 				</div>
 			</form>
 		</div>
@@ -170,13 +170,13 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Profil</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout" class="menu-user__dropdown-link"><?php $this->LangContentsNav('logOut')?></a>
 						</li>
 					</ul>
 				</li>
@@ -187,12 +187,12 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link">Zlecenia Delegacji</a></li>
-					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link">Delegacja</a></li>
-					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link">Lokalizacje</a></li>
-					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link">Flota</a></li>
-					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link">Samochód</a></li>
+					<li class="sidebar__item"><a href="/manager-dashboard" class="sidebar__link"><?php $this->LangContentsNav('homePage')?></a></li>
+					<li class="sidebar__item"><a href="/manager/order" class="sidebar__link"><?php $this->LangContentsNav('order')?></a></li>
+					<li class="sidebar__item"><a href="/manager/route" class="sidebar__link"><?php $this->LangContentsNav('route')?></a></li>
+					<li class="sidebar__item"><a href="/manager/location" class="sidebar__link"><?php $this->LangContentsNav('location')?></a></li>
+					<li class="sidebar__item"><a href="/manager/fleet" class="sidebar__link"><?php $this->LangContentsNav('cars')?></a></li>
+					<li class="sidebar__item"><a href="/manager/vehicle" class="sidebar__link"><?php $this->LangContentsNav('car')?></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -200,7 +200,7 @@
 			<?php if (!empty($_SESSION["addOrder"])) : ?>
 				<?php flash("addOrder"); ?>
 			<?php endif; ?>
-			<h2 class="content__title">Dodawanie zlecenia delegacji</h2>
+			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
 			<div class="content__controls">
 				<a href="/manager/order"><button name="submit" class="button button--positive">
 					<< </button></a>
@@ -211,19 +211,19 @@
 						case 'start': ?>
 							<form class="modal-form" action="/manager/order/add" method="POST">
 								<!-- //TODOdane osobiste -->
-								<h3 class="">Wprowadź dane zlecenia</h3>
+								<h3 class=""><?php $this->LangContents('AddRoute1')?></h3>
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="name_order" class="field__label">Nazwa zlecenia</label>
-											<input type="text" id="name_order" name="name_order" class="field__input" placeholder="Nazwa" required>
+											<label for="name_order" class="field__label"><?php $this->LangContents('AddRoute2')?></label>
+											<input type="text" id="name_order" name="name_order" class="field__input" placeholder="<?php $this->LangContents('AddRoute2')?>" required>
 										</div>
 									</div>
 								</div>
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="user_order" class="field__label">Użytkownik (Login/Name)</label>
+											<label for="user_order" class="field__label"><?php $this->LangContents('AddRoute3')?></label>
 											<select name="user_order" id="user_order" class="field__input">
 												<?php foreach ($params['users'] as $veh): ?>
 													<option value="<?php echo $veh['id_operator']; ?>">
@@ -237,21 +237,21 @@
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="date_due" class="field__label">Data realizacji</label>
+											<label for="date_due" class="field__label"><?php $this->LangContents('AddRoute4')?></label>
 											<input type="date" id="date_due" name="date_due" class="field__input" required>
 										</div>
 									</div>
 								</div>
-								<button type="submit" class="button button--positive">Dodaj</button>
+								<button type="submit" class="button button--positive"><?php $this->LangContents('btmAdd')?></button>
 							</form>
 						<?php break;
 						case 'location': ?>
 							<form class="modal-form" action="/manager/order/next" method="POST">
 								<!-- //TODOdane osobiste -->
-								<h3 class="">Wprowadź dane lokalizacji A</h3>
+								<h3 class=""><?php $this->LangContents('AddRoute5')?></h3>
 								<div class="field-checkbox">
 									<input type="checkbox" id="home_adres_togle" class="field-checkbox__input" name="home_adres_togle">
-									<label for="home_adres_togle"  class="field-checkbox__label">Adres zamieszkania</label>
+									<label for="home_adres_togle"  class="field-checkbox__label"><?php $this->LangContents('AddRoute6')?></label>
 								</div>
 								<input type="hidden" name="id_home_location" value="<?php echo $params['adresHome']['id_address'] ?>" />
 								<div class="form-add" id="home_adres_view" style="display: none;">
@@ -267,7 +267,7 @@
 									<div class="modal-form__row">
 										<div class="modal-form__full">
 											<div class="field">
-												<label for="location_order_A" class="field__label">Punkt startowyk</label>
+												<label for="location_order_A" class="field__label"><?php $this->LangContents('AddRoute7')?></label>
 												<select name="location_order_A" id="location_order_A" class="field__input">
 													<?php foreach ($params['location'] as $veh): ?>
 														<option value="<?php echo $veh['id_location']; ?>">
@@ -282,16 +282,16 @@
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="departure_date_A" class="field__label">Data wyjazdu(opcjonalnie)</label>
+											<label for="departure_date_A" class="field__label"><?php $this->LangContents('AddRoute8')?></label>
 											<input type="datetime-local" id="departure_date_A" name="departure_date_A" class="field__input">
 										</div>
 									</div>
 								</div>
-								<h3 class="">Wprowadź dane lokalizacji B</h3>
+								<h3 class=""><?php $this->LangContents('AddRoute9')?></h3>
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="location_order_B" class="field__label">Punkt końcowy</label>
+											<label for="location_order_B" class="field__label"><?php $this->LangContents('AddRoute10')?></label>
 											<select name="location_order_B" id="location_order_B" class="field__input">
 												<?php foreach ($params['location'] as $veh): ?>
 													<option value="<?php echo $veh['id_location']; ?>">
@@ -305,7 +305,7 @@
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+											<label for="arrival_date" class="field__label"><?php $this->LangContents('AddRoute11')?></label>
 											<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 										</div>
 									</div>
@@ -313,33 +313,33 @@
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="departure_date_B" class="field__label">Data odjazdu(opcjonalnie)</label>
+											<label for="departure_date_B" class="field__label"><?php $this->LangContents('AddRoute12')?></label>
 											<input type="datetime-local" id="departure_date_B" name="departure_date_B" class="field__input">
 										</div>
 									</div>
 								</div>
-								<button type="submit" class="button button--positive">Dodaj</button>
-								<a href="/manager/order/clean" class="button button--negative">Anuluj</a>
-								<a class="button button--positive" onclick="addLocation()">Dodaj lokalizacje</a>
+								<button type="submit" class="button button--positive"><?php $this->LangContents('btmAdd')?></button>
+								<a href="/manager/order/clean" class="button button--negative"><?php $this->LangContents('btmCancel')?></a>
+								<a class="button button--positive" onclick="addLocation()"><?php $this->LangContents('btmAddLocation')?></a>
 							</form>
 						<?php break;
 						case 'location2': ?>
 							<form class="modal-form" action="/manager/order/end" method="POST">
 								<!-- //TODOdane osobiste -->
-								<h3 class="">Poprzedni punkt końca trasy A</h3>
+								<h3 class=""><?php $this->LangContents('AddRoute13')?></h3>
 								<?php echo $params['locationA']['location_name'] ?>
 								<?php echo $params['locationA']['city'] ?>
 								<?php echo $params['locationA']['zip_code'] ?>
 								<?php echo $params['locationA']['town'] ?>
 								<?php echo $params['locationA']['street'] ?>
 								<?php echo $params['locationA']['house_number'] ?>
-								<p>Adres</p>
-								<h3 class="">Wprowadź dane lokalizacji B</h3>
+								<p><?php $this->LangContents('AddRoute15')?></p>
+								<h3 class=""><?php $this->LangContents('AddRoute14')?></h3>
 								<input type="hidden" name="location_order_A" value="<?php echo $params['locationA']['id_location'] ?>">
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="location_order_B" class="field__label">Punkt końcowy</label>
+											<label for="location_order_B" class="field__label"><?php $this->LangContents('AddRoute10')?></label>
 											<select name="location_order_B" id="location_order_B" class="field__input">
 												<?php foreach ($params['location'] as $veh): ?>
 													<option value="<?php echo $veh['id_location']; ?>">
@@ -353,14 +353,14 @@
 								<div class="modal-form__row">
 									<div class="modal-form__full">
 										<div class="field">
-											<label for="arrival_date" class="field__label">Data przyjazdu(opcjonalnie)</label>
+											<label for="arrival_date" class="field__label"><?php $this->LangContents('AddRoute11')?></label>
 											<input type="datetime-local" id="arrival_date" name="arrival_date" class="field__input">
 										</div>
 									</div>
 								</div>
-								<button type="submit" class="button button--positive">Dodaj</button>
-								<a href="/manager/order/clean" class="button button--negative">Koniec</a>
-								<a class="button button--positive" onclick="addLocation()">Dodaj lokalizacje</a>
+								<button type="submit" class="button button--positive"><?php $this->LangContents('btmAdd')?></button>
+								<a href="/manager/order/clean" class="button button--negative"><?php $this->LangContents('btmEnd')?></a>
+								<a class="button button--positive" onclick="addLocation()"><?php $this->LangContents('btmAddLocation')?></a>
 							</form>
 						<?php break;
 						default: ?>
@@ -374,9 +374,9 @@
 							<table class="user-panel__table">
 								<thead>
 									<tr class="user-panel__row">
-										<th class="user-panel__header">Lokalizacja A | Nazwa | Adres</th>
-										<th class="user-panel__header">Lokalizacja B | Nazwa | Adres</th>
-										<th class="user-panel__header">Options</th>
+										<th class="user-panel__header"><?php $this->LangContents('table1')?></th>
+										<th class="user-panel__header"><?php $this->LangContents('table2')?></th>
+										<th class="user-panel__header"><?php $this->LangContents('table3')?></th>
 									</tr>
 								</thead>
 								<tbody>

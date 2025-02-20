@@ -26,13 +26,13 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Profil</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link">Ustawienia</a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
-							<a href="/logout" class="menu-user__dropdown-link">wyloguj się</a>
+							<a href="/logout" class="menu-user__dropdown-link"><?php $this->LangContentsNav('logOut')?></a>
 						</li>
 					</ul>
 				</li>
@@ -43,12 +43,10 @@
 		<div class="sidebar">
 			<nav class="sidebar__menu">
 				<ul class="sidebar__list">
-					<li class="sidebar__item"><a href="/admin-dashboard" class="sidebar__link">Strona główna</a></li>
-					<li class="sidebar__item"><a href="/operators" class="sidebar__link">Operatorzy</a></li>
-					<li class="sidebar__item"><a href="/admins" class="sidebar__link">Administracja</a></li>
-					<li class="sidebar__item"><a href="/register" class="sidebar__link">Dodaj użytkownika</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Services</a></li>
-					<li class="sidebar__item"><a href="#" class="sidebar__link">Contact</a></li>
+					<li class="sidebar__item"><a href="/admin-dashboard" class="sidebar__link"><?php $this->LangContentsNav('homePage')?></a></li>
+					<li class="sidebar__item"><a href="/operators" class="sidebar__link"><?php $this->LangContentsNav('user')?></a></li>
+					<li class="sidebar__item"><a href="/admins" class="sidebar__link"><?php $this->LangContentsNav('admin')?></a></li>
+					<li class="sidebar__item"><a href="/register" class="sidebar__link"><?php $this->LangContentsNav('addUser')?></a></li>
 				</ul>
 			</nav>
 		</div>
@@ -57,7 +55,7 @@
 			<div class="dashboard">
 				<?php if (isset($params['StatusOrders'])): ?>
 					<div class="dashboard__section">
-						<h2 class="dashboard__title">Ilość użytkowników</h2>
+						<h2 class="dashboard__title"><?php $this->LangContents('stats1')?></h2>
 						<div class="dashboard__routes">
 							<?php foreach ($params['StatusOrders'] as $orders): ?>
 								<div class="dashboard__route">
@@ -69,7 +67,7 @@
 				<?php endif; ?>
 				<?php if (isset($params['Query'])): ?>
 					<div class="dashboard__section">
-						<h2 class="dashboard__title">Liczba zapytań do bazy</h2>
+						<h2 class="dashboard__title"><?php $this->LangContents('stats2')?></h2>
 						<?php foreach ($params['Query'] as $query): ?>
 							<p class="dashboard__costs"><?php echo $query['hour'] . " " . $query['query_count'] ?> szt.</p>
 						<?php endforeach; ?>
@@ -77,7 +75,7 @@
 				<?php endif; ?>
 				<?php if (isset($params['StatusUser'])): ?>
 					<div class="dashboard__section">
-						<h2 class="dashboard__title">Liczba aktywnych i zablokowanych operatorów</h2>
+						<h2 class="dashboard__title"><?php $this->LangContents('stats3')?></h2>
 						<div class="dashboard__routes">
 						<?php foreach ($params['StatusUser'] as $param): ?>
 							<div class="dashboard__route">
@@ -89,7 +87,7 @@
 				<?php endif; ?>
 				<?php if (isset($params['InactiveUsers'])): ?>
 					<div class="dashboard__section">
-						<h2 class="dashboard__title">Nieaktywni użytkownicy</h2>
+						<h2 class="dashboard__title"><?php $this->LangContents('stats4')?></h2>
 							<?php foreach ($params['InactiveUsers'] as $inactiv): ?>
 									<p class="dashboard__costs"><?php echo $inactiv["name"] . " " . $inactiv["last_name"] . " | " . $inactiv["role"] . " <br> " . date('Y-m-d', strtotime($inactiv["last_login"])) ?></p>
 							<?php endforeach ?>
@@ -97,7 +95,7 @@
 				<?php endif; ?>
 				<?php if (isset($params['ErrorLogin'])): ?>
 					<div class="dashboard__section">
-						<h2 class="dashboard__title">Błędne próby logowania</h2>
+						<h2 class="dashboard__title"><?php $this->LangContents('stats5')?></h2>
 						<div class="dashboard__routes">
 							<?php foreach ($params['ErrorLogin'] as $inactiv): ?>
 								<div class="dashboard__route">
@@ -109,7 +107,7 @@
 				<?php endif; ?>
 				<?php if (isset($params['email'])): ?>
 					<div class="dashboard__section">
-						<h2 class="dashboard__title">Wiadomości email</h2>
+						<h2 class="dashboard__title"><?php $this->LangContents('stats6')?></h2>
 							<?php foreach ($params['email'] as $email): ?>
 								<p class="dashboard__costs"><?php echo $email["recipient_email"] . " <br> " . $email["subject"] . " <br> " . date('Y-m-d h-m', strtotime($email["sent_at"])); ?></p>
 							<?php endforeach ?>
