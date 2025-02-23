@@ -14,7 +14,7 @@
 
 	&__content {
 		position: relative;
-		background-color: white;
+		background-color: var(--secondary-color);
 		padding: 20px;
 		width: 100%;
 		max-width: 600px; // Maksymalna szerokość
@@ -36,13 +36,14 @@
 		font-family: 'Sora';
 		font-size: 24px;
 		margin-bottom: 15px;
-		color: #333;
+		color: var(--text-primary);
 	}
 
 	&__message {
 		font-weight: 400;
 		font-family: 'OpenSans_normal';
 		font-size: 17px;
+		color: var(--text-secondary);
 
 		&--warning{
 			font-size: 20px;

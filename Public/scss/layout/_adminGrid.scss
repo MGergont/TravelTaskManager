@@ -22,7 +22,7 @@
     
     &__user-info {
       font-size: 1rem;
-      color: white;
+      color: var(--table__1);
     }
     
     &__hamburger {
@@ -53,6 +53,7 @@
 
     &__title{
       margin: 20px 0;
+      color: var(--text-primary)
     }
 
     &__controls{
@@ -151,7 +152,7 @@
 	}
   
 	&__link1 {
-	  color: white;
+	  color: var(--table__1);
 	  max-width: 200px;
 	  min-width: 180px;
 	  text-align: right;
@@ -167,7 +168,7 @@
 	}
 
   &__link2 {
-	  color: white;
+	  color: var(--table__1);
 	  text-align: right;
 	  text-decoration: none;
 	  padding: 0.5rem 1rem;

@@ -11,6 +11,10 @@
         display: block;
         width: 130px;
         margin: 0 auto;
+
+        @media (prefers-color-scheme: dark){
+          background-color: var(--text-primary);
+        }
     }
 
     &__title {
