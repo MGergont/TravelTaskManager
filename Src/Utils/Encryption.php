@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Src\Utils;
 
 class Encryption {
-    private const SECRET_KEY = 'frazaszyfrująca';
-    private const SECRET_IV = '16 bitowy klucz';
+    private const SECRET_KEY = SECRET_KEY_ENCRYPT;
+    private const SECRET_IV = SECRET_IV_ENCRYPT;
 
     public static function encrypt($data) {
         $key = hash('sha256', self::SECRET_KEY, true); // RAW output
