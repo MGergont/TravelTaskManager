@@ -13,5 +13,5 @@ require_once __DIR__ . '/../../Src/Tools/bootstrap.php'; // Autoload przez Compo
 $request = new Request($_GET, $_POST, $_SERVER);
 $controller = new EmailSendController($request);
 
-// echo $controller->EndInsurance();
+echo $controller->EndInsurance();
 echo $controller->EndTechInspect();

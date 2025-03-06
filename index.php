@@ -28,6 +28,7 @@ $router->get('/logout', 'LoginAdminController@logout', 'Controllers\\Admin');
 $router->get('/logout-ope', 'LoginOperatorController@logout', 'Controllers\\Operator');
 
 $router->get('/admin-dashboard', 'DashboardAdminController@DashboardAdminView', 'Controllers\\Admin');
+$router->get('/admin/profile', 'ProfileAdminController@ProfileAdminView', 'Controllers\\Admin');
 
 $router->get('/operators', 'ManagementOperatorController@ManagementOperatorView', 'Controllers\\Admin');
 $router->post('/operator-pwd-unlock', 'ManagementOperatorController@PwdUnlock', 'Controllers\\Admin');
@@ -46,7 +47,7 @@ $router->get('/user-dashboard', 'DashboardUserController@DashboardUserView', 'Co
 $router->post('/user-dashboard/start', 'DashboardUserController@RouteStart', 'Controllers\\Operator\\User');
 $router->post('/user-dashboard/stop', 'DashboardUserController@RouteStop', 'Controllers\\Operator\\User');
 $router->post('/user-dashboard/reject', 'DashboardUserController@RejectOrder', 'Controllers\\Operator\\User');
-
+$router->get('/user/profile', 'ProfileUserController@ProfileView', 'Controllers\\Operator\\User');
 
 $router->get('/manager/route', 'RouteManagerController@RouteManagerView', 'Controllers\\Operator\\Manager');
 $router->get('/user/route', 'RouteUserController@RouteUserView', 'Controllers\\Operator\\User');
@@ -68,6 +69,8 @@ $router->post('/manager/route/castom-next', 'RouteManager`Controller@startNextRo
 $router->get('/manager/route/castom-stop', 'RouteManagerController@stopRoute', 'Controllers\\Operator\\Manager');
 $router->get('/manager/route/castom-end', 'RouteManagerController@endRoute', 'Controllers\\Operator\\Manager');
 $router->post('/manager/route/cost', 'RouteManagerController@addCost', 'Controllers\\Operator\\Manager');
+
+$router->get('/manager/profile', 'ProfileManagerController@ProfileView', 'Controllers\\Operator\\Manager');
 
 $router->get('/manager/location', 'ManagementLocationController@ManagementLocationView', 'Controllers\\Operator\\Manager');
 $router->post('/manager/location/add', 'ManagementLocationController@locationAdd', 'Controllers\\Operator\\Manager');

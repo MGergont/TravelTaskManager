@@ -1060,6 +1060,36 @@ body {
   border-radius: 6px;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.profile__section {
+  padding: 15px;
+  background-color: var(--background);
+  border-radius: 6px;
+}
+.profile__title {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.profile__data {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -1091,7 +1121,7 @@ body {
     --negative: #D9644A;
     --negative-hover: #A84D29;
     --positive: #388F5F;
-    --positive-hover: #1E653B;
+    --positive-hover: #2e9a37;
     --active: #2E4C40;
     --inactive: #3F4C52;
     --disabled: #333C42;

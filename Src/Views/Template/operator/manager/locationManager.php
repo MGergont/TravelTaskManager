@@ -14,6 +14,9 @@
 </head>
 
 <body>
+
+	<?php  ?> 
+
 	<div class="modal" id="modal1" style="display:none;">
 		<div class="modal__content">
 			<h2 class="modal__title"><?php $this->LangContents('AddLocationTitle')?></h2>
@@ -182,7 +185,7 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
+							<a href="/manager/profile" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
 							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>

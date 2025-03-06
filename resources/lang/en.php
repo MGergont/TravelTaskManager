@@ -17,6 +17,11 @@ return [
         'stats5' => 'Failed login attempts',
         'stats6' => 'Emails sent (last 7 days)',
     ],
+    
+    'profileAdmin' => [
+        'title' => 'Admin Profile',
+
+    ],
 
     'loginAdmin' => [],
 
@@ -144,6 +149,10 @@ return [
         'status2' => 'Cars with the highest operating costs (last 6 months)',
         'status3' => 'Number of active cars',
         'status4' => 'Order fulfillment status',
+    ],
+
+    'profileManager' => [
+        'title' => 'Manager profile',
     ],
 
     'fleetManager' => [
@@ -399,6 +408,11 @@ return [
         'btmEdit' => 'Edit Order',
         'btmConf' => 'Confirm',
         'btmCancel' => 'Cancel',
+    ],
+
+    'profileUser' => [
+        'title' => 'Operator Profile',
+
     ],
 
     'dashboardUser' => [
