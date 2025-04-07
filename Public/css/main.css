@@ -1113,24 +1113,6 @@ body {
   --text-secondary: #2B314A;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #34985a;
-    --secondary-color: #2B2E38;
-    --background: #12141F;
-    --negative: #D9644A;
-    --negative-hover: #A84D29;
-    --positive: #388F5F;
-    --positive-hover: #2e9a37;
-    --active: #2E4C40;
-    --inactive: #3F4C52;
-    --disabled: #333C42;
-    --table__1: #22262E;
-    --table__2: #444B58;
-    --text-primary: #E5E8EC;
-    --text-secondary: #B0B5B9;
-  }
-}
 @font-face {
   font-family: "OpenSans_italic";
   src: url("/Public/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf") format("truetype");
