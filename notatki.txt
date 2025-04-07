@@ -6,7 +6,7 @@ dodać przycisk do edyscji mianowicie nazwa data przypisany użytkownik status(g
 
 
 
-
+aaa
 Kreator trasy
 -punkt startowy
     -wybur pomiędzy adresem domowym i z listy lub przycisk do dodawania adresu który tak jak w add location wywołuje modala z dodawaniem lokacji. 

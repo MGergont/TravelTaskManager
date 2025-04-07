@@ -2,5 +2,5 @@
 .phpunit.result.cache
 
 .vscode
-Src/Config/Mailer_conf.php
-Src/Utils/Encryption.php
+.env
+notatki.txt

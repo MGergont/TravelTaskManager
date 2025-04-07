@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Resources\lang;
 
 return [
-    //admin
 
     'dashboardAdmin' => [
         'title' => 'Panel administracyjny',
@@ -16,6 +15,18 @@ return [
         'stats4' => 'Nieaktywni użytkownicy',
         'stats5' => 'Błędne próby logowania',
         'stats6' => 'Wiadomości email (7 dni)',
+    ],
+
+    'profileAdmin' => [
+        'title' => 'Admin Profil',
+
+        'modalLockTitle' => 'Zmień hasło',
+        'modalLock3' => 'Obecne hasło:',
+        'modalLock4' => 'Nowe hasło:',
+        'modalLock5' => 'Powtórz nowe hasło:',
+
+        'btmConf' => 'Potwierdź',
+        'btmCancel' => 'Anuluj',
     ],
 
     'loginAdmin' => [
@@ -152,6 +163,11 @@ return [
         'status4' => 'Status realizacji zamówień',
     ],
 
+    'profileManager' => [
+        'title' => 'Profil menedżera',
+
+    ],
+
     'fleetManager' => [
         'title' => 'Zarządzanie flotą',
 
@@ -163,7 +179,7 @@ return [
         'table6' => 'Koniec badania technicznego',
         'table7' => 'Właściciel',
         'table8' => 'Status',
-        'table9' => 'Options',
+        'table9' => 'Opcje',
 
         'modalTitle' => 'Edycja danych pojazdu',
         'modal1' => 'Tablice rejestracyjne',
@@ -217,7 +233,7 @@ return [
         'title2' => 'Kategoria',
         'title3' => 'Data zgłoszenia',
         'title4' => 'Kwota',
-        'title5' => 'Options',
+        'title5' => 'Opcje',
 
         'modalTitle' => 'Edycja kosztów',
         'modal1' => 'Data kosztów',
@@ -252,7 +268,7 @@ return [
         'table2' => 'Miejscowość',
         'table3' => 'Kod pocztowy',
         'table4' => 'Ulica',
-        'table5' => 'Options',
+        'table5' => 'Opcje',
 
         'modalTitle' => 'Edycja lokalizacji',
         'modal1' => 'Nazwa',
@@ -328,7 +344,7 @@ return [
 
         'table1' => 'Lokalizacja A | Nazwa | Adres	',
         'table2' => 'Lokalizacja B | Nazwa | Adres',
-        'table3' => 'Options',
+        'table3' => 'Opcje',
 
         'AddLocationTitle' => 'Dodawanie lokalizacji',
         'AddLocation1' => 'Nazwa',
@@ -366,7 +382,7 @@ return [
         'table4' => 'Status',
         'table5' => 'Lokalizacja A | Nazwa | Adres',
         'table6' => 'Lokalizacja B | Nazwa | Adres',
-        'table7' => 'Options',
+        'table7' => 'Opcje',
 
         'modalAdd' => 'Dodawanie lokalizacji',
         'modalAdd1' => 'Wprowadź dane lokalizacji B',
@@ -408,6 +424,11 @@ return [
     ],
 
     //operator
+
+    'profileUser' => [
+        'title' => 'Profil Operatora',
+
+    ],
 
     'dashboardUser' => [
         'title' => 'Panel operatora',
@@ -457,7 +478,7 @@ return [
         'title2' => 'Kategoria',
         'title3' => 'Data zgłoszenia',
         'title4' => 'Kwota',
-        'title5' => 'Options',
+        'title5' => 'Opcje',
 
         'modalTitle' => 'Edycja kosztów',
         'modal1' => 'Data kosztów',
@@ -494,7 +515,7 @@ return [
         'table4' => 'Status',
         'table5' => 'Lokalizacja A | Nazwa | Adres',
         'table6' => 'Lokalizacja B | Nazwa | Adres',
-        'table7' => 'Options',
+        'table7' => 'Opcje',
 
         'modalTitle' => 'Szczeguły delegacji',
         'modal1' => 'Nazwa:',

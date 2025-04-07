@@ -17,10 +17,10 @@ class Mailer {
 
     
     public function __construct() {
+        
+        $configDB = require "./Src/Config/PdoMySQLConf.php";
 
-        $config = require "./Src/Config/PdoMySQLConf.php";
-
-        $this->emailLogModel = new EmailSendModel($config['db']);
+        $this->emailLogModel = new EmailSendModel($configDB['db']);
 
         $config = require './Src/Config/Mailer_conf.php';
 

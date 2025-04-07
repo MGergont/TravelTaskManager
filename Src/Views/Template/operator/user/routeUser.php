@@ -25,7 +25,7 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
+							<a href="/user/profile" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
 							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>

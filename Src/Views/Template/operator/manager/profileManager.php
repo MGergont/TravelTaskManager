@@ -26,7 +26,7 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="/manager/profile" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
+							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
 							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
@@ -55,46 +55,7 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
-			<div class="dashboard-manager">
-				<?php if (isset($params['StatusOrders'])): ?>
-					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title"><?php $this->LangContents('status1')?></h2>
-						<div class="dashboard-manager__routes">
-							<?php foreach ($params['StatusOrders'] as $orders): ?>
-								<div class="dashboard-manager__route">
-									<span><strong><?php echo $orders["status_order"] . " " . $orders["order_count"] . "szt. " ?></strong></span>
-								</div>
-							<?php endforeach ?>
-						</div>
-					</div>
-				<?php endif; ?>
-				<?php if (isset($params['ActiveCar'])): ?>
-					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title"><?php $this->LangContents('status2')?></h2>
-						<?php foreach ($params['carCost'] as $cost): ?>
-							<p class="dashboard-manager__costs"><?php echo $cost['license_plate'] . "<br> " . $cost['brand'] . " " . $cost['model'] . " koszt: " . $cost['total_expenses']; ?> PLN</p>
-						<?php endforeach; ?>
-					</div>
-				<?php endif; ?>
-				<?php if (isset($params['ActiveCar'])): ?>
-					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title"><?php $this->LangContents('status3')?></h2>
-						<p class="dashboard-manager__costs"><?php echo $params['ActiveCar']['active_cars']; ?> szt</p>
-					</div>
-				<?php endif; ?>
-				<?php if (isset($params['EndInsurance'])): ?>
-					<div class="dashboard-manager__section">
-						<h2 class="dashboard-manager__title"><?php $this->LangContents('status4')?></h2>
-						<div class="dashboard-manager__routes">
-							<?php foreach ($params['EndInsurance'] as $car): ?>
-								<div class="dashboard-manager__route">
-									<span><strong><?php echo $car["id_car"] . " | " . $car["license_plate"] . " | " . $car["brand"] . " | " . $car["model"] . " | " . date('Y-m-d', strtotime($car["end_of_insurance"])) ?></strong></span>
-								</div>
-							<?php endforeach ?>
-						</div>
-					</div>
-				<?php endif; ?>
-			</div>
+
 		</main>
 	</div>
 </body>

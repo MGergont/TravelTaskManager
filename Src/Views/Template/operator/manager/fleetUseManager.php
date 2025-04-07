@@ -138,7 +138,7 @@
 					<a href="#" class="menu-user__link2"><i class="icon-torso"></i></a>
 					<ul class="menu-user__dropdown">
 						<li class="menu-user__dropdown-item">
-							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
+							<a href="/manager/profile" class="menu-user__dropdown-link"><?php $this->LangContentsNav('userProfil')?></a>
 						</li>
 						<li class="menu-user__dropdown-item">
 							<a href="#" class="menu-user__dropdown-link"><?php $this->LangContentsNav('settings')?></a>
@@ -176,7 +176,8 @@
 						<?php if($params['fleet']['img_path'] === "BRAK"): ?>
 						<img src="/Public/image/car/img_car_1.jpg" alt="Zdjęcie samochodu" class="fleet__image">
 						<?php else: ?>
-							<img src="\resources\image\car\<?php echo $params['fleet']['img_path'] ?>" alt="Zdjęcie samochodu" class="fleet__image">
+							<!-- <img src="\resources\image\car\" alt="Zdjęcie samochodu" class="fleet__image"> -->
+							<img src="/resources/image/car/img_67af4a168fea49.94863134.jpg" alt="Zdjęcie samochodu" class="fleet__image">
 						<?php endif; ?>
 						<div class="fleet__details">
 							<h2 class="fleet__title"><?php echo $params['fleet']['brand'] . " " . $params['fleet']['model'] ?></h2>
