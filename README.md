@@ -30,7 +30,7 @@ TravelTaskManager is a comprehensive web application supporting business travel 
 - **Backend**: PHP (MVC pattern compliance, PSR-4, PDO)
 - **Frontend**: HTML, SCSS, JavaScript (BEM methodology)
 - **Database**: PostgreSQL
-- **Libraries**: PHPMailer (send e-mail)
+- **Libraries**: PHPMailer (send e-mail), phpdotenv
 - **Development methodology**: Incremental
 
 ## System requirements
@@ -41,4 +41,5 @@ TravelTaskManager is a comprehensive web application supporting business travel 
 - Composer (for PHP dependency management)
 
 ## Setup 
+
 
