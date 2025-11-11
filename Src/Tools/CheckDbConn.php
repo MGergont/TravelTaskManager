@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Src\Tools;
 
-require_once 'Src\Models\AbstractModel.php';
-
 use Src\Models\AbstractModel;
- 
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../Src/Tools/bootstrap.php';
+
 class CheckDbConn extends AbstractModel{
 
     public function DbVersion(): bool|array{
@@ -24,7 +25,8 @@ class CheckDbConn extends AbstractModel{
 
 }
 
-$config = require_once("./Src/Config/PdoMySQLConf.php");
+$config = require_once __DIR__ . '/../../Src/Config/PdoMySQLConf.php';
+
 $config2 = $config['db'];
 
 $TestowyModel = new CheckDbConn($config2);
