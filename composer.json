@@ -23,7 +23,7 @@
         ],
         "app:init": [
         "@app:check-db",
-        "php scripts/create-db.php",
+        "php Script/createDB.php",
         "php vendor/bin/phinx migrate -e production"
         ],
         "app:update": [

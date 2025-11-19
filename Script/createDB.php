@@ -1,26 +1,29 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
+
+namespace Script;
 
 use Dotenv\Dotenv;
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+use PDO;
+use PDOException;
 
-$host = $_ENV['DB_HOST'];
-$db   = $_ENV['DB_NAME'];
-$user = $_ENV['DB_USER'];
-$pass = $_ENV['DB_PASS'];
+require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../Src/Tools/bootstrap.php';
+
+$host = DB_HOST;
+$port = DB_PORT;
+$db   = DB_NAME;
+$user = DB_USER;
+$pass = DB_PASS;
 
 try {
-    // Połączenie bez określonej bazy, żeby móc ją utworzyć
-    $dsn = "pgsql:host=$host;port=5432;dbname=postgres";
+    $dsn = "pgsql:host=$host;port=$port;";
     $pdo = new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-    // Utworzenie bazy jeśli nie istnieje
     $pdo->exec("CREATE DATABASE \"$db\"");
-    echo "✅ Baza danych '$db' została utworzona.\n";
+    echo "Baza danych '$db' została utworzona. OK\n";
 } catch (PDOException $e) {
     if (strpos($e->getMessage(), 'already exists') !== false) {
-        echo "Baza '$db' już istnieje, pomijam tworzenie.\n";
+        echo "Baza '$db' już istnieje, pomijam tworzenie. OK\n";
     } else {
         echo "Błąd przy tworzeniu bazy danych: " . $e->getMessage() . "\n";
         exit(1);
