@@ -38,7 +38,7 @@ class Mailer {
             $this->mail->isHTML(true);
         } catch (Exception $e) {
             die("Mailer error: " . $e->getMessage());
-        }
+        }       
     }
 
     public function send($to, $subject, $template, $data = []) {
