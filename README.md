@@ -41,5 +41,49 @@ TravelTaskManager is a comprehensive web application supporting business travel 
 - Composer (for PHP dependency management)
 
 ## Setup 
+This project can be installed in two different ways, depending on the user's needs and environment. Both methods will fully prepare the application, including the web server, PHP, PostgreSQL database, and all required dependencies.
 
+### Requirements
+- Ubuntu Server 22.04 / 24.04 or compatible
+- Sudo privileges
+- Internet access
 
+### Installation on Ubuntu – Automatic Installer
+The application includes an automatic installer *setup.sh*, which configures all required components:
+
+- Apache 2
+- PHP 8.2 + wymagane rozszerzenia
+- PostgreSQL
+- Composer
+- Repository download
+- *.env* file creation
+- Installation of dependencies
+- Executing Phinx database migrations
+- Apache VirtualHost configuration
+- Adding an entry to */etc/hosts*
+- Launching the application
+
+### Running the Installer
+- Download the *setup.sh* file (if you don't have it yet), and then make it executable:
+```bash
+chmod +x setup.sh
+```
+uruchom skrypt
+
+```bash
+sudo bash setup.sh
+```
+
+### Accessing the Application
+
+Application URL:
+```bash
+http://travelflow.local
+```
+Admin Panel:
+```bash
+http://travelflow.local/admin
+```
+Default login credentials:
+**Login**: admin
+**Password:**: qwerty12345
