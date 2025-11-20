@@ -1,5 +1,6 @@
 {
     "name": "testowy/projekt",
+    "version": "1.0.1",
     "description": "To jest testowy projekt",
     "type": "project",
     "autoload": {

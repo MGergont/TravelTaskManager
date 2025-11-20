@@ -27,3 +27,10 @@ Versioning: [SemVer](https://semver.org/lang/pl/)
 - Automatic adaptation of the interface to dark/light mode.
 - Compatibility with PSR-4, MVC, BEM.
 - PHPMailer implementation.
+
+## [1.0.1] – 2025-11-20
+
+### Added
+- Adding installation/configuration script.
+- Adding a database update mechanism.
+- Repairing the path to the library
