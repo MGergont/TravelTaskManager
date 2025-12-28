@@ -1,5 +1,5 @@
 {
-    "name": "TravelTaskManager/projekt",
+    "name": "traveltaskmanager/projekt",
     "version": "1.0.1",
     "description": "TravelTaskManager is a comprehensive web application supporting business travel management in enterprises. It enables effective expense recording, route planning, fleet management and employee task assignment.",
     "type": "project",
@@ -33,7 +33,7 @@
         ],
         "app:update-db": [
         "@app:check-db",
-        "php vendor/bin/phinx migrate -e production"
+        "phinx migrate -e production"
         ]
   }
 }
