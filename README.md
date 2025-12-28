@@ -66,7 +66,7 @@ The application includes an automatic installer *setup.sh*, which configures all
 ### Running the Installer
 - Download the *setup.sh* file (if you don't have it yet), and then make it executable:
 ```bash
-chmod +x setup.sh
+sudo chmod +x setup.sh
 ```
 uruchom skrypt
 
