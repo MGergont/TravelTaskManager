@@ -82,6 +82,7 @@
 					<li class="sidebar__item"><a href="/operators" class="sidebar__link"><?php $this->LangContentsNav('user') ?></a></li>
 					<li class="sidebar__item"><a href="/admins" class="sidebar__link"><?php $this->LangContentsNav('admin') ?></a></li>
 					<li class="sidebar__item"><a href="/register" class="sidebar__link"><?php $this->LangContentsNav('addUser') ?></a></li>
+					<li class="sidebar__item"><a href="/parameters" class="sidebar__link"><?php $this->LangContentsNav('paramSystem')?></a></li>
 				</ul>
 			</nav>
 		</div>

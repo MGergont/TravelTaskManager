@@ -152,6 +152,10 @@ return [
         'btmConf' => 'Potwierdź',
     ],
 
+    'paramAdmin' => [
+        'title' => 'Parametry systemu'
+    ],
+
     //manager
 
     'dashboardManager' => [
@@ -562,6 +566,7 @@ return [
         'user' => 'Operatorzy',
         'admin' => 'Administracja',
         'addUser' => 'Dodaj użytkownika',
+        'paramSystem' => 'Parametry',
 
         'userProfil' => 'Profil',
         'settings' => 'Ustawienia',

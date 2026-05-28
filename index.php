@@ -10,10 +10,9 @@ require_once __DIR__ . '/Src/Tools/bootstrap.php';
 
 
 $router = new Src\Utils\Router();
-//TODOobsługa błędów
+
 $router->get('/access-denied', 'HomeController@accessDenied', 'Controllers');
 
-//TODOlogowanie user
 $router->get('/', 'LoginOperatorController@loginView', 'Controllers\\Operator');
 $router->post('/', 'LoginOperatorController@login', 'Controllers\\Operator');
 
@@ -39,6 +38,9 @@ $router->get('/admins', 'ManagementAdminController@ManagementAdminView', 'Contro
 $router->post('/admin-pwd-unlock', 'ManagementAdminController@PwdUnlock', 'Controllers\\Admin');
 $router->post('/admin-del-profile', 'ManagementAdminController@accountDell', 'Controllers\\Admin');
 $router->post('/admin-edit-profile', 'ManagementAdminController@accountEdit', 'Controllers\\Admin');
+
+$router->get('/parameters', 'ParamsAdminController@ParamsAdminView', 'Controllers\\Admin');
+// $router->post('/operator-pwd-unlock', 'ManagementOperatorController@PwdUnlock', 'Controllers\\Admin');
 
 $router->get('/manager-dashboard', 'DashboardManagerController@DashboardManagerView', 'Controllers\\Operator\\Manager');
 

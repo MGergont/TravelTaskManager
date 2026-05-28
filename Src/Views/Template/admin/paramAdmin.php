@@ -158,56 +158,19 @@
 		</div>
 		<main class="content">
 			<h2 class="content__title"><?php $this->LangContents('title')?></h2>
-			<div class="user-panel">
-				<table class="user-panel__table">
-					<thead>
-						<tr class="user-panel__row">
-							<th class="user-panel__header"><?php $this->LangContents('table1')?></th>
-							<th class="user-panel__header"><?php $this->LangContents('table2')?></th>
-							<th class="user-panel__header"><?php $this->LangContents('table3')?></th>
-							<th class="user-panel__header"><?php $this->LangContents('table4')?></th>
-							<th class="user-panel__header"><?php $this->LangContents('table5')?></th>
-							<th class="user-panel__header user-panel__header--status"><?php $this->LangContents('table6')?></th>
-							<th class="user-panel__header"><?php $this->LangContents('table7')?></th>
-							<th class="user-panel__header"><?php $this->LangContents('table8')?></th>
-							<th class="user-panel__header"><?php $this->LangContents('table9')?></th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php if (!empty($params['operators'])) : ?>
-							<?php foreach ($params['operators'] as $operator): ?>
-								<tr class="user-panel__row">
-									<td class="user-panel__cell"><?php echo $operator['name']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['last_name']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['login']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['phone_number']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['email']; ?></td>
-									<td class="user-panel__cell  user-panel__cell--<?php echo $operator['user_status']; ?>"><?php echo $operator['user_status']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['last_login']; ?></td>
-									<td class="user-panel__cell"><?php echo $operator['user_grant']; ?></td>
-									<td class="user-panel__cell user-panel__cell--options">
-										<button class="user-panel__icon"><i class="icon-pencil" onclick="editProfile(
-									'<?php echo $operator['id_admin']; ?>',
-									'<?php echo $operator['login']; ?>',
-									'<?php echo $operator['name']; ?>',
-									'<?php echo $operator['last_name']; ?>',
-									'<?php echo $operator['phone_number']; ?>',
-									'<?php echo $operator['email']; ?>',
-									'<?php echo $operator['user_status']; ?>'
-									)"></i></button>
-										<button class="user-panel__icon"><i class="icon-key" onclick="pwdChanges(
-									'<?php echo $operator['id_admin']; ?>',
-									'<?php echo $operator['login_error']; ?>'
-									)"></i></button>
-										<button class="user-panel__icon"><i class="icon-trash" onclick="delProfile(
-									'<?php echo $operator['id_admin']; ?>'
-									)"></i></button>
-									</td>
-								</tr>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</tbody>
-				</table>
+			<div class="dashboard">
+				<div class="dashboard__section">
+					<h2 class="dashboard__title">Parametry hasła użytkonika</h2>
+				</div>
+				<div class="dashboard__section">
+					<h2 class="dashboard__title">Parametry hasła admina</h2>
+				</div>
+				<div class="dashboard__section">
+					<h2 class="dashboard__title">Parametry systemu</h2>
+				</div>
+				<div class="dashboard__section">
+					<h2 class="dashboard__title">Test 4</h2>
+				</div>
 			</div>
 		</main>
 	</div>
